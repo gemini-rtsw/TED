@@ -1,0 +1,125 @@
+version: '3.7'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
+    user: "${U_ID}:${G_ID}"
+    container_name: "es01"
+    networks: 
+    - "elkg"
+    ports: 
+    - "${ES01_PORT}:9200"
+    - "${ES01_TR_PORT}:9300"
+    volumes: [
+      ./es01/config:/usr/share/elasticsearch/config,
+      ./es01/logs:/usr/share/elasticsearch/logs,
+      "${DATA_PATH}/es01:/usr/share/elasticsearch/data"
+    ]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"
+        
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.7.0
+    container_name: ki01
+    networks: 
+    - "elkg"
+    ports: 
+    - "${KI01_PORT}:5601"
+    environment:
+      INTERACTIVESETUP_ENABLED: false
+      ELASTICSEARCH_HOSTS: http://elasticsearch:${ES01_PORT}
+      elasticsearch.ssl.verificationMode: "none"
+    depends_on:
+      - elasticsearch
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"
+
+  logstash_01: 
+    image: docker.elastic.co/logstash/logstash:8.7.0
+    container_name: "ls01"
+    # user: "${U_ID}:${G_ID}"
+    networks: 
+    - "elkg"
+    ports: 
+    - "${LS01_PORT}:9600"
+    environment:
+      LOGSTASH_MODE: tail
+      HOST_1: http://elasticsearch:${ES01_PORT}
+      TIMEZONE: "${LS_TIMEZONE}"
+    volumes:
+      - ./ls01/config:/usr/share/logstash/config
+      - ./ls01/pipeline:/usr/share/logstash/pipeline
+      - ${LOGS_PATH}:/usr/logs/log
+      - ${LS01_DB_PATH}:/db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"
+        
+  logstash_02: 
+    image: docker.elastic.co/logstash/logstash:8.7.0
+    container_name: "ls02"
+    #user: "${U_ID}:${G_ID}"
+    networks: 
+    - "elkg"
+    ports: 
+    - "${LS02_PORT}:9600"
+    environment:
+      LOGSTASH_MODE: read
+      HOST_1: http://elasticsearch:${ES01_PORT}
+      TIMEZONE: "${LS_TIMEZONE}"
+    volumes:
+      - ./ls02/config:/usr/share/logstash/config
+      - ./ls02/pipeline:/usr/share/logstash/pipeline
+      - ${LOGS_PATH}:/usr/logs/log
+      - ${LS02_DB_PATH}:/db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"
+
+  geaservice:
+      build: ./geaservice
+      container_name: geaservice
+      command: python3 /geaservice/geaservice.py
+      network_mode: host
+      volumes:
+        - ./geaservice/geaservice.py:/geaservice/geaservice.py
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "100m"
+          max-file: "1"
+
+  grafana:
+      image: grafana/grafana:9.3.6
+      container_name: "gr01"
+      user: "${U_ID}:${G_ID}"
+      networks: 
+      - "elkg"
+      ports: 
+      - "${GR01_PORT}:3000"
+      volumes:
+        - ./gr01/grafana-data:/var/lib/grafana
+        - ./gr01/conf:/usr/share/grafana/conf
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "100m"
+          max-file: "1"
+
+
+
+networks:
+  elkg:
+    name: "elkg"
+    external: true
+  bridge_network:
+    driver: bridge

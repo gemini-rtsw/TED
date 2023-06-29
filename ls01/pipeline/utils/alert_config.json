@@ -1,0 +1,52 @@
+[
+  {
+    "ruleName": "Task called pure virtual function - Alarm",
+    "subsystem": "gmos",
+    "expression": "Task called pure virtual function",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "S_errno_ENOBUFS - Alarm",
+    "subsystem": "gmos",
+    "expression": "S_errno_ENOBUFS",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Exception next instruction - Alarm ",
+    "subsystem": "gmos",
+    "expression": "Exception next instruction",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Flamingo-2 anti flood emails - Alarm 1 ",
+    "subsystem": "flam",
+    "expression": "Cycle",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Flamingo-2 anti flood emails - Alarm 2 ",
+    "subsystem": "flam",
+    "expression": "16",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  }
+]
