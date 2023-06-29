@@ -28,25 +28,5 @@
       { "service": "email", "to": ["tim.gaggstatter@noirlab.edu"] }
     ],
     "source": "logstash"
-  },
-  {
-    "ruleName": "Flamingo-2 anti flood emails - Alarm 1 ",
-    "subsystem": "flam",
-    "expression": "Cycle",
-    "triggerAlarm": [
-      { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
-    ],
-    "source": "logstash"
-  },
-  {
-    "ruleName": "Flamingo-2 anti flood emails - Alarm 2 ",
-    "subsystem": "flam",
-    "expression": "16",
-    "triggerAlarm": [
-      { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
-    ],
-    "source": "logstash"
   }
 ]
