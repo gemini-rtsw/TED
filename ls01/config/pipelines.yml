@@ -126,11 +126,11 @@
 #   queue.type: persisted
 #   queue.max_bytes: 100mb
 
-# - pipeline.id: serialcon-flamingos-2-${LOGSTASH_MODE}
-#   pipeline.workers: 1
-#   path.config: "/usr/share/logstash/pipeline/serialcon/flamperle/flamperle.cfg"
-#   queue.type: persisted
-#   queue.max_bytes: 100mb 
+- pipeline.id: serialcon-flamingos-2-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/serialcon/flamperle/flamperle.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb 
 
 # - pipeline.id: serialcon-gmos-cc-${LOGSTASH_MODE}
 #   pipeline.workers: 1
@@ -156,11 +156,11 @@
 #   queue.type: persisted
 #   queue.max_bytes: 100mb  
 
-- pipeline.id: serialcon-mcs-${LOGSTASH_MODE}
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/serialcon/mcs/mcs.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb 
+# - pipeline.id: serialcon-mcs-${LOGSTASH_MODE}
+#   pipeline.workers: 1
+#   path.config: "/usr/share/logstash/pipeline/serialcon/mcs/mcs.cfg"
+#   queue.type: persisted
+#   queue.max_bytes: 100mb 
 
 # # #---------------------------------------- Non-Rotatives ----------------------------------------#
 

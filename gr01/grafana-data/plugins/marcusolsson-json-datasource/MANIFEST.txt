@@ -1,0 +1,37 @@
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "community",
+  "signedByOrg": "marcusolsson",
+  "signedByOrgName": "Marcus Olsson",
+  "plugin": "marcusolsson-json-datasource",
+  "version": "1.3.5",
+  "time": 1680707292363,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "LICENSE": "ee4141d02acd9ce8d5ec0b3b79fc286a7e2b2c430f8b58bc6261446c0dd9b23c",
+    "CHANGELOG.md": "842959ac38a9f69a49a4eba3b45e963bf270be882201b8d864ebb702c62f7028",
+    "module.js.LICENSE.txt": "cdf963ced7d25a0f98901a547647b4d6e2dbe0197fd78c87a059a87b0e542fe2",
+    "module.js.map": "58fef904f7facb3fefe5c18ecebee4554752c17ef6556f4d7334b1b068116e54",
+    "plugin.json": "fabe7c9fcee3b12a8ab3eb8f7f09b6cc3e2c232efb98f4ff7b190b233449b3d3",
+    "README.md": "a99e4bdda5ecfac94668451f4e167b4242d3ef237eae20cda28efe316d525116",
+    "img/dark.png": "52a33e32b68f611273ef247dce0e60c3553fa2e54bf47b44ff93a7336bd3dbb9",
+    "img/light.png": "caa7b8fa6179e4e388de0380e122b8531eb16ff6b8f3eaa23faa1f362363b0da",
+    "img/logo.svg": "970745c7099fd3fe4f8c8cac1de5e38410fbee44e02bac0534cefa9f6c21d984",
+    "module.js": "3929434073e0ff099d38142be777882cdeaa7976e2c086baab130ea2449479af"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+Version: OpenPGP.js v4.10.10
+Comment: https://openpgpjs.org
+
+wrkEARMKAAYFAmQtjtwAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm56vtAgkB7XHM3C0sNY5rinYg352i1M6jSvV1GMUj4rULm3TVYbn0zUyp
+TrERUkyCM00bOEKOwaFCMmDMvRm6B8eYa11rdAQCCQG+zHFvAfmOtCC8WyX7
+TM2W00Jgji0Ta06jP5By6iKnZuE+Mij0bvwkGHcvN9yLSxHx8nFl5v+A3SEr
+2HjKzEpqyg==
+=ae/Q
+-----END PGP SIGNATURE-----

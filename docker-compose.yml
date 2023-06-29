@@ -42,14 +42,14 @@ services:
   logstash_01: 
     image: docker.elastic.co/logstash/logstash:8.7.0
     container_name: "ls01"
-    # user: "${U_ID}:${G_ID}"
+    user: "1000:${G_ID}"
     networks: 
     - "elkg"
     ports: 
     - "${LS01_PORT}:9600"
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: http://elasticsearch:${ES01_PORT}
+      HOST_1: http://${HOST_IP}:${ES01_PORT}
       TIMEZONE: "${LS_TIMEZONE}"
     volumes:
       - ./ls01/config:/usr/share/logstash/config
@@ -65,14 +65,14 @@ services:
   logstash_02: 
     image: docker.elastic.co/logstash/logstash:8.7.0
     container_name: "ls02"
-    #user: "${U_ID}:${G_ID}"
+    user: "1000:${G_ID}"
     networks: 
     - "elkg"
     ports: 
     - "${LS02_PORT}:9600"
     environment:
       LOGSTASH_MODE: read
-      HOST_1: http://elasticsearch:${ES01_PORT}
+      HOST_1: http://${HOST_IP}:${ES01_PORT}
       TIMEZONE: "${LS_TIMEZONE}"
     volumes:
       - ./ls02/config:/usr/share/logstash/config
@@ -100,7 +100,7 @@ services:
 
   grafana:
       image: grafana/grafana:9.3.6
-      container_name: "gr01"
+      container_name: "gr02"
       user: "${U_ID}:${G_ID}"
       networks: 
       - "elkg"
@@ -121,5 +121,3 @@ networks:
   elkg:
     name: "elkg"
     external: true
-  bridge_network:
-    driver: bridge
