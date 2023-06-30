@@ -29,7 +29,7 @@ services:
     - "${KI01_PORT}:5601"
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: http://elasticsearch:${ES01_PORT}
+      ELASTICSEARCH_HOSTS: http://${HOST_IP}:${ES01_PORT}
       elasticsearch.ssl.verificationMode: "none"
     depends_on:
       - elasticsearch
@@ -49,7 +49,7 @@ services:
     - "${LS01_PORT}:9600"
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: http://${HOST_IP}:${ES01_PORT}
+      HOST_1: http://elasticsearch:${ES01_PORT}
       TIMEZONE: "${LS_TIMEZONE}"
     volumes:
       - ./ls01/config:/usr/share/logstash/config
@@ -72,7 +72,7 @@ services:
     - "${LS02_PORT}:9600"
     environment:
       LOGSTASH_MODE: read
-      HOST_1: http://${HOST_IP}:${ES01_PORT}
+      HOST_1: http://elasticsearch:${ES01_PORT}
       TIMEZONE: "${LS_TIMEZONE}"
     volumes:
       - ./ls02/config:/usr/share/logstash/config
@@ -100,7 +100,7 @@ services:
 
   grafana:
       image: grafana/grafana:9.3.6
-      container_name: "gr02"
+      container_name: "gr01"
       user: "${U_ID}:${G_ID}"
       networks: 
       - "elkg"
