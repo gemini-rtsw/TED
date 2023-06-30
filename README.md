@@ -1,7 +1,7 @@
 # TED
 1. modify .env file
 2. execute createFolders script
-3. check permissions of folders, it is important to give permissions to write and execute to the group specified in the .env
+3. check permissions of folders, it is important to give permissions to write and execute to the group specified in the .env (gemini(2000))
     - chmod -R 770 [data folder]
     - chmod -R 770 [TED folder]
 4. change group ownership of the folders to "gemini(2000)"
