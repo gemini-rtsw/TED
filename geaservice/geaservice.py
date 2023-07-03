@@ -51,9 +51,16 @@ def get_values():
     channel = request.args.get('channel')
     mode = request.args.get('value_mode')
     n_points = request.args.get('n_points')
-    
-    print(f"df: {date_from}")
-    print(f"dt: {date_to}")
+
+    try:
+        n_points = int(n_points)
+        if n_points > 10000:
+            n_points = 10000
+    except: 
+        n_points = 3000
+    # print(f"n_points: {n_points}")
+    # print(f"df: {date_from}")
+    # print(f"dt: {date_to}")
 
     if ',' in channel:
         channel = channel[1:-1]
