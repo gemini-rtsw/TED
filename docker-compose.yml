@@ -55,7 +55,7 @@ services:
       - ./ls01/config:/usr/share/logstash/config
       - ./ls01/pipeline:/usr/share/logstash/pipeline
       - ${LOGS_PATH}:/usr/logs/log
-      - ${LS01_DB_PATH}:/db
+      - ${DATA_PATH}/ls01/db:/db
     logging:
       driver: "json-file"
       options:
@@ -78,7 +78,7 @@ services:
       - ./ls02/config:/usr/share/logstash/config
       - ./ls02/pipeline:/usr/share/logstash/pipeline
       - ${LOGS_PATH}:/usr/logs/log
-      - ${LS02_DB_PATH}:/db
+      - ${DATA_PATH}/ls01/db:/db
     logging:
       driver: "json-file"
       options:
