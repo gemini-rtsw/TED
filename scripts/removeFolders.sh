@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ../.env
+source ./.env
 rm -r ${DATA_PATH}/es01
 
 rm -r ${DATA_PATH}/ls01

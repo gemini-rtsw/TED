@@ -1,5 +1,5 @@
 #!/bin/sh
-source ../.env
+source ./.env
 
 curl -X PUT "localhost:${ES01_PORT}/_index_template/logs_nano?pretty" -H 'Content-Type: application/json' -d'
 {

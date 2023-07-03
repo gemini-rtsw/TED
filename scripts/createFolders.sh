@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ../.env
+source ./.env
 mkdir ${DATA_PATH}/es01
 
 mkdir ${DATA_PATH}/ls01
