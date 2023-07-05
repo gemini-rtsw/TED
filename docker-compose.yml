@@ -31,7 +31,7 @@ services:
     - "${KI01_PORT}:5601"
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: http://${HOST_IP}:${ES01_PORT}
+      ELASTICSEARCH_HOSTS: http://elasticsearch:${ES01_PORT}
       elasticsearch.ssl.verificationMode: "none"
     depends_on:
       - elasticsearch
@@ -94,7 +94,11 @@ services:
       container_name: geaservice
       command: python3 /geaservice/geaservice.py
       restart: unless-stopped
-      network_mode: host
+      networks: 
+        - "elkg"
+      ports: 
+        - "${GS01_PORT}:8000"
+        - "8080:8080"
       volumes:
         - ./geaservice/geaservice.py:/geaservice/geaservice.py
       logging:
