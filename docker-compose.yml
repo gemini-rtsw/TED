@@ -2,8 +2,9 @@ version: '3.7'
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
-    user: "${U_ID}:${G_ID}"
     container_name: "es01"
+    restart: unless-stopped
+    user: "${U_ID}:${G_ID}"
     networks: 
     - "elkg"
     ports: 
@@ -23,6 +24,7 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:8.7.0
     container_name: ki01
+    restart: unless-stopped
     networks: 
     - "elkg"
     ports: 
@@ -42,6 +44,7 @@ services:
   logstash_01: 
     image: docker.elastic.co/logstash/logstash:8.7.0
     container_name: "ls01"
+    restart: unless-stopped
     user: "1000:${G_ID}"
     networks: 
     - "elkg"
@@ -65,6 +68,7 @@ services:
   logstash_02: 
     image: docker.elastic.co/logstash/logstash:8.7.0
     container_name: "ls02"
+    restart: unless-stopped
     user: "1000:${G_ID}"
     networks: 
     - "elkg"
@@ -89,6 +93,7 @@ services:
       build: ./geaservice
       container_name: geaservice
       command: python3 /geaservice/geaservice.py
+      restart: unless-stopped
       network_mode: host
       volumes:
         - ./geaservice/geaservice.py:/geaservice/geaservice.py
@@ -101,6 +106,7 @@ services:
   grafana:
       image: grafana/grafana:9.3.6
       container_name: "gr01"
+      restart: unless-stopped
       user: "${U_ID}:${G_ID}"
       networks: 
       - "elkg"
