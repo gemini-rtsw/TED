@@ -1,4 +1,5 @@
-# TED
+# TED Set up
+
 1. Create data folder
 
 2. This folder will contain Elasticsearch indexes and Logstash auxiliary files 
