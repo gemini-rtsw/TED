@@ -32,8 +32,8 @@ def get_channels():
     try:
         sem.acquire()
         archive_key = request.args.get('archive_key')
-        pattern = request.args.get('pattern')
-        channels = gea.archiver.names(int(archive_key),pattern)
+        # pattern = request.args.get('pattern')
+        channels = gea.archiver.names(int(archive_key),"")
         channels_names = []
         for channel in channels:
             channels_names.append(channel['name'])
