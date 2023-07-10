@@ -1,4 +1,4 @@
-# TED Set up
+# TED Set up Instructions
 
 1. Create data folder
 
