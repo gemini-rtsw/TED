@@ -5,7 +5,7 @@
     "expression": "Task called pure virtual function",
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu"] }
+      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu","francisco.ramos@noirlab.edu"] }
     ],
     "source": "logstash"
   },
@@ -15,7 +15,7 @@
     "expression": "S_errno_ENOBUFS",
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu"] }
+      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu","francisco.ramos@noirlab.edu"] }
     ],
     "source": "logstash"
   },
@@ -25,7 +25,7 @@
     "expression": "Exception next instruction",
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu"] }
+      { "service": "email", "to": ["tim.gaggstatter@noirlab.edu","francisco.ramos@noirlab.edu"] }
     ],
     "source": "logstash"
   }
