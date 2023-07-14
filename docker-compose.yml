@@ -83,8 +83,6 @@ services:
       - ./ls02/pipeline:/usr/share/logstash/pipeline
       - ${LOGS_PATH}:/usr/logs/log
       - ${DATA_PATH}/ls02/db:/db
-    env_file:
-      - ./ls02/config/paths.env
     logging:
       driver: "json-file"
       options:
