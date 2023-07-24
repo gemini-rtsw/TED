@@ -10,6 +10,7 @@ services:
     ports: 
     - "${ES01_PORT}:9200"
     - "${ES01_TR_PORT}:9300"
+    - "8082:8080"
     volumes: [
       ./es01/config:/usr/share/elasticsearch/config,
       ./es01/logs:/usr/share/elasticsearch/logs,
@@ -29,6 +30,8 @@ services:
     - "elkg"
     ports: 
     - "${KI01_PORT}:5601"
+    - "8083:8080"
+
     environment:
       INTERACTIVESETUP_ENABLED: false
       ELASTICSEARCH_HOSTS: http://elasticsearch:${ES01_PORT}
@@ -50,6 +53,8 @@ services:
     - "elkg"
     ports: 
     - "${LS01_PORT}:9600"
+    - "8084:8080"
+
     environment:
       LOGSTASH_MODE: tail
       HOST_1: http://elasticsearch:${ES01_PORT}
@@ -74,6 +79,7 @@ services:
     - "elkg"
     ports: 
     - "${LS02_PORT}:9600"
+    - "8085:8080"
     environment:
       LOGSTASH_MODE: read
       HOST_1: http://elasticsearch:${ES01_PORT}
@@ -116,6 +122,11 @@ services:
       - "elkg"
       ports: 
       - "${GR01_PORT}:3000"
+      - "8086:8080"
+      environment:
+        GF_RENDERING_SERVER_URL: http://renderer:8081/render
+        GF_RENDERING_CALLBACK_URL: http://grafana:3000/
+        GF_LOG_FILTERS: rendering:debug
       volumes:
         - ./gr01/grafana-data:/var/lib/grafana
         - ./gr01/conf:/usr/share/grafana/conf
@@ -125,7 +136,14 @@ services:
           max-size: "100m"
           max-file: "1"
 
-
+  renderer:
+      image: grafana/grafana-image-renderer:latest
+      container_name: "gr01-render"
+      restart: unless-stopped
+      ports:
+      - "8081:8081"
+      networks:
+      - "elkg"
 
 networks:
   elkg:
