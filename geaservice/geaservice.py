@@ -86,26 +86,27 @@ def get_values():
     
     return {"values":geaRecord}
 
-import json
-@app.route("/chanSelect", methods=['GET'])
-def channelsSelector():
-    with open("./channels/mcs.json", 'r') as file:
-        data = json.load(file)
-        return data
-
-import json
-@app.route("/category", methods=['GET'])
-def category():
-    with open("./channels/mcs.json", 'r') as file:
-        data = json.load(file)
-        categories = data['category']
-        return categories
-
-@app.route("/sections", methods=['GET'])
-def sections():
-    category = request.args.get('category')
-    sections = {'subsystems':['MCS', 'TCS'],'instruments':['GMOS', 'F2']}
-    return sections[category]
+@app.route("/channelsByPattern", methods=['GET'])
+def getChannelsByPattern():
+    pattern = request.args.get('pattern')
+    print(pattern)
+    channels = gea.archiver.names(int(1),pattern)
+    sys.stdout.flush()
+    
+    return 'hi'
+    # try:
+    #     channels = gea.archiver.names(int(1),pattern)
+    #     sem.acquire()
+    #     channels_names = []
+    #     for channel in channels:
+    #         channels_names.append(channel['name'])
+    # except Exception as e:
+    #     print(e)
+    # finally:
+    #     sem.release()
+    #     print(f"pattern: {pattern}")
+    #     print(f"channels: {channels_names}")
+    #     return {"channels":channels_names}
 
 if __name__ == '__main__':
     from waitress import serve
