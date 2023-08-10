@@ -1,0 +1,63 @@
+{
+    "Weekly Zernikes": [
+        {
+            "tcs:m2(X|Y)ErrorCorr {'REDUCE':6}": "Coma"
+        },
+        {
+            "tcs:drives:displayAo.(VALA|VALB) {'REDUCE':60}": "Astigmatism"
+        },
+        {
+            "tcs:drives:displayAo.(VALD|VALE) {'REDUCE':6}": "Trefoil"
+        }
+    ],
+    "Seeing Estimates": [
+        {
+            "pwfs1:dc:seeing": "P1"
+        },
+        {
+            "pwfs2:dc:seeing": "P2"
+        },
+        {
+            "oiwfs:dc:seeing": "OI"
+        }
+    ],
+    "Total Counts": [
+        {
+            "pwfs1:dc:fgDiag6P1.VALH": "P1"
+        },
+        {
+            "pwfs2:dc:fgDiag1P2.VALQ": "P2"
+        },
+        {
+            "oiwfs:dc:fgDiag1Oi.VALQ": "OI"
+        }
+    ],
+    "P1": [
+        {
+            "pwfs1:dc:aoZ.VAL(D|E)": "P1 Astigmatism at Tuning"
+        },
+        {
+            "pwfs1:dc:aoZ.VAL(F|G)": "P1 Coma at Tuning"
+        },
+        {
+            "pwfs1:dc:aoZ.VAL(I|J)": "P1 Trefoil at Tuning"
+        },
+        {
+            "pwfs1:dc:aoZ.VALH": "P1 Spherical at Tuning"
+        }
+    ],
+    "P2": [
+        {
+            "pwfs2:dc:aoZ.VAL(D|E)": "P2 Astigmatism at Tuning"
+        },
+        {
+            "pwfs2:dc:aoZ.VAL(F|G)": "P2 Coma at Tuning"
+        },
+        {
+            "pwfs2:dc:aoZ.VAL(I|J)": "P2 Trefoil at Tuning"
+        },
+        {
+            "pwfs2:dc:aoZ.VALH": "P2 Spherical at Tuning"
+        }
+    ]
+}

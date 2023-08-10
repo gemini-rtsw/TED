@@ -1,0 +1,356 @@
+{
+    "Science Fold": [
+        {
+            "ag:sfEngPosA.VALA": "Eng Pos A"
+        },
+        {
+            "ag:sfEngPosA.VALB": "Eng Pos B"
+        },
+        {
+            "ag:sfEngPosA.VALC": "Eng Pos C"
+        },
+        {
+            "ag:sfPosA.VALA": "Pos RT (deg)"
+        },
+        {
+            "ag:sfPosA.VALB": "Pos tilt (deg)"
+        },
+        {
+            "ag:sfPosA.VALC": "Pos linear stage (mm)"
+        },
+        {
+            "ag:sfName.VAL": "ag:sfName.VAL"
+        },
+        {
+            "ag:sfxlat.VALA": "ag:sfxlat.VALA"
+        },
+        {
+            "ag:RT2PosA.VALA": "ag:RT2PosA.VALA"
+        },
+        {
+            "ag:RT2xlat.VALI": "ag:RT2xlat.VALI"
+        },
+        {
+            "ag:RT2xlat.VALG": "ag:RT2xlat.VALG"
+        },
+        {
+            "ag:TiltPosA.VALA": "ag:TiltPosA.VALA"
+        },
+        {
+            "ag:Tiltxlat.VALI": "ag:Tiltxlat.VALI"
+        },
+        {
+            "ag:Tiltxlat.VALG": "ag:Tiltxlat.VALG"
+        },
+        {
+            "ag:Lin2PosA.VALA": "ag:Lin2PosA.VALA"
+        },
+        {
+            "ag:Lin2xlat.VALI": "ag:Lin2xlat.VALI"
+        },
+        {
+            "ag:Lin2xlat.VALG": "ag:Lin2xlat.VALG"
+        },
+        {
+            "ag:Lin2xlat.VALA": "ag:Lin2xlat.VALA"
+        },
+        {
+            "ag:Tiltxlat.VALA": "ag:Tiltxlat.VALA"
+        },
+        {
+            "ag:RT2xlat.VALA": "ag:RT2xlat.VALA"
+        }
+    ],
+    "HRWFS General": [
+        {
+            "ag:hwMove.A     {'FORMAT':'Spreadsheet'}": "Real Pos Demand (ag:hwMove.A)"
+        },
+        {
+            "ag:hwEng.A     {'FORMAT':'Spreadsheet'}": "Eng Pos Demand (ag:hwEng.A)"
+        },
+        {
+            "ag:hwSel.A  {'FORMAT':'Spreadsheet'}": "Selected Pos Demand (ag:hwSel.A)"
+        },
+        {
+            "ag:hwParked.VAL": "HR Parked flag (ag:hwParked.VAL )"
+        },
+        {
+            "ag:hwPosA.VALA": "ag:hwPosA.VALA"
+        },
+        {
+            "ag:hwEngPosA.VALA": "ag:hwEngPosA.VALA"
+        },
+        {
+            "ag:hwxlat.VALG": "ag:hwxlat.VALG"
+        },
+        {
+            "ag:hwxlat.VALI": "ag:hwxlat.VALI"
+        },
+        {
+            "ag:hwxlat.VALA {'FORMAT':'Spreadsheet'}": "ag:hwxlat.VALA {'FORMAT':'Spreadsheet'}"
+        },
+        {
+            "hrwfs:encoderMode {'FORMAT':'Spreadsheet'}": "Encoder Mode"
+        },
+        {
+            "hrwfs:encoderStatusStr {'FORMAT':'Spreadsheet'}": "Encoder Switch"
+        }
+    ],
+    "HRWFS Mechanisms": [
+        {
+            "hrwfs:focusEngPosA.VALA": "hrwfs:focusEngPosA.VALA"
+        },
+        {
+            "hrwfs:focusPosA.VALA": "hrwfs:focusPosA.VALA"
+        },
+        {
+            "hrwfs:focusName.VAL  {'FORMAT':'Spreadsheet'}": "hrwfs:focusName.VAL  {'FORMAT':'Spreadsheet'}"
+        },
+        {
+            "hrwfs:lensEngPosA.VALA": "hrwfs:lensEngPosA.VALA"
+        },
+        {
+            "hrwfs:lensPosA.VALA": "hrwfs:lensPosA.VALA"
+        },
+        {
+            "hrwfs:lensName.VAL  {'FORMAT':'Spreadsheet'}": "hrwfs:lensName.VAL  {'FORMAT':'Spreadsheet'}"
+        },
+        {
+            "hrwfs:clfilterEngPosA.VALA": "hrwfs:clfilterEngPosA.VALA"
+        },
+        {
+            "hrwfs:clfilterPosA.VALA": "hrwfs:clfilterPosA.VALA"
+        },
+        {
+            "hrwfs:clfilterName.VAL   {'FORMAT':'Spreadsheet'}": "hrwfs:clfilterName.VAL   {'FORMAT':'Spreadsheet'}"
+        },
+        {
+            "hrwfs:ndfilterEngPosA.VALA": "hrwfs:ndfilterEngPosA.VALA"
+        },
+        {
+            "hrwfs:ndfilterPosA.VALA": "hrwfs:ndfilterPosA.VALA"
+        },
+        {
+            "hrwfs:ndfilterName.VAL  {'FORMAT':'Spreadsheet'}": "hrwfs:ndfilterName.VAL  {'FORMAT':'Spreadsheet'}"
+        },
+        {
+            "hrwfs:fldstopEngPosA.VALA": "hrwfs:fldstopEngPosA.VALA"
+        },
+        {
+            "hrwfs:fldstopPosA.VALA": "hrwfs:fldstopPosA.VALA"
+        },
+        {
+            "hrwfs:fldstopName.VAL   {'FORMAT':'Spreadsheet'}": "hrwfs:fldstopName.VAL   {'FORMAT':'Spreadsheet'}"
+        }
+    ],
+    "PWFS1": [
+        {
+            "ag:p1:RT34PosA.VALA": "ag:p1:RT34PosA.VALA"
+        },
+        {
+            "ag:p1:RT34xlat.VALI": "ag:p1:RT34xlat.VALI"
+        },
+        {
+            "ag:p1:RT34xlat.VALG": "ag:p1:RT34xlat.VALG"
+        },
+        {
+            "ag:p1:RT34xlat.VALA": "ag:p1:RT34xlat.VALA"
+        },
+        {
+            "ag:p1:PA34PosA.VALA": "ag:p1:PA34PosA.VALA"
+        },
+        {
+            "ag:p1:PA34xlat.VALI": "ag:p1:PA34xlat.VALI"
+        },
+        {
+            "ag:p1:PA34xlat.VALG": "ag:p1:PA34xlat.VALG"
+        },
+        {
+            "ag:p1:focusPosA.VALA": "ag:p1:focusPosA.VALA"
+        },
+        {
+            "ag:p1:focusxlat.VALI": "ag:p1:focusxlat.VALI"
+        },
+        {
+            "ag:p1:focusxlat.VALG": "ag:p1:focusxlat.VALG"
+        },
+        {
+            "ag:p1:filterPosA.VALA": "ag:p1:filterPosA.VALA"
+        },
+        {
+            "ag:p1:filterxlat.VALI": "ag:p1:filterxlat.VALI"
+        },
+        {
+            "ag:p1:filterxlat.VALG": "ag:p1:filterxlat.VALG"
+        },
+        {
+            "ag:p1:fldstopPosA.VALA": "ag:p1:fldstopPosA.VALA"
+        },
+        {
+            "ag:p1:fldstopxlat.VALI": "ag:p1:fldstopxlat.VALI"
+        },
+        {
+            "ag:p1:fldstopxlat.VALG": "ag:p1:fldstopxlat.VALG"
+        }
+    ],
+    "PWFS2": [
+        {
+            "ag:p2:RT34PosA.VALA": "ag:p2:RT34PosA.VALA"
+        },
+        {
+            "ag:p2:RT34xlat.VALI": "ag:p2:RT34xlat.VALI"
+        },
+        {
+            "ag:p2:RT34xlat.VALG": "ag:p2:RT34xlat.VALG"
+        },
+        {
+            "ag:p2:PA34PosA.VALA": "ag:p2:PA34PosA.VALA"
+        },
+        {
+            "ag:p2:PA34xlat.VALI": "ag:p2:PA34xlat.VALI"
+        },
+        {
+            "ag:p2:PA34xlat.VALG": "ag:p2:PA34xlat.VALG"
+        },
+        {
+            "ag:p2:focusPosA.VALA": "ag:p2:focusPosA.VALA"
+        },
+        {
+            "ag:p2:focusxlat.VALI": "ag:p2:focusxlat.VALI"
+        },
+        {
+            "ag:p2:focusxlat.VALG": "ag:p2:focusxlat.VALG"
+        },
+        {
+            "ag:p2:filterPosA.VALA": "ag:p2:filterPosA.VALA"
+        },
+        {
+            "ag:p2:filterxlat.VALI": "ag:p2:filterxlat.VALI"
+        },
+        {
+            "ag:p2:filterxlat.VALG": "ag:p2:filterxlat.VALG"
+        },
+        {
+            "ag:p2:fldstopPosA.VALA": "ag:p2:fldstopPosA.VALA"
+        },
+        {
+            "ag:p2:fldstopxlat.VALI": "ag:p2:fldstopxlat.VALI"
+        },
+        {
+            "ag:p2:fldstopxlat.VALG": "ag:p2:fldstopxlat.VALG"
+        },
+        {
+            "ag:p2:probexlat.VALA": "ag:p2:probexlat.VALA"
+        },
+        {
+            "ag:p2:RT34xlat.VALA": "ag:p2:RT34xlat.VALA"
+        },
+        {
+            "ag:p2:PA34xlat.VALA": "ag:p2:PA34xlat.VALA"
+        },
+        {
+            "ag:p2:focusxlat.VALA": "ag:p2:focusxlat.VALA"
+        },
+        {
+            "ag:p2:interpol.VALA": "RT34 Demand"
+        },
+        {
+            "ag:p2:interpol.VALB": "PA34 Demand"
+        }
+    ],
+    "Active Optic": [
+        {
+            "ag:PA3AOPosA.VALA": "ag:PA3AOPosA.VALA"
+        },
+        {
+            "ag:PA3AOMove.A": "ag:PA3AOMove.A"
+        },
+        {
+            "ag:PA3AOEng.A": "ag:PA3AOEng.A"
+        },
+        {
+            "ag:PA3AOinPosition.VAL": "PA3AO in position flag"
+        },
+        {
+            "ag:PA3AOEngPosA.VALA": "ag:PA3AOEngPosA.VALA"
+        },
+        {
+            "ag:PA3AOxlat.VALI": "ag:PA3AOxlat.VALI"
+        },
+        {
+            "ag:PA3AOxlat.VALG": "ag:PA3AOxlat.VALG"
+        },
+        {
+            "ag:PA3AOxlat.VALA": "ag:PA3AOxlat.VALA"
+        },
+        {
+            "ag:aoEng.A": "RT3 Demand"
+        },
+        {
+            "ag:aoEng.B": "PA3AO Demand"
+        },
+        {
+            "ag:aoEngPosA.VALA": "RT3 Position"
+        },
+        {
+            "ag:aoEngPosA.VALB": "PA3AO Position"
+        }
+    ],
+    "InPosition flags (Spreadsheet, last 3 hours)": [
+        {
+            "ag:.*inPosition.VAL": "ag:.*inPosition.VAL"
+        }
+    ],
+    "Amplifier Faults of MACCON amps": [
+        {
+            "ag:torque.VALD": "Amp.1 AO Fold Mirror"
+        },
+        {
+            "ag:torque.VALB": "Amp.2 Tilt Sc. Fold"
+        },
+        {
+            "ag:torque.VALF": "HRWFS mirror"
+        },
+        {
+            "ag:hwEng.A": "HRWFS Move to eng. Pos.(Spreadsheet)"
+        }
+    ],
+    "IOC Stats": [
+        {
+            "ag:iocStats:SUSP_TASK_CNT": "Susp Tasks"
+        },
+        {
+            "ag:iocStats:MEM_FREE": "Free memory"
+        },
+        {
+            "ag:iocStats:LOAD": "Global load"
+        },
+        {
+            "ag:iocStats:UPTIME {'FORMAT':'Spreadsheet'}": "Uptime"
+        },
+        {
+            "ag:iocStats:GTIM_ERR_CNT": "Time errors"
+        },
+        {
+            "ag:iocStats:SYS_MBUF_FREE": "Free Sys MBUFs"
+        },
+        {
+            "ag:iocStats:SYS_CLUST_AVAIL_(0|1)": "% Clust available"
+        },
+        {
+            "ag:iocStats:CA_CONN_CNT": "CA Connections"
+        },
+        {
+            "ag:iocStats:IF(I|O)_ERR_CNT": "IF errors"
+        },
+        {
+            "ag:iocStats:FD_FREE": "Free FDs"
+        },
+        {
+            "ag:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'}": "Boot version"
+        },
+        {
+            "ag:iocStats:CA_CLNT_CNT": "CA Clients"
+        }
+    ]
+}

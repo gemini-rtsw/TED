@@ -1,0 +1,588 @@
+{
+    "Seeing Estimates": [
+        {
+            "pwfs2:dc:seeing": "P2"
+        },
+        {
+            "oiwfs:dc:seeing": "OI"
+        },
+        {
+            "(p|oi)wfs(2|):dc:seeing   [FORMAT1]": "All"
+        }
+    ],
+    "Total Counts": [
+        {
+            "pwfs1:dc:fgDiag6P1.VALH": "P1"
+        },
+        {
+            "pwfs2:dc:fgDiag1P2.VALQ": "P2"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALQ": "OI"
+        },
+        {
+            "(p|oi)wfs(1|2):dc:fgDiag(1|6)(P1|P2|Oi).VAL(H|Q)  {'LEGEND':'Outside'} [FORMAT1]": "All"
+        }
+    ],
+    "Detector Temperatures": [
+        {
+            "pwfs1:dc:headTemp": "P1"
+        },
+        {
+            "pwfs2:dc:headTemp": "P2"
+        },
+        {
+            "oiwfs:dc:headTemp [CP]": "OI"
+        },
+        {
+            "hrwfs:dc:headTemp": "HR"
+        },
+        {
+            "((p|hr)wfs(|1|2)|oiwfs):dc.headTemp  [CP] [FORMAT1]": "All"
+        }
+    ],
+    "Wfs RMS Values": [
+        {
+            "pwfs1:dc:aoRms": "pwfs1:dc:aoRms"
+        },
+        {
+            "pwfs2:dc:aoRms": "pwfs2:dc:aoRms"
+        },
+        {
+            "oiwfs:dc:aoRms": "oiwfs:dc:aoRms"
+        },
+        {
+            "((pwfs(1|2))|oiwfs):dc:aoRms [FORMAT1]": "All"
+        }
+    ],
+    "P1 + P2 astigmatism: allows to see transition from one to the other guider": [
+        {
+            "pwfs1:dc:aoZ.VALD": "pwfs1:dc:aoZ.VALD"
+        },
+        {
+            "pwfs1:dc:aoZ.VALE": "pwfs1:dc:aoZ.VALE"
+        },
+        {
+            "pwfs2:dc:aoZ.VALD": "pwfs2:dc:aoZ.VALD"
+        },
+        {
+            "pwfs2:dc:aoZ.VALE": "pwfs2:dc:aoZ.VALE"
+        },
+        {
+            "pwfs(1|2):dc:aoZ.VAL(D|E)  [FORMAT1]": "All"
+        }
+    ],
+    "P1 + OIWFS astigmatism: allows to see transition from one to the other guider (i.e. good relative calibration)": [
+        {
+            "pwfs1:dc:aoZ.VALD": "pwfs1:dc:aoZ.VALD"
+        },
+        {
+            "pwfs1:dc:aoZ.VALE": "pwfs1:dc:aoZ.VALE"
+        },
+        {
+            "oiwfs:dc:aoZ.VALD": "oiwfs:dc:aoZ.VALD"
+        },
+        {
+            "oiwfs:dc:aoZ.VALE": "oiwfs:dc:aoZ.VALE"
+        },
+        {
+            "(p|oi)wfs(|1):dc:aoZ.VAL(D|E)  [FORMAT1]": "All"
+        }
+    ],
+    "M1 tuning: P1 astigmatism, coma trefoil: allows to see how good the M1/M2 LUTs are": [
+        {
+            "pwfs1:dc:aoZ.VALD": "pwfs1:dc:aoZ.VALD"
+        },
+        {
+            "pwfs1:dc:aoZ.VALE": "pwfs1:dc:aoZ.VALE"
+        },
+        {
+            "pwfs1:dc:aoZ.VALF": "pwfs1:dc:aoZ.VALF"
+        },
+        {
+            "pwfs1:dc:aoZ.VALG": "pwfs1:dc:aoZ.VALG"
+        },
+        {
+            "pwfs1:dc:aoZ.VALI": "pwfs1:dc:aoZ.VALI"
+        },
+        {
+            "pwfs1:dc:aoZ.VALJ": "pwfs1:dc:aoZ.VALJ"
+        },
+        {
+            "pwfs1:dc:aoZ.VAL(D|E|F|G|I|J)   [FORMAT1]": "All"
+        }
+    ],
+    "P1 high order Zernikes": [
+        {
+            "pwfs1:dc:aoZ.VALK": "Z11"
+        },
+        {
+            "pwfs1:dc:aoZ.VALL": "Z12"
+        },
+        {
+            "pwfs1:dc:aoZ.VALM": "Z13"
+        },
+        {
+            "pwfs1:dc:aoZ.VALN": "Z14"
+        },
+        {
+            "pwfs1:dc:aoZ.VALO": "Z15"
+        },
+        {
+            "pwfs1:dc:aoZ.VALP": "Z16"
+        },
+        {
+            "pwfs1:dc:aoZ.VALQ": "Z17"
+        },
+        {
+            "pwfs1:dc:aoZ.VALR": "Z18"
+        },
+        {
+            "pwfs1:dc:aoZ.VALS": "Z19"
+        },
+        {
+            "pwfs1:dc:aoZ.VALH": "spherical Z8"
+        },
+        {
+            "pwfs1:dc:aoZ.VAL(K|L|M|N|O|P|Q|R|S|H)  [FORMAT1]": "All"
+        }
+    ],
+    "P2 astigmatism (in Y) vs Composite Angle (in X): allows to see residual error in models": [
+        {
+            "pwfs2:dc:aoZ.VALD": "Astig0"
+        },
+        {
+            "pwfs2:dc:aoZ.VALE": "Astig45"
+        },
+        {
+            "pwfs2:dc:aoZ.VALF": "CA"
+        },
+        {
+            "pwfs2:dc:aoZ.VAL(D|E|F)   [FORMAT1]": "All"
+        }
+    ],
+    "P2 coma": [
+        {
+            "pwfs2:dc:aoZ.VALF": "Xcoma"
+        },
+        {
+            "pwfs2:dc:aoZ.VALG": "Ycoma"
+        },
+        {
+            "pwfs2:dc:aoZ.VAL(F|G)   [FORMAT1]": "All"
+        }
+    ],
+    "P2 FG centroid total counts and thresholds in 4 subpupils": [
+        {
+            "pwfs2:dc:fgDiag1P2.VALM": ""
+        },
+        {
+            "pwfs2:dc:fgDiag1P2.VALN": ""
+        },
+        {
+            "pwfs2:dc:fgDiag1P2.VALO": ""
+        },
+        {
+            "pwfs2:dc:fgDiag1P2.VALP": ""
+        },
+        {
+            "pwfs2:dc:fgDiag1P2.VAL(M|N|O|P)   [FORMAT1]": "All"
+        },
+        {
+            "pwfs2:dc:fgDiag2P2.VALA": ""
+        },
+        {
+            "pwfs2:dc:fgDiag2P2.VALB": ""
+        },
+        {
+            "pwfs2:dc:fgDiag2P2.VALC": ""
+        },
+        {
+            "pwfs2:dc:fgDiag2P2.VALD": ""
+        },
+        {
+            "pwfs2:dc:fgDiag2P2.VAL(A|B|C|D)   [FORMAT1]": "All"
+        }
+    ],
+    "WFS FG Centroids Position displayed in control CB": [
+        {
+            "oiwfs:dc:fgDiag1P2.VALA": "OIWFS (to TCS)"
+        },
+        {
+            "f2oi:dc:fgDiag1P2.VALA": "F2OI"
+        },
+        {
+            "gmoi:dc:fgDiag1P2.VALA": "GMOS"
+        },
+        {
+            "pwfs1:dc:fgDiag1P2.VALA": "P1"
+        },
+        {
+            "pwfs2:dc:fgDiag1P2.VALA": "P2"
+        }
+    ],
+    "P2 aO centroid total counts in 4 subpupils": [
+        {
+            "pwfs2:dc:aoDiagP2.VALK": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALL": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALM": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALN": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VAL(K|L|M|N)  [FORMAT1]": "All"
+        }
+    ],
+    "P2 aO centroid threshold in 4 subpupils": [
+        {
+            "pwfs2:dc:aoDiagP2.VALQ": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALR": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALS": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALT": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VAL(Q|R|S|T)   [FORMAT1]": "All"
+        }
+    ],
+    "P2 aO centroid X position in 4 subpupils": [
+        {
+            "pwfs2:dc:aoDiagP2.VALC": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALE": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALG": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALI": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VAL(C|E|G|I)   [FORMAT1]": "All"
+        }
+    ],
+    "P2 aO centroid Y position in 4 subpupils": [
+        {
+            "pwfs2:dc:aoDiagP2.VALD": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALF": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALH": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VALJ": ""
+        },
+        {
+            "pwfs2:dc:aoDiagP2.VAL(D|F|H|J)   [FORMAT1]": "All"
+        }
+    ],
+    "P2 0 point astigmatism model": [
+        {
+            "pwfs2:dc:aoZero.VALG": "ast0"
+        },
+        {
+            "pwfs2:dc:aoZero.VALH": "ast45"
+        },
+        {
+            "pwfs2:dc:aoZero.VAL(G|H)   [FORMAT1]": "All"
+        }
+    ],
+    "P2 composite angle": [
+        {
+            "pwfs2:dc:ttfZero.VALF": "pwfs2:dc:ttfZero.VALF"
+        }
+    ],
+    "P1 aO centroid counts in 4 subpupils": [
+        {
+            "pwfs1:dc:aoDiag4P1.VALN": ""
+        },
+        {
+            "pwfs1:dc:aoDiag4P1.VALO": ""
+        },
+        {
+            "pwfs1:dc:aoDiag4P1.VALS": ""
+        },
+        {
+            "pwfs1:dc:aoDiag4P1.VALT": ""
+        },
+        {
+            "pwfs1:dc:aoDiag4P1.VALU": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALA": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALC": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALD": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALG": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALH": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALI": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALJ": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALM": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALN": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALP": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALQ": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALR": ""
+        },
+        {
+            "pwfs1:dc:aoDiag5P1.VALS": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALB": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALC": ""
+        },
+        {
+            "pwfs1:dc:aoDiag(4|5|6)P1.VAL(N|O|S|T|U|A|C|D|G|H|I|J|M|N|P|Q|T|R|B|C)   [FORMAT1]": "All"
+        }
+    ],
+    "P1 aO centroid threshold in 4 subpupils": [
+        {
+            "pwfs1:dc:aoDiag6P1.VALJ": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALK": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALO": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALP": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALQ": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALR": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALT": ""
+        },
+        {
+            "pwfs1:dc:aoDiag6P1.VALU": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALC": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALD": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALE": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALF": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALI": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALJ": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALL": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALM": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALN": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALO": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALS": ""
+        },
+        {
+            "pwfs1:dc:aoDiag7P1.VALT": ""
+        },
+        {
+            "pwfs1:dc:aoDiag(6|7)P1.VAL(J|K|O|P|Q|R|T|U|C|D|E|F|I|J|L|M|N|O|S|T)  [FORMAT1]": "All"
+        }
+    ],
+    "P1 0 point astigmatism model": [
+        {
+            "pwfs1:dc:aoZero.VALG": "P1 0point model ast0"
+        },
+        {
+            "pwfs1:dc:aoZero.VALH": "P1 0point model ast45"
+        },
+        {
+            "pwfs1:dc:aoZero.VAL(G|H)   [FORMAT1]": "All"
+        }
+    ],
+    "P1 composite angle": [
+        {
+            "pwfs1:dc:ttfZero.VALF": "pwfs1:dc:ttfZero.VALF"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALM": "oiwfs:dc:fgDiag1P2.VALM"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALN": "oiwfs:dc:fgDiag1P2.VALN"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALO": "oiwfs:dc:fgDiag1P2.VALO"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALP": "oiwfs:dc:fgDiag1P2.VALP"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VAL(M|N|O|P)   [FORMAT1]": "All"
+        }
+    ],
+    "TTF": [
+        {
+            "pwfs1:dc:ttf.VALA": "Xtilt of P1 (sent to M2)"
+        },
+        {
+            "pwfs1:dc:ttf.VALB": "Ytilt of P1 (sent to M2)"
+        },
+        {
+            "pwfs1:dc:ttf.VALC": "focus of P1 (sent to M2)"
+        },
+        {
+            "pwfs2:dc:ttf.VALA": "Xtilt of P2 (sent to M2)"
+        },
+        {
+            "pwfs2:dc:ttf.VALB": "Ytilt of P2 (sent to M2)"
+        },
+        {
+            "pwfs2:dc:ttf.VALC": "focus of P2 (sent to M2)"
+        }
+    ],
+    "OIWFS total counts per quadrant": [
+        {
+            "oiwfs:dc:fgDiag1P2.VALM": "oiwfs:dc:fgDiag1P2.VALM"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALN": "oiwfs:dc:fgDiag1P2.VALN"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALO": "oiwfs:dc:fgDiag1P2.VALO"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALP": "oiwfs:dc:fgDiag1P2.VALP"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VAL(M|N|O|P)   [FORMAT1]": "All"
+        }
+    ],
+    "GMOS OIWFS total counts per quadrant": [
+        {
+            "gmoi:dc:fgDiag1P2.VALM": "gmoi:dc:fgDiag1P2.VALM"
+        },
+        {
+            "gmoi:dc:fgDiag1P2.VALN": "gmoi:dc:fgDiag1P2.VALN"
+        },
+        {
+            "gmoi:dc:fgDiag1P2.VALO": "gmoi:dc:fgDiag1P2.VALO"
+        },
+        {
+            "gmoi:dc:fgDiag1P2.VALP": "gmoi:dc:fgDiag1P2.VALP"
+        },
+        {
+            "gmoi:dc:fgDiag1P2.VAL(M|N|O|P)   [FORMAT1]": "All"
+        }
+    ],
+    "F2 OIWFS total counts per quadrant": [
+        {
+            "f2oi:dc:fgDiag1P2.VALM": "f2oi:dc:fgDiag1P2.VALM"
+        },
+        {
+            "f2oi:dc:fgDiag1P2.VALN": "f2oi:dc:fgDiag1P2.VALN"
+        },
+        {
+            "f2oi:dc:fgDiag1P2.VALO": "f2oi:dc:fgDiag1P2.VALO"
+        },
+        {
+            "f2oi:dc:fgDiag1P2.VALP": "f2oi:dc:fgDiag1P2.VALP"
+        },
+        {
+            "f2oi:dc:fgDiag1P2.VAL(M|N|O|P)   [FORMAT1]": "All"
+        }
+    ],
+    "OIWFS Thresholds": [
+        {
+            "oiwfs:dc:fgDiag2P2.VALA": "oiwfs:dc:fgDiag2P2.VALA"
+        },
+        {
+            "oiwfs:dc:fgDiag2P2.VALB": "oiwfs:dc:fgDiag2P2.VALB"
+        },
+        {
+            "oiwfs:dc:fgDiag2P2.VALC": "oiwfs:dc:fgDiag2P2.VALC"
+        },
+        {
+            "oiwfs:dc:fgDiag2P2.VALD": "oiwfs:dc:fgDiag2P2.VALD"
+        },
+        {
+            "oiwfs:dc:fgDiag2P2.VAL(A|B|C|D)   [FORMAT1]": "All"
+        }
+    ],
+    "OIWFS other": [
+        {
+            "oiwfs:dc:ttf.VALA": "oiwfs:dc:ttf.VALA"
+        },
+        {
+            "oiwfs:dc:ttf.VALB": "oiwfs:dc:ttf.VALB"
+        },
+        {
+            "oiwfs:dc:ttf.VALC": "oiwfs:dc:ttf.VALC"
+        },
+        {
+            "oiwfs:dc:fgDiag1P2.VALB": "oiwfs:dc:fgDiag1P2.VALB"
+        }
+    ],
+    "Sky Dark fits file": [
+        {
+            "pwfs1:dc:aoDarkInit": "pwfs1:dc:aoDarkInit"
+        },
+        {
+            "pwfs2:dc:aoDarkInit": "pwfs2:dc:aoDarkInit"
+        },
+        {
+            "gmoi:dc:aoDarkInit": "gmoi:dc:aoDarkInit"
+        },
+        {
+            "f2oi:dc:aoDarkInit": "f2oi:dc:aoDarkInit"
+        },
+        {
+            "(pwfs1|pwfs2|gmoi|f2oi):dc:aoDarkInit   [FORMAT1]": "All"
+        }
+    ]
+}

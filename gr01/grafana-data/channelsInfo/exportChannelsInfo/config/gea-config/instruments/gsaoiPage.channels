@@ -1,0 +1,44 @@
+#Gsaoi page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 1
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+#[QUERYSTRPAIRS] {'SYSTEMS':'gsaoi','FORMAT':'Plot','LEGEND':'Inside','GRIDLINES':'checked'}
+
+#[SECTION] Temperatures 
+gsaoi:sad:cc:tmpC3Tmp	# Detector
+gsaoi:sad:cc:tmpC4Tmp	# Detector housing
+gsaoi:sad:cc:tmpC1Tmp	# Cold WS
+gsaoi:eng:tmpC3.SETP 	# Detector Set Point
+gsaoi:eng:tmpC4.SETP 	# Detector housing Set Point
+gsaoi:eng:tmpC1.SETP 	# Detector CWS Set Point
+
+#[SECTION] Heater % 
+gsaoi:eng:tmpC3Heat	# Detector
+gsaoi:eng:tmpA2Output	# Detector housing
+gsaoi:eng:tmpC1Heat	# Cold WS
+
+#[SECTION] System Temperatures 
+gsaoi:eng:tmpS1Tmp1	# CH-1 1S Top Strap
+gsaoi:eng:tmpS1Tmp2	# CH-1 1S Bottom Strap
+gsaoi:eng:tmpS1Tmp3	# CH-2 2S Getter
+gsaoi:eng:tmpS1Tmp4	# Cold WS Edge
+gsaoi:eng:tmpS1Tmp5	# CC Thermal Enclosure
+gsaoi:eng:tmpS1Tmp6	# DC Thermal Enclosure
+gsaoi:eng:tmpS1Tmp7	# SDSU Thermal Enclosure
+
+#[SECTION] Pressures
+#[ITEMSPERROW] 1
+#[SUBTABLE] False
+#[QUERYSTRPAIRS] {'SYSTEMS':'gsaoi','FORMAT':'Plot','LEGEND':'Inside','GRIDLINES':'checked'}
+gsaoi:eng:pressure	# Cryostat pressure
+
+#[SECTION] Mechanisms
+#[SUBTABLE] True
+#[ITEMSPERROW] 1
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+gsaoi:sad:cc:covName    # Cover Position
+
+#[SECTION] Others
+gsaoi:eng:cc:airFlow    # Air Flow Meter

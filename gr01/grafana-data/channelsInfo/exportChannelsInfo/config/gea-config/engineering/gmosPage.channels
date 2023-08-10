@@ -1,0 +1,9 @@
+#[ITEMSPERROW] 2
+#[SUBTABLE] False
+#[QUERYSTRPAIRS] {'SYSTEMS':'gmos', 'SKIPACTION':'True'}
+
+#[SECTION] Temperature
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+gm:sad:dc:detTemp      # Detector Temperature
+gm:cc:temp.    #All CC Temperatures

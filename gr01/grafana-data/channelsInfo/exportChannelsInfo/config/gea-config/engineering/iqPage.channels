@@ -1,0 +1,45 @@
+#[ITEMSPERROW] 2
+#[SUBTABLE] False
+#[QUERYSTRPAIRS] {'SYSTEMS':'wfs', 'SKIPACTION':'True','LAPSE':'lastNight'}
+
+#[SECTION] Weekly Zernikes
+#[ITEMSPERROW] 3
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'SYSTEMS':'tcs', 'LAPSE':10080}
+tcs:m2(X|Y)ErrorCorr {'REDUCE':6}             #Coma
+tcs:drives:displayAo.(VALA|VALB) {'REDUCE':60} #Astigmatism
+tcs:drives:displayAo.(VALD|VALE) {'REDUCE':6} #Trefoil
+
+#[SECTION] Seeing Estimates
+#[ITEMSPERROW] 3
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'YMIN':0,'YMAX':2.5}
+pwfs1:dc:seeing     # P1
+pwfs2:dc:seeing     # P2
+oiwfs:dc:seeing     # OI
+
+#[SECTION] Total Counts
+#[ITEMSPERROW] 3
+#[SUBTABLE] True
+pwfs1:dc:fgDiag6P1.VALH     # P1
+pwfs2:dc:fgDiag1P2.VALQ     # P2
+oiwfs:dc:fgDiag1Oi.VALQ     # OI
+
+#[SECTION] Bi-weekly Plots
+#[CSSCLASS] sectionMain
+
+#[SECTION] P1
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS] {'SYSTEMS':'wfs', 'LAPSE':20160}
+pwfs1:dc:aoZ.VAL(D|E)       # P1 Astigmatism at Tuning
+pwfs1:dc:aoZ.VAL(F|G)       # P1 Coma at Tuning
+pwfs1:dc:aoZ.VAL(I|J)       # P1 Trefoil at Tuning
+pwfs1:dc:aoZ.VALH           # P1 Spherical at Tuning
+
+#[SECTION] P2
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS] {'SYSTEMS':'wfs', 'LAPSE':20160}
+pwfs2:dc:aoZ.VAL(D|E)       # P2 Astigmatism at Tuning
+pwfs2:dc:aoZ.VAL(F|G)       # P2 Coma at Tuning
+pwfs2:dc:aoZ.VAL(I|J)       # P2 Trefoil at Tuning
+pwfs2:dc:aoZ.VALH           # P2 Spherical at Tuning

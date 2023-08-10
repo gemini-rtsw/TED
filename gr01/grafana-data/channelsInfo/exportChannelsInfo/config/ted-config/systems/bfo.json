@@ -1,0 +1,28 @@
+{
+    "Stuff": [
+        {
+            "fps:fps2iocMon": "fps:fps2iocMon"
+        },
+        {
+            "fps:intw0.VAL": "fps:intw0.VAL"
+        },
+        {
+            "fps:intw1.VAL": "fps:intw1.VAL"
+        },
+        {
+            "fps:intw2.VAL": "fps:intw2.VAL"
+        },
+        {
+            "fps:intw3.VAL": "fps:intw3.VAL"
+        },
+        {
+            "fps:intw4.VAL": "fps:intw4.VAL"
+        },
+        {
+            "fps:intw5.VAL": "fps:intw5.VAL"
+        },
+        {
+            "fps:intw6.VAL": "fps:intw6.VAL"
+        }
+    ]
+}

@@ -1,0 +1,191 @@
+#SCS page layout
+
+#Defaults options for all selections for all sections:
+#[QUERYSTRPAIRS] {'SYSTEMS':'scs','LEGEND':'Inside', 'GRIDLINES':'checked'}
+#[ITEMSPERROW] 4
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] 
+#[AUTOTITLE] False
+#[QUERYSTRPAIRS]  {'LAPSE':360}
+#[CELL] 
+#[CELL] X Tilt
+#[CELL] Y Tilt
+#[CELL] Z Focus
+#[CELL] Applied Guide      
+m2:displayScs.VALA         
+m2:displayScs.VALB         
+m2:displayScs2.VALB
+#[CELL] Demand               
+m2:displayScs2.VALF         
+m2:displayScs2.VALG     
+m2:displayScs.VALC
+#[CELL] Actual                  
+m2:real.VALC                     
+m2:real.VALD                 
+m2:real.VALE
+#[CELL] Error                    
+m2:xTiltErr.VAL                  
+m2:yTiltErr.VAL               
+m2:zErr.VAL
+
+#[SECTION] 
+#[AUTOTITLE] False
+#[QUERYSTRPAIRS]  {'LAPSE':360}
+#[CELL] 
+#[CELL] X 
+#[CELL] Y 
+#[CELL] Z
+#[CELL] Raw Guide
+m2:displayScs2.VALC
+m2:displayScs2.VALD
+m2:displayScs2.VALE
+#[CELL] Windup
+m2:xWindup.VAL
+m2:yWindup.VAL
+m2:zWindup.VAL
+m2:guideOn.VAL # Guide status
+
+#[SECTION] 
+#[AUTOTITLE] False
+#[QUERYSTRPAIRS]  {'LAPSE':360}
+#[ITEMSPERROW] 3
+#[SUBTABLE] True
+#[CELL] 
+#[CELL]  X positioner        
+#[CELL]  Y positioner
+#[CELL] Demand         
+m2:xPosDmd.VAL  
+m2:yPosDmd.VAL
+#[CELL] Actual   
+m2:xPos.VAL     
+m2:yPos.VAL
+#[CELL] Error
+m2:xPosErr.VAL                 
+m2:yPosErr.VAL
+#[CELL] 
+m2:real.VALN       
+m2:real.VALO           
+#[CELL] 
+m2:displayScs.VALN             
+m2:displayScs.VALO
+#[SECTION]
+#[AUTOTITLE] False
+#[QUERYSTRPAIRS]  {'LAPSE':360}
+#[ITEMSPERROW] 1
+#[SUBTABLE] True
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+m2:byte3:b6			# Mirror control (Spreadsheet)
+m2:byte0:b6			# Vibration Loop (Spreadsheet)
+m2:byte3:b7			# Offloader (Spreadsheet)
+m2:byte0:b2			# Actuator Power  (Spreadsheet)
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot'}
+m2:status.VALE 	# CEM temperature (Plot)
+m2:displayScs.VALS 	# Chop Frequency (Plot)
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+m2:chopon.VAL 	# Chop ON/OFF 
+m2:followS.VAL 	# Follow ON/OFF 
+
+#[SECTION] Position Sensors 
+#[AUTOTITLE] False
+#[QUERYSTRPAIRS]  {'LAPSE':360}
+#[CELL] Kaman 
+m2:act1Diag.VALD     # actuator 0
+m2:act2Diag.VALD     # actuator 1
+m2:act3Diag.VALD     # actuator 2
+#[CELL] uE
+m2:act1Diag.VALA     # actuator 0
+m2:act2Diag.VALA     # actuator 1
+m2:act3Diag.VALA     # actuator 2
+#[CELL] Kaman and uE 
+m2:act1Diag.VAL(A|D)   # actuator 0
+m2:act2Diag.VAL(A|D)   # actuator 1
+m2:act3Diag.VAL(A|D)   # actuator 2
+#[CELL] Current
+m2:act1Diag.VALC   # actuator 0
+m2:act2Diag.VALC   # actuator 1
+m2:act3Diag.VALC   # actuator 2
+#[CELL] Position Drift
+m2:posDrift0 # actuator 0
+m2:posDrift1 # actuator 1
+m2:posDrift2 # actuator 2
+#[CELL]  Follower positions
+#[QUERYSTRPAIRS]  {'LAPSE':'120'}
+m2:act1Diag.VALB 	# Follower 0  
+m2:act2Diag.VALB 	# Follower 1  
+m2:act3Diag.VALB 	# Follower 2  
+
+#[SECTION] Focus
+#[AUTOTITLE] False
+#[QUERYSTRPAIRS]  {'LAPSE':360, 'FORMAT':'Plot'}
+m2:real.VALE	# Plot
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+m2:real.VALE	# Spreadsheet
+
+#[SECTION] Baffle Status 
+#[QUERYSTRPAIRS]  {'LAPSE':360}
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+m2:showDeploy	       #  m2:showDeploy (Deploy/Demand)
+m2:DeployBafflePos     #  m2:DeployBafflePos (Deploy/Actual)
+m2:showCentral	       #  m2:showCentral  (Central/Demand)
+m2:CentralBafflePos    #  m2:CentralBafflePos  (Central/Actual)
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot'}
+m2:real.VALR	   #  m2:real.VALR (Encoder A)
+m2:real.VALS	   #  m2:real.VALS (Encoder B)
+m2:real.VALT	   #  m2:real.VALT (Encoder C)
+
+#[SECTION] StatusWord (SpreadSheet)
+#[SUBTABLE] True
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet', 'FILL':'Yes'}
+(m2:byte(0|3):b*)       #Byte 0 and 3
+m2:byte0:b2             #B0:b2
+m2:byte0:b6             #B0:b6
+m2:byte0:b7             #B0:b7
+m2:byte2:b6             #B2:b6
+m2:byte2:b7             #B2:b7
+m2:byte3:b1             #B3:b1
+m2:byte3:b2             #B3:b2
+m2:byte3:b6             #B3:b6
+m2:byte3:b7             #B3:b7
+
+
+#[SECTION] Other (Spreadsheet)
+#[QUERYSTRPAIRS]  {'LAPSE':360}
+#[ITEMSPERROW] 1
+#[SUBTABLE] True
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}    
+m2:refmem:ring.VAL   
+m2:real.VALU		#Last Frame Sent     
+m2:real.VALB    	#Last Frame Acknowledged 
+m2:displayScs.VALM   	#SCS Heartbeat 
+m2:real.VALL     	#M2 Heartbeat
+m2:beam 	  
+
+# Added from geasouth:rt:scsPage
+
+m2:clock.VALD
+m2:health.VAL
+m2:activeC.VAL
+
+#[SECTION]  IOC Stats                                                                                                
+#[CSSCLASS] sectionMain                                                                                              
+#[ITEMSPERROW] 4                                                                                                     
+#[SUBTABLE] True
+
+m2:iocStats:SUSP_TASK_CNT       # Susp Tasks                                                                         
+m2:iocStats:MEM_FREE            # Free memory                                                                        
+m2:iocStats:LOAD                # Global load                                                                        
+m2:iocStats:UPTIME {'FORMAT':'Spreadsheet'} # Uptime                                                                 
+
+m2:iocStats:GTIM_ERR_CNT        # Time errors                                                                        
+m2:iocStats:SYS_MBUF_FREE       # Free Sys MBUFs                                                                     
+m2:iocStats:SYS_CLUST_AVAIL_(0|1)   # % Clust available                                                              
+m2:iocStats:CA_CONN_CNT         # CA Connections                                                                     
+
+m2:iocStats:IF(I|O)_ERR_CNT     # IF errors                                                                          
+m2:iocStats:FD_FREE             # Free FDs                                                                           
+m2:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'} # Boot version                                                     
+m2:iocStats:CA_CLNT_CNT         # CA Clients

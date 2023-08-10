@@ -1,0 +1,412 @@
+{
+    "Mount": [
+        {
+            "mc:elCurrentPos": "Position"
+        },
+        {
+            "mc:elPosError": "Error"
+        },
+        {
+            "mc:elCurrentVel": "Velocity"
+        },
+        {
+            "mc:elDemandPos": "TCS Demand"
+        },
+        {
+            "mc:inPositionEl {'FORMAT':'Spreadsheet'}": "InPos Flag"
+        },
+        {
+            "mc:azCurrentPos": "Position"
+        },
+        {
+            "mc:azPosError": "Error"
+        },
+        {
+            "mc:azCurrentVel": "Velocity"
+        },
+        {
+            "mc:azDemandPos": "TCS Demand"
+        },
+        {
+            "mc:inPositionAz {'FORMAT':'Spreadsheet'}": "InPos Flag"
+        }
+    ],
+    "MCS-TCS Demands Time Delay": [
+        {
+            "mc:Tracking.VALH": "TCS-MCS Network Delay"
+        }
+    ],
+    "PMAC Data": [
+        {
+            "mc:elPmacDemandPos": "PMAC Demand Position"
+        },
+        {
+            "mc:elPmacPosError": "Error"
+        },
+        {
+            "mc:azPmacDemandPos": "PMAC Demand Position"
+        },
+        {
+            "mc:azPmacPosError": "Error"
+        }
+    ],
+    "Elevation:PMAC:Tachos": [
+        {
+            "mc:elTacho1": "Tacho 1"
+        },
+        {
+            "mc:elTacho2": "Tacho 2"
+        },
+        {
+            "mc:elTacho3": "Tacho 3"
+        },
+        {
+            "mc:elTacho4": "Tacho 4"
+        }
+    ],
+    "Azimuth:PMAC:Tachos": [
+        {
+            "mc:azTacho1": "Tacho 1"
+        },
+        {
+            "mc:azTacho2": "Tacho 2"
+        },
+        {
+            "mc:azTacho3": "Tacho 3"
+        },
+        {
+            "mc:azTacho4": "Tacho 4"
+        },
+        {
+            "mc:azTacho5": "Tacho 5"
+        },
+        {
+            "mc:azTacho6": "Tacho 6"
+        },
+        {
+            "mc:azTacho7": "Tacho 7"
+        },
+        {
+            "mc:azTacho8": "Tacho 8"
+        }
+    ],
+    "Elevation:PMAC:Currents": [
+        {
+            "mc:elMotor1": "Motor 1"
+        },
+        {
+            "mc:elMotor2": "Motor 2"
+        },
+        {
+            "mc:elMotor3": "Motor 3"
+        },
+        {
+            "mc:elMotor4": "Motor 4"
+        }
+    ],
+    "Azimuth:PMAC:Currents": [
+        {
+            "mc:azMotor1": "Motor 1"
+        },
+        {
+            "mc:azMotor2": "Motor 2"
+        },
+        {
+            "mc:azMotor3": "Motor 3"
+        },
+        {
+            "mc:azMotor4": "Motor 4"
+        },
+        {
+            "mc:azMotor5": "Motor 5"
+        },
+        {
+            "mc:azMotor6": "Motor 6"
+        },
+        {
+            "mc:azMotor7": "Motor 7"
+        },
+        {
+            "mc:azMotor8": "Motor 8"
+        }
+    ],
+    "Azimuth: Virtual Encoders: Degrees": [
+        {
+            "mc:azengToDeg.VALB": "FDE"
+        },
+        {
+            "mc:azengToDeg.VALC": "Tape Head 1"
+        },
+        {
+            "mc:azengToDeg.VALD": "Tape Head 2"
+        },
+        {
+            "mc:azengToDeg.VALE": "Tape Head 3"
+        },
+        {
+            "mc:azengToDeg.VALF": "Tape Head 4"
+        },
+        {
+            "mc:azengToDeg.VALA": "Virtual Encoder"
+        }
+    ],
+    "Elevation: Virtual Encoders: Degrees": [
+        {
+            "mc:elengToDeg.VALB": "FDE"
+        },
+        {
+            "mc:elengToDeg.VALC": "Tape Head 1"
+        },
+        {
+            "mc:elengToDeg.VALD": "Tape Head 2"
+        },
+        {
+            "mc:elengToDeg.VALA": "Virtual Encoder"
+        }
+    ],
+    "PMAC status words": [
+        {
+            "mc:elmotstat.*": "Elevation"
+        },
+        {
+            "mc:azmotstat.*": "Azimuth"
+        },
+        {
+            "mc:elmotstat1:2:OLM.MLST": "Elevation Open Loop Mode"
+        },
+        {
+            "mc:azmotstat1:2:OLM.MLST": "Azimuth Open Loop Mode"
+        }
+    ],
+    "Runaway Checks": [
+        {
+            "mc:Tracking.A": "mc:Tracking.A"
+        },
+        {
+            "mc:Tracking.B": "mc:Tracking.B"
+        },
+        {
+            "mc:Tracking.C": "mc:Tracking.C"
+        },
+        {
+            "mc:Tracking.D": "mc:Tracking.D"
+        },
+        {
+            "mc:Tracking.E": "mc:Tracking.E"
+        },
+        {
+            "mc:Tracking.F": "mc:Tracking.F"
+        },
+        {
+            "mc:Tracking.G": "mc:Tracking.G"
+        },
+        {
+            "mc:Tracking.H": "mc:Tracking.H"
+        },
+        {
+            "mc:Tracking.I": "mc:Tracking.I"
+        },
+        {
+            "mc:Tracking.J": "mc:Tracking.J"
+        },
+        {
+            "mc:Tracking.K": "mc:Tracking.K"
+        },
+        {
+            "mc:Tracking.L": "mc:Tracking.L"
+        },
+        {
+            "mc:Tracking.M": "mc:Tracking.M"
+        },
+        {
+            "mc:Tracking.N": "mc:Tracking.N"
+        },
+        {
+            "mc:Tracking.O": "mc:Tracking.O"
+        },
+        {
+            "mc:Tracking.P": "mc:Tracking.P"
+        },
+        {
+            "mc:Tracking.Q": "mc:Tracking.Q"
+        },
+        {
+            "mc:Tracking.R": "mc:Tracking.R"
+        },
+        {
+            "mc:Tracking.S": "mc:Tracking.S"
+        },
+        {
+            "mc:Tracking.VALA": "mc:Tracking.VALA"
+        },
+        {
+            "mc:Tracking.VALB": "mc:Tracking.VALB"
+        },
+        {
+            "mc:Tracking.VALC": "mc:Tracking.VALC"
+        },
+        {
+            "mc:Tracking.VALD": "mc:Tracking.VALD"
+        },
+        {
+            "mc:Tracking.VALE": "mc:Tracking.VALE"
+        },
+        {
+            "mc:Tracking.VALF": "mc:Tracking.VALF"
+        },
+        {
+            "mc:Tracking.VALG": "mc:Tracking.VALG"
+        },
+        {
+            "mc:Tracking.VALJ": "mc:Tracking.VALJ"
+        },
+        {
+            "mc:Tracking.VALI": "Missed demands"
+        },
+        {
+            "mc:Tracking.VALK": "mc:Tracking.VALK"
+        },
+        {
+            "mc:Tracking.VALL": "mc:Tracking.VALL"
+        },
+        {
+            "mc:Tracking.VALP": "mc:Tracking.VALP"
+        },
+        {
+            "mc:Tracking.VALQ": "mc:Tracking.VALQ"
+        },
+        {
+            "mc:followA.J": "mc:followA.J"
+        },
+        {
+            "mc:followA.VALA": "mc:followA.VALA"
+        },
+        {
+            "mc:followA.VALB": "mc:followA.VALB"
+        },
+        {
+            "mc:followA.VALC": "mc:followA.VALC"
+        },
+        {
+            "mc:followA.VALE": "mc:followA.VALE"
+        },
+        {
+            "mc:elMABBotPos.VAL*": "mc:elMABBotPos.VAL*"
+        },
+        {
+            "mc:elMABTopPos.VAL*": "mc:elMABTopPos.VAL*"
+        },
+        {
+            "mc:moveelSendJog.VALA": "mc:moveelSendJog.VALA"
+        },
+        {
+            "mc:moveelSendJog.A": "mc:moveelSendJog.A"
+        },
+        {
+            "mc:moveazSendJog.VALA": "mc:moveazSendJog.VALA"
+        },
+        {
+            "mc:moveazSendJog.A": "mc:moveazSendJog.A"
+        },
+        {
+            "mc:(az|el)StateS": "mc:(az|el)StateS"
+        },
+        {
+            "mc:azCommandS": "mc:azCommandS"
+        },
+        {
+            "mc:elCommandS": "mc:elCommandS"
+        },
+        {
+            "mc:azCommandL": "mc:azCommandL"
+        },
+        {
+            "mc:elCommandL": "mc:elCommandL"
+        },
+        {
+            "mc:azmotstat1:2:DVZ": "mc:azmotstat1:2:DVZ"
+        },
+        {
+            "mc:elmotstat2:2:IP": "mc:elmotstat2:2:IP"
+        },
+        {
+            "mc:(az|el)DriveCondition": "mc:(az|el)DriveCondition"
+        }
+    ],
+    "GISassert": [
+        {
+            "mc:azfollowGIS4-": "mc:azfollowGIS4-"
+        },
+        {
+            "mc:azfollowGIS3-": "mc:azfollowGIS3-"
+        },
+        {
+            "mc:azfollowGIS1-": "mc:azfollowGIS1-"
+        },
+        {
+            "mc:elfollowGIS4-": "mc:elfollowGIS4-"
+        },
+        {
+            "mc:elfollowGIS3-": "mc:elfollowGIS3-"
+        },
+        {
+            "mc:elfollowGIS1-": "mc:elfollowGIS1-"
+        },
+        {
+            "mc:azmoveGIS4-1": "mc:azmoveGIS4-1"
+        },
+        {
+            "mc:azmoveGIS3-1": "mc:azmoveGIS3-1"
+        },
+        {
+            "mc:azmoveGIS1-1": "mc:azmoveGIS1-1"
+        },
+        {
+            "mc:elmoveGIS4-1": "mc:elmoveGIS4-1"
+        },
+        {
+            "mc:elmoveGIS3-1": "mc:elmoveGIS3-1"
+        },
+        {
+            "mc:elmoveGIS1-1": "mc:elmoveGIS1-1"
+        }
+    ],
+    "IOC Stats (DISABLED FOR DEBUGGING 2018-12-26 IA)": [
+        {
+            "mc:iocStats:SUSP_TASK_CNT": "Susp Tasks"
+        },
+        {
+            "mc:iocStats:MEM_FREE": "Free memory"
+        },
+        {
+            "mc:iocStats:LOAD": "Global load"
+        },
+        {
+            "mc:iocStats:UPTIME {'FORMAT':'Spreadsheet'}": "Uptime"
+        },
+        {
+            "mc:iocStats:GTIM_ERR_CNT": "Time errors"
+        },
+        {
+            "mc:iocStats:SYS_MBUF_FREE": "Free Sys MBUFs"
+        },
+        {
+            "mc:iocStats:SYS_CLUST_AVAIL_(0|1)": "% Clust available"
+        },
+        {
+            "mc:iocStats:CA_CONN_CNT": "CA Connections"
+        },
+        {
+            "mc:iocStats:IF(I|O)_ERR_CNT": "IF errors"
+        },
+        {
+            "mc:iocStats:FD_FREE": "Free FDs"
+        },
+        {
+            "mc:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'}": "Boot version"
+        },
+        {
+            "mc:iocStats:CA_CLNT_CNT": "CA Clients"
+        }
+    ]
+}
