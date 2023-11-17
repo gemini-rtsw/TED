@@ -91,7 +91,7 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: sbf-ot--${LOGSTASH_MODE}
+- pipeline.id: sbf-ot-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/sbf/ot/ot.cfg"
   queue.type: persisted
