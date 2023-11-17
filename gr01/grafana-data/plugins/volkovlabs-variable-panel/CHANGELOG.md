@@ -1,5 +1,44 @@
 # Change Log
 
+## 2.1.0 (2023-11-08)
+
+### Features / Enhancements
+
+- Add an option for an always-visible search filter (#83)
+- Add Group rename functionality (#84)
+- Add selecting fields from data frames without RefId (#85)
+- Add toggle expanded row state by clicking on the label (#86)
+
+## Bugfixes
+
+- Update the deselection of All variable value which is not defined in the URL (#87)
+- Removed ability to add group to favorites (#88)
+
+## 2.0.0 (2023-10-16)
+
+### Features / Enhancements
+
+- Update variable option label for parent items in tree view (#62)
+- Add handling pressing enter and escape keys for Text Variable (#69)
+- Add table virtualization to improve performance (#64, #74)
+- Clear value for multi-choice variable (#66)
+- Update to Plugin Tools 2.1.1 (#72)
+- Use Grafana Access Policy to sign plugin (#72)
+- Update to Grafana 10.1.5 (#73)
+
+### Bugfixes
+
+- Fix key:value option selection for Minimize and Button views (#75)
+
+## 1.7.0 (2023-08-08)
+
+### Features / Enhancements
+
+- Add variables with text and value in Table/Tree View (#57)
+- Add Button View (#59)
+- Add group selection (#58)
+- Update dependencies to Grafana 10.0.3 (#60)
+
 ## 1.6.0 (2023-07-26)
 
 ### Features / Enhancements

@@ -32,8 +32,8 @@
         "path": "img/dashboard.png"
       }
     ],
-    "updated": "2023-07-26",
-    "version": "1.6.0"
+    "updated": "2023-11-08",
+    "version": "2.1.0"
   },
   "name": "Variable",
   "type": "panel"
