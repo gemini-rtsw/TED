@@ -7,9 +7,6 @@ services:
     user: "${U_ID}:${G_ID}"
     networks: 
     - "elkg"
-    ports: 
-    - "${ES01_PORT}:9200"
-    - "${ES01_TR_PORT}:9300"
     volumes: [
       ./es01/config:/usr/share/elasticsearch/config,
       ./es01/logs:/usr/share/elasticsearch/logs,
