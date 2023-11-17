@@ -124,7 +124,7 @@ services:
   renderer:
       image: grafana/grafana-image-renderer:3.8.4
       container_name: "gr01-render"
-      restart: unless-stoppeds
+      restart: unless-stopped
       networks:
       - "elkg"
 
