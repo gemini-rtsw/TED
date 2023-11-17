@@ -38,15 +38,16 @@
 10. Execute applyNanoES script
     To configure nanoseconds resolution on Elasticsearch, from TED path execute **./scripts/applyNanoES.sh** 
 
-11. Execute disableReplicationES.sh
-    You need to specify 0 replicas, otherwise, the status of the indexes will be yellow. From TED path execute **./scripts/disableReplicationES.sh**
 
-12. Execute **docker compose up kibana**
+11. Execute **docker compose up kibana**
     This will set up kibana and automatically connect it with elasticsearch
     After a couple of minutes, you will be able to enter Kibana going to [HOST_IP]:[KI01_PORT] (5601 by default)
 
-13. Execute **docker compose up logstash_01**
+12. Execute **docker compose up logstash_01**
     If logstash is running okay you will be able to see the incoming data streams on Kibana. Be sure that pipelines are running and that it is well configured on pipelines.yml file.
+
+13. Execute disableReplicationES.sh
+    You need to specify 0 replicas, otherwise, the status of the indexes will be yellow. From TED path execute **./scripts/disableReplicationES.sh**
 
 14. Create a new Data View with Name=“Logs” and 
     Index Pattern=“ logs-* ”, the pattern will indicate which indexes will be available in that Data View (for example, logs-cpo* will take logs-cpo-dhs, logs-cpo-gacq, and so on). This is for Kibana only.
