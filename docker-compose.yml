@@ -5,7 +5,7 @@ services:
     container_name: "es01"
     restart: unless-stopped
     user: "${U_ID}:${G_ID}"
-    networks: 
+    networks:
     - "elkg"
     volumes: [
       ./es01/config:/usr/share/elasticsearch/config,
@@ -17,14 +17,14 @@ services:
       options:
         max-size: "100m"
         max-file: "1"
-        
+
   kibana:
     image: kibana:8.11.1
     container_name: ki01
     restart: unless-stopped
-    networks: 
+    networks:
     - "elkg"
-    ports: 
+    ports:
     - "${KI01_PORT}:5601"
     environment:
       INTERACTIVESETUP_ENABLED: false
@@ -38,12 +38,12 @@ services:
         max-size: "100m"
         max-file: "1"
 
-  logstash_01: 
+  logstash_01:
     image: logstash:8.11.1
     container_name: "ls01"
     restart: unless-stopped
     user: "1000:${G_ID}"
-    networks: 
+    networks:
     - "elkg"
     environment:
       LOGSTASH_MODE: tail
@@ -59,18 +59,21 @@ services:
       options:
         max-size: "100m"
         max-file: "1"
-        
-  logstash_02: 
+
+  logstash_02:
     image: logstash:8.11.1
     container_name: "ls02"
     restart: unless-stopped
     user: "1000:${G_ID}"
-    networks: 
+    networks:
     - "elkg"
     environment:
       LOGSTASH_MODE: read
       HOST_1: http://elasticsearch:${ES01_PORT}
       TIMEZONE: "${LS_TIMEZONE}"
+      DAY: "${DAY}"
+      MONTH: "${MONTH}"
+      YEAR: "${YEAR}"
     volumes:
       - ./ls02/config:/usr/share/logstash/config
       - ./ls02/pipeline:/usr/share/logstash/pipeline
@@ -87,9 +90,9 @@ services:
       container_name: geaservice
       command: python3 /geaservice/geaservice.py
       restart: unless-stopped
-      networks: 
+      networks:
         - "elkg"
-      ports: 
+      ports:
         - "${GS01_PORT}:8000"
       volumes:
         - ./geaservice/:/geaservice/
@@ -104,9 +107,9 @@ services:
       container_name: "gr01"
       restart: unless-stopped
       user: "${U_ID}:${G_ID}"
-      networks: 
+      networks:
       - "elkg"
-      ports: 
+      ports:
       - "${GR01_PORT}:3000"
       environment:
         GF_RENDERING_SERVER_URL: http://renderer:8081/render
