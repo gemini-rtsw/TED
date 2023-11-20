@@ -3,7 +3,7 @@ services:
 #######################################################################################################
 
   elasticsearch:
-    image: elasticsearch:8.11.1
+    image: ted-elasticsearch:8.11.1
     hostname: elasticsearch
     container_name: es01
     restart: unless-stopped
@@ -41,7 +41,7 @@ services:
 ############################################################################################################
 
   kibana:
-    image: kibana:8.11.1
+    image: ted-kibana:8.11.1
     hostname: kibana
     container_name: ki01
     restart: unless-stopped
@@ -70,7 +70,7 @@ services:
 #################################################################################################################
 
   logstash_01:
-    image: logstash:8.11.1
+    image: ted-logstash:8.11.1
     hostname: logstash_01
     container_name: ls01
     restart: unless-stopped
@@ -111,7 +111,7 @@ services:
 #################################################################################################################
 
   logstash_02:
-    image: logstash:8.11.1
+    image: ted-logstash:8.11.1
     hostname: logstash_02
     container_name: ls02
     restart: unless-stopped
@@ -155,7 +155,7 @@ services:
 
 
   geaservice:
-    image: geaservice:1.0.0
+    image: ted-geaservice:1.0.0
     hostname: geaservice
     container_name: geaservice
     command: python3 /geaservice/geaservice.py
@@ -189,7 +189,7 @@ services:
 #################################################################################################################
 
   grafana:
-    image: grafana/grafana:10.2.1-ubuntu
+    image: ted-grafana:10.2.1-ubuntu
     hostname: grafana
     container_name: gr01
     restart: unless-stopped
