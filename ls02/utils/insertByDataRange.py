@@ -2,12 +2,13 @@ import yaml
 import re
 import subprocess
 from datetime import datetime, timedelta
+import calendar
 import os
 
 def getSubsystems():
     subsystemsDic = {}
     try:
-        with open("./config/pipelines.yml", "r") as file:
+        with open("../../ls01/config/pipelines.yml", "r") as file:
             pipelines = yaml.safe_load(file)
     except (yaml.YAMLError, IOError) as exc:
         print(f"Error loading configuration file: {exc}")
@@ -26,7 +27,7 @@ def createFile(subsystemsDic, locations, subsystems):
     if not locations:
         locations = subsystemsDic.keys()
 
-    with open("./config/pipelines.yml", 'w') as file:
+    with open("../config/pipelines.yml", 'w') as file:
         for location in locations:
             subsystemsToInclude = subsystems if subsystems else subsystemsDic[location].keys()
             for subsystem in subsystemsToInclude:
@@ -34,7 +35,7 @@ def createFile(subsystemsDic, locations, subsystems):
                 if pipeline:
                     file.write(f"- pipeline.id: {pipeline['pipeline.id']}\n")
                     file.write(f"  pipeline.workers: {pipeline['pipeline.workers']}\n")
-                    file.write(f"  path.config: {pipeline['path.config']}\n")
+                    file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
                     file.write(f"  queue.type: {pipeline['queue.type']}\n")
                     file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
 def parseInput(userInput):
@@ -46,23 +47,37 @@ def parseInput(userInput):
         options[option] = argument.split()
     return options
 
-def getDatesInRange(startDate, endDate):
-    startDate = datetime.strptime(startDate,"%m/%d/%Y").date()
+def getDatesGroupedByMonth(startDate, endDate):
+    startDate = datetime.strptime(startDate, "%m/%d/%Y").date()
     endDate = datetime.strptime(endDate, "%m/%d/%Y").date()
 
-    dates = []
+    groupedDates = {}
     while startDate <= endDate:
-        dates.append([str(startDate.month),str(startDate.day),str(startDate.year)[2:]])
+        yearMonthKey = (startDate.year, startDate.month)
+        if yearMonthKey not in groupedDates:
+            groupedDates[yearMonthKey] = []
+
+        lastDayOfMonth = calendar.monthrange(startDate.year, startDate.month)[1]
+
+        if startDate.day <= lastDayOfMonth:
+            groupedDates[yearMonthKey].append(startDate.day)
+
         startDate += timedelta(days=1)
 
-    return dates
+    groupedDatesArray = []
+    for (year, month), days in groupedDates.items():
+        days = [str(day) for day in days]
+        groupedDatesArray.append([str(year), str(month), ",".join(days)])
+
+    return groupedDatesArray
+
 
 def dockerCompose(date):
     try:
-        os.environ['DAY'] = date[1]
-        os.environ['MONTH'] = date[0]
-        os.environ['YEAR'] = date[2]
-        subprocess.run(['/usr/local/bin/docker-compose', '-f', '../docker-compose.yml', 'up', 'logstash_02'], check=True)
+        os.environ['DAY'] = "{"+date[2]+"}"
+        os.environ['MONTH'] = date[1]
+        os.environ['YEAR'] = date[0]
+        subprocess.run(['/bin/docker','compose', '-f', '../../docker-compose.yml', 'up', 'logstash_02'] ,check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing Docker Compose: {e}")
 
@@ -80,7 +95,8 @@ def mainMenu(subsystemsDic):
         options = parseInput(userInput)
         createFile(subsystemsDic, options['l'], options['s'])
         if options['i'] and options['f']:
-            dates = getDatesInRange(options['i'][0], options['f'][0])
+            dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
+            print(dates)
             for date in dates:
                 dockerCompose(date)
         else:

@@ -94,7 +94,6 @@ services:
         - "elkg"
       ports:
         - "${GS01_PORT}:8000"
-        - "80:80"
       volumes:
         - ./geaservice/:/geaservice/
       logging:
