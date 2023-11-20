@@ -79,7 +79,7 @@ def get_values():
     for chan in channels_list:
         try:
             sem.acquire()
-            geaRecord = gea.archiver.values(int(archive_key), chan,
+            geaRecord = gea.archiver.values(int(archive_key), [chan],
                                                 int(int(date_from)/1000), 0,
                                                 int(int(date_to)/1000), 0,
                                                 int(n_points),
