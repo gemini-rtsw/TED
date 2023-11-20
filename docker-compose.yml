@@ -1,10 +1,13 @@
 version: '3.7'
 services:
-  elasticsearch:
+#######################################################################################################
 
+  elasticsearch:
     image: elasticsearch:8.11.1
-    container_name: "es01"
+    hostname: elasticsearch
+    container_name: es01
     restart: unless-stopped
+
     build:
       context: ./es01
       dockerfile: Dockerfile
@@ -13,138 +16,226 @@ services:
         - UID=${UID}
         - GROUP=${GROUP}
         - GID=${GID}
+
     networks:
-    - "elkg"
-    volumes: [
-      ./es01/config:/usr/share/elasticsearch/config,
-      ./es01/logs:/usr/share/elasticsearch/logs,
-      "${DATA_PATH}/es01:/usr/share/elasticsearch/data"
-    ]
+      - elkg
+
+    volumes:
+      - ./es01/config:/usr/share/elasticsearch/config
+      - ./es01/logs:/usr/share/elasticsearch/logs
+      - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "100m"
-        max-file: "1"
+        max-size: 100m
+        max-file: 1
+
+############################################################################################################
 
   kibana:
     image: kibana:8.11.1
+    hostname: kibana
     container_name: ki01
     restart: unless-stopped
+
     networks:
-    - "elkg"
+      - elkg
+
     ports:
-    - "${KI01_PORT}:5601"
+      - "${KI01_PORT}:5601"
+
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: http://elasticsearch:${ES01_PORT}
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:${ES01_PORT}"
       elasticsearch.ssl.verificationMode: "none"
+
     depends_on:
-      - elasticsearch
+          elasticsearch:
+            condition: service_healthy
+
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "100m"
-        max-file: "1"
+        max-size: 100m
+        max-file: 1
+
+#################################################################################################################
 
   logstash_01:
     image: logstash:8.11.1
-    container_name: "ls01"
+    hostname: logstash_01
+    container_name: ls01
     restart: unless-stopped
-    user: "1000:${G_ID}"
+
+    build:
+      context: ./ls01
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${UID}
+        - GROUP=${GROUP}
+        - GID=${GID}
+
     networks:
-    - "elkg"
+      - elkg
+
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: http://elasticsearch:${ES01_PORT}
+      HOST_1: "http://elasticsearch:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
+
+    depends_on:
+          elasticsearch:
+            condition: service_healthy
+
     volumes:
       - ./ls01/config:/usr/share/logstash/config
       - ./ls01/pipeline:/usr/share/logstash/pipeline
       - ${LOGS_PATH}:/usr/logs/log
       - ${DATA_PATH}/ls01/db:/db
+
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "100m"
-        max-file: "1"
+        max-size: 100m
+        max-file: 1
+
+#################################################################################################################
 
   logstash_02:
     image: logstash:8.11.1
-    container_name: "ls02"
+    hostname: logstash_02
+    container_name: ls02
     restart: unless-stopped
-    user: "1000:${G_ID}"
+
+    build:
+      context: ./ls01
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${UID}
+        - GROUP=${GROUP}
+        - GID=${GID}
+
     networks:
-    - "elkg"
+      - elkg
+
     environment:
       LOGSTASH_MODE: read
-      HOST_1: http://elasticsearch:${ES01_PORT}
+      HOST_1: "http://elasticsearch:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
       DAY: "${DAY}"
       MONTH: "${MONTH}"
       YEAR: "${YEAR}"
+
+    depends_on:
+          elasticsearch:
+            condition: service_healthy
+
     volumes:
       - ./ls02/config:/usr/share/logstash/config
       - ./ls02/pipeline:/usr/share/logstash/pipeline
       - ${LOGS_PATH}:/usr/logs/log
       - ${DATA_PATH}/ls02/db:/db
+
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
-        max-size: "100m"
-        max-file: "1"
+        max-size: 100m
+        max-file: 1
+#################################################################################################################
+
 
   geaservice:
-      container_name: geaservice
-      command: python3 /geaservice/geaservice.py
-      restart: unless-stopped
-      build:
-        context: ./geaservice
-        dockerfile: Dockerfile
-        args:
-          - USER=${USER}
-          - UID=${UID}
-          - GROUP=${GROUP}
-          - GID=${GID}
-      networks:
-        - "elkg"
-      ports:
-        - "${GS01_PORT}:8000"
-      volumes:
-        - ./geaservice/:/geaservice/
-      logging:
-        driver: "json-file"
-        options:
-          max-size: "100m"
-          max-file: "1"
+    image: geaservice:1.0.0
+    hostname: geaservice
+    container_name: geaservice
+    command: python3 /geaservice/geaservice.py
+    restart: unless-stopped
+
+    build:
+      context: ./geaservice
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${UID}
+        - GROUP=${GROUP}
+        - GID=${GID}
+
+    networks:
+      - elkg
+
+    ports:
+      - "${GS01_PORT}:8000"
+
+    volumes:
+      - ./geaservice/:/geaservice/
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+
+
+#################################################################################################################
 
   grafana:
-      image: grafana/grafana:10.2.1-ubuntu
-      container_name: "gr01"
-      restart: unless-stopped
-      user: "${U_ID}:${G_ID}"
-      networks:
-      - "elkg"
-      ports:
+    image: grafana/grafana:10.2.1-ubuntu
+    hostname: grafana
+    container_name: gr01
+    restart: unless-stopped
+
+    build:
+      context: ./gr01
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${UID}
+        - GROUP=${GROUP}
+        - GID=${GID}
+
+    networks:
+      - elkg
+
+    ports:
       - "${GR01_PORT}:3000"
-      environment:
-        GF_RENDERING_SERVER_URL: http://renderer:8081/render
-        GF_RENDERING_CALLBACK_URL: http://grafana:3000/
-        GF_LOG_FILTERS: rendering:debug
-      volumes:
-        - ./gr01/grafana-data:/var/lib/grafana
-        - ./gr01/conf:/usr/share/grafana/conf
-      logging:
-        driver: "json-file"
-        options:
-          max-size: "100m"
-          max-file: "1"
+
+    environment:
+      GF_RENDERING_SERVER_URL: "http://renderer:8081/render"
+      GF_RENDERING_CALLBACK_URL: "http://grafana:3000/"
+      GF_LOG_FILTERS: "rendering:debug"
+
+    volumes:
+      - ./gr01/grafana-data:/var/lib/grafana
+      - ./gr01/conf:/usr/share/grafana/conf
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+
+
+#################################################################################################################
 
   renderer:
-      image: grafana/grafana-image-renderer:3.8.4
-      container_name: "gr01-render"
-      restart: unless-stopped
-      networks:
-      - "elkg"
+    image: grafana/grafana-image-renderer:3.8.4
+    hostname: renderer
+    container_name: gr01-render
+    restart: unless-stopped
+    networks:
+      - elkg
+
+#################################################################################################################
 
 networks:
   elkg:
