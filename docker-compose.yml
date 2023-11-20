@@ -1,10 +1,18 @@
 version: '3.7'
 services:
   elasticsearch:
+
     image: elasticsearch:8.11.1
     container_name: "es01"
     restart: unless-stopped
-    user: "${U_ID}:${G_ID}"
+    build:
+      context: ./es01
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${UID}
+        - GROUP=${GROUP}
+        - GID=${GID}
     networks:
     - "elkg"
     volumes: [
@@ -86,10 +94,17 @@ services:
         max-file: "1"
 
   geaservice:
-      build: ./geaservice
       container_name: geaservice
       command: python3 /geaservice/geaservice.py
       restart: unless-stopped
+      build:
+        context: ./geaservice
+        dockerfile: Dockerfile
+        args:
+          - USER=${USER}
+          - UID=${UID}
+          - GROUP=${GROUP}
+          - GID=${GID}
       networks:
         - "elkg"
       ports:
