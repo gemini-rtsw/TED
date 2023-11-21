@@ -125,8 +125,10 @@ def finishedPipelines(rawLogs,nPipelines):
         result=re.match('(\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[[a-z-]+\] Pipeline terminated \{"pipeline.id"=>"[a-z-]+"\})',rawLog)
         if (result):
             count+=1
+            print(result.group(1))
             if(count==nPipelines):
                 state=True
+    print(f'{str(nPipelines)}/{count}')
     return state
 
 def dockerComposeDown():
