@@ -72,9 +72,9 @@ services:
 
 #################################################################################################################
 
-  logstash_01:
+  logstash:
     image: ted-logstash:8.11.1
-    hostname: logstash_01
+    hostname: logstash
     container_name: ls01
     restart: unless-stopped
 
