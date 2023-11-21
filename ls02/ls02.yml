@@ -27,8 +27,8 @@ services:
       YEAR: "${YEAR}"
 
     volumes:
-      - ./ls02/config:/usr/share/logstash/config
-      - ./ls02/pipeline:/usr/share/logstash/pipeline
+      - ./config:/usr/share/logstash/config
+      - ./pipeline:/usr/share/logstash/pipeline
       - ${LOGS_PATH}:/usr/logs/log
       - ${DATA_PATH}/ls02/db:/db
 
