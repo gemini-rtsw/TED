@@ -1,16 +1,12 @@
 version: '3.7'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
+    image: elasticsearch:8.11.1
     container_name: "es01"
     restart: unless-stopped
     user: "${U_ID}:${G_ID}"
-    networks: 
+    networks:
     - "elkg"
-    ports: 
-    - "${ES01_PORT}:9200"
-    - "${ES01_TR_PORT}:9300"
-    - "8082:8080"
     volumes: [
       ./es01/config:/usr/share/elasticsearch/config,
       ./es01/logs:/usr/share/elasticsearch/logs,
@@ -21,17 +17,15 @@ services:
       options:
         max-size: "100m"
         max-file: "1"
-        
+
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.7.0
+    image: kibana:8.11.1
     container_name: ki01
     restart: unless-stopped
-    networks: 
+    networks:
     - "elkg"
-    ports: 
+    ports:
     - "${KI01_PORT}:5601"
-    - "8083:8080"
-
     environment:
       INTERACTIVESETUP_ENABLED: false
       ELASTICSEARCH_HOSTS: http://elasticsearch:${ES01_PORT}
@@ -44,17 +38,13 @@ services:
         max-size: "100m"
         max-file: "1"
 
-  logstash_01: 
-    image: docker.elastic.co/logstash/logstash:8.7.0
+  logstash_01:
+    image: logstash:8.11.1
     container_name: "ls01"
     restart: unless-stopped
     user: "1000:${G_ID}"
-    networks: 
+    networks:
     - "elkg"
-    ports: 
-    - "${LS01_PORT}:9600"
-    - "8084:8080"
-
     environment:
       LOGSTASH_MODE: tail
       HOST_1: http://elasticsearch:${ES01_PORT}
@@ -69,21 +59,21 @@ services:
       options:
         max-size: "100m"
         max-file: "1"
-        
-  logstash_02: 
-    image: docker.elastic.co/logstash/logstash:8.7.0
+
+  logstash_02:
+    image: logstash:8.11.1
     container_name: "ls02"
     restart: unless-stopped
     user: "1000:${G_ID}"
-    networks: 
+    networks:
     - "elkg"
-    ports: 
-    - "${LS02_PORT}:9600"
-    - "8085:8080"
     environment:
       LOGSTASH_MODE: read
       HOST_1: http://elasticsearch:${ES01_PORT}
       TIMEZONE: "${LS_TIMEZONE}"
+      DAY: "${DAY}"
+      MONTH: "${MONTH}"
+      YEAR: "${YEAR}"
     volumes:
       - ./ls02/config:/usr/share/logstash/config
       - ./ls02/pipeline:/usr/share/logstash/pipeline
@@ -100,13 +90,12 @@ services:
       container_name: geaservice
       command: python3 /geaservice/geaservice.py
       restart: unless-stopped
-      networks: 
+      networks:
         - "elkg"
-      ports: 
+      ports:
         - "${GS01_PORT}:8000"
-        - "8080:8080"
       volumes:
-        - ./geaservice/geaservice.py:/geaservice/geaservice.py
+        - ./geaservice/:/geaservice/
       logging:
         driver: "json-file"
         options:
@@ -114,15 +103,14 @@ services:
           max-file: "1"
 
   grafana:
-      image: grafana/grafana:9.3.6
+      image: grafana/grafana:10.2.1-ubuntu
       container_name: "gr01"
       restart: unless-stopped
       user: "${U_ID}:${G_ID}"
-      networks: 
+      networks:
       - "elkg"
-      ports: 
+      ports:
       - "${GR01_PORT}:3000"
-      - "8086:8080"
       environment:
         GF_RENDERING_SERVER_URL: http://renderer:8081/render
         GF_RENDERING_CALLBACK_URL: http://grafana:3000/
@@ -137,15 +125,13 @@ services:
           max-file: "1"
 
   renderer:
-      image: grafana/grafana-image-renderer:latest
+      image: grafana/grafana-image-renderer:3.8.4
       container_name: "gr01-render"
       restart: unless-stopped
-      ports:
-      - "8081:8081"
       networks:
       - "elkg"
 
 networks:
   elkg:
-    name: "elkg"
+    driver: bridge
     external: true

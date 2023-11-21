@@ -1,0 +1,179 @@
+{
+    "Plant Room Chillers": [
+        {
+            "pr:ch:(c1to|c1ti)": "Chiller 1"
+        },
+        {
+            "pr:ch:(c2to|c2ti)": "Chiller 2"
+        },
+        {
+            "pr:ef:(tut|out)": "Tunnel Temps"
+        },
+        {
+            "pr:ef:(ef2v|ef2c)": "Current/Voltage"
+        }
+    ],
+    "[CP] Hydrostatic Bearing System": [
+        {
+            "hbs:(oilTemp|oilTankTemp)": "Oil Tank Temperature [deg C]"
+        },
+        {
+            "hbs:oilOutTemp": "Outgoing Oil Temperature [dec C]"
+        },
+        {
+            "hbs:domeAirTemp": "Dome Temperature [deg C]"
+        },
+        {
+            "hbs:oilLevel": "Oil Level"
+        },
+        {
+            "hbs:outPressure": "HBS Pressure Out [bar]"
+        },
+        {
+            "hbs:flow": "Flow Rate [LPM]"
+        },
+        {
+            "hbs:accPressure": "Top Accumulator Pressure [bar]"
+        },
+        {
+            "hbs:botPressure": "Bottom Accumulator Pressure [bar]"
+        },
+        {
+            "hbs:(bot|acc|out)Pressure": "Combined  Pressures [bar]"
+        },
+        {
+            "hbs:noFaults": "No Faults"
+        },
+        {
+            "hbs:estop": "E-Stop (1 is clear)"
+        },
+        {
+            "hbs:autoMode": "Auto Mode"
+        },
+        {
+            "hbs:manualMode": "Manual Mode"
+        },
+        {
+            "hbs:heartbeat": "Heartbeat"
+        },
+        {
+            "hbs:seqStep": "HBS Sequence Step"
+        },
+        {
+            "hbs:armed": "Armed Status"
+        },
+        {
+            "hbs:(arm|start|stop)Out": "EPICS Commands"
+        },
+        {
+            "hbs:faults1word": "hbs:faults1word"
+        },
+        {
+            "hbs:faults2word": "hbs:faults2word"
+        },
+        {
+            "hbs:faults3word": "hbs:faults3word"
+        },
+        {
+            "hbs:faults4word": "hbs:faults4word"
+        },
+        {
+            "hbs:timeP60A": "time of P60_A top accumulator pressure below 80 bars in secs"
+        },
+        {
+            "hbs:valP60A": "val of P60_A top accumulator pressure at time of fault 53 in bars"
+        }
+    ],
+    "[CP] Telescope Systems Remote Switch": [
+        {
+            "bfo:(summit|standby|base)Mode": "Observatory Mode"
+        },
+        {
+            "bfo:(mcs|crcs|ecs|hbs|pin|ic|mc|az|el|loto|emo)Status": "Conditions for Transfer to Standby"
+        }
+    ],
+    "[CP] AHU Temperatures": [
+        {
+            "pr:ahu:ah2t": "AHU1"
+        },
+        {
+            "pr:ahu:ah3t": "AHU2"
+        },
+        {
+            "pr:ahu:ah4t": "AHU3"
+        },
+        {
+            "pr:ahu:ah5t": "AHU4"
+        },
+        {
+            "pr:ef:out": "Outside Temperature"
+        }
+    ],
+    "Troubleshooting monitoring": [
+        {
+            "pr:elec:gwhRaw": "Compressor 3 Psi"
+        },
+        {
+            "pr:ahuPwrCtrlCalc": "pr:ahuPwrCtrlCalc"
+        },
+        {
+            "pr:ahuPwrCtrlFan": "pr:ahuPwrCtrlFan"
+        },
+        {
+            "pr:ahuPwrCtrlON": "pr:ahuPwrCtrlON"
+        },
+        {
+            "pr:ahuPwrCtrlOFF": "pr:ahuPwrCtrlOFF"
+        },
+        {
+            "pr:ahuPwrCtrlONState": "pr:ahuPwrCtrlONState"
+        },
+        {
+            "pr:ahuPwrCtrlOFFState": "pr:ahuPwrCtrlOFFState"
+        },
+        {
+            "pr:ahuPwrCtrl(Calc|Fan|ON|OFF|ONState|OFFState)": "Combined AHU graph"
+        },
+        {
+            "pr:ahuPwrState": "pr:ahuPwrState"
+        }
+    ],
+    "IOC Stats": [
+        {
+            "pr:iocStats:SUSP_TASK_CNT": "Susp Tasks"
+        },
+        {
+            "pr:iocStats:MEM_FREE": "Free memory"
+        },
+        {
+            "pr:iocStats:LOAD": "Global load"
+        },
+        {
+            "pr:iocStats:UPTIME {'FORMAT':'Spreadsheet'}": "Uptime"
+        },
+        {
+            "pr:iocStats:GTIM_ERR_CNT": "Time errors"
+        },
+        {
+            "pr:iocStats:SYS_MBUF_FREE": "Free Sys MBUFs"
+        },
+        {
+            "pr:iocStats:SYS_CLUST_AVAIL_(0|1)": "% Clust available"
+        },
+        {
+            "pr:iocStats:CA_CONN_CNT": "CA Connections"
+        },
+        {
+            "pr:iocStats:IF(I|O)_ERR_CNT": "IF errors"
+        },
+        {
+            "pr:iocStats:FD_FREE": "Free FDs"
+        },
+        {
+            "pr:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'}": "Boot version"
+        },
+        {
+            "pr:iocStats:CA_CLNT_CNT": "CA Clients"
+        }
+    ]
+}

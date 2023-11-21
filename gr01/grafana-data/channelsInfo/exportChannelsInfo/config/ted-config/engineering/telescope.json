@@ -1,0 +1,59 @@
+{
+    "Mount": [
+        {
+            "mc:elCurrentPos": "Elevaton:Position"
+        },
+        {
+            "mc:elPosError": "Elevaton:Error"
+        },
+        {
+            "mc:elCurrentVel": "Elevaton:Velocity"
+        },
+        {
+            "mc:azCurrentPos": "Azimuth:Position"
+        },
+        {
+            "mc:azPosError": "Azimuth:Error"
+        },
+        {
+            "mc:azCurrentVel": "Azimuth:Velocity"
+        }
+    ],
+    "Top Shutter": [
+        {
+            "ec:(moveShtrs.VALB|topShtrPos)": "Demand and Position"
+        },
+        {
+            "ec:topShtrErr": "Error"
+        }
+    ],
+    "Bottom Shutter": [
+        {
+            "ec:(moveShtrs.VALD|botShtrPos)": "Demand and Position"
+        },
+        {
+            "ec:botShtrErr": "Error"
+        }
+    ],
+    "Cass Rotator": [
+        {
+            "cr:crCurrentPos": "Current angle"
+        },
+        {
+            "cr:crDemandPos": "CRCS Demand Pos."
+        }
+    ],
+    "Dome": [
+        {
+            "ec:(moveDome.VALB|domePos)": "Demand and Position"
+        },
+        {
+            "ec:domeErr": "Error"
+        }
+    ],
+    "Vent Gates": [
+        {
+            "ec:(east|west)VentGatePos": "East/West"
+        }
+    ]
+}

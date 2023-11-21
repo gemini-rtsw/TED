@@ -1,0 +1,95 @@
+#lis page layout
+
+#Defaults options for all selections for all sections:
+#[QUERYSTRPAIRS] {'SYSTEMS':'lis','LEGEND':'Inside', 'GRIDLINES':'checked'}
+#[ITEMSPERROW] 1
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+
+#[SECTION] General
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:safShCtrl.A         # Safety Laser Shutter Demand
+lis:safShCtrlC          # Safety Laser Shutter Command State
+  
+#[SECTION] LIS Internal Inputs
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}                    
+lis:in:spot1.VAL  # Spotter East
+lis:in:spot2.VAL  # Spotter West 
+
+#[SECTION] LIS Internal Inputs / TBAD
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}                    
+lis:in:tbad.VAL  # TBAD detection
+lis:tbadOverrideState.VAL # TBAD Override
+
+#[SECTION] LIS Inputs from BTO
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:in:btoHb.VAL    #  BTO Heartbeat
+
+#[SECTION] LIS Inputs from SALSA
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:in:bocadHb.VAL   # BOCAD Heartbeat
+lis:in:ltcsHb.VAL     # LTCS Heartbeat
+lis:in:ascamHl.VAL   # ASCAM Health
+lis:in:ltcsDet.VAL   # LTCS Beam Collision
+
+#[SECTION] LIS Inputs from Chillers
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:in:ch1generalFault.VAL   # Chiller 1 - General Shutdown Alarm
+lis:in:ch2generalFault.VAL   # Chiller 2 - General Shutdown Alarm
+lis:in:ch1runStatus.VAL      # Chiller 1 - Run Status
+lis:in:ch2runStatus.VAL      # Chiller 2 - Run Status
+lis:in:ch1lowTankFault.VAL   # Chiller 1 - Tank Low Level
+lis:in:ch2lowTankFault.VAL   # Chiller 2 - Tank Low Level
+
+#[SECTION] LIS sequences
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:seq:procWord178.VALA        # Aircraft detection on BOCAD when laser propagated to the sky, Req.001
+lis:seq:procWord178.VALB   	# SPOTTER/ASCAM/Beam Col./Pause Seq ON beam collision, satellite avoidance when laser propagated to the sky, Req.005
+lis:seq:procWord178.VALC        # BOCAD heartbeat down when laser propagated to the sky, Req.010
+lis:seq:procWord178.VALD        # LTCS/ASCAM heartbeat down, Req.015
+#[CELL]
+lis:seq:procWord179.VALA        # BTO/LBBS heartbeat down when laser propagated to the sky, Req.020
+lis:seq:procWord179.VALB        # RTC heartbeat down when laser propagated to the sky, Req.025
+lis:seq:procWord179.VALC        # AOM heartbeat down when laser propagated to the sky, Req.030
+lis:seq:procWord179.VALD        # Laser fault when laser propagated to the sky, Req.040
+#[CELL]
+lis:seq:procWord180.VALA        # Laser fault (BDM) when laser propagated to BDM, Req.041
+lis:seq:procWord180.VALB        # BTO/LBBS heartbeat down (BDM)  when laser propagated to BDM, Req.050
+lis:seq:procWord180.VALC        # observing floor (BDM) entered when laser propagated to BDM, Req.075
+lis:seq:procWord180.VALD        # Emergency stop tripped, Req.080
+#[CELL]
+lis:seq:procWord181.VALA        # BTO/LBBS internal interlock when laser propagated to the sky, Req.090
+lis:seq:procWord181.VALB        # BTO/LBBS internal interlock when laser propagated to BDM, Req.095
+lis:seq:procWord181.VALC        # BTO door interlock when laser propagated to the sky, Req.100
+lis:seq:procWord181.VALD        # BTO door interlock when laser propagated to BDM, Req.105
+#[CELL]
+lis:seq:procWord182.VALA        # AOM internal interlock when laser propagated to the sky, Req.110
+lis:seq:procWord182.VALB        # AOM door interlock when laser propagated to the sky, Req.120
+lis:seq:procWord182.VALC        # AOM door interlock when laser propagated to BDM, Req.125
+lis:seq:procWord182.VALD        # RTC internal interlock when laser propagated to the sky, Req.130
+#[CELL]
+lis:seq:procWord183.VALA        # LSE door interlock when laser propagated to the sky, Req.136
+lis:seq:procWord183.VALB        # LSE door interlock when laser propagated to BDM, Req.137
+lis:seq:procWord183.VALC        # TCS heartbeat down when laser propagated to the sky, Req.145
+lis:seq:procWord183.VALD        # Laser shutter or safety shutter fault  when Laser ON, Req.150
+#[CELL]
+lis:seq:procWord184.VALA        # BTO shutters faults when Laser ON, Req.155
+lis:seq:procWord184.VALB        # Earthquake when laser propagated to the sky, Req.160
+lis:seq:procWord184.VALC        # Earthquake when laser propagated to BDM, Req.165
+lis:seq:procWord184.VALD        # Safety shutter or Interface fault when laser ON and laser shutter open, Req.180
+lis:seq:procWord185.VALD        # Remove BDM and Resume BTO/AOM/RTC
+
+#[SECTION]
+lis:in:eq.VAL   #EQ sensor detection
+
+
+

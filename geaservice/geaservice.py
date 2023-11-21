@@ -2,7 +2,7 @@ from flask import Flask, request
 import xmlrpc.client as xmlClient
 import sys
 import threading
-import time 
+import json 
 sem = threading.Semaphore()
 
 
@@ -52,27 +52,32 @@ def get_values():
     mode = request.args.get('value_mode')
     n_points = request.args.get('n_points')
 
+    print("archiveKey",archive_key)
+    print("mode", mode)
+    print("channel",channel)
+
     try:
         n_points = int(n_points)
         if n_points > 10000:
             n_points = 10000
-    except: 
+    except:
         n_points = 3000
-    # print(f"n_points: {n_points}")
-    # print(f"df: {date_from}")
-    # print(f"dt: {date_to}")
+
+    channels_list=[]
 
     if ',' in channel:
-        channel = channel[1:-1]
         channel = channel.split(',')
+        for chan in channel:
+            if(chan!=""):
+                channels_list.append(chan)
     else:
-        channel =[channel]
-    
+        channels_list =[channel]
+
     geaRecord={}
-    
+    print("chan_list",channels_list)
     try:
         sem.acquire()
-        geaRecord = gea.archiver.values(int(archive_key), channel,
+        geaRecord = gea.archiver.values(int(archive_key), channels_list,
                                             int(int(date_from)/1000), 0,
                                             int(int(date_to)/1000), 0,
                                             int(n_points),
@@ -83,9 +88,14 @@ def get_values():
         sem.release()
 
     sys.stdout.flush()
-    
+
     return {"values":geaRecord}
 
+@app.route("/PVselector", methods=['GET'])
+def pvSelector():
+    f = open('PVselector.json')
+    data = json.load(f)
+    return(data)
 
 if __name__ == '__main__':
     from waitress import serve

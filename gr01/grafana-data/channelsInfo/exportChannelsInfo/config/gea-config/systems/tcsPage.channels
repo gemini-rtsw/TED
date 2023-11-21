@@ -1,0 +1,246 @@
+#TCS page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS] {'SYSTEMS':'tcs','LEGEND':'Inside', 'GRIDLINES':'checked','FORMAT':'Plot'}
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] Pointing Model (Spreadsheet)
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+tcs:ak:pm:par0:name	        # IA
+tcs:ak:pm:par1:name	        # IE
+tcs:ak:pm:par12:name	    # CA
+
+#[SECTION] Session Pointing Adjustments
+#[ITEMSPERROW] 4
+#[SUBTABLE] True
+#[CELL]
+#[CELL]  CA
+#[CELL]  CE
+#[CELL]  CA/CE
+#[CELL]  Local
+tcs:ak:pm:ca:local    	  
+tcs:ak:pm:ce:local    
+tcs:ak:pm:c(e|a):local  # local ca/ce
+#[CELL]  Net
+tcs:ak:pm:ca:net    	  
+tcs:ak:pm:ce:net  
+tcs:ak:pm:c(e|a):net    # net ca/ce	   
+#[CELL] Guide
+tcs:ak:guide:ca
+tcs:ak:guide:ce
+tcs:ak:guide:c(e|a)    # guide ca/ce
+#[CELL] Local/Net/Guide
+tcs:ak:(pm:ca:(local|net)|guide:ca)  # local/net/guide ca
+tcs:ak:(pm:ce:(local|net)|guide:ce)  # local/net/guide ce
+tcs:ak:(pm:c(a|e):(local|net)|guide:c(a|e))  {'LEGEND':'Outside'} # local/net/guide ca/ce (All)
+ 
+#[SECTION] Session Pointing Update
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+tcs:ak:pm:ca:session      
+tcs:ak:pm:ce:session    
+tcs:ak:pm:ia:session    
+
+#[SECTION] Telescope 
+#[AUTOTITLE] False
+#[ITEMSPERROW] 5
+#[SUBTABLE] True
+#[CELL]  Azimuth
+tcs:demandAz  	# Demand
+tcs:currentAz	# Current
+tcs:(demand|current)Az    # Demand and Current
+tcs:azError	# Error
+#[CELL] Elevation
+tcs:demandEl	  # Demand
+tcs:currentEl	  # Current
+tcs:(demand|current)El    # Demand and Current
+tcs:elError	  # Error
+
+#[SECTION] TCS M2 adjustment
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+tcs:im:m2gm:absorbFocusFlag.VAL   	# Absorb Focus Flag (Spread.)
+tcs:im:m2gm:comaCorrectFlag.VAL		# Coma Correction Flag (Spread.)
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot'}
+tcs:om:tt:temp	                    # Dome air temperature
+
+#[SECTION] Nod/Chop states 
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+tcs:chop.DIR
+tcs:chop.A
+tcs:om:chopping
+
+#[SECTION] Wavefront sensors states (Spreadsheet)
+#[ITEMSPERROW] 5
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+tcs:configOiwfs.(A|B|D|E)    # All Oi
+tcs:configOiwfs.A
+tcs:configOiwfs.B
+tcs:configOiwfs.D
+tcs:configOiwfs.E
+tcs:configPwfs1.(A|B|D|E)   # All P1
+tcs:configPwfs1.A
+tcs:configPwfs1.B
+tcs:configPwfs1.D
+tcs:configPwfs1.E
+tcs:configPwfs2.(A|B|D|E)   # All P2
+tcs:configPwfs2.A
+tcs:configPwfs2.B
+tcs:configPwfs2.D
+tcs:configPwfs2.E
+
+#[SECTION] Other (Demand related)
+#[ITEMSPERROW] 3
+tcs:sad:m2XDemand
+tcs:sad:m2YDemand
+tcs:sad:m2ZDemand
+tcs:m2XErrorCorr
+tcs:m2YErrorCorr 
+tcs:m2GuideMode.B {'FORMAT':'Spreadsheet'}
+
+#[SECTION] M1 Temperature Sensors
+tcs:om:tt:sensor.* # raw / smoothed filtered values
+
+#[SECTION] Flags (for details see In Position section below)
+tcs:sad:inPosition {'FORMAT':'Spreadsheet'} # TCS in position flag
+
+#[SECTION]In Position Calcs
+#[ITEMSPERROW] 5
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot','YMIN':-0.1,'YMAX':1.1}
+tcs:aomInPosCalc        # AOM In Position flag
+tcs:inPosCombine        # In Position Combine
+tcs:mcInPosCalc         # MCS InPos
+tcs:crInPosCalc         # CR InPos
+tcs:ecInPosCalc         # ECS InPos
+tcs:agInPosCalc         # AG InPos
+tcs:aoInPosCalc         # AO/Altair InPos
+tcs:gsaoiInPosCalc      # GSAOI InPos
+tcs:gpInPosCalc         # GPOL InPos 
+tcs:(aom|mc|cr|ec|ag|ao|gsaoi|gp)InPosCalc # All(except TCS)
+
+
+
+#[SECTION] Guide Setup and Status  (Spreadsheet)
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+#[ITEMSPERROW] 4
+tcs:drives:p1Integrating.VAL  # P1 Integrating
+tcs:drives:p2Integrating.VAL  # P2 Integrating
+tcs:drives:oiIntegrating.VAL  # Oi Integrating
+#[CELL]
+
+tcs:om:m2GuideState.VAL # M2 Guiding
+tcs:ak:wfsguide:p1weight.VAL  # P1 Probe Guiding
+tcs:ak:wfsguide:p2weight.VAL  # P2 Probe Guiding
+tcs:ak:wfsguide:oiweight.VAL  # Oi Probe Guiding
+
+tcs:absorbTipTiltFlag.VAL  # Absorb tilt errors
+tcs:im:m2gm:absorbFocusFlag.VAL  # Absorb focus errors
+tcs:im:m2gm:comaCorrectFlag.VAL  # Correcting coma
+#[CELL]
+
+tcs:m2GuideControl.DIR            # M2 Guide control CAD
+tcs:wfsGuideMode.DIR            # WFS Guiding CAD
+
+#[SECTION] Cass Rotator
+#[QUERYSTRPAIRS] {'LAPSE':'lastNight'}
+#[ITEMSPERROW] 1
+tcs:rotwrap.A    {'FORMAT':'Spreadsheet'}   #  Wrap Logic Flag (TCS)
+tcs:demandRma       #  Rotator Demand (TCS)
+tcs:tcsCurrentPos|tcs:demandRma   {'SYSTEMS':'tcs tcscs'}  # TCS Dem & Act Pos
+
+#[SECTION] Other
+#[ITEMSPERROW] 1
+tcs:offsetPoA1.A   {'FORMAT':'Spreadsheet'}
+tcs:offsetPoA1.B  {'FORMAT':'Spreadsheet'}
+tcs:poAdjust.A {'FORMAT':'Spreadsheet'}
+tcs:poAdjust.B {'FORMAT':'Spreadsheet'}
+tcs:poAdjust.C {'FORMAT':'Spreadsheet'}
+tcs:poAdjust.D {'FORMAT':'Spreadsheet'}
+tcs:sad:chopFreq       #  Chop Frequency
+tcs:TIME:health.OMSS {'FORMAT':'Spreadsheet'} # Time Health Message
+tcs:ErrorMess {'FORMAT':'Spreadsheet'} # Error Message
+tcs:domeVignette {'FORMAT':'Spreadsheet'} # Dome Vignette
+tcs:agTimedOut  #AG comms timeout
+tcs:aoTimedOut  #AO comms timeout
+tcs:crTimedOut  #CRCS comms timeout
+tcs:ecTimedOut  #ECS comms timeout
+tcs:gpTimedOut  #GPI comms timeout
+tcs:m1TimedOut  #PCS comms timeout
+tcs:m2TimedOut  #SCS comms timeout
+tcs:mcTimedOut  #MCS comms timeout
+tcs:wsTimedOut  #GWS comms timeout
+tcs:aomTimedOut  #AOM comms timeout
+tcs:gsaoiTimedOut  #GSAOI comms timeout
+
+
+#[SECTION]NGS2-Virtual Boxes(c1,C2,C3)
+#[ITEMSPERROW] 4
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot'}
+tcs:drives:ngs1Xdemand
+tcs:drives:ngs1Ydemand
+tcs:drives:ngs2Xdemand
+tcs:drives:ngs2Ydemand
+tcs:drives:ngs3Xdemand
+tcs:drives:ngs3Ydemand
+tcs:drives:ngsPr1X
+tcs:drives:ngsPr1Y
+tcs:drives:ngsPr2X
+tcs:drives:ngsPr2Y
+tcs:drives:ngsPr3X
+tcs:drives:ngsPr3Y
+
+#[SECTION]WFS Guide Rates
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot'}
+tcs:pwfs1Observe.B   	# PWFS1 Guide Rate
+tcs:pwfs2Observe.B   	# PWFS2 Guide Rate
+tcs:oiwfsObserve.B   	# OIWFS Guide Rate
+
+#[SECTION]WFS Demands
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot'}
+tcs:drives:pwfs2Xdemand   	# PWFS2 X Demand
+tcs:drives:pwfs2Ydemand   	# PWFS2 Y Demand
+tcs:drives:pwfs2Zdemand   	# PWFS2 Z Demand 
+tcs:drives:oiwfsXdemand   	# OIWFS X Demand
+tcs:drives:oiwfsYdemand   	# OIWFS Y Demand
+tcs:drives:oiwfsZdemand   	# OIWFS Z Demand 
+
+#[SECTION] M1 Optics Status
+#[ITEMSPERROW] 1
+tcs:im:m1FigUpdatesFlag   {'FORMAT':'Spreadsheet'} # Open Loop figure corrections
+
+#[SECTION]GACQ offsets
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Plot'}
+tcs:hs:gacqIAA	# GACQ offset IAA
+tcs:hs:gacqIPA	# GACQ offset IPA
+tcs:hs:gacqP	# GACQ offset P
+tcs:hs:gacqQ	# GACQ offset Q
+tcs:hs:gacqId	# gacq offset Id
+
+
+
+#[SECTION]  IOC Stats                                                                                                
+#[CSSCLASS] sectionMain                                                                                              
+#[ITEMSPERROW] 4                                                                                                     
+#[SUBTABLE] True
+
+tcs:iocStats:SUSP_TASK_CNT       # Susp Tasks                                                                         
+tcs:iocStats:MEM_FREE            # Free memory                                                                        
+tcs:iocStats:LOAD                # Global load                                                                        
+tcs:iocStats:UPTIME {'FORMAT':'Spreadsheet'} # Uptime                                                                 
+                                                                                                                     
+tcs:iocStats:GTIM_ERR_CNT        # Time errors                                                                        
+tcs:iocStats:SYS_MBUF_FREE       # Free Sys MBUFs                                                                     
+tcs:iocStats:SYS_CLUST_AVAIL_(0|1)   # % Clust available                                                              
+tcs:iocStats:CA_CONN_CNT         # CA Connections                                                                     
+                                                                                                                     
+tcs:iocStats:IF(I|O)_ERR_CNT     # IF errors                                                                          
+tcs:iocStats:FD_FREE             # Free FDs                                                                           
+tcs:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'} # Boot version                                                     
+tcs:iocStats:CA_CLNT_CNT         # CA Clients 

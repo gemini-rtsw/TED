@@ -1,0 +1,11 @@
+#Trecs page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 3
+#[SUBTABLE] False
+#[QUERYSTRPAIRS] {'SYSTEMS':'nici','LEGEND':'Inside','GRIDLINES':'checked','SKIPACTION':'True'}
+#This below is used to control whether each section should have its own html table. 
+
+#[SECTION] Dummy
+nici:sad:LSsensor1 #Cold Structure
+nici:sad:LSsensor3 #Cold head of Cold structure

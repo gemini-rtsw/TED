@@ -1,0 +1,170 @@
+#bto page layout
+
+#Defaults options for all selections for all sections:
+#[QUERYSTRPAIRS] {'SYSTEMS':'bto','LEGEND':'Inside', 'GRIDLINES':'checked'}
+#[ITEMSPERROW] 4
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] General
+bto:pm           #Beam Dump Power Meter
+bto:btoopEnPr     #BTOOP Entry Pressure
+
+#[SECTION] Temperatures
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+bto:teeHexSupTemp 	   # VME Internal Temp (deg C)
+bto:teeHexRetTemp 	   # PLC Surface Temp (deg C)
+bto:teeCoolSupTemp	    # Coolant Supply Temperature (deg C)
+bto:teeCoolRetTemp	    # Coolant Return Temperature (deg C)
+bto:tee(Hex(Sup|Ret)|Cool(Sup|Ret))Temp	  {'LEGEND':'Outside'}	 # All
+bto:SSSFSATemp		# Fast Steering Array
+bto:SSSBdTemp		# Beam Diagnostic Package
+bto:SSSKMTemp		# K Mirror
+bto:SSSElBoxTemp	# SSE Electronic Box
+bto:TPMTemp		# Truss Pointing Mirror 
+bto:TCMTemp		# Truss Centering Mirror
+bto:trussElBoxTemp	# Truss Electronic Box
+
+#[SECTION]  Motor Positions			
+#[ITEMSPERROW] 1
+bto:PM(Tip|Tilt)      # Pointing Mirror
+bto:CM(Tip|Tilt)      # Centering Mirror
+bto:KMAngle	      # K Mirror
+bto:BPolAngle	      # BTOOB Polarizer
+bto:TRACtrlCMC.POS(X|Y|Z) # Top-end Ring Array
+bto:TCM(Tip|Tilt)     # Truss Centering Mirror
+bto:TPM(Tip|Tilt)     # Truss Pointing Mirror
+bto:EFM(Tip|Tilt)     # Elevation Folding Mirror
+bto:EPolAngle	      # Elevation Polarizer
+
+#[SECTION]  BTOOP LUT Control Loop
+#[ITEMSPERROW] 1
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+bto:TPMCAFsaLoop	# BTOOP Elevation Loop (EFM,TPM,TCM,TRA)
+bto:TCMOpenLoop		# TCM LUT
+bto:TPMOpenLoop		# TPM LUT
+bto:TRAOpenLoop		# TRA LUT
+bto:EFMOpenLoop		# EFM LUT
+bto:EPolOpenLoop	# EPOL LUT
+
+
+#[SECTION]  BTOOB LUT Control Loop
+#[ITEMSPERROW] 1
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+bto:PCKMTelLoop		# PM & CM LUT
+bto:PCKMElevLoop	# PM & CM Elevation LUT
+bto:PCKMRotLoop		# PM & CM Cass-Rotator LUT
+bto:PCKMAngLoop		# PM & CM KM-Angle Loop
+bto:KMOpenLoop		# K Mirror LUT
+bto:BPolOpenLoop	# BPOL LUT
+
+
+#[SECTION]  FSA
+#[ITEMSPERROW] 1
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+bto:fsaLoop		# FSA Tracking
+bto:yrckOffload		# FSA Offload Calculation
+bto:yrckOffloading	# FSA Offloading
+bto:FSAZeroRTC.A	# Zero FSA Offload Integrator
+#[QUERYSTRPAIRS] {'FORMAT':'Plot'}
+bto:FSAAvTip	# FSA Tip
+bto:FSAAvTilt	# FSA Tilt
+
+#[SECTION]  FSA Raw Positions
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+bto:fsaFsaTip1		# Tip 1 X
+bto:fsaFsaTilt1		# Tilt 1 Y
+bto:fsaFsaTip2		# Tip 2 X
+bto:fsaFsaTilt2		# Tilt 2 Y
+bto:fsaFsaTip3		# Tip 3 X
+bto:fsaFsaTilt3		# Tilt 3 Y
+bto:fsaFsaTip4		# Tip 4 X
+bto:fsaFsaTilt4		# Tilt 4 Y
+bto:fsaFsaTip5		# Tip 5 X
+bto:fsaFsaTilt5		# Tilt 5 Y
+
+
+#[SECTION]  FSA Closed Loop Mirror Control
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+bto:fsaSkyTip1		# Tip 1 sky frame demand (arcsec)
+bto:fsaSkyTilt1		# Tilt 1 sky frame demand (arcsec)
+bto:fsaSkyTip2		# Tip 2 sky frame demand (arcsec)
+bto:fsaSkyTilt2		# Tilt 2 sky framed demand (arcsec)
+bto:fsaSkyTip3		# Tip 3 sky frame demand (arcsec)
+bto:fsaSkyTilt3		# Tilt 3 sky frame demand (arcsec)
+bto:fsaSkyTip4		# Tip 4 sky frame demand (arcsec)
+bto:fsaSkyTilt4		# Tilt 4 sky frame demand (arcsec)
+bto:fsaSkyTip5		# Tip 5 sky frame demand (arcsec)
+bto:fsaSkyTilt5		# Tilt 5 sky frame demand (arcsec)
+bto:FSAAvTip		# Space Average Tip (arcsec)
+bto:FSAAvTilt		# Space Average Tilt (arcsec)
+
+bto:fsaTipErr1		# Tip 1 Error (arcsec)
+bto:fsaTiltErr1		# Tilt 1 Error (arcsec) 
+bto:fsaTipErr2		# Tip 2 Error (arcsec)
+bto:fsaTiltErr2		# Tilt 2 Error (arcsec) 
+bto:fsaTipErr3		# Tip 3 Error (arcsec)
+bto:fsaTiltErr3		# Tilt 3 Error (arcsec) 
+bto:fsaTipErr4		# Tip 4 Error (arcsec)
+bto:fsaTiltErr4		# Tilt 4 Error (arcsec) 
+bto:fsaTipErr5		# Tip 5 Error (arcsec)
+bto:fsaTiltErr5		# Tilt 5 Error (arcsec) 
+bto:fsaCalcAvTipErr.VALA # Space Average Tip Error (arcsec) 
+bto:fsaCalcAvTiltErr.VALA # Space Average Tilt Error (arcsec) 
+
+#[SECTION]  Actuators TGT/POS
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+bto:PMCtrlCMC.*X       # PM X
+bto:PMCtrlCMC.*Y       # PM Y
+bto:CMCtrlCMC.*X       # CM X
+bto:CMCtrlCMC.*Y       # CM Y
+bto:KMCtrlCMC.*X       # KM X
+bto:BPolCtrlCMC.*X     # BPol X
+bto:TPMCtrlCMC.*X      # TPM X
+bto:TPMCtrlCMC.*Y      # TPM Y
+bto:TCMCtrlCMC.*X      # TCM X
+bto:TCMCtrlCMC.*Y      # TCM Y
+bto:TRACtrlCMC.*X      # TRA X
+bto:TRACtrlCMC.*Y      # TRA Y
+bto:TRACtrlCMC.*Z      # TRA Z
+bto:EPolCtrlCMC.*X     # EPol X
+bto:EFMCtrlCMC.*X      # EFM X
+bto:EFMCtrlCMC.*Y      # EFM Y
+
+
+
+#[SECTION]  Misc
+#[ITEMSPERROW] 1
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+
+bto:heartBeat	# HeartBeat
+bto:fsaheartbeat # FSA HeartBeat
+
+#[QUERYSTRPAIRS] {'FORMAT':'Plot'}
+bto:elevation		# Telescope Elevation
+
+
+#[SECTION] BTO Mechanisms
+#[ITEMSPERROW] 1
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+
+bto:lltCoverCloseSwitch		# LLT Cover Close Switch
+bto:lltCoverOpenSwitch		# LLT Cover Open Switch
+bto:lltCoverState		# LLT Cover Status
+
+bto:bdmCloseSwitch		# BDM Close Switch
+bto:bdmOpenSwitch		# BDM Open  Switch
+bto:bdmState			# BDM Status
+
+bto:diagShCloseSwitch		# Diag. Shutter Close Switch
+bto:diagShOpenSwitch		# Diag. Shutter Open Switch
+bto:diagShState			# Diag. Shutter Status

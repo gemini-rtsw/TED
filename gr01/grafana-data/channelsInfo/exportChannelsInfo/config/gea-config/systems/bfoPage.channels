@@ -1,0 +1,20 @@
+
+#BFO page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS] {'SYSTEMS':'bfo','LEGEND':'Inside', 'GRIDLINES':'checked', 'LAPSE':'180'}
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] Stuff
+#[ITEMSPERROW] 6
+#
+fps:fps2iocMon
+fps:intw0.VAL
+fps:intw1.VAL
+fps:intw2.VAL
+fps:intw3.VAL
+fps:intw4.VAL
+fps:intw5.VAL
+fps:intw6.VAL

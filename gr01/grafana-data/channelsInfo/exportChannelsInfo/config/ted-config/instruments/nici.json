@@ -1,0 +1,29 @@
+{
+    "Temperatures": [
+        {
+            "nici:sad:LSsensor1": "Cold Structure"
+        },
+        {
+            "nici:sad:LSsensor2": "Radiation Shield"
+        },
+        {
+            "nici:sad:LSsensor3": "Cold head of Cold structure"
+        },
+        {
+            "nici:sad:LSsensor4": "Cold head of Radiation shield"
+        }
+    ],
+    "APD Temperature": [
+        {
+            "nici:ao:AO:apdTemperatureV": "APD Temperature"
+        }
+    ],
+    "Detectors Temperature": [
+        {
+            "nici:dc:Holmes:sampleDataV": "Holmes"
+        },
+        {
+            "nici:dc:Watson:sampleDataV": "Watson"
+        }
+    ]
+}

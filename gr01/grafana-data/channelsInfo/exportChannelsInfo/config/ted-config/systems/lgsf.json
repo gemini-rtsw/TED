@@ -1,0 +1,279 @@
+{
+    "General": [
+        {
+            "las:shCtrl.A": "Laser Shutter Demand"
+        },
+        {
+            "las:shCtrlC": "Laser Shutter Command State"
+        },
+        {
+            "las:faults1G.VALH": "Laser Shutter Open failure"
+        },
+        {
+            "las:faults1G.VALI": "Laser Shutter Close failure"
+        },
+        {
+            "las:lcs:ilock": "Laser Interlock Active"
+        },
+        {
+            "las:lcs:ilockDefeated": "Laser Interlock Defeated"
+        },
+        {
+            "las:lcs:intCon": "Pc/PXI connection"
+        },
+        {
+            "las:lcs:pcHeartbeat": "Pc heartbeat"
+        },
+        {
+            "las:lcs:pxiHeartbeat": "Pxi heartbeat"
+        },
+        {
+            "las:inPosition": "Laser in position"
+        },
+        {
+            "las:health": "Laser Health"
+        },
+        {
+            "": ""
+        }
+    ],
+    "Temperatures": [
+        {
+            "bto:teeHexSupTemp": "Supply Air Temp (deg C)"
+        },
+        {
+            "bto:teeHexRetTemp": "Return Air Temp (deg C)"
+        },
+        {
+            "bto:teeCoolSupTemp": "Coolant Supply Temperature (deg C)"
+        },
+        {
+            "bto:teeCoolRetTemp": "Coolant Return Temperature (deg C)"
+        },
+        {
+            "bto:tee(Hex(Sup|Ret)|Cool(Sup|Ret))Temp\t  {'LEGEND':'Outside'}": "All"
+        }
+    ],
+    "TCM (Truss Centering Mirror)": [
+        {
+            "bto:TCA1TipDem": "Demand"
+        },
+        {
+            "bto:TCA1Tip": "Position"
+        },
+        {
+            "bto:TCA1Tip(Dem|)": "Demand/Position"
+        },
+        {
+            "bto:TCA1TiltDem": "Demand"
+        },
+        {
+            "bto:TCA1Tilt": "Position"
+        },
+        {
+            "bto:TCA1Tilt(Dem|)": "Demand/Position"
+        }
+    ],
+    "TPM (Truss Pointing Mirror)": [
+        {
+            "bto:TPA1TipDem": "Demand"
+        },
+        {
+            "bto:TPA1Tip": "Position"
+        },
+        {
+            "bto:TPA1Tip(Dem|)": "Demand/Position"
+        },
+        {
+            "bto:TPA1TiltDem": "Demand"
+        },
+        {
+            "bto:TPA1Tilt": "Position"
+        },
+        {
+            "bto:TPA1Tilt(Dem|)": "Demand/Position"
+        }
+    ],
+    "Actuators TGT/POS": [
+        {
+            "bto:TPACtrlCMC1.*X": "TPM X"
+        },
+        {
+            "bto:TCACtrlCMC1.*X": "TCM X"
+        },
+        {
+            "bto:PMCtrlCMC.*X": "PM X"
+        },
+        {
+            "bto:CMCtrlCMC.*X": "CM X"
+        },
+        {
+            "bto:TPACtrlCMC1.*Y": "TPM Y"
+        },
+        {
+            "bto:TCACtrlCMC1.*Y": "TCM Y"
+        },
+        {
+            "bto:PMCtrlCMC.*Y": "PM Y"
+        },
+        {
+            "bto:CMCtrlCMC.*Y": "CM Y"
+        }
+    ],
+    "Laser": [
+        {
+            "": ""
+        }
+    ],
+    "Laser Parameters": [
+        {
+            "las:lcs:powLevel": "Power level"
+        },
+        {
+            "las:lcs:centFreq": "Central Freq."
+        },
+        {
+            "las:lcs:beamQualityH": "Beam quality H"
+        },
+        {
+            "las:lcs:beamQualityV": "Beam quality V"
+        },
+        {
+            "las:diagnosticsG.VALH": "1319 Etalon TEC Sp"
+        },
+        {
+            "las:diagnosticsG.VALI": "1319 Etalon Temperature"
+        }
+    ],
+    "USBI / Scope PC": [
+        {
+            "lgs:usbi:pwr": "Power"
+        },
+        {
+            "lgs:usbi:notes   {'FORMAT':'Spreadsheet'}": "Notes"
+        }
+    ],
+    "Calculated parameters": [
+        {
+            "las:lcs:powLevel|lgs:usbi:pwr  {'SYSTEMS':'lgsscope lis','EQINTERPOLATE':10,'EQUATIONCONFIG':'las:lcs:powLevel / lgs:usbi:pwr,,,Power Ratio'}": "Power ratio (Power level / Power ) with 10s interpolation"
+        }
+    ],
+    "LIS Internal Inputs": [
+        {
+            "lis:in:spot1.VAL": "Spotter East"
+        },
+        {
+            "lis:in:spot2.VAL": "Spotter West"
+        }
+    ],
+    "LIS Inputs from BTO": [
+        {
+            "lis:in:btoHb.VAL": "BTO Heartbeat"
+        }
+    ],
+    "LIS Inputs from SALSA": [
+        {
+            "lis:in:bocadHb.VAL": "BOCAD Heartbeat"
+        },
+        {
+            "lis:in:ltcsHb.VAL": "LTCS Heartbeat"
+        },
+        {
+            "lis:in:ascamHl.VAL": "ASCAM Health"
+        },
+        {
+            "lis:in:ltcsDet.VAL": "LTCS Beam Collision"
+        }
+    ],
+    "LIS sequences": [
+        {
+            "lis:seq:procWord178.VALA": "Aircraft detection on BOCAD when laser propagated to the sky, Req.001"
+        },
+        {
+            "lis:seq:procWord178.VALB": "ASCAM beam collision, satellite avoidance when laser propagated to the sky, Req.005"
+        },
+        {
+            "lis:seq:procWord178.VALC": "BOCAD heartbeat down when laser propagated to the sky, Req.010"
+        },
+        {
+            "lis:seq:procWord178.VALD": "LTCS?ASCAM heartbeat down, Req.015"
+        },
+        {
+            "lis:seq:procWord179.VALA": "BTO heartbeat down when laser propagated to the sky, Req.020"
+        },
+        {
+            "lis:seq:procWord179.VALB": "RTC heartbeat down when laser propagated to the sky, Req.025"
+        },
+        {
+            "lis:seq:procWord179.VALC": "AOM heartbeat down when laser propagated to the sky, Req.030"
+        },
+        {
+            "lis:seq:procWord179.VALD": "Laser fault when laser propagated to the sky, Req.040"
+        },
+        {
+            "lis:seq:procWord180.VALA": "Laser fault when laser propagated to BDM, Req.041"
+        },
+        {
+            "lis:seq:procWord180.VALB": "BTO heartbeat down  when laser propagated to BDM, Req.050"
+        },
+        {
+            "lis:seq:procWord180.VALC": "observing floor entered when laser propagated to BDM, Req.075"
+        },
+        {
+            "lis:seq:procWord180.VALD": "Emergency stop tripped, Req.080"
+        },
+        {
+            "lis:seq:procWord181.VALA": "BTO internal interlock when laser propagated to the sky, Req.090"
+        },
+        {
+            "lis:seq:procWord181.VALB": "BTO internal interlock when laser propagated to BDM, Req.095"
+        },
+        {
+            "lis:seq:procWord181.VALC": "BTO door interlock when laser propagated to the sky, Req.100"
+        },
+        {
+            "lis:seq:procWord181.VALD": "BTO door interlock when laser propagated to BDM, Req.105"
+        },
+        {
+            "lis:seq:procWord182.VALA": "AOM internal interlock when laser propagated to the sky, Req.110"
+        },
+        {
+            "lis:seq:procWord182.VALB": "AOM door interlock when laser propagated to the sky, Req.120"
+        },
+        {
+            "lis:seq:procWord182.VALC": "AOM door interlock when laser propagated to BDM, Req.125"
+        },
+        {
+            "lis:seq:procWord182.VALD": "RTC internal interlock when laser propagated to the sky, Req.130"
+        },
+        {
+            "lis:seq:procWord183.VALA": "LSE door interlock when laser propagated to the sky, Req.136"
+        },
+        {
+            "lis:seq:procWord183.VALB": "LSE door interlock when laser propagated to BDM, Req.137"
+        },
+        {
+            "lis:seq:procWord183.VALC": "TCS heartbeat down when laser propagated to the sky, Req.145"
+        },
+        {
+            "lis:seq:procWord183.VALD": "Laser shutter or safety shutter fault  when Laser ON, Req.150"
+        },
+        {
+            "lis:seq:procWord184.VALA": "BTO shutters faults when Laser ON, Req.155"
+        },
+        {
+            "lis:seq:procWord184.VALB": "Earthquake when laser propagated to the sky, Req.160"
+        },
+        {
+            "lis:seq:procWord184.VALC": "Earthquake when laser propagated to BDM, Req.165"
+        },
+        {
+            "lis:seq:procWord184.VALD": "Interface fault when laser ON and laser shutter open, Req.180"
+        }
+    ],
+    "Unamed Section": [
+        {
+            "lis:in:eq.VAL": "EQ sensor detection"
+        }
+    ]
+}

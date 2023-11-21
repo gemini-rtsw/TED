@@ -1,0 +1,36 @@
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "community",
+  "signedByOrg": "volkovlabs",
+  "signedByOrgName": "Volkov Labs",
+  "plugin": "volkovlabs-variable-panel",
+  "version": "2.1.0",
+  "time": 1699476072423,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "plugin.json": "88da4632784601e45fbe4b0c77beecc8cbfdda7e703eaaa02d2178b63e450749",
+    "LICENSE": "18f09e47d83ed974ae404f8633015a16456111db4618890f719b776063759699",
+    "module.js.map": "3340c6257e6a743b31ff93d493278da30d5e45f6ee09d9ebce10e92a027fa0f1",
+    "module.js": "350fa0725cd1c6f46309c131c1837625049e6366733bc5f6b9e8f091a71a1c25",
+    "README.md": "e19e5f42d929304062e06c36a8e02df627a62a24848b00170d4dece3464e9ab2",
+    "img/logo.svg": "7832b303e1718e680b8763cdfa60d3685c9e5fca40cccb4386c05633ec17953e",
+    "img/dashboard.png": "d719afe3b4705cf08000087c4abac31308264b49e0694399886d2cd1c7f7dfe6",
+    "module.js.LICENSE.txt": "dee303a4e565af3bddba7bb6b1dc578f129b66779917ab20cfc47ba7a5d49076",
+    "CHANGELOG.md": "c5a553b5eeeb7b28f23e41525e5599eed691057dde812f00a1fe9352d68eb8ee"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+Version: OpenPGP.js v4.10.10
+Comment: https://openpgpjs.org
+
+wrgEARMKAAYFAmVL8mgAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm55MMAgiJhirUINb8wRNtEosHUtLBwNA4U+BZaSQVOyUCI9HnvEOVSqUH
+5EWz3rZDTAVoDoPsAxRKrgzSp/D33MeCJXAtzwIJAfP5Ab6ttZ/oPzo38d7/
+FI+niVXHs8NnlYb+Zf8x7qsoKH/2q9eBbG1Fsk1zV/XwB9Zl3GEDgmASe1kW
+gFGO3JKw
+=gfQd
+-----END PGP SIGNATURE-----
