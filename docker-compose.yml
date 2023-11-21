@@ -44,7 +44,7 @@ services:
 ############################################################################################################
 
   kibana:
-    image: ted-kibana:8.11.1
+    image: kibana:8.11.1
     hostname: kibana
     container_name: ki01
     restart: unless-stopped
