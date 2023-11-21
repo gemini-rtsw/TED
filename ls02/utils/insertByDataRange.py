@@ -121,7 +121,7 @@ def finishedPipelines(rawLogs,nPipelines):
     state= False
     count=0
     for rawLog in rawLogs:
-        result=re.match('(\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[[a-z-]+\] Pipeline terminated \{"pipeline.id"=>"[a-z-]+"\}',rawLog)
+        result=re.match('(\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[[a-z-]+\] Pipeline terminated \{"pipeline.id"=>"[a-z-]+"\})',rawLog)
         if (result):
             count+=1
             if(count==nPipelines):
