@@ -92,6 +92,7 @@ def getDatesGroupedByMonth(startDate, endDate):
 
 def executeDockerCompose(date,envDic):
     try:
+        os.environ['LOGSTASH_MODE']= "read"
         os.environ['ES01_PORT']= envDic.get('ES01_PORT')
         os.environ['LS_TIMEZONE']= envDic.get('LS_TIMEZONE')
         os.environ['LOGS_PATH']= envDic.get('LOGS_PATH')
