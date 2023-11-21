@@ -28,3 +28,8 @@ services:
       options:
         max-size: 100m
         max-file: 1
+
+networks:
+  elkg:
+    driver: bridge
+    external: true
