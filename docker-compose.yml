@@ -13,9 +13,9 @@ services:
       dockerfile: Dockerfile
       args:
         - USER=${USER}
-        - UID=${UID}
+        - UID=${U_ID}
         - GROUP=${GROUP}
-        - GID=${GID}
+        - GID=${G_ID}
 
     networks:
       - elkg
@@ -83,9 +83,9 @@ services:
       dockerfile: Dockerfile
       args:
         - USER=${USER}
-        - UID=${UID}
+        - UID=${U_ID}
         - GROUP=${GROUP}
-        - GID=${GID}
+        - GID=${G_ID}
 
     networks:
       - elkg
@@ -121,9 +121,9 @@ services:
       dockerfile: Dockerfile
       args:
         - USER=${USER}
-        - UID=${UID}
+        - UID=${U_ID}
         - GROUP=${GROUP}
-        - GID=${GID}
+        - GID=${G_ID}
 
     networks:
       - elkg
@@ -154,9 +154,9 @@ services:
       dockerfile: Dockerfile
       args:
         - USER=${USER}
-        - UID=${UID}
+        - UID=${U_ID}
         - GROUP=${GROUP}
-        - GID=${GID}
+        - GID=${G_ID}
 
     networks:
       - elkg
