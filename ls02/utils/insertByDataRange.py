@@ -114,7 +114,7 @@ def verifyFinished(nPipelines):
         while not state:
             rawLogs=subprocess.run(['/bin/docker','logs', 'ls02'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True,check=True).stdout.split('\n')
             state=finishedPipelines(rawLogs,nPipelines)
-            time.sleep(10)
+            time.sleep(5)
     except subprocess.CalledProcessError as e:
         print(f"Error reading Docker logs: {e}")
 
@@ -125,10 +125,9 @@ def finishedPipelines(rawLogs,nPipelines):
         result=re.match('(\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[[a-z-]+\] Pipeline terminated \{"pipeline.id"=>"[a-z-]+"\})',rawLog)
         if (result):
             count+=1
-            print(result.group(1))
             if(count==nPipelines):
                 state=True
-    print(f'{str(nPipelines)}/{count}')
+    print(f'Pipelines ingested {count}/{str(nPipelines)}')
     return state
 
 def dockerComposeDown():
