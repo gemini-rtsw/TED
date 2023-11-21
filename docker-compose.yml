@@ -20,6 +20,9 @@ services:
     networks:
       - elkg
 
+    ports:
+      - "${ES01_PORT}:9200"
+
     volumes:
       - ./es01/config:/usr/share/elasticsearch/config
       - ./es01/logs:/usr/share/elasticsearch/logs
