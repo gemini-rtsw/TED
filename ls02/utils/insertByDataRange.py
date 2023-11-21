@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import calendar
 import os
 import re
+import time
 
 
 def getEnvironment():
@@ -113,7 +114,7 @@ def verifyFinished(nPipelines):
         while not state:
             rawLogs=subprocess.run(['/bin/docker','logs', 'ls02'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True,check=True).stdout.split('\n')
             state=finishedPipelines(rawLogs,nPipelines)
-            os.wait(10)
+            time.sleep(10)
     except subprocess.CalledProcessError as e:
         print(f"Error reading Docker logs: {e}")
 
