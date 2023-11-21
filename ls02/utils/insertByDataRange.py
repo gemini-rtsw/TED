@@ -77,7 +77,7 @@ def dockerCompose(date):
         os.environ['DAY'] = "{"+date[2]+"}"
         os.environ['MONTH'] = date[1]
         os.environ['YEAR'] = date[0]
-        subprocess.run(['/bin/docker','compose', '-f', '../../docker-compose.yml', 'up', 'logstash_02'] ,check=True)
+        subprocess.run(['/bin/docker','compose', '-f', '../ls02.yml', 'up', 'logstash_02'] ,check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing Docker Compose: {e}")
 

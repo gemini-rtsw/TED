@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  logstash_02:
+    image: ted-logstash:8.11.1
+    hostname: logstash_02
+    container_name: ls02
+    restart: unless-stopped
+
+    build:
+      context: ./ls01
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${UID}
+        - GROUP=${GROUP}
+        - GID=${GID}
+
+    networks:
+      - elkg
+
+    environment:
+      LOGSTASH_MODE: read
+      HOST_1: "http://elasticsearch:${ES01_PORT}"
+      TIMEZONE: "${LS_TIMEZONE}"
+      DAY: "${DAY}"
+      MONTH: "${MONTH}"
+      YEAR: "${YEAR}"
+
+    volumes:
+      - ./ls02/config:/usr/share/logstash/config
+      - ./ls02/pipeline:/usr/share/logstash/pipeline
+      - ${LOGS_PATH}:/usr/logs/log
+      - ${DATA_PATH}/ls02/db:/db
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
