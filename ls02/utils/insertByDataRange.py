@@ -41,6 +41,7 @@ def getSubsystems():
     return subsystemsDic
 
 def createPipelinesFile(subsystemsDic, locations, subsystems):
+    nPipelines=0
     if not locations:
         locations = subsystemsDic.keys()
 
@@ -55,6 +56,8 @@ def createPipelinesFile(subsystemsDic, locations, subsystems):
                     file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
                     file.write(f"  queue.type: {pipeline['queue.type']}\n")
                     file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
+                    nPipelines+=1;
+    return nPipelines
 
 def parseInput(userInput):
     pattern = r'-(l|s|i|f) ([^\-]+)'
@@ -85,27 +88,55 @@ def getDatesGroupedByMonth(startDate, endDate):
     groupedDatesArray = []
     for (year, month), days in groupedDates.items():
         days = [str(day) for day in days]
-        groupedDatesArray.append([str(year), str(month), ",".join(days)])
+        groupedDatesArray.append([str(year), str(month), "{"+",".join(days)+"}"])
 
     return groupedDatesArray
 
 
-def executeDockerCompose(date,envDic):
+def dockerComposeUp(date,envDic):
     try:
         os.environ['LOGSTASH_MODE']= "read"
         os.environ['ES01_PORT']= envDic.get('ES01_PORT')
         os.environ['LS_TIMEZONE']= envDic.get('LS_TIMEZONE')
         os.environ['LOGS_PATH']= envDic.get('LOGS_PATH')
         os.environ['DATA_PATH']= envDic.get('DATA_PATH')
-        os.environ['DAY'] = "{"+date[2]+"}"
+        os.environ['DAY'] = date[2]
         os.environ['MONTH'] = date[1]
         os.environ['YEAR'] = date[0]
         subprocess.run(['/bin/docker','compose', '-f', '../ls02.yml', 'up', 'logstash_02'] ,check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing Docker Compose: {e}")
 
+def verifyFinished(nPipelines):
+    try:
+        state=False
+        while not state:
+            rawLogs=subprocess.run(['/bin/docker','logs', 'ls02'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True,check=True).stdout.split('\n')
+            state=finishedPipelines(rawLogs,nPipelines)
+            os.wait(10)
+    except subprocess.CalledProcessError as e:
+        print(f"Error reading Docker logs: {e}")
+
+def finishedPipelines(rawLogs,nPipelines):
+    state= False
+    count=0
+    for rawLog in rawLogs:
+        result=re.match('(\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[[a-z-]+\] Pipeline terminated \{"pipeline.id"=>"[a-z-]+"\}',rawLog)
+        if (result):
+            count+=1
+            if(count==nPipelines):
+                state=True
+    return state
+
+def dockerComposeDown():
+    try:
+        subprocess.run(['/bin/docker','rm', '-f', 'ls02'] ,check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing Docker Compose: {e}")
+
 def mainMenu(subsystemsDic):
     envDic= getEnvironment()
+    nowDate= datetime.now().strftime("%m/%d/%Y")
     while True:
         print("\nOptions:")
         print("Enter options and arguments:\n-l locations\n-s subsystems\n-i start day\n-f end date\nExample: '-l cpo sbf -s tcs vii -i 05/20/2023 -f 05/21/2023'")
@@ -117,14 +148,15 @@ def mainMenu(subsystemsDic):
             break
 
         options = parseInput(userInput)
-        createPipelinesFile(subsystemsDic, options['l'], options['s'])
-        if options['i'] and options['f']:
-
+        nPipelines=createPipelinesFile(subsystemsDic, options['l'], options['s'])
+        if options['i'][0] and options['f'][0]:
             dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
-            for date in dates:
-                executeDockerCompose(date,envDic)
         else:
-            executeDockerCompose([ '*', '*', '*'])
+            dates = getDatesGroupedByMonth("01/01/2010", nowDate)
+        for date in dates:
+                dockerComposeUp(date,envDic)
+                verifyFinished(nPipelines)
+                dockerComposeDown()
 
 subsystemsDic = getSubsystems()
 mainMenu(subsystemsDic)
