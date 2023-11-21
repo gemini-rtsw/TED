@@ -6,15 +6,6 @@ services:
     container_name: ls02
     restart: unless-stopped
 
-    build:
-      context: ./ls01
-      dockerfile: Dockerfile
-      args:
-        - USER=${USER}
-        - UID=${UID}
-        - GROUP=${GROUP}
-        - GID=${GID}
-
     networks:
       - elkg
 

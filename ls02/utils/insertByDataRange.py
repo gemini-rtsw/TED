@@ -4,6 +4,23 @@ import subprocess
 from datetime import datetime, timedelta
 import calendar
 import os
+import re
+
+
+def getEnvironment():
+    envDic={}
+    try:
+        with open("../../.env", "r") as file:
+            for line in file:
+                field=re.match("(.*)=(.*)",line)
+                if field:
+                    key= field.group(1)
+                    value = field.group(2)
+                    envDic[key]=value
+        return envDic
+    except (yaml.YAMLError, IOError) as exc:
+        print(f"Error loading environment file: {exc}")
+        return envDic
 
 def getSubsystems():
     subsystemsDic = {}
@@ -23,7 +40,7 @@ def getSubsystems():
 
     return subsystemsDic
 
-def createFile(subsystemsDic, locations, subsystems):
+def createPipelinesFile(subsystemsDic, locations, subsystems):
     if not locations:
         locations = subsystemsDic.keys()
 
@@ -38,6 +55,7 @@ def createFile(subsystemsDic, locations, subsystems):
                     file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
                     file.write(f"  queue.type: {pipeline['queue.type']}\n")
                     file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
+
 def parseInput(userInput):
     pattern = r'-(l|s|i|f) ([^\-]+)'
     matches = re.findall(pattern, userInput)
@@ -72,8 +90,12 @@ def getDatesGroupedByMonth(startDate, endDate):
     return groupedDatesArray
 
 
-def dockerCompose(date):
+def executeDockerCompose(date,envDic):
     try:
+        os.environ['ES01_PORT']= envDic.get('ES01_PORT')
+        os.environ['LS_TIMEZONE']= envDic.get('LS_TIMEZONE')
+        os.environ['LOGS_PATH']= envDic.get('LOGS_PATH')
+        os.environ['DATA_PATH']= envDic.get('DATA_PATH')
         os.environ['DAY'] = "{"+date[2]+"}"
         os.environ['MONTH'] = date[1]
         os.environ['YEAR'] = date[0]
@@ -82,6 +104,7 @@ def dockerCompose(date):
         print(f"Error executing Docker Compose: {e}")
 
 def mainMenu(subsystemsDic):
+    envDic= getEnvironment()
     while True:
         print("\nOptions:")
         print("Enter options and arguments:\n-l locations\n-s subsystems\n-i start day\n-f end date\nExample: '-l cpo sbf -s tcs vii -i 05/20/2023 -f 05/21/2023'")
@@ -93,14 +116,14 @@ def mainMenu(subsystemsDic):
             break
 
         options = parseInput(userInput)
-        createFile(subsystemsDic, options['l'], options['s'])
+        createPipelinesFile(subsystemsDic, options['l'], options['s'])
         if options['i'] and options['f']:
+
             dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
-            print(dates)
             for date in dates:
-                dockerCompose(date)
+                executeDockerCompose(date,envDic)
         else:
-            dockerCompose([ '*', '*', '*'])
+            executeDockerCompose([ '*', '*', '*'])
 
 subsystemsDic = getSubsystems()
 mainMenu(subsystemsDic)
