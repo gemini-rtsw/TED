@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  logstash_02:
+  logstash02:
     image: ted-logstash:8.11.1
-    hostname: logstash_02
+    hostname: logstash02
     container_name: ls02
     restart: unless-stopped
 
@@ -20,6 +20,7 @@ services:
     volumes:
       - ./config:/usr/share/logstash/config
       - ./pipeline:/usr/share/logstash/pipeline
+      - ./logs:/usr/share/logstash/logs
       - ${LOGS_PATH}:/usr/logs/log
       - ${DATA_PATH}/ls02/db:/db
 
