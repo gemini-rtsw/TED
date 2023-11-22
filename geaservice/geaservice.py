@@ -94,7 +94,7 @@ def get_values():
 
 
 @app.route("/valuesJSONata", methods=['GET'])
-def get_values():
+def getValuesJSONata():
     date_from = request.args.get('from')
     date_to = request.args.get('to')
     archive_key = request.args.get('archive')
