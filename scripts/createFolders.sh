@@ -25,7 +25,9 @@ directories=(
     "${DATA_PATH}/ls02/db"
     "${DATA_PATH}/ls02/db/sincedb"
     "${DATA_PATH}/ls02/db/completed"
+    "${DATA_PATH}/ls02/db/completed"
     "./es01/logs"
+    "./ls02/logs"
 )
 
 # Iterate over each directory and check/create
