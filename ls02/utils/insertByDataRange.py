@@ -110,27 +110,27 @@ def dockerComposeUp(date,envDic):
 
 def verifyFinished(nPipelines):
     try:
-        state=False
-        pipelinesFinished=set()
-        while not state:
-            rawLogs=subprocess.run(['/bin/docker','logs', 'ls02'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True,check=True).stdout.split('\n')
-            state=finishedPipelines(rawLogs,nPipelines,pipelinesFinished,state)
+        pipelinesFinished = set()
+        regex = re.compile(r'\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[([a-z-]+)\] Pipeline terminated')
+        while len(pipelinesFinished) < nPipelines:
+            rawLogs = fetchDockerLogs()
+            updatePipelinesFinished(rawLogs, pipelinesFinished, regex)
             time.sleep(5)
     except subprocess.CalledProcessError as e:
         print(f"Error reading Docker logs: {e}")
 
-def finishedPipelines(rawLogs,nPipelines,pipelinesFinished,state):
-    nFinished= len(pipelinesFinished)
+def fetchDockerLogs():
+    result = subprocess.run(['/bin/docker', 'logs', 'ls02'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, check=True)
+    return result.stdout.split('\n')
+
+def updatePipelinesFinished(rawLogs, pipelinesFinished, regex):
     for rawLog in rawLogs:
-        result=re.match('\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[[a-z-]+\] Pipeline terminated \{"(pipeline.id"=>"[a-z-]+)"\}',rawLog)
-        if (result):
-            pipelinesFinished.add(result.group(1))
-            if(nFinished==nPipelines):
-                state=True
-            if (nFinished != len(pipelinesFinished)):
-                lastFinished= list(pipelinesFinished)[-1]
-                print (f'Pipeline ingested ${lastFinished}')
-    return state
+        result = regex.search(rawLog)
+        if result:
+            pipelineId = result.group(1)
+            if pipelineId not in pipelinesFinished:
+                pipelinesFinished.add(pipelineId)
+                print(f'Pipeline finished: {pipelineId}')
 
 def dockerComposeDown():
     try:
