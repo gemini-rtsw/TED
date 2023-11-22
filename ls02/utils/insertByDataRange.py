@@ -113,15 +113,16 @@ def verifyFinished(nPipelines):
         pipelinesFinished = set()
         regex = re.compile(r'\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[([a-z-]+)\] Pipeline terminated')
         while len(pipelinesFinished) < nPipelines:
-            rawLogs = fetchDockerLogs()
+            rawLogs = fetchLogs()
             updatePipelinesFinished(rawLogs, pipelinesFinished, regex)
             time.sleep(5)
     except subprocess.CalledProcessError as e:
         print(f"Error reading Docker logs: {e}")
 
-def fetchDockerLogs():
-    result = subprocess.run(['/bin/docker', 'logs', 'ls02'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, check=True)
-    return result.stdout.split('\n')
+def fetchLogs():
+    with open('.,/logs/logstash_javapipeline.log', 'r') as archivo:
+        lineas = archivo.readlines()
+    return lineas
 
 def updatePipelinesFinished(rawLogs, pipelinesFinished, regex):
     for rawLog in rawLogs:
