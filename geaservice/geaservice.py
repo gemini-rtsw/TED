@@ -2,7 +2,8 @@ from flask import Flask, request
 import xmlrpc.client as xmlClient
 import sys
 import threading
-import json 
+import json
+from pyjsonata import jsonata
 sem = threading.Semaphore()
 
 
@@ -90,6 +91,81 @@ def get_values():
     sys.stdout.flush()
 
     return {"values":geaRecord}
+
+
+@app.route("/valuesJSONata", methods=['GET'])
+def get_values():
+    date_from = request.args.get('from')
+    date_to = request.args.get('to')
+    archive_key = request.args.get('archive')
+    channel = request.args.get('channel')
+    mode = request.args.get('value_mode')
+    n_points = request.args.get('n_points')
+
+    print("archiveKey",archive_key)
+    print("mode", mode)
+    print("channel",channel)
+
+    try:
+        n_points = int(n_points)
+        if n_points > 10000:
+            n_points = 10000
+    except:
+        n_points = 3000
+
+    channels_list=[]
+
+    if ',' in channel:
+        channel = channel.split(',')
+        for chan in channel:
+            if(chan!=""):
+                channels_list.append(chan)
+    else:
+        channels_list =[channel]
+
+    geaRecord={}
+    print("chan_list",channels_list)
+    try:
+        sem.acquire()
+        geaRecord = gea.archiver.values(int(archive_key), channels_list,
+                                            int(int(date_from)/1000), 0,
+                                            int(int(date_to)/1000), 0,
+                                            int(n_points),
+                                            int(str(mode)))
+    except Exception as e:
+        print(e)
+    finally:
+        sem.release()
+
+    sys.stdout.flush()
+
+    expr = """
+        {
+            "values": values.(
+                {
+                    "name": name,
+                    "type" : type,
+                    "count" : count,
+                    "values": $map(values, function($v, $i) {
+                        {
+                            "timestamp": $v.secs*1000+$v.nano/1000000,
+                            "value": $map($v.value, function($v2, $i) {
+                                {
+                                    "val": $v2,
+                                    "val_index": $i
+                                }
+                            })
+                    
+                        }
+                    })
+                }
+            )
+        }
+    """
+    result = jsonata(expr,{"values":geaRecord})
+    return result
+
+
 
 @app.route("/PVselector", methods=['GET'])
 def pvSelector():
