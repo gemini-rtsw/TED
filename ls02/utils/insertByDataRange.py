@@ -111,7 +111,7 @@ def dockerComposeUp(date,envDic):
 def verifyFinished(nPipelines):
     try:
         pipelinesFinished = set()
-        regex = re.compile(r'\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \]\[([a-z-]+)\] Pipeline terminated')
+        regex = re.compile(r'\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \] Pipeline terminated \{"pipeline\.id"=>"([a-zA-Z0-9_-]+)"\}')
         while len(pipelinesFinished) < nPipelines:
             rawLogs = fetchLogs()
             updatePipelinesFinished(rawLogs, pipelinesFinished, regex)
@@ -120,7 +120,7 @@ def verifyFinished(nPipelines):
         print(f"Error reading Docker logs: {e}")
 
 def fetchLogs():
-    with open('.,/logs/logstash_javapipeline.log', 'r') as archivo:
+    with open('../logs/logstash_javapipeline.log', 'r') as archivo:
         lineas = archivo.readlines()
     return lineas
 
