@@ -19,7 +19,7 @@ def getEnvironment():
                     value = field.group(2)
                     envDic[key]=value
         return envDic
-    except (yaml.YAMLError, IOError) as exc:
+    except Exception as exc:
         print(f"Error loading environment file: {exc}")
         return envDic
 
@@ -48,30 +48,34 @@ def createPipelinesFile(subsystemsDic, locations, subsystems):
 
     with open("../config/pipelines.yml", 'w') as file:
         for location in locations:
-            subsystemsToInclude = subsystems if subsystems else subsystemsDic[location].keys()
-            for subsystem in subsystemsToInclude:
-                pipeline = subsystemsDic.get(location, {}).get(subsystem)
-                if pipeline:
-                    file.write(f"- pipeline.id: {pipeline['pipeline.id']}\n")
-                    file.write(f"  pipeline.workers: {pipeline['pipeline.workers']}\n")
-                    file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
-                    file.write(f"  queue.type: {pipeline['queue.type']}\n")
-                    file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
-                    nPipelines+=1;
+            if subsystemsDic.get(location):
+                subsystemsToInclude = subsystems if subsystems else subsystemsDic[location].keys()
+                for subsystem in subsystemsToInclude:
+                    pipeline = subsystemsDic.get(location, {}).get(subsystem)
+                    if pipeline:
+                        file.write(f"- pipeline.id: {pipeline['pipeline.id']}\n")
+                        file.write(f"  pipeline.workers: {pipeline['pipeline.workers']}\n")
+                        file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
+                        file.write(f"  queue.type: {pipeline['queue.type']}\n")
+                        file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
+                        nPipelines+=1;
     return nPipelines
 
 def parseInput(userInput):
-    pattern = r'-(l|s|i|f) ([^\-]+)'
+    pattern = r'-(l|s|i|f)(?: ([^\-]+))?'
     matches = re.findall(pattern, userInput)
 
     options = {'l': None, 's': None, 'i': None, 'f': None}
     for option, argument in matches:
-        options[option] = argument.split()
+            options[option] = argument.split()
     return options
 
 def getDatesGroupedByMonth(startDate, endDate):
-    startDate = datetime.strptime(startDate, "%m/%d/%Y").date()
-    endDate = datetime.strptime(endDate, "%m/%d/%Y").date()
+    try:
+        startDate = datetime.strptime(startDate, "%Y/%m/%d").date()
+        endDate = datetime.strptime(endDate, "%Y/%m/%d").date()
+    except Exception as exc:
+        print(f"Date format error: {exc}")
 
     groupedDates = {}
     while startDate <= endDate:
@@ -139,29 +143,51 @@ def dockerComposeDown():
     except subprocess.CalledProcessError as e:
         print(f"Error executing Docker Compose: {e}")
 
+
+def printHelpMessage():
+            print("-l [locations] : Specify locations separated by spaces. Example: 'cpo sbf'")
+            print("-s [subsystems] : Specify subsystems separated by spaces. Example: 'tcs vii'")
+            print("-i [start date] : Specify the start date in YYYY/MM/DD format. Example: '2022/11/25'")
+            print("-f [end date] : Specify the end date in YYYY/MM/DD format. Example: '2022/12/30'")
+            print("Complete input example: '-l cpo sbf -s tcs vii -i 2022/11/25 -f 2022/12/30'")
+
+def printInvalidInputMessage():
+                    print("\nInput not recognized or missing options.")
+                    print("Please make sure to enter the options correctly.")
+                    print("Valid options are -l, -s, -i, -f")
+                    print("Example: '-l cpo sbf -s tcs vii -i 2022/11/25 -f 2022/12/30'")
+
 def mainMenu(subsystemsDic):
     envDic= getEnvironment()
-    nowDate= datetime.now().strftime("%m/%d/%Y")
+    nowDate= datetime.now().strftime("%Y/%m/%d")
+    print("\nwelcome to the script for ingesting logs by date ranges!!")
+    print("\nType '-h' for help and 'exit' to terminate the program.")
     while True:
-        print("\nOptions:")
-        print("Enter options and arguments:\n-l locations\n-s subsystems\n-i start day\n-f end date\nExample: '-l cpo sbf -s tcs vii -i 05/20/2023 -f 05/21/2023'")
-        print("Type 'exit' to end the program.")
-        userInput = input("Enter your options: ").lower()
-
+        userInput = input("\nEnter your options: ").lower()
         if userInput == 'exit':
             print("Exiting the program...")
             break
 
-        options = parseInput(userInput)
-        nPipelines=createPipelinesFile(subsystemsDic, options['l'], options['s'])
-        if options['i'][0] and options['f'][0]:
-            dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
+        if userInput == '-h':
+            printHelpMessage()
         else:
-            dates = getDatesGroupedByMonth("01/01/2010", nowDate)
-        for date in dates:
-                dockerComposeUp(date,envDic)
-                verifyFinished(nPipelines)
-                dockerComposeDown()
+            dates=None
+            options = parseInput(userInput)
+            nPipelines=createPipelinesFile(subsystemsDic, options['l'], options['s'])
+            if (nPipelines > 0):
+                if options['i'] and options['f']:
+                        dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
+                elif options['i']:
+                        dates = getDatesGroupedByMonth(options['i'][0], nowDate)
+                else:
+                    printInvalidInputMessage()
+                if dates:
+                    for date in dates:
+                        dockerComposeUp(date,envDic)
+                        verifyFinished(nPipelines)
+                        dockerComposeDown()
+            else:
+                    printInvalidInputMessage()
 
 subsystemsDic = getSubsystems()
 mainMenu(subsystemsDic)
