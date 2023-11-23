@@ -75,7 +75,8 @@ def getDatesGroupedByMonth(startDate, endDate):
         startDate = datetime.strptime(startDate, "%Y/%m/%d").date()
         endDate = datetime.strptime(endDate, "%Y/%m/%d").date()
     except Exception as exc:
-        print(f"Date format error: {exc}")
+        print(f"Error de formato de fecha: {exc}")
+        return []
 
     groupedDates = {}
     while startDate <= endDate:
@@ -92,8 +93,10 @@ def getDatesGroupedByMonth(startDate, endDate):
 
     groupedDatesArray = []
     for (year, month), days in groupedDates.items():
-        days = [str(day) for day in days]
-        groupedDatesArray.append([str(year), str(month), "{"+",".join(days)+"}"])
+        formattedYear = f"{year:04d}"
+        formattedMonth = f"{month:02d}"
+        formattedDays = [f"{day:02d}" for day in days]
+        groupedDatesArray.append([formattedYear, formattedMonth, "{" + ",".join(formattedDays) + "}"])
 
     return groupedDatesArray
 
@@ -181,6 +184,7 @@ def mainMenu(subsystemsDic):
             dates=None
             options = parseInput(userInput)
             nPipelines=createPipelinesFile(subsystemsDic, options['l'], options['s'])
+            print(nPipelines)
             if (nPipelines > 0):
                 if options['i'] and options['f']:
                         dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])

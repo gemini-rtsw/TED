@@ -4,7 +4,6 @@ services:
     image: ted-logstash:8.11.1
     hostname: logstash02
     container_name: ls02
-    restart: unless-stopped
 
     networks:
       - elkg
