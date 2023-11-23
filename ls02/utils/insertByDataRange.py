@@ -160,8 +160,11 @@ def printInvalidInputMessage():
 def mainMenu(subsystemsDic):
     envDic= getEnvironment()
     nowDate= datetime.now().strftime("%Y/%m/%d")
-    print("\nwelcome to the script for ingesting logs by date ranges!!")
-    print("\nType '-h' for help and 'exit' to terminate the program.")
+    print("###############################################################")
+    print("##  Welcome to the script for ingesting logs by date ranges  ##")
+    print("##                                                           ##")
+    print("##  Type '-h' for help and 'exit' to terminate the program.  ##")
+    print("###############################################################")
     while True:
         userInput = input("\nEnter your options: ").lower()
         if userInput == 'exit':
