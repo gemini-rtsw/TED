@@ -125,7 +125,7 @@ def verifyFinished(nPipelines):
 
 def fetchLogs():
 
-    with open('../logs/logstash_javapipeline.log', 'a+') as file:
+    with open('../logs/logstash_javapipeline.log', 'w') as file:
         file.close()
 
     with open('../logs/logstash_javapipeline.log', 'r') as archivo:
