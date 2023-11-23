@@ -127,10 +127,6 @@ def verifyFinished(nPipelines):
         print(f"Error reading Docker logs: {e}")
 
 def fetchLogs():
-
-    with open('../logs/logstash_javapipeline.log', 'w') as file:
-        file.close()
-
     with open('../logs/logstash_javapipeline.log', 'r') as archivo:
         lineas = archivo.readlines()
     return lineas
