@@ -116,29 +116,31 @@ def dockerComposeUp(date,envDic):
         print(f"Error executing Docker Compose: {e}")
 
 def verifyFinished(pipelinesNames):
-    nPipelines= len(pipelinesNames)
-    nPipelinesFinised = 0
-    try:
-        while nPipelinesFinised < nPipelines:
-            for pipelineName in pipelinesNames:
-                cmdPipeline=f"curl -XGET 'localhost:9600/_node/stats/pipelines/{pipelineName}'"
-                cmd= f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
-                process= subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
-                output= process.stdout
-                if output:
-                    try:
-                        statsPipeline= json.loads(output.decode())
-                        state = statsPipeline['pipelines'][pipelineName]['flow']
-                        if state :
-                            currentState= state['output_throughput']['current']
-                            if (float(currentState)==0.0):
-                                print(f'Pipeline finished: {pipelineName.strip("-read")}')
-                                nPipelinesFinised+=1;
-                    except json.JSONDecodeError:
-                        print("Error json.")
-                time.sleep(5)
-    except subprocess.CalledProcessError as e:
-        print(f"Error executing Docker exec: {e}")
+    nPipelines = len(pipelinesNames)
+    pipelinesFinished = set()
+
+    while len(pipelinesFinished) < nPipelines:
+        for pipelineName in pipelinesNames:
+            if pipelineName in pipelinesFinished:
+                continue
+
+            cmdPipeline = f"curl -sS 'http://localhost:9600/_node/stats/pipelines/{pipelineName}'"
+            cmd = f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
+            try:
+                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, check=True)
+                output = process.stdout
+                statsPipeline = json.loads(output.decode())
+
+                state = statsPipeline['pipelines'][pipelineName].get('flow', {})
+                currentState = state.get('output_throughput', {}).get('current', -1)
+                if float(currentState) == 0.0:
+                    print(f'Pipeline finished: {pipelineName}')
+                    pipelinesFinished.add(pipelineName)
+
+            except (subprocess.CalledProcessError, json.JSONDecodeError) as e:
+                print(f"Error processing pipeline {pipelineName}: {e}")
+
+        time.sleep(5)
 
 
 
