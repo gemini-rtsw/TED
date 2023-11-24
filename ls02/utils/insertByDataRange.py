@@ -108,9 +108,9 @@ def dockerComposeUp(date,envDic):
         os.environ['LS_TIMEZONE']= envDic.get('LS_TIMEZONE')
         os.environ['LOGS_PATH']= envDic.get('LOGS_PATH')
         os.environ['DATA_PATH']= envDic.get('DATA_PATH')
-        os.environ['DAY'] = date[2]
-        os.environ['MONTH'] = date[1]
-        os.environ['YEAR'] = date[0][2:]
+        os.environ['ENVDAY'] = date[2]
+        os.environ['ENVMONTH'] = date[1]
+        os.environ['ENVYEAR'] = date[0][2:]
         subprocess.run(['/bin/docker','compose', '-f', '../ls02.yml', 'up','-d','logstash02'] ,check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing Docker Compose: {e}")
