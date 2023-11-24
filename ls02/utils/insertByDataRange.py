@@ -189,8 +189,8 @@ def mainMenu(subsystemsDic):
                 if dates:
                     for date in dates:
                         dockerComposeUp(date,envDic)
-                        verifyFinished(nPipelines)
-                        dockerComposeDown()
+                        # verifyFinished(nPipelines)
+                        # dockerComposeDown()
             else:
                     printInvalidInputMessage()
 
