@@ -127,11 +127,11 @@ def verifyFinished(pipelinesNames):
             cmdPipeline = f"curl -sS 'http://localhost:9600/_node/stats/pipelines/{pipelineName}'"
             cmd = f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
             try:
-                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, check=True)
+                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.DEVNULL)
                 output = process.stdout
                 statsPipeline = json.loads(output.decode())
 
-                state = statsPipeline['pipelines'][pipelineName].get('flow', {})
+                state = statsPipeline.get('pipelines',{}).get(pipelineName,{}).get('flow', {})
                 currentState = state.get('output_throughput', {}).get('current', -1)
                 if float(currentState) == 0.0:
                     print(f'Pipeline finished: {pipelineName}')
