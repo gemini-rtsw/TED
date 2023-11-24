@@ -7,7 +7,7 @@ import os
 import re
 import time
 import json
-
+import calendar
 
 def getEnvironment():
     envDic={}
@@ -94,10 +94,11 @@ def getDatesGroupedByMonth(startDate, endDate):
 
     groupedDatesArray = []
     for (year, month), days in groupedDates.items():
+        monthName = calendar.month_name[month][0,3]
         formattedYear = f"{year:04d}"
-        formattedMonth = f"{month:02d}"
+        formattedMonth = f"{month:02d},{monthName}"
         formattedDays = [f"{day:02d}" for day in days]
-        groupedDatesArray.append([formattedYear, formattedMonth, "{" + ",".join(formattedDays) + "}"])
+        groupedDatesArray.append([formattedYear,"{" +formattedMonth+"}", "{" + ",".join(formattedDays) + "}"])
     return groupedDatesArray
 
 
