@@ -96,7 +96,7 @@ def getDatesGroupedByMonth(startDate, endDate):
         formattedYear = f"{year:04d}"
         formattedMonth = f"{month:02d}"
         formattedDays = [f"{day:02d}" for day in days]
-        groupedDatesArray.append([formattedYear, formattedMonth, "[" + ",".join(formattedDays) + "]"])
+        groupedDatesArray.append([formattedYear, formattedMonth, "["+formattedDays[0]+"-"+formattedDays[-1]+"]"])
 
     return groupedDatesArray
 
@@ -180,7 +180,6 @@ def mainMenu(subsystemsDic):
             dates=None
             options = parseInput(userInput)
             nPipelines=createPipelinesFile(subsystemsDic, options['l'], options['s'])
-            print(nPipelines)
             if (nPipelines > 0):
                 if options['i'] and options['f']:
                         dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
