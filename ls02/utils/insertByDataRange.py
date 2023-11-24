@@ -6,6 +6,7 @@ import calendar
 import os
 import re
 import time
+import json
 
 
 def getEnvironment():
@@ -42,7 +43,7 @@ def getSubsystems():
     return subsystemsDic
 
 def createPipelinesFile(subsystemsDic, locations, subsystems):
-    nPipelines=0
+    pipelinesNames=[]
     if not locations:
         locations = subsystemsDic.keys()
 
@@ -58,8 +59,8 @@ def createPipelinesFile(subsystemsDic, locations, subsystems):
                         file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
                         file.write(f"  queue.type: {pipeline['queue.type']}\n")
                         file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
-                        nPipelines+=1;
-    return nPipelines
+                        pipelinesNames.append(f'{location}-{subsystem}-read')
+    return pipelinesNames
 
 def parseInput(userInput):
     pattern = r'-(l|s|i|f)(?: ([^\-]+))?'
@@ -114,30 +115,30 @@ def dockerComposeUp(date,envDic):
     except subprocess.CalledProcessError as e:
         print(f"Error executing Docker Compose: {e}")
 
-def verifyFinished(nPipelines):
+def verifyFinished(pipelinesNames):
+    nPipelines= len(pipelinesNames)
+    nPipelinesFinised = 0
     try:
-        pipelinesFinished = set()
-        regex = re.compile(r'\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2},\d{3}\]\[INFO \]\[logstash\.javapipeline    \] Pipeline terminated \{"pipeline\.id"=>"([a-zA-Z0-9_-]+)"\}')
-        while len(pipelinesFinished) < nPipelines:
-            rawLogs = fetchLogs()
-            updatePipelinesFinished(rawLogs, pipelinesFinished, regex)
-            time.sleep(5)
+        while nPipelinesFinised < nPipelines:
+            for pipelineName in pipelinesNames:
+                cmdPipeline=f"curl -XGET 'localhost:9600/_node/stats/pipelines/{pipelineName}'"
+                cmd= f"docker exec mi_contenedor /bin/sh -c '{cmdPipeline}'"
+                process= subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
+                output= process.stdout
+                try:
+                    statsPipeline= json.loads(output.decode())
+                    state = statsPipeline['pipelines']['flow']['output_throughput']['current']
+                    print(state)
+                    if (float(state)==0.0):
+                        print(f'Pipeline finished: {pipelineName.strip("-read")}')
+                        nPipelinesFinised+=1;
+                except json.JSONDecodeError:
+                    print("Error json.")
+                time.sleep(5)
     except subprocess.CalledProcessError as e:
-        print(f"Error reading Docker logs: {e}")
+        print(f"Error executing Docker exec: {e}")
 
-def fetchLogs():
-    with open('../logs/logstash_javapipeline.log', 'r') as archivo:
-        lineas = archivo.readlines()
-    return lineas
 
-def updatePipelinesFinished(rawLogs, pipelinesFinished, regex):
-    for rawLog in rawLogs:
-        result = regex.search(rawLog)
-        if result:
-            pipelineId = result.group(1)
-            if pipelineId not in pipelinesFinished:
-                pipelinesFinished.add(pipelineId)
-                print(f'Pipeline finished: {pipelineId}')
 
 def dockerComposeDown():
     try:
@@ -178,8 +179,8 @@ def mainMenu(subsystemsDic):
         else:
             dates=None
             options = parseInput(userInput)
-            nPipelines=createPipelinesFile(subsystemsDic, options['l'], options['s'])
-            if (nPipelines > 0):
+            pipelinesNames=createPipelinesFile(subsystemsDic, options['l'], options['s'])
+            if (len(pipelinesNames) > 0):
                 if options['i'] and options['f']:
                         dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
                 elif options['i']:
@@ -189,8 +190,8 @@ def mainMenu(subsystemsDic):
                 if dates:
                     for date in dates:
                         dockerComposeUp(date,envDic)
-                        # verifyFinished(nPipelines)
-                        # dockerComposeDown()
+                        verifyFinished(pipelinesNames)
+                        dockerComposeDown()
             else:
                     printInvalidInputMessage()
 
