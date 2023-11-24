@@ -133,10 +133,11 @@ def verifyFinished(pipelinesNames):
                     statsPipeline = json.loads(output.decode())
 
                     state = statsPipeline.get('pipelines',{}).get(pipelineName,{}).get('flow', {})
-                    currentState = state.get('output_throughput', {}).get('current', -1)
-                    if float(currentState) == 0.0:
-                        print(f'Pipeline finished: {pipelineName}')
-                        pipelinesFinished.add(pipelineName)
+                    if state:
+                        currentState = state.get('output_throughput', {}).get('current', -1)
+                        if float(currentState) == 0.0:
+                            print(f'Pipeline finished: {pipelineName}')
+                            pipelinesFinished.add(pipelineName)
 
             except (subprocess.CalledProcessError, json.JSONDecodeError) as e:
                 print(f"Error processing pipeline {pipelineName}: {e}")
