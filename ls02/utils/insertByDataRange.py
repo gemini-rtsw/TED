@@ -125,14 +125,15 @@ def verifyFinished(pipelinesNames):
                 cmd= f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
                 process= subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
                 output= process.stdout
-                if (output):
+                if output:
                     try:
                         statsPipeline= json.loads(output.decode())
-                        state = statsPipeline['pipelines'][pipelineName]['flow']['output_throughput']['current']
-                        print(state)
-                        if (float(state)==0.0):
-                            print(f'Pipeline finished: {pipelineName.strip("-read")}')
-                            nPipelinesFinised+=1;
+                        state = statsPipeline['pipelines'][pipelineName]['flow']
+                        if state :
+                            currentState= state['output_throughput']['current']
+                            if (float(currentState)==0.0):
+                                print(f'Pipeline finished: {pipelineName.strip("-read")}')
+                                nPipelinesFinised+=1;
                     except json.JSONDecodeError:
                         print("Error json.")
                 time.sleep(5)
