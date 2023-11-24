@@ -129,9 +129,9 @@ def verifyFinished(pipelinesNames):
             cmd = f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
 
             try:
-                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.DEVNULL)
                 if process.returncode != 0:
-                    raise Exception(f"Error en curl o docker exec: {process.stderr.decode().strip()}")
+                    raise Exception(f"Error in curl or docker exec: {process.stderr.decode().strip()}")
 
                 statsPipeline = json.loads(process.stdout.decode())
                 pipeline_stats = statsPipeline.get('pipelines', {}).get(pipelineName, {}).get('flow', {})
@@ -144,9 +144,9 @@ def verifyFinished(pipelinesNames):
                     print (f'Pipelines finished {pipelineName}')
 
             except json.JSONDecodeError:
-                print(f"Error al analizar la respuesta JSON para el pipeline {pipelineName}")
+                print(f"Error parsing JSON response from pipeline {pipelineName}")
             except Exception as e:
-                print(f"Error al procesar el pipeline {pipelineName}: {e}")
+                print(f"Error while processing the pipeline {pipelineName}: {e}")
 
         time.sleep(5)
 
