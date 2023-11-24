@@ -119,11 +119,10 @@ def dockerComposeUp(date,envDic):
 def verifyFinished(pipelinesNames):
     nPipelines = len(pipelinesNames)
     pipelinesFinished = set()
+    status=False
 
     while len(pipelinesFinished) < nPipelines:
         for pipelineName in pipelinesNames:
-            if pipelineName in pipelinesFinished:
-                continue
 
             cmdPipeline = f"curl -sS 'http://localhost:9600/_node/stats/pipelines/{pipelineName}'"
             cmd = f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
@@ -132,11 +131,11 @@ def verifyFinished(pipelinesNames):
                 output = process.stdout
                 if (output):
                     statsPipeline = json.loads(output.decode())
-
                     state = statsPipeline.get('pipelines',{}).get(pipelineName,{}).get('flow', {})
                     if state:
                         currentState = state.get('output_throughput', {}).get('current', -1)
-                        if float(currentState) == 0.0:
+                        status= statsPipeline.get('status','red')
+                        if float(currentState) == 0.0 and status == 'green':
                             print(f'Pipeline finished: {pipelineName}')
                             pipelinesFinished.add(pipelineName)
 
@@ -170,6 +169,7 @@ def printInvalidInputMessage():
 def mainMenu(subsystemsDic):
     envDic= getEnvironment()
     nowDate= datetime.now().strftime("%Y/%m/%d")
+    nowDate-= timedelta(days=1)
     print("###############################################################")
     print("##  Welcome to the script for ingesting logs by date ranges  ##")
     print("##                                                           ##")
