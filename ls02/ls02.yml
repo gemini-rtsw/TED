@@ -12,9 +12,9 @@ services:
       LOGSTASH_MODE: read
       HOST_1: "http://elasticsearch:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
-      ENVDAY: "${ENVDAY}"
-      ENVMONTH: "${ENVMONTH}"
-      ENVYEAR: "${ENVYEAR}"
+      DAY: "${DAY}"
+      MONTH: "${MONTH}"
+      YEAR: "${YEAR}"
 
     volumes:
       - ./config:/usr/share/logstash/config
