@@ -122,7 +122,7 @@ def verifyFinished(pipelinesNames):
         while nPipelinesFinised < nPipelines:
             for pipelineName in pipelinesNames:
                 cmdPipeline=f"curl -XGET 'localhost:9600/_node/stats/pipelines/{pipelineName}'"
-                cmd= f"docker exec mi_contenedor /bin/sh -c '{cmdPipeline}'"
+                cmd= f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
                 process= subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
                 output= process.stdout
                 try:
