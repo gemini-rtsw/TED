@@ -94,7 +94,7 @@ def getDatesGroupedByMonth(startDate, endDate):
 
     groupedDatesArray = []
     for (year, month), days in groupedDates.items():
-        monthName = calendar.month_name[int(month)][0,3]
+        monthName = calendar.month_name[int(month)][0:3]
         formattedYear = f"{year:04d}"
         formattedMonth = f"{month:02d},{monthName}"
         formattedDays = [f"{day:02d}" for day in days]
