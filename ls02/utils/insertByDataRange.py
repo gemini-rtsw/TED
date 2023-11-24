@@ -96,7 +96,7 @@ def getDatesGroupedByMonth(startDate, endDate):
         formattedYear = f"{year:04d}"
         formattedMonth = f"{month:02d}"
         formattedDays = [f"{day:02d}" for day in days]
-        groupedDatesArray.append([formattedYear, formattedMonth, "["+formattedDays[0]+"-"+formattedDays[-1]+"]"])
+        groupedDatesArray.append([formattedYear, formattedMonth, "(" + "|".join(formattedDays) + ")"])
 
     return groupedDatesArray
 
