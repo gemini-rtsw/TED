@@ -168,8 +168,8 @@ def printInvalidInputMessage():
 
 def mainMenu(subsystemsDic):
     envDic= getEnvironment()
-    nowDate= datetime.now().strftime("%Y/%m/%d")
-    nowDate-= timedelta(days=1)
+    yesterday=datetime.now()-timedelta(days=1)
+    yesterdayDate=yesterday.strftime("%Y/%m/%d")
     print("###############################################################")
     print("##  Welcome to the script for ingesting logs by date ranges  ##")
     print("##                                                           ##")
@@ -191,7 +191,7 @@ def mainMenu(subsystemsDic):
                 if options['i'] and options['f']:
                         dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
                 elif options['i']:
-                        dates = getDatesGroupedByMonth(options['i'][0], nowDate)
+                        dates = getDatesGroupedByMonth(options['i'][0], yesterdayDate)
                 else:
                     printInvalidInputMessage()
                 if dates:
