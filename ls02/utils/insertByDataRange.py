@@ -119,28 +119,34 @@ def dockerComposeUp(date,envDic):
 def verifyFinished(pipelinesNames):
     nPipelines = len(pipelinesNames)
     pipelinesFinished = set()
-    status=False
 
     while len(pipelinesFinished) < nPipelines:
         for pipelineName in pipelinesNames:
+            if pipelineName in pipelinesFinished:
+                continue
 
             cmdPipeline = f"curl -sS 'http://localhost:9600/_node/stats/pipelines/{pipelineName}'"
             cmd = f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
-            try:
-                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.DEVNULL)
-                output = process.stdout
-                if (output):
-                    statsPipeline = json.loads(output.decode())
-                    state = statsPipeline.get('pipelines',{}).get(pipelineName,{}).get('flow', {})
-                    if state:
-                        currentState = state.get('output_throughput', {}).get('current', -1)
-                        status= statsPipeline.get('status','red')
-                        if float(currentState) == 0.0 and status == 'green':
-                            print(f'Pipeline finished: {pipelineName}')
-                            pipelinesFinished.add(pipelineName)
 
-            except (subprocess.CalledProcessError, json.JSONDecodeError) as e:
-                print(f"Error processing pipeline {pipelineName}: {e}")
+            try:
+                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if process.returncode != 0:
+                    raise Exception(f"Error en curl o docker exec: {process.stderr.decode().strip()}")
+
+                statsPipeline = json.loads(process.stdout.decode())
+                pipeline_stats = statsPipeline.get('pipelines', {}).get(pipelineName, {}).get('flow', {})
+
+                if all(pipeline_stats.get(metric, {}).get('current', -1) == 0.0 for metric in
+                       ['output_throughput', 'filter_throughput', 'input_throughput',
+                        'queue_backpressure', 'worker_concurrency',
+                        'queue_persisted_growth_bytes', 'queue_persisted_growth_events']):
+                    pipelinesFinished.add(pipelineName)
+                    print (f'Pipelines finished {pipelineName}')
+
+            except json.JSONDecodeError:
+                print(f"Error al analizar la respuesta JSON para el pipeline {pipelineName}")
+            except Exception as e:
+                print(f"Error al procesar el pipeline {pipelineName}: {e}")
 
         time.sleep(5)
 
