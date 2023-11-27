@@ -105,9 +105,9 @@ def getDatesGroupedByMonth(startDate, endDate):
 
 
 def dockerComposeUp(date,envDic):
-    print(f"#########################################################")
+    print(f"\n##############################################")
     print(f"##     Logs ingestion as of {date[3]} {date[0]}        ##")
-    print(f"#########################################################")
+    print(f"##############################################\n")
     try:
         os.environ['LOGSTASH_MODE']= "read"
         os.environ['ES01_PORT']= envDic.get('ES01_PORT')
