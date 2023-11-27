@@ -8,12 +8,13 @@ import calendar
 import os
 import json
 
+# Sets up logging with a specified log level, format, and log file
 def setupLogger():
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
                         filename='InsertByDataRange.log',
                         filemode='a')
 
-
+# Reads and returns environment variables from a .env file
 def getEnvironment():
     envDict = {}
     try:
@@ -25,6 +26,7 @@ def getEnvironment():
         logging.error(f"Error loading environment file: {exc}")
     return envDict
 
+# Loads and parses pipeline configurations from a YAML file
 def getSubsystems():
     subsystemsDict = {}
     try:
@@ -41,6 +43,7 @@ def getSubsystems():
     return subsystemsDict
 
 
+# Creates a configuration file for pipelines and returns their names
 def createPipelinesFile(subsystemsDict, locations, subsystems):
     pipelinesNames = []
     if not locations:
@@ -64,6 +67,7 @@ def createPipelinesFile(subsystemsDict, locations, subsystems):
         logging.error(f"Error creating pipelines file: {exc}")
     return pipelinesNames
 
+# Parses user input to extract specified options
 def parseInput(userInput):
     pattern = r'-(l|s|i|f) ([^\-]+)'
     matches = re.findall(pattern, userInput)
@@ -73,6 +77,7 @@ def parseInput(userInput):
             options[option] = argument.split()
     return options
 
+# Groups dates by month between a start and end date
 def getDatesGroupedByMonth(startDate, endDate):
     groupedDates = {}
     try:
@@ -104,6 +109,7 @@ def getDatesGroupedByMonth(startDate, endDate):
     return groupedDatesArray
 
 
+# Starts Docker Compose services and sets environment variables
 def dockerComposeUp(date,envDic):
     print(f"\n##############################################")
     print(f"##     Logs ingestion as of {date[3]} {date[0]}        ##")
@@ -122,6 +128,7 @@ def dockerComposeUp(date,envDic):
         print ("Error executing Docker Compose")
         logging.error(f"Error executing Docker Compose: {e}")
 
+# Checks if specified pipelines have finished processing
 def verifyFinished(pipelinesNames):
     nPipelines = len(pipelinesNames)
     pipelinesFinished = set()
@@ -158,6 +165,7 @@ def verifyFinished(pipelinesNames):
 
 
 
+# Stops and removes the Docker container 'ls02'
 def dockerComposeDown():
     try:
         subprocess.run(['/bin/docker', 'rm', '-f', 'ls02'])
@@ -179,6 +187,7 @@ def printInvalidInputMessage():
             print("Dates should be in the format YYYY/MM/DD.")
             print("Example: '-l cpo sbf -s tcs vii -i 2022/11/25 -f 2022/12/30'")
 
+# Main menu function to interact with the user and execute script functionalities
 def mainMenu(subsystemsDict):
     envDict= getEnvironment()
     yesterday=datetime.now()-timedelta(days=1)
