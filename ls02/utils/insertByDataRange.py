@@ -100,11 +100,14 @@ def getDatesGroupedByMonth(startDate, endDate):
         formattedYear = f"{year:04d}"
         formattedMonth = f"{month:02d},{monthName}"
         formattedDays = [f"{day:02d}" for day in days]
-        groupedDatesArray.append([formattedYear, "{" + formattedMonth + "}", "{" + ",".join(formattedDays) + "}"])
+        groupedDatesArray.append([formattedYear, "{" + formattedMonth + "}", "{" + ",".join(formattedDays) + "}", monthName])
     return groupedDatesArray
 
 
 def dockerComposeUp(date,envDic):
+    print(f"#########################################################")
+    print(f"##     Logs ingestion as of {date[3]} {date[0]}        ##")
+    print(f"#########################################################")
     try:
         os.environ['LOGSTASH_MODE']= "read"
         os.environ['ES01_PORT']= envDic.get('ES01_PORT')
@@ -157,7 +160,7 @@ def verifyFinished(pipelinesNames):
 
 def dockerComposeDown():
     try:
-        subprocess.run(['/bin/docker', 'rm', '-f', 'ls02'], check=True)
+        subprocess.run(['/bin/docker', 'rm', '-f', 'ls02'])
     except subprocess.CalledProcessError as e:
         logging.error(f"Error executing Docker Compose: {e}")
 
@@ -206,7 +209,6 @@ def mainMenu(subsystemsDict):
                     printInvalidInputMessage()
                 if dates:
                     for date in dates:
-                        print(f"Logs ingestion as of {'/'.join(date)}")
                         dockerComposeUp(date,envDict)
                         verifyFinished(pipelinesNames)
                         dockerComposeDown()
