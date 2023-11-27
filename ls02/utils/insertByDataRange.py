@@ -9,7 +9,9 @@ import os
 import json
 
 def setupLogger():
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
+                        filename='InsertByDataRange.log',
+                        filemode='a')
 
 
 def getEnvironment():
@@ -36,7 +38,7 @@ def getSubsystems():
             subsystemsDict.setdefault(location, {})[name] = pipeline
     except (yaml.YAMLError, IOError) as exc:
         logging.error(f"Error loading configuration file: {exc}")
-        return subsystemsDict
+    return subsystemsDict
 
 
 def createPipelinesFile(subsystemsDict, locations, subsystems):
@@ -72,7 +74,7 @@ def parseInput(userInput):
     return options
 
 def getDatesGroupedByMonth(startDate, endDate):
-    groupedDates = []
+    groupedDates = {}
     try:
         startDate = datetime.strptime(startDate, "%Y/%m/%d").date()
         endDate = datetime.strptime(endDate, "%Y/%m/%d").date()
@@ -174,8 +176,8 @@ def printInvalidInputMessage():
             print("Dates should be in the format YYYY/MM/DD.")
             print("Example: '-l cpo sbf -s tcs vii -i 2022/11/25 -f 2022/12/30'")
 
-def mainMenu(subsystemsDic):
-    envDic= getEnvironment()
+def mainMenu(subsystemsDict):
+    envDict= getEnvironment()
     yesterday=datetime.now()-timedelta(days=1)
     yesterdayDate=yesterday.strftime("%Y/%m/%d")
     print("###############################################################")
@@ -194,7 +196,7 @@ def mainMenu(subsystemsDic):
         else:
             dates=None
             options = parseInput(userInput)
-            pipelinesNames=createPipelinesFile(subsystemsDic, options['l'], options['s'])
+            pipelinesNames=createPipelinesFile(subsystemsDict, options['l'], options['s'])
             if (len(pipelinesNames) > 0):
                 if options['i'] and options['f']:
                         dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
@@ -204,7 +206,8 @@ def mainMenu(subsystemsDic):
                     printInvalidInputMessage()
                 if dates:
                     for date in dates:
-                        dockerComposeUp(date,envDic)
+                        print(f"Logs ingestion as of {'/'.join(date)}")
+                        dockerComposeUp(date,envDict)
                         verifyFinished(pipelinesNames)
                         dockerComposeDown()
             else:
