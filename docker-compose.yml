@@ -171,7 +171,7 @@ services:
 
     volumes:
       - ./gr01/grafana-data:/var/lib/grafana
-      - ./gr01/conf:/usr/share/grafana/conf
+      - ./gr01/conf/grafana.ini:/etc/grafana/grafana.ini
 
     logging:
       driver: json-file
