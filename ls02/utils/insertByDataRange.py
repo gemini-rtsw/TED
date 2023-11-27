@@ -181,7 +181,7 @@ def mainMenu(subsystemsDic):
     print("###############################################################")
     print("##  Welcome to the script for ingesting logs by date ranges  ##")
     print("##                                                           ##")
-    print("##  Type '-h' for help and '-q' to terminate the program.  ##")
+    print("##  Type '-h' for help and '-q' to terminate the program.    ##")
     print("###############################################################")
     while True:
         userInput = input("\nEnter your options: ").lower()
