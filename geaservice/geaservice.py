@@ -73,23 +73,26 @@ def get_values():
     else:
         channels_list =[channel]
 
-    geaRecord={}
+    output={}
     print("chan_list",channels_list)
-    try:
-        sem.acquire()
-        geaRecord = gea.archiver.values(int(archive_key), channels_list,
+    if channels_list[0] != '':
+        try:
+            sem.acquire()
+            geaRecord = gea.archiver.values(int(archive_key), channels_list,
                                             int(int(date_from)/1000), 0,
                                             int(int(date_to)/1000), 0,
                                             int(n_points),
                                             int(str(mode)))
-    except Exception as e:
-        print(e)
-    finally:
-        sem.release()
-
+        except Exception as e:
+            print(e)
+        finally:
+            sem.release()
+            output=geaRecord
+    else:
+        output=[]
     sys.stdout.flush()
 
-    return {"values":geaRecord}
+    return {"values":output}
 
 @app.route("/PVselector", methods=['GET'])
 def pvSelector():
