@@ -1,0 +1,183 @@
+{
+    "Camera Cryostat Temperatures": [
+        {
+            "f2:sad:DTEMPCHA.VAL": "Bench Near Detector (Lakeshore Diode)"
+        },
+        {
+            "f2:sad:DTEMPCHB.VAL": "Detector : Fanout Copper Block"
+        },
+        {
+            "f2:sad:DTEMPCH8.VAL": "Detector Copper Frame"
+        },
+        {
+            "f2:sad:DTEMPCH6.VAL": "Cold Finger by Detector"
+        },
+        {
+            "f2:sad:DTEMPCH5.VAL": "Cold Head stage 1"
+        },
+        {
+            "f2:sad:DTEMPCH7.VAL": "Bench Between Field Mirrors"
+        }
+    ],
+    "MOS Cryostat Temperatures": [
+        {
+            "f2:sad:DTEMPCH1.VAL": "Coldhead stage 1"
+        },
+        {
+            "f2:sad:DTEMPCH2.VAL": "Coldhead stage 2"
+        },
+        {
+            "f2:sad:DTEMPCH3.VAL": "Bench (Non Calib. Diode)"
+        },
+        {
+            "f2:sad:DTEMPCH4.VAL": "Bench (Lakeshore Diode)"
+        }
+    ],
+    "Pressures": [
+        {
+            "f2:sad:DCAMVAC.VAL": "Camera Pressure"
+        },
+        {
+            "f2:sad:DMOSVAC.VAL": "MOS Pressure"
+        }
+    ],
+    "Detector Heater Status": [
+        {
+            "f2:sad:DCHBAPWR.VAL": "Heater Power (%)"
+        }
+    ],
+    "Focus stage": [
+        {
+            "f2:sad:FOCUSTEP.VAL": "Focus stage motor (counts)"
+        },
+        {
+            "f2:sad:LVDTVLTS.VAL": "Focus stage LVDT (volts)"
+        }
+    ],
+    "F2 OIWFS Assembly": [
+        {
+            "f2:wfs:probeAssembly.A": "Target Position X"
+        },
+        {
+            "f2:wfs:probeAssembly.B": "Target Position Y"
+        },
+        {
+            "f2:wfs:probeCalcPosition.VALA": "Actual Position X"
+        },
+        {
+            "f2:wfs:probeCalcPosition.VALB": "Actual Position Y"
+        },
+        {
+            "f2:wfs:probeAssembly.MESS\t{'FORMAT':'Spreadsheet'}": "Assembly Error Message"
+        },
+        {
+            "f2:wfs:followS": "Follow flag"
+        }
+    ],
+    "F2 OIWFS Base": [
+        {
+            "f2:wfs:probeBasDevice.VAL": "Base Target Angle"
+        },
+        {
+            "f2:wfs:probeAssembly.SIJ": "Base Actual Angle"
+        },
+        {
+            "f2:wfs:probeBasDevice.RRBV": "Base Raw Motor"
+        },
+        {
+            "f2:wfs:probeBasDevice.RENC": "Base Raw Encoder"
+        },
+        {
+            "f2:wfs:probeBasDevice.MESS\t{'FORMAT':'Spreadsheet'}": "Base Error Message"
+        },
+        {
+            "f2:wfs:probeBasDevice.BRK": "Base Brake Status"
+        }
+    ],
+    "F2 OIWFS PickOff": [
+        {
+            "f2:wfs:probePkoDevice.VAL": "PickOff Target Angle"
+        },
+        {
+            "f2:wfs:probeAssembly.SIK": "PickOff Actual Angle"
+        },
+        {
+            "f2:wfs:probePkoDevice.RRBV": "PickOff Raw Motor"
+        },
+        {
+            "f2:wfs:probePkoDevice.RENC": "PickOff Raw Encoder"
+        },
+        {
+            "f2:wfs:probePkoDevice.MESS\t{'FORMAT':'Spreadsheet'}": "PickOff Error Message"
+        },
+        {
+            "f2:wfs:probePkoDevice.BRK": "PickOff Brake Status"
+        }
+    ],
+    "Temperatures": [
+        {
+            "f2:sad:DLTMPCH1.VAL": "L1 lens near mounting pad -6 degrees"
+        },
+        {
+            "f2:sad:DLTMPCH2.VAL": "L1 lens midway between mounting pads -60 degrees"
+        },
+        {
+            "f2:sad:DLTMPCH3.VAL": "L1 lens near mounting pad +6 degrees"
+        },
+        {
+            "f2:sad:DLTMPCH4.VAL": "L1 cell in line with mounting pad - back"
+        },
+        {
+            "f2:sad:DLTMPCH5.VAL": "L1 lens midway between mounting pads +60 degrees"
+        },
+        {
+            "f2:sad:DLTMPCH6.VAL": "L1 mounting pad - front"
+        },
+        {
+            "f2:sad:DLTMPCH7.VAL": "L1 cell in line with mounting pad - front"
+        },
+        {
+            "f2:sad:DLTMPCH8.VAL": "L1 baffle end in line with mounting pad"
+        }
+    ],
+    "F2 OIWFS Temperatures": [
+        {
+            "f2oi:dc:headTemp": "Head Temperature"
+        },
+        {
+            "f2oi:dc:armTemp": "Arm Temperature"
+        },
+        {
+            "f2oi:dc:sdsuTemp": "SDSU Temperature"
+        }
+    ],
+    "F2 Wheels positions": [
+        {
+            "f2:sad:WINSTEP": "Window"
+        },
+        {
+            "f2:sad:MOSSTEP": "MOS"
+        },
+        {
+            "f2:sad:DCKRSTEP": "Decker"
+        },
+        {
+            "f2:sad:FIL1STEP": "Filter 1"
+        },
+        {
+            "f2:sad:LYOTSTEP": "Lyot"
+        },
+        {
+            "f2:sad:FIL2STEP": "Filter 2"
+        },
+        {
+            "f2:sad:GRSMSTEP": "Grism"
+        },
+        {
+            "f2:sad:FOCUSTEP": "Focus"
+        },
+        {
+            "f2:sad:(WIN|MOS|DCKR|FIL1|LYOT|FIL2|GRSM|FOCU)STEP": "ALL"
+        }
+    ]
+}

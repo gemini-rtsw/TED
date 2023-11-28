@@ -1,1 +1,2 @@
-/es01/logs
+es01/logs/*
+gr01/grafana-data/png

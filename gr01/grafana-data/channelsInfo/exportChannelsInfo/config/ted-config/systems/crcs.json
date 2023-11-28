@@ -1,0 +1,74 @@
+{
+    "Angles": [
+        {
+            "cr:crCurrentVel": "Velocity"
+        },
+        {
+            "cr:crCurrentPos": "Current angle"
+        },
+        {
+            "cr:crDemandPos": "CRCS Demand Pos."
+        },
+        {
+            "cr:crPmacDemandPos": "CRCS Pmac Demand Pos."
+        },
+        {
+            "cr:crPmacPosError": "CRCS PMAC Following Error"
+        },
+        {
+            "cr:crCWP:PmacPosError": "CRCS WRAP PMAC Following Error"
+        },
+        {
+            "cr:crCurrentPos|tcs:demandRma   {'SYSTEMS':'tcs crcs', 'LAPSE': 'lastNight'}": "TCS Dem & Act Pos"
+        }
+    ],
+    "Other": [
+        {
+            "cr:crStateS": "cr:crStateS (Spreadsheet)"
+        },
+        {
+            "cr:crCommandS": "cr:crCommandS (Spreadsheet)"
+        },
+        {
+            "cr:health.OMSS": "cr:health.OMSS (Spreadsheet)"
+        }
+    ],
+    "IOC Stats": [
+        {
+            "cr:iocStats:SUSP_TASK_CNT": "Susp Tasks"
+        },
+        {
+            "cr:iocStats:MEM_FREE": "Free memory"
+        },
+        {
+            "cr:iocStats:LOAD": "Global load"
+        },
+        {
+            "cr:iocStats:UPTIME {'FORMAT':'Spreadsheet'}": "Uptime"
+        },
+        {
+            "cr:iocStats:GTIM_ERR_CNT": "Time errors"
+        },
+        {
+            "cr:iocStats:SYS_MBUF_FREE": "Free Sys MBUFs"
+        },
+        {
+            "cr:iocStats:SYS_CLUST_AVAIL_(0|1)": "% Clust available"
+        },
+        {
+            "cr:iocStats:CA_CONN_CNT": "CA Connections"
+        },
+        {
+            "cr:iocStats:IF(I|O)_ERR_CNT": "IF errors"
+        },
+        {
+            "cr:iocStats:FD_FREE": "Free FDs"
+        },
+        {
+            "cr:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'}": "Boot version"
+        },
+        {
+            "cr:iocStats:CA_CLNT_CNT": "CA Clients"
+        }
+    ]
+}

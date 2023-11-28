@@ -1,0 +1,10 @@
+{
+    "Temperature": [
+        {
+            "gm:sad:dc:detTemp": "Detector Temperature"
+        },
+        {
+            "gm:cc:temp.": "All CC Temperatures"
+        }
+    ]
+}

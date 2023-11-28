@@ -1,0 +1,34 @@
+{
+    "Seeing Monitor": [
+        {
+            "ws:seeFwhm": "Mean seeing (total, X & Y)"
+        },
+        {
+            "ws:seeMeanD.": "Distance between stars (X & Y)"
+        },
+        {
+            "ws:seeMeanFlux": "Mean flux"
+        },
+        {
+            "ws:seeNimg": "Number of images taken"
+        },
+        {
+            "ws:seeR0": "Fried's parameter"
+        },
+        {
+            "ws:seeSc1t1": "Scintillation left star"
+        },
+        {
+            "ws:seeSc2t1": "Scintillation right star"
+        },
+        {
+            "ws:seeSc.t1": "Scintillation both stars"
+        },
+        {
+            "ws:seeStrlh1t.": "Strelth ratio left star (t1 & t2)"
+        },
+        {
+            "ws:seeStrlh2t.": "Strelth ratio right star (t1 & t2)"
+        }
+    ]
+}

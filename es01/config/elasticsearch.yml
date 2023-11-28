@@ -4,7 +4,7 @@ network.host: 0.0.0.0
 
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
-# The following settings, TLS certificates, and keys have been automatically      
+# The following settings, TLS certificates, and keys have been automatically
 # generated to configure Elasticsearch security features on 14-06-2023 19:35:32
 #
 # --------------------------------------------------------------------------------

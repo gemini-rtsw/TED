@@ -1,0 +1,193 @@
+#Canopus page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 1
+#[QUERYSTRPAIRS] {'SYSTEMS':'canopus aom','LEGEND':'Inside', 'GRIDLINES':'checked'}
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] Health  
+#[QUERYSTRPAIRS] {'LAPSE':60}
+aom:heartbeat 					# Heartbeat
+
+#[SECTION] Analog Sensors (by Group)
+#[QUERYSTRPAIRS] {'LAPSE':60}
+aom:.*Press        # Glycol Pressure
+aom:[^D].*Flow     # Glycol Flow
+aom:(PCERetn|PCESupl|SdsuCtrl|lgs.|Sfs)Temp     # Glycol (Surface) Temperatures
+aom:(DME09|DME45|DMEHV|Rtc|Vme|TBD3)Temp|.*Sensa     # Air Temperatures
+aom:.*DewTemp      # Dew Point Temperature
+aom:DryAirFlow     # Dry Air Flow
+
+#[SECTION] DME Sensatronics
+#[QUERYSTRPAIRS] {'LAPSE':60}
+aom:.*Sensa        # DME Sensatronics
+
+#[SECTION] DME Fans SetPoint
+#[QUERYSTRPAIRS] {'LAPSE':60}
+aom:.*FanSPOut        # Fans SetPoints
+
+#[SECTION] Analog Sensors (individual)
+#[QUERYSTRPAIRS] {'LAPSE':60}
+aom:AmbientDewTemp      # Ambient Dew Temperature
+aom:DME09DewTemp      # DME09 Dew Temperature
+aom:DME09HXFlow      # DME09 HX Flow
+aom:DME09Temp      # DME09 Temperature
+aom:DME45DewTemp      # DME45 Dew Temperature
+aom:DME45HXFlow      # DME45 HX Flow
+aom:DME45Temp      # DME45 Temperature
+aom:DMEHVDewTemp      # DMEHV Dew Temperature
+aom:DMEHVHXFlow      # DMEHV HX Flow
+aom:DMEHVTemp      # DMEHV Temperature
+aom:DryAirFlow      # Dry Air Flow
+aom:PCERetnFlow          # Primary Cooling Enlosure Return Flow
+aom:PCERetnPressure      # Primary Cooling Enlosure Return Pressure
+aom:PCERetnTemp      # Primary Cooling Enlosure Return Temperature
+aom:PCESuplFlow      # Primary Cooling Enlosure Supply Flow
+aom:PCESuplPressure      # Primary Cooling Enlosure Supply Pressure
+aom:PCESuplTemp      # Primary Cooling Enlosure Supply Temperature
+aom:RtcHXFlow      # RTC HX Flow
+aom:RtcTemp      # RTC Temperature
+aom:SCEFlow      # Secondary Cooling Enlosure Coolant Flow
+aom:SDSUFlow      # SDSU Coolant Flow
+aom:SdsuCtrlTemp      # SDSU Coolant Temperature
+aom:SfsTemp      # SFS Coolant Temperature
+aom:TBD3Temp      # Bench Ambient Temperature
+aom:VmeHXFlow      # VME HX Flow
+aom:VmeTemp      # VME Temperature
+aom:lgs1Temp      # LGS CCD1 Housing Temperature
+aom:lgs2Temp      # LGS CCD2 Housing Temperature
+aom:lgs3Temp      # LGS CCD3 Housing Temperature
+aom:lgs4Temp      # LGS CCD4 Housing Temperature
+aom:lgs5Temp      # LGS CCD5 Housing Temperature
+sfs:heatSinkTemp  # Heatsink Temperature (deg C)
+sfs:ccdTemp	  # CCD Temperature (deg C)
+aom:ngs2:tempNuvuBody.VAL # NGS2 NUVU camera body temperature (deg C)
+aom:ngs2:tempNuvuCCD.VAL # NGS2 NUVU camera CCD temperature (deg C)
+
+#[SECTION] Pulizzis & DME Power
+#[QUERYSTRPAIRS] {'LAPSE':60}
+aom:ipv.p.:status      # Pulizzis
+aom:DME..Pwr           # DME Power
+
+#[SECTION] RTC loops
+#[QUERYSTRPAIRS] {'LAPSE':60}
+rtc:lgs:loop.VALA     # LGS loop
+rtc:.*[L|l]oop.VALA   # All the loops
+
+#[SECTION] NGS Probes
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS] {'LAPSE':60}
+
+aom:ngsPr1.TGTX		# NGS Probe 1 Target X
+aom:ngsPr1.POSX		# NGS Probe 1 Position X
+aom:ngsPr1.RENX		# NGS Probe 1 RENX
+aom:ngsPr1.TGTY		# NGS Probe 1 Target Y
+aom:ngsPr1.POSY		# NGS Probe 1 Position Y
+aom:ngsPr1.RENY		# NGS Probe 1 RENY
+aom:ngsPr1InPosition 	# NGS Probe 1 In Position
+
+aom:ngsPr2.TGTX		# NGS Probe 2 Target X
+aom:ngsPr2.POSX		# NGS Probe 2 Position X
+aom:ngsPr2.RENX		# NGS Probe 2 RENY
+aom:ngsPr2.TGTY		# NGS Probe 2 Target Y
+aom:ngsPr2.POSY		# NGS Probe 2 Position Y
+aom:ngsPr2.RENY		# NGS Probe 2 RENY
+aom:ngsPr2InPosition # NGS Probe 2 In Position
+
+aom:ngsPr3.TGTX		# NGS Probe 3 Target X
+aom:ngsPr3.POSX		# NGS Probe 3 Position X
+aom:ngsPr3.RENX		# NGS Probe 3 RENX
+aom:ngsPr3.TGTY		# NGS Probe 3 Target Y
+aom:ngsPr3.POSY		# NGS Probe 3 Position Y
+aom:ngsPr3.RENY		# NGS Probe 3 RENY
+aom:ngsPr3InPosition 	# NGS Probe 3 In Position
+
+#[SECTION] NGS Probes MODE & MIP
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+aom:ngsPr1.(MODE|MIP)	# NGS Probe 1 
+aom:ngsPr2.(MODE|MIP)	# NGS Probe 2 
+aom:ngsPr3.(MODE|MIP)	# NGS Probe 3
+
+#[SECTION] NGS Probes Loop Control/Status
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+aom:ngsPr1LpCtrl.A 	# NGS Probe 1 Loop Demand
+aom:ngsPr1OffLoop	# NGS Probe 1 Loop Status
+aom:ngsPr2LpCtrl.A 	# NGS Probe 2 Loop Demand
+aom:ngsPr2OffLoop	# NGS Probe 2 Loop Status
+aom:ngsPr3LpCtrl.A 	# NGS Probe 3 Loop Demand
+aom:ngsPr3OffLoop	# NGS Probe 3 Loop Status
+
+#[SECTION] LGS Probes
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS] {'LAPSE':60}
+
+aom:lgsSsZ.TGTX	# LGSSsZ Target X
+aom:lgsSsZ.POSX	# LGSSsZ Position X
+aom:lgsSsZ.(TGTX|POSX)	# LGSSsZ Target and Current Position X
+aom:lgsZc1.TGTX	# LGSZc1 Target X
+aom:lgsZc1.POSX	# LGSZc1 Position X
+aom:lgsZc1.(TGTX|POSX)	# LGSZc1 Target and Current Position X
+aom:lgsZc1.TGTY	# LGSZc1 Target Y
+aom:lgsZc1.POSY	# LGSZc1 Position Y
+aom:lgsZc1.(TGTY|POSY)	# LGSZc1 Target and Current Position Y
+aom:lgsMc1.TGTX	# LGSMc1 Target X
+aom:lgsMc1.POSX	# LGSMc1 Position X
+aom:lgsMc1.(TGTX|POSX)	# LGSMc1 Target and Current Position X
+aom:lgsMc1.TGTY	# LGSMc1 Target Y
+aom:lgsMc1.POSY	# LGSMc1 Position Y
+aom:lgsMc1.(TGTY|POSY)	# LGSMc1 Target and Current Position Y
+aom:lgsMc2.TGTX	# LGSMc2 Target X
+aom:lgsMc2.POSX	# LGSMc2 Position X
+aom:lgsMc2.(TGTX|POSX)	# LGSMc2 Target and Current Position X
+aom:lgsMc2.TGTY	# LGSMc2 Target Y
+aom:lgsMc2.POSY	# LGSMc2 Position Y
+aom:lgsMc2.(TGTY|POSY)	# LGSMc2 Target and Current Position Y
+aom:lgsMc3.TGTX	# LGSMc3 Target X
+aom:lgsMc3.POSX	# LGSMc3 Position X
+aom:lgsMc3.(TGTX|POSX)	# LGSMc3 Target and Current Position X
+aom:lgsMc3.TGTY	# LGSMc3 Target Y
+aom:lgsMc3.POSY	# LGSMc3 Position Y
+aom:lgsMc3.(TGTY|POSY)	# LGSMc3 Target and Current Position Y
+
+#[SECTION] LGS Steppers MODE & MIP
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+aom:lgsSsZ.(MODE|MIP)	# LGS SsZ
+aom:lgsZc1.(MODE|MIP)	# LGS Zc1 
+aom:lgsMc1.(MODE|MIP)	# LGS Mc1
+aom:lgsMc2.(MODE|MIP)	# LGS Mc2
+aom:lgsMc3.(MODE|MIP)	# LGS Mc3
+
+#[SECTION] LVDT & Zoom offsets
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS] {'LAPSE':60}
+aom:monLVDT4		# LVDT4 value
+aom:monLVDT4.RVAL	# LVDT4 raw value
+aom:monLVDT5		# LVDT5 value
+aom:monLVDT5.RVAL	# LVDT5 raw value
+aom:lgsZc1.OFSX		# LGS zoom motor X offset
+aom:lgsZc1.OFSY		# LGS zoom motor Y offset
+aom:resyncLVDTFlag	# LVDT resync flag
+
+#[SECTION] Entrance Shutter 
+#[ITEMSPERROW] 4
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+aom:inShCtrl.A		# Command
+aom:inShState		# State
+aom:inShCtrl.MESS	# Error
+aom:inShCtrlC.OMSS	# Fault
+
+#[SECTION] Exit Shutter 
+#[ITEMSPERROW] 4
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+aom:outShCtrl.A		# Command
+aom:outShState		# State
+aom:outShCtrl.MESS	# Error
+aom:outShCtrlC.OMSS	# Fault
+
+#[SECTION] Export as Spreadsheet
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+aom:.* 					# Everything

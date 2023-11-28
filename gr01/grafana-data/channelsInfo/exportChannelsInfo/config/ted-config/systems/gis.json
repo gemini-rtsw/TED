@@ -1,0 +1,524 @@
+{
+    "PAZ Bearings Pressure (bars)": [
+        {
+            "gis:mon:azmon2:vrbpG1c.VAL": "Vertical"
+        },
+        {
+            "gis:mon:azmon2:rabpG1c.VAL": "Radial"
+        },
+        {
+            "gis:mon:azmon2:vrbpG2c.VAL": "Vertical"
+        },
+        {
+            "gis:mon:azmon2:rabpG2c.VAL": "Radial"
+        },
+        {
+            "gis:mon:azmon2:vrbpG3c.VAL": "Vertical"
+        },
+        {
+            "gis:mon:azmon2:rabpG3c.VAL": "Radial"
+        },
+        {
+            "gis:mon:azmon2:vrbpG4c.VAL": "Vertical"
+        },
+        {
+            "gis:mon:azmon2:rabpG4c.VAL": "Radial"
+        },
+        {
+            "gis:mon:azmon2:vrbpG5c.VAL": "Vertical"
+        },
+        {
+            "gis:mon:azmon2:rabpG5c.VAL": "Radial"
+        },
+        {
+            "gis:mon:azmon2:vrbpG6c.VAL": "Vertical"
+        },
+        {
+            "gis:mon:azmon2:rabpG6c.VAL": "Radial"
+        }
+    ],
+    "ALT Bearings Pressure (bars)": [
+        {
+            "gis:mon:altmon2:bpH1861c.VAL": "Axial(861)"
+        },
+        {
+            "gis:mon:altmon2:bpH1862c.VAL": "Radial(862)"
+        },
+        {
+            "gis:mon:altmon2:bpH1863c.VAL": "Radial(863)"
+        },
+        {
+            "gis:mon:altmon2:bpH2861c.VAL": "Axial(861)"
+        },
+        {
+            "gis:mon:altmon2:bpH2862c.VAL": "Radial(862)"
+        },
+        {
+            "gis:mon:altmon2:bpH2863c.VAL": "Radial(863)"
+        }
+    ],
+    "Position encoder": [
+        {
+            "gis:mon:azmon3:azposenc.VAL": "Azimuth (from GIS)"
+        },
+        {
+            "mc:elCurrentPos": "Elevation (from MCS)"
+        },
+        {
+            "mc:azCurrentPos": "Azimuth (from MCS)"
+        }
+    ],
+    "Azimuth Kaman sensors": [
+        {
+            "gis:mon:azkam:g1(k|z).*": "G1"
+        },
+        {
+            "gis:mon:azkam:g2(k|z).*": "G2"
+        },
+        {
+            "gis:mon:azkam:g3(k|z).*": "G3"
+        },
+        {
+            "gis:mon:azkam:g4(k|z).*": "G4"
+        },
+        {
+            "gis:mon:azkam:g5(k|z).*": "G5"
+        },
+        {
+            "gis:mon:azkam:g6(k|z).*": "G6"
+        }
+    ],
+    "Alt Bearings": [
+        {
+            "gis:mon:altkam:h1a.*": "H1A"
+        },
+        {
+            "gis:mon:altkam:h2a.*": "H2A"
+        },
+        {
+            "gis:mon:altkam:h1b.*": "H1B"
+        },
+        {
+            "gis:mon:altkam:h2b.*": "H2B"
+        }
+    ],
+    "Thermal Enclosure Temperatures": [
+        {
+            "gis:mon:temp:pcs.VAL": "PCS"
+        },
+        {
+            "gis:mon:temp:crcs.VAL": "CRCS"
+        },
+        {
+            "gis:mon:temp:scs.VAL": "SCS"
+        },
+        {
+            "gis:mon:temp:cem.VAL": "CEM"
+        }
+    ],
+    "PMAC output voltage (ALT, Az)": [
+        {
+            "gis:mon:altmon3:altdspdspc.VAL": "ALT"
+        },
+        {
+            "gis:mon:azmon3:azdspdspc.VAL": "Az"
+        }
+    ],
+    "Automount Step Numbers (Spreadsheet)": [
+        {
+            "gis:az:azmd:azmdautoss.VAL": "Azimuth auto mode"
+        },
+        {
+            "gis:alt:altmd:altmdautoss.VAL": "Elevation auto mode"
+        }
+    ],
+    "M1 Screw Count": [
+        {
+            "gis:mon:other:m1posxscrewi.VAL": "+X"
+        },
+        {
+            "gis:mon:other:m1negxscrewi.VAL": "-X"
+        },
+        {
+            "gis:mon:other:m1(pos|neg)xscrewi.VAL": "+X and -X"
+        }
+    ],
+    "Faults (Spreadsheet)": [
+        {
+            "gis:mon:other:m1covskewedi.VAL": "M1 cover skewed"
+        },
+        {
+            "gis:mon:other:m1instsums.VAL": "Instrument Cover (The Iris)"
+        },
+        {
+            "gis:az:azos:azosi.VAL": "AZ overspeed fault"
+        },
+        {
+            "gis:alt:altos:altosi.VAL": "ALT overspeed fault"
+        },
+        {
+            "gis:az:azo(s|t):azo(si|t0(1|2|3|4)i).VAL": "AZ Overtravel Faults"
+        },
+        {
+            "gis:alt:altot:altot(sums|zen0(1|2)i|hor0(1|2)i).VAL": "ALT Overtravel Faults"
+        },
+        {
+            "gis:az:azns:aznssums.VAL": "AZ non-zero speed fault"
+        },
+        {
+            "gis:alt:altns:altnssums.VAL": "ALT non-zero speed fault"
+        },
+        {
+            "gis:alt:altcw:altcw(hi|lo)posxi.VAL": "ALT cable Wrap Faults (+X)"
+        },
+        {
+            "gis:alt:altcw:altcw(hi|lo)negxi.VAL": "ALT cable Wrap Faults (-X)"
+        },
+        {
+            "gis:alt:altcw:altcw(hi|lo)(pos|neg)xi.VAL|gis:alt:altcw:altcwsums.VAL": "ALT cable Wrap Faults (+X, -X and Sum)"
+        },
+        {
+            "gis:(az:aztb:aztbi.VAL|gis:az:azot:azotsums.VAL|az:azcw:azcwsums.VAL|az:azombr:azombrsums.VAL|az:azpp:azppi.VAL|misc:misczsums.VAL|az:azos:azosi.VAL|az:azdr:azdrsums.VAL|ck:cksums.VAL|hbs:hbssums.VAL|az:azns:aznssums.VAL|az:azbr:azbri.VAL|az:azlo:azlosums.VAL|alt:altlp:altlpsum1s.VAL|az:azbg:azbgsums.VAL)": "AZ Faults"
+        },
+        {
+            "gis:(pcs:pcssums.VAL|alt:altot:altotsums.VAL|alt:altcw:altcwsums.VAL|alt:altombr:altombrsums.VAL|alt:altpp:altppi.VAL|misc:misclsums.VAL|alt:altos:altosi.VAL|alt:altdr:altdrsums.VAL|ck:cksums.VAL|hbs:hbssums.VAL|alt:altns:altnssums.VAL|alt:altbr:altbrsums.VAL|alt:altlo:altlosums.VAL|alt:altlp:altlpsums.VAL|alt:altbg:altbgsums.VAL|cass:gmdoor.VAL|cass:gmintf.VAL)": "ATL Faults"
+        },
+        {
+            "gis:(cass:rwpmaci.VAL|cass:rdri.VAL|cass:rdrdci.VAL|cass:rcwi.VAL|cass:rccwi.VAL|cass:wdri.VAL|cass:wdrdci.VAL|cass:wcwi.VAL|cass:wccwi.VAL|cass:gmdoor.VAL|cass:gmintf.VAL)": "Cassegrian Faults"
+        },
+        {
+            "gis:pcs:no(reli|disablei|grabi).VAL": "PCS Faults"
+        },
+        {
+            "gis:rack:r(00|01|02|03|04|05|06|07|10)i.VAL": "PCL Rack Faults"
+        },
+        {
+            "gis:es:(es01i|e01i|e03i|e02i|e04i|e23i|e24i|e10i|e11i|e12i|e13i|e14i|e01i|e02i|e03i|e04i|e05i|e06i|e20i|e21i|e22i|e23i|e24i|e25i|e26i|e28i|e29i|plxm|plctripi).VAL": "Emergency Stop and PLX Faults"
+        },
+        {
+            "gis:int:int(01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16)i.VAL": "Interfaces"
+        }
+    ],
+    "Misc": [
+        {
+            "gis:mon:azmon3:azdspdspc.VAL": "AZ Speed Set Pt. (volts)"
+        },
+        {
+            "gis:mon:altmon3:altdspdspc.VAL": "ALT Speed Set Pt. (volts)"
+        },
+        {
+            "gis:cass:rotnorms.VAL": "gis:cass:rotnorms.VAL"
+        },
+        {
+            "gis:cass:wranorms.VAL": "gis:cass:wranorms.VAL"
+        },
+        {
+            "gis:cass:rwmans.VAL": "gis:cass:rwmans.VAL"
+        },
+        {
+            "gis:mon:other:m1coversums.VAL": "M1 mirror cover status"
+        }
+    ],
+    "Precipitation sensors": [
+        {
+            "gis:misc:precSensor1": "Optical (most sensitive)"
+        },
+        {
+            "gis:misc:precSensor2": "Capacitive"
+        }
+    ],
+    "PCS Oil Leak Detection": [
+        {
+            "gis:pcs:inners": "Inner Detector"
+        },
+        {
+            "gis:pcs:outers": "Outer Detector"
+        },
+        {
+            "gis:lse:O2LevC": "Oxygen Level"
+        },
+        {
+            "gis:lse:roomTempC": "Laser room temp."
+        },
+        {
+            "gis:lse:roomHumC": "Laser room humidity"
+        },
+        {
+            "gis:lse:gRoomTempC": "Gown room temperature"
+        },
+        {
+            "gis:lse:gRoomHumC": "Gown root humidity"
+        },
+        {
+            "gis:lse:coolInC": "Coolant IN temperature"
+        },
+        {
+            "gis:lse:coolOutAC": "Coolant OUT(A) temperatuere"
+        },
+        {
+            "gis:lse:coolOutBC": "Coolant OUT(B) temperatuere"
+        },
+        {
+            "gis:lse:propValveAC": "Circuit A proprotional valve"
+        },
+        {
+            "gis:lse:propValveBC": "Circuit B proportional valve"
+        },
+        {
+            "gis:lse:ACDriveSpeedC": "AC drive speed setpoint"
+        },
+        {
+            "gis:lse:roomTempTgtC": "Laser room temperature setpoint"
+        },
+        {
+            "gis:lse:presCoilAC": "Differential pressure defrost coil A"
+        },
+        {
+            "gis:lse:presCoilBC": "Differential pressure defrost coil B"
+        },
+        {
+            "gis:lse:DMPPos": "1DMP Position Message (Spreadsheet)"
+        },
+        {
+            "gis:lse:cADefrost": "Coil A Defrost (Spreadsheet)"
+        },
+        {
+            "gis:lse:cBDefrost": "Coil B Defrost (Spreadsheet)"
+        }
+    ],
+    "Azimuth Drives Status": [
+        {
+            "gis:az:azdr:ok01i": "AZ Drives ok Status 1"
+        },
+        {
+            "gis:az:azdr:en01i": "AZ Drives Enabled Status 1"
+        },
+        {
+            "gis:az:azdr:do01i": "AZ Drives Overload Status 1"
+        },
+        {
+            "gis:az:azdr:ok02i": "AZ Drives ok Status 2"
+        },
+        {
+            "gis:az:azdr:en02i": "AZ Drives Enabled Status 2"
+        },
+        {
+            "gis:az:azdr:do02i": "AZ Drives Overload Status 2"
+        },
+        {
+            "gis:az:azdr:ok03i": "AZ Drives ok Status 3"
+        },
+        {
+            "gis:az:azdr:en03i": "AZ Drives Enabled Status 3"
+        },
+        {
+            "gis:az:azdr:do03i": "AZ Drives Overload Status 3"
+        },
+        {
+            "gis:az:azdr:ok04i": "AZ Drives ok Status 4"
+        },
+        {
+            "gis:az:azdr:en04i": "AZ Drives Enabled Status 4"
+        },
+        {
+            "gis:az:azdr:do04i": "AZ Drives Overload Status 4"
+        },
+        {
+            "gis:az:azdr:ok05i": "AZ Drives ok Status 5"
+        },
+        {
+            "gis:az:azdr:en05i": "AZ Drives Enabled Status 5"
+        },
+        {
+            "gis:az:azdr:do05i": "AZ Drives Overload Status 5"
+        },
+        {
+            "gis:az:azdr:ok06i": "AZ Drives ok Status 6"
+        },
+        {
+            "gis:az:azdr:en06i": "AZ Drives Enabled Status 6"
+        },
+        {
+            "gis:az:azdr:do06i": "AZ Drives Overload Status 6"
+        },
+        {
+            "gis:az:azdr:ok07i": "AZ Drives ok Status 7"
+        },
+        {
+            "gis:az:azdr:en07i": "AZ Drives Enabled Status 7"
+        },
+        {
+            "gis:az:azdr:do07i": "AZ Drives Overload Status 7"
+        },
+        {
+            "gis:az:azdr:ok08i": "AZ Drives ok Status 8"
+        },
+        {
+            "gis:az:azdr:en08i": "AZ Drives Enabled Status 8"
+        },
+        {
+            "gis:az:azdr:do08i": "AZ Drives Overload Status 8"
+        }
+    ],
+    "Elevation Drives Status": [
+        {
+            "gis:alt:altdr:ok01i": "ALT Drives ok Status 1"
+        },
+        {
+            "gis:alt:altdr:en01i": "ALT Drives Enabled Status 1"
+        },
+        {
+            "gis:alt:altdr:do01i": "ALT Drives Overload Status 1"
+        },
+        {
+            "gis:alt:altdr:ok02i": "ALT Drives ok Status 2"
+        },
+        {
+            "gis:alt:altdr:en02i": "ALT Drives Enabled Status 2"
+        },
+        {
+            "gis:alt:altdr:do02i": "ALT Drives Overload Status 2"
+        },
+        {
+            "gis:alt:altdr:ok03i": "ALT Drives ok Status 3"
+        },
+        {
+            "gis:alt:altdr:en03i": "ALT Drives Enabled Status 3"
+        },
+        {
+            "gis:alt:altdr:do03i": "ALT Drives Overload Status 3"
+        },
+        {
+            "gis:alt:altdr:ok04i": "ALT Drives ok Status 4"
+        },
+        {
+            "gis:alt:altdr:en04i": "ALT Drives Enabled Status 4"
+        },
+        {
+            "gis:alt:altdr:do04i": "ALT Drives Overload Status 4"
+        }
+    ],
+    "Azimuth Wrap information": [
+        {
+            "gis:mon:azwrap:amp1": "Current Motor 1 (amps)"
+        },
+        {
+            "gis:mon:azwrap:amp2": "Current Motor 2 (amps)"
+        },
+        {
+            "gis:mon:azwrap:lvdt": "LVDT Voltage (volts)"
+        },
+        {
+            "gis:mon:azwrap:powsupply": "Power supply Voltage (volts)"
+        }
+    ],
+    "Elevation Wrap +X information": [
+        {
+            "gis:mon:elpXwrap:mot1": "Current Motor  (amps)"
+        },
+        {
+            "gis:mon:elpXwrap:lvdt": "LVDT Voltage (volts)"
+        },
+        {
+            "gis:mon:elpXwrap:powsupply": "Power supply Voltage (volts)"
+        }
+    ],
+    "Elevation Wrap -X information": [
+        {
+            "gis:mon:elmXwrap:mot1": "Current Motor  (amps)"
+        },
+        {
+            "gis:mon:elmXwrap:lvdt": "LVDT Voltage (volts)"
+        },
+        {
+            "gis:mon:elmXwrap:powsupply": "Power supply Voltage (volts)"
+        }
+    ],
+    "M1 Cover Control": [
+        {
+            "gis:mon:other:openM1cmd": "M1cover Open Cmd"
+        },
+        {
+            "gis:mon:other:closeM1cmd": "M1cover Close Cmd"
+        },
+        {
+            "gis:mon:other:stopM1cmd": "M1cover Stop Cmd"
+        },
+        {
+            "gis:mon:other:m1coversums": "M1cover Position {'FORMAT':'Spreadsheet'}"
+        },
+        {
+            "gis:mon:other:M1covercomb": "M1cover Motion State {'FORMAT':'Spreadsheet'}"
+        },
+        {
+            "gis:mon:other:VFDfault": "M1cover VFD Fault {'FORMAT':'Spreadsheet'}"
+        }
+    ],
+    "Cass Wrap coolant supply flow sensors": [
+        {
+            "gis:mon:cwsupply:FlowPX": "Flow +X"
+        },
+        {
+            "gis:mon:cwsupply:TempPX": "Temp +X"
+        },
+        {
+            "gis:mon:cwsupply:PsiPX": "Pressure +X (PSI)"
+        },
+        {
+            "gis:mon:cwsupply:FlowNX": "Flow -X"
+        },
+        {
+            "gis:mon:cwsupply:TempNX": "Temp -X"
+        },
+        {
+            "gis:mon:cwsupply:PsiNX": "Pressure -X (PSI)"
+        },
+        {
+            "gis:mon:cwsupply:Flow(N|P)X": "Flow both"
+        },
+        {
+            "gis:mon:cwsupply:Temp(N|P)X": "Temp both"
+        },
+        {
+            "gis:mon:cwsupply:Psi(N|P)X": "Pressure both (PSI)"
+        }
+    ],
+    "IOC Stats": [
+        {
+            "gis:iocStats:SUSP_TASK_CNT": "Susp Tasks"
+        },
+        {
+            "gis:iocStats:MEM_FREE": "Free memory"
+        },
+        {
+            "gis:iocStats:LOAD": "Global load"
+        },
+        {
+            "gis:iocStats:UPTIME {'FORMAT':'Spreadsheet'}": "Uptime"
+        },
+        {
+            "gis:iocStats:GTIM_ERR_CNT": "Time errors"
+        },
+        {
+            "gis:iocStats:SYS_MBUF_FREE": "Free Sys MBUFs"
+        },
+        {
+            "gis:iocStats:SYS_CLUST_AVAIL_(0|1)": "% Clust available"
+        },
+        {
+            "gis:iocStats:CA_CONN_CNT": "CA Connections"
+        },
+        {
+            "gis:iocStats:IF(I|O)_ERR_CNT": "IF errors"
+        },
+        {
+            "gis:iocStats:FD_FREE": "Free FDs"
+        },
+        {
+            "gis:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'}": "Boot version"
+        },
+        {
+            "gis:iocStats:CA_CLNT_CNT": "CA Clients"
+        }
+    ]
+}

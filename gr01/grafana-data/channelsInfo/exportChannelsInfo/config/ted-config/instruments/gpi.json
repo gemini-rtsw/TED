@@ -1,0 +1,190 @@
+{
+    "General": [
+        {
+            "gpi:tlc:meanAmbientHumidity": "Mean Ambient Humidity (%RH)"
+        },
+        {
+            "gpi:tlc:maxEEHumidity": "Maximum EE Humidity (%RH)"
+        },
+        {
+            "gpi:tlc:maxMemsHumidity": "Maximum Mems Humidity (%RH)"
+        },
+        {
+            "gpi:tlc:maxOmssHumidity": "Maximum Omss Humidity (%RH)"
+        },
+        {
+            "gpi:tlc:maxAirHeatExInputTemp": "Maximum Heat Exchanger Air Input Temperature (C)"
+        },
+        {
+            "gpi:tlc:maxAirHeatExOutputTemp": "Maximum Heat Exchanger Air Output Temperature (C)"
+        },
+        {
+            "gpi:tlc:maxGlycolInputTemp": "Maximum Heat Exchanger Glycol Input Temperature (C)"
+        },
+        {
+            "gpi:tlc:maxGlycolOutputTemp": "Maximum Heat Exchanger Glycol Output Temperature. (C)"
+        }
+    ],
+    "IFS": [
+        {
+            "gpi:tlc:maxIfsCryoGlycolInputTemp": "Maximum IFS Cryocooler Glycol Input Temperature (C)"
+        },
+        {
+            "gpi:tlc:maxIfsCryoGlycolOutputTemp": "Maximum IFS Cryocooler Glycol Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:ifsCCRGlycolInput": "IFS Cryocooler Glycol Input Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:ifsCCRGlycolOutput": "IFS Cryocooler Glycol Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:ccrBody": "IFS Cryocooler Body Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:ifsDewarWall": "IFS Dewar Wall Temperature (C)"
+        },
+        {
+            "gpi:ifs:cryo1Temp.": "IFS Cryocooler 1 Temperature (K)"
+        },
+        {
+            "gpi:ifs:cryo2Temp.": "IFS Cryocooler 2 Temperature (K)"
+        },
+        {
+            "gpi:oneWire:temperature:ifsCCDNeck": "IFS CCD Neck Temp (C)"
+        },
+        {
+            "gpi:ifs:ifsPressure1": "IFS Pressure 1 (mTorr)"
+        },
+        {
+            "gpi:ifs:ifsPressure2": "IFS Pressure 2 (mTorr)"
+        },
+        {
+            "gpi:ifs:ifsDetectorMollyBlock": "Molly Block Temperature (K)"
+        },
+        {
+            "gpi:ifsDetectorColdTip1": "IFS Cold Tip 1"
+        },
+        {
+            "gpi:ifsDetectorColdTip2": "IFS Cold Tip 2"
+        }
+    ],
+    "AOC": [
+        {
+            "gpi:aoc:wfsDetTemp": "Wave Front Sensor Detector Temperature (K)"
+        },
+        {
+            "gpi:aoc:darkLevel": "AOC Dark Level (counts)"
+        }
+    ],
+    "AO EE": [
+        {
+            "gpi:oneWire:temperature:aoEEHeatExchangerAirIn": "AO EE Heat Exchanger Air Input Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:aoEEHeatExchangerAirOut": "AO EE Heat Exchanger Air Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:aoEEHeatExchangerGlycolIn": "AO EE Heat Exchanger Glycol In Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:aoEEHeatExchangerGlycolOut": "AO EE Heat Exchanger Glycol Out Temperature (C)"
+        }
+    ],
+    "CAL IFS EE": [
+        {
+            "gpi:oneWire:temperature:calIfsEEHeatExchangerAirIn": "CAL IFS EE Heat Exchanger Air Input temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:calIfsEEHeatExchangerAirOut": "CAL IFS EE Heat Exchanger Air Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:calIfsEEHeatExchangerGlycolIn": "CAL IFS EE Heat Exchanger Glycol Input Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:calIfsEEHeatExchangerGlycolOut": "CAL IFS EE Heat Exchanger Glycol Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:calIfsEEMovableAir": "CAL IFS EE Movable Air Temperature (C)"
+        }
+    ],
+    "3rd EE": [
+        {
+            "gpi:oneWire:temperature:aowfsOutputAir": "AOWFS Air Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:3rdEEHeatExchangerAirIn": "3rd EE Heat Exchanger Air Input Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:3rdEEHeatExchangerAirOut": "3rd EE Heat Exchanger Air Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:3rdEEHeatExchangerGlycolIn": "3rd EE Heat Exchanger Glycol Input Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:3rdEEHeatExchangerGlycolOut": "3rd EE Heat Exchanger Glycol Output Temperature (C)"
+        }
+    ],
+    "OMSS": [
+        {
+            "gpi:oneWire:temperature:omssAoBench": "OMSS AO Bench Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:omssMountingFrame": "OMSS Mounting Frame Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:omssInterfaceStructure": "OMSS Interface Structure Temperautre (C)"
+        },
+        {
+            "gpi:oneWire:temperature:outsideOE": "OE Outside Air Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:oeInteriorAir": "OE Interior Air Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:wooferElectronicsAirOutput": "Woofer Electronics Air Output Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:adcDeployStage": "ADC Deploy Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:adcSeparationStage": "ADC Separation Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:adcExitPrismStage": "ADC Exit Prism Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:adcEntrancePrismStage": "ADC Entrance Prism Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:asuChassisAir": "ASU Chassis Air Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:asuXStage": "ASU X Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:asuYStage": "ASU Y Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:ppmLinearStage": "PPM Linear Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:ppmRotateStage": "PPM Rotate Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:aoWfsSpatialFilterStage": "AO WFS Spatial Filter Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:aoWfsFilterStage": "AO WFS Filter Select Stage Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:aoWfsCameraBody": "AO WFS Camera Body Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:calWall": "CAL Wall Temperature (C)"
+        },
+        {
+            "gpi:oneWire:temperature:polarizationModulatorStage": "Polarization Modulator Stage Temperature (C)"
+        }
+    ]
+}

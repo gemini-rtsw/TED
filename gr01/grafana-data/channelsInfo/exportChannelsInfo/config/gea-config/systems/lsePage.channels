@@ -1,0 +1,88 @@
+#lse page layout
+
+#Defaults options for all selections for all sections:
+#[QUERYSTRPAIRS] {'SYSTEMS':'lse','LEGEND':'Inside', 'GRIDLINES':'checked'}
+#[ITEMSPERROW] 2
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] Laser Room
+
+lse:roomTempC			# Temperature (deg C)
+lse:roomDewpointC		# Dewpoint temperature (deg C) 
+lse:roomHumC			# Humidity (%)
+lse:roomPresC			# Diff. Pressure (mbar)
+lse:roomDot5unitC		# .5u particle count (p/cfm)
+lse:room5unitC			# 5u particle count (p/cfm)
+lse:roomTempTgtC		# Temperature Set Point (deg C)
+lse:roomDewpointTgtC		# Dewpoint Temp. Setpoint (deg C)
+lse:manifoldSupplyPressC	# Manifold Supply Pressure (psi)
+lse:manifoldReturnPressC	# Manifold Return Pressure (psi)
+lse:lbAirPressC			# Laser Bench Air Pressure (psi)
+lse:(roomTempC|roomDewpointC)	# LSE + Dewpoint temperature (deg C) 
+
+#[SECTION] Gown Room
+
+lse:gRoomTempC		# Gwon Room Temperature (deg C)
+lse:gRoomHumC		# Humidity (%)
+lse:gRoomPresC		# Diff. (mbar)
+lse:1TGC		# 1TG Temperature Glycol Supply (deg C) 
+lse:5TGC		# 5TG Temperature Glycol Out (deg C) 
+lse:7TGC		# 7TG Temperature Glycol Out (deg C)  
+
+#[SECTION] Glycol LSE supply 1FLM	
+
+lse:1FLMTempC		# Temperature (deg C) 
+lse:1FLMFlowC		# Flow (gpm)
+lse:1FLMPressureC	# Pressure (psi) 
+
+#[SECTION] Glycol defrost circuit 2FLM	
+
+lse:2FLMTempC		# Temperature (deg C)
+lse:2FLMFlowC		# Flow (gpm)
+lse:2FLMPressureC	# Pressure (psi)
+
+#[SECTION] Glycol laser supply 3FLM	
+
+lse:3FLMTempC		# Temperature (deg C)
+lse:3FLMFlowC		# Flow (gpm)
+lse:3FLMPressureC	# Pressure (psi)
+
+#[SECTION] Air Fan
+
+lse:AFSpeedTgtC		# Speed Setpoint (%)
+lse:AFStepC		# Step
+lse:AFFaultC		# Fault
+
+#[SECTION] 1AFCV Cooling Valve
+
+lse:1AFCVSetpointC	# Position Setpoint (%)
+lse:1AFCVFeedbackC	# Position Feedback (%)
+
+#[SECTION] 2AFCV Defrost Valve
+
+lse:2AFCVSetpointC	# Position Setpoint (%)
+lse:2AFCVFeedbackC	# Position Feedback (%)
+
+#[SECTION] Air Heather 1HTR currents
+
+lse:1HTRSetpointC	# Setpoint (%)
+lse:1HTRPhase1C		# Phase 1 (Amps)
+lse:1HTRPhase2C		# Phase 2 (Amps)
+lse:1HTRPhase3C		# Phase 3 (Amps)
+#[CELL] 
+lse:1HTRPhase(1C|2C|3C)	# Phase1/Phase2/Phase3 (Amps)
+
+#[SECTION] Air Heather 1HTR sheath
+
+lse:1HTRTempC		# Temperature (deg C)
+
+#[SECTION] Air Heather 2HTR currents
+
+lse:2HTRSetpointC	# Setpoint (%)
+lse:2HTRFeedbackC       # Feedback (Amps)
+
+#[SECTION] Laser Electronic Enclosure
+
+lse:leeRhC		# Relative Humidity (%)
+lse:leeDewptC	        # Dewpoint (deg C)

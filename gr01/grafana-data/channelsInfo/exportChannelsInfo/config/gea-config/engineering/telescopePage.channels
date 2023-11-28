@@ -1,0 +1,39 @@
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS] {'SYSTEMS':'mcs','LEGEND':'Inside','GRIDLINES':'checked', 'SKIPACTION':'True'}
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] Mount 
+#[ITEMSPERROW] 3
+#[SUBTABLE] True
+mc:elCurrentPos         # Elevaton:Position
+mc:elPosError  	        # Elevaton:Error
+mc:elCurrentVel		    # Elevaton:Velocity
+mc:azCurrentPos         # Azimuth:Position
+mc:azPosError  	        # Azimuth:Error
+mc:azCurrentVel		    # Azimuth:Velocity
+
+#[SECTION] Top Shutter
+#[QUERYSTRPAIRS] {'SYSTEMS':'ecs'}
+ec:(moveShtrs.VALB|topShtrPos)		# Demand and Position
+ec:topShtrErr				        # Error
+
+#[SECTION] Bottom Shutter
+#[QUERYSTRPAIRS] {'SYSTEMS':'ecs'}
+ec:(moveShtrs.VALD|botShtrPos)	    #	Demand and Position
+ec:botShtrErr			            #	Error
+
+#[SECTION] Cass Rotator 
+#[QUERYSTRPAIRS] {'SYSTEMS':'crcs'}
+cr:crCurrentPos         # Current angle
+cr:crDemandPos          # CRCS Demand Pos.
+
+#[SECTION] Dome
+#[QUERYSTRPAIRS] {'SYSTEMS':'ecs'}
+ec:(moveDome.VALB|domePos)      # Demand and Position
+ec:domeErr              	    # Error
+
+#[SECTION] Vent Gates
+#[QUERYSTRPAIRS] {'SYSTEMS':'ecs'}
+ec:(east|west)VentGatePos             	# East/West

@@ -1,0 +1,71 @@
+{
+    "Temperatures": [
+        {
+            "gsaoi:sad:cc:tmpC3Tmp": "Detector"
+        },
+        {
+            "gsaoi:sad:cc:tmpC4Tmp": "Detector housing"
+        },
+        {
+            "gsaoi:sad:cc:tmpC1Tmp": "Cold WS"
+        },
+        {
+            "gsaoi:eng:tmpC3.SETP": "Detector Set Point"
+        },
+        {
+            "gsaoi:eng:tmpC4.SETP": "Detector housing Set Point"
+        },
+        {
+            "gsaoi:eng:tmpC1.SETP": "Detector CWS Set Point"
+        }
+    ],
+    "Heater %": [
+        {
+            "gsaoi:eng:tmpC3Heat": "Detector"
+        },
+        {
+            "gsaoi:eng:tmpA2Output": "Detector housing"
+        },
+        {
+            "gsaoi:eng:tmpC1Heat": "Cold WS"
+        }
+    ],
+    "System Temperatures": [
+        {
+            "gsaoi:eng:tmpS1Tmp1": "CH-1 1S Top Strap"
+        },
+        {
+            "gsaoi:eng:tmpS1Tmp2": "CH-1 1S Bottom Strap"
+        },
+        {
+            "gsaoi:eng:tmpS1Tmp3": "CH-2 2S Getter"
+        },
+        {
+            "gsaoi:eng:tmpS1Tmp4": "Cold WS Edge"
+        },
+        {
+            "gsaoi:eng:tmpS1Tmp5": "CC Thermal Enclosure"
+        },
+        {
+            "gsaoi:eng:tmpS1Tmp6": "DC Thermal Enclosure"
+        },
+        {
+            "gsaoi:eng:tmpS1Tmp7": "SDSU Thermal Enclosure"
+        }
+    ],
+    "Pressures": [
+        {
+            "gsaoi:eng:pressure": "Cryostat pressure"
+        }
+    ],
+    "Mechanisms": [
+        {
+            "gsaoi:sad:cc:covName": "Cover Position"
+        }
+    ],
+    "Others": [
+        {
+            "gsaoi:eng:cc:airFlow": "Air Flow Meter"
+        }
+    ]
+}

@@ -1,13 +1,35 @@
-#!/bin/sh
 
+#!/bin/bash
+
+# Load environment variables
 source ./.env
-mkdir ${DATA_PATH}/es01
 
-mkdir ${DATA_PATH}/ls01
-mkdir ${DATA_PATH}/ls01/db
-mkdir ${DATA_PATH}/ls01/db/sincedb
+# Function to check and create directories if they do not exist
+create_directory_if_not_exists() {
+    local dir=$1
+    if [ ! -d "$dir" ]; then
+        echo "Creating directory: $dir"
+        mkdir -p "$dir"
+    else
+        echo "Directory already exists: $dir"
+    fi
+}
 
-mkdir ${DATA_PATH}/ls02/
-mkdir ${DATA_PATH}/ls02/db
-mkdir ${DATA_PATH}/ls02/db/sincedb
-mkdir ${DATA_PATH}/ls02/db/completed
+# List of directories to check/create
+directories=(
+    "${DATA_PATH}/es01"
+    "${DATA_PATH}/ls01"
+    "${DATA_PATH}/ls01/db"
+    "${DATA_PATH}/ls01/db/sincedb"
+    "${DATA_PATH}/ls02"
+    "${DATA_PATH}/ls02/db"
+    "${DATA_PATH}/ls02/db/sincedb"
+    "${DATA_PATH}/ls02/db/completed"
+    "${DATA_PATH}/ls02/db/completed"
+    "./es01/logs"
+)
+
+# Iterate over each directory and check/create
+for dir in "${directories[@]}"; do
+    create_directory_if_not_exists "$dir"
+done

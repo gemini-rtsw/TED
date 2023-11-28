@@ -1,0 +1,60 @@
+#gpolgcal page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 3
+#[SUBTABLE] False
+#[QUERYSTRPAIRS] {'SYSTEMS':'gcal','LEGEND':'Inside','GRIDLINES':'checked'}
+#This below is used to control whether each section should have its own html table. 
+
+#[SECTION]  Filter wheel
+gc:filtDevice.VAL #Target 
+gc:filtDevice.MPOS #Current
+gc:filtDevice.(VAL|MPOS)  #Target and Current
+
+
+#[SECTION]  Diffuser
+gc:diffuseDevice.VAL   #Target 
+gc:diffuseDevice.MPOS  #Current
+gc:diffuseDevice.(VAL|MPOS) #Target and Current
+
+#[SECTION]  Shutter (For IR lamp)
+#[ITEMSPERROW] 3
+#[SUBTABLE] True
+gc:shutterDevice.VAL #Target 
+gc:shutterDevice.MPOS  #Current
+gc:shutterDevice.(VAL|MPOS)  #Target and Current
+gc:shutterStateIn {'FORMAT':'Spreadsheet'}  # Current position name (Spreadsheet)
+
+#[SECTION]  Lamps (Spreadsheet)
+#[SUBTABLE] True
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS] {'FORMAT':'Spreadsheet'}
+gc:IR_LampState.VAL # IR
+gc:QH_LampState.VAL # QH
+gc:Ar_LampState.VAL # Ar
+gc:Xe_LampState.VAL # Xe
+gc:ThAr_LampState.VAL # ThAr
+gc:CuAr_LampState.VAL # CuAr
+gc:(IR|QH|Ar|Xe|ThAr|CuAr)_LampState.VAL  {'FILL':'Yes'} # All (Filled)
+
+#[SECTION]  IOC Stats
+#[CSSCLASS] sectionMain
+#[ITEMSPERROW] 4
+#[SUBTABLE] True
+
+gc:iocStats:SUSP_TASK_CNT       # Susp Tasks
+gc:iocStats:MEM_FREE            # Free memory
+gc:iocStats:LOAD                # Global load
+gc:iocStats:UPTIME {'FORMAT':'Spreadsheet'} # Uptime
+
+gc:iocStats:GTIM_ERR_CNT        # Time errors
+gc:iocStats:SYS_MBUF_FREE       # Free Sys MBUFs
+gc:iocStats:SYS_CLUST_AVAIL_(0|1)   # % Clust available
+gc:iocStats:CA_CONN_CNT         # CA Connections
+
+gc:iocStats:IF(I|O)_ERR_CNT     # IF errors
+gc:iocStats:FD_FREE             # Free FDs
+gc:iocStats:APP_DIR(1|2) {'FORMAT':'Spreadsheet'} # Boot version 
+gc:iocStats:CA_CLNT_CNT         # CA Clients
+
+

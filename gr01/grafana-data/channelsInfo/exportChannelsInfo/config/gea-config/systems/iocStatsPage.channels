@@ -1,0 +1,26 @@
+#MCS page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 3
+#[QUERYSTRPAIRS] {'SYSTEMS':'iocStats','LEGEND':'Inside', 'GRIDLINES':'checked', 'LAPSE':'180'}
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] Mount
+#[ITEMSPERROW] 6
+#[SUBTABLE] True
+#[CELL] Elevation
+mc:elCurrentPos  # Position
+cr:iocStats:IOC_CPU_LOAD
+cr:iocStats:FD_FREE 
+cr:iocStats:FD_MAX
+cr:iocStats:IFI_ERR_CNT
+cr:iocStats:IFO_ERR_CNT
+
+cr:iocStats:MEM_FREE
+cr:iocStats:MEM_USED 
+cr:iocStats:MEM_MAX
+cr:iocStats:MEM_BLK_FREE
+cr:iocStats:RAM_WS_FREE
+cr:iocStats:RAM_WS_USED
+cr:iocStats:RAM_WS_MAX 

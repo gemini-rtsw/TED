@@ -1,0 +1,167 @@
+#LGSF page layout
+
+#Defaults options for all selections for all sections:
+#[ITEMSPERROW] 1
+#[QUERYSTRPAIRS] {'SYSTEMS':'lis','LEGEND':'Inside', 'GRIDLINES':'checked',}
+#This below is used to control whether each section should have its own html table. 
+#[SUBTABLE] False
+
+#[SECTION] Bto
+#[CSSCLASS] sectionMain
+#[SECTION] General
+#[QUERYSTRPAIRS] {'SYSTEMS':'bto'}
+bto:pm           #Beam Dump Power Meter
+bto:btoopEnPr     #BTOOP Entry Pressure
+
+#[SECTION] Temperatures
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'SYSTEMS':'bto'}
+bto:teeHexSupTemp 	   # Supply Air Temp (deg C)
+bto:teeHexRetTemp 	   # Return Air Temp (deg C)
+bto:teeCoolSupTemp	    # Coolant Supply Temperature (deg C)
+bto:teeCoolRetTemp	    # Coolant Return Temperature (deg C)
+bto:tee(Hex(Sup|Ret)|Cool(Sup|Ret))Temp	  {'LEGEND':'Outside'}	 # All
+
+#[SECTION]  TCM (Truss Centering Mirror)
+#[ITEMSPERROW] 4
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'SYSTEMS':'bto'}
+#[CELL] Tip:
+bto:TCA1TipDem    #  Demand   
+bto:TCA1Tip       #  Position 
+bto:TCA1Tip(Dem|) # Demand/Position 
+#[CELL] Tilt:
+bto:TCA1TiltDem   # Demand   
+bto:TCA1Tilt      #  Position
+bto:TCA1Tilt(Dem|)   #  Demand/Position
+
+#[SECTION]  TPM (Truss Pointing Mirror)
+#[ITEMSPERROW] 4
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'SYSTEMS':'bto'}
+#[CELL] Tip:
+bto:TPA1TipDem        # Demand    
+bto:TPA1Tip         # Position  
+bto:TPA1Tip(Dem|)    #  Demand/Position
+#[CELL] Tilt:
+bto:TPA1TiltDem     # Demand   
+bto:TPA1Tilt        # Position 
+bto:TPA1Tilt(Dem|)  #  Demand/Position
+
+#[SECTION]  Actuators TGT/POS
+#[ITEMSPERROW] 4
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'SYSTEMS':'bto'}
+bto:TPACtrlCMC1.*X      # TPM X
+bto:TCACtrlCMC1.*X      # TCM X
+bto:PMCtrlCMC.*X      # PM X
+bto:CMCtrlCMC.*X      # CM X
+
+bto:TPACtrlCMC1.*Y      # TPM Y
+bto:TCACtrlCMC1.*Y      # TCM Y
+bto:PMCtrlCMC.*Y      # PM Y
+bto:CMCtrlCMC.*Y      # CM Y
+
+#[SECTION] Laser
+#[CSSCLASS] sectionMain
+  
+#[SECTION] Laser Parameters
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+las:lcs:powLevel  # Power level
+las:lcs:centFreq  # Central Freq.
+las:lcs:beamQualityH  # Beam quality H
+las:lcs:beamQualityV  # Beam quality V
+las:diagnosticsG.VALH # 1319 Etalon TEC Sp
+las:diagnosticsG.VALI # 1319 Etalon Temperature
+
+#[SECTION] USBI / Scope PC
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+#[QUERYSTRPAIRS] {'SYSTEMS':'lgsscope'}
+lgs:usbi:pwr   # Power
+lgs:usbi:notes   {'FORMAT':'Spreadsheet'} # Notes
+
+#[SECTION] Calculated parameters
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+las:lcs:powLevel|lgs:usbi:pwr  {'SYSTEMS':'lgsscope lis','EQINTERPOLATE':10,'EQUATIONCONFIG':'las:lcs:powLevel / lgs:usbi:pwr,,,Power Ratio'} # Power ratio (Power level / Power ) with 10s interpolation
+
+#[SECTION] Lis
+#[CSSCLASS] sectionMain
+
+#[SECTION] General
+#[ITEMSPERROW] 2
+#[SUBTABLE] True
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+las:shCtrl.A           # Laser Shutter Demand
+las:shCtrlC            # Laser Shutter Command State
+las:faults1G.VALH      # Laser Shutter Open failure
+las:faults1G.VALI      # Laser Shutter Close failure
+las:lcs:ilock          # Laser Interlock Active
+las:lcs:ilockDefeated  # Laser Interlock Defeated
+las:lcs:intCon         # Pc/PXI connection
+las:lcs:pcHeartbeat    # Pc heartbeat
+las:lcs:pxiHeartbeat   # Pxi heartbeat
+las:inPosition         # Laser in position
+las:health             # Laser Health
+  
+#[SECTION] LIS Internal Inputs
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}                    
+lis:in:spot1.VAL  # Spotter East
+lis:in:spot2.VAL  # Spotter West 
+
+#[SECTION] LIS Inputs from BTO
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:in:btoHb.VAL    #  BTO Heartbeat
+
+#[SECTION] LIS Inputs from SALSA
+#[ITEMSPERROW] 2
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:in:bocadHb.VAL   # BOCAD Heartbeat
+lis:in:ltcsHb.VAL     # LTCS Heartbeat
+lis:in:ascamHl.VAL   # ASCAM Health
+lis:in:ltcsDet.VAL   # LTCS Beam Collision
+
+#[SECTION] LIS sequences
+#[QUERYSTRPAIRS]  {'FORMAT':'Spreadsheet'}
+lis:seq:procWord178.VALA        # Aircraft detection on BOCAD when laser propagated to the sky, Req.001
+lis:seq:procWord178.VALB    # ASCAM beam collision, satellite avoidance when laser propagated to the sky, Req.005
+lis:seq:procWord178.VALC        # BOCAD heartbeat down when laser propagated to the sky, Req.010
+lis:seq:procWord178.VALD        # LTCS?ASCAM heartbeat down, Req.015
+#[CELL]
+lis:seq:procWord179.VALA        # BTO heartbeat down when laser propagated to the sky, Req.020
+lis:seq:procWord179.VALB        # RTC heartbeat down when laser propagated to the sky, Req.025
+lis:seq:procWord179.VALC        # AOM heartbeat down when laser propagated to the sky, Req.030
+lis:seq:procWord179.VALD        # Laser fault when laser propagated to the sky, Req.040
+#[CELL]
+lis:seq:procWord180.VALA        # Laser fault when laser propagated to BDM, Req.041
+lis:seq:procWord180.VALB        # BTO heartbeat down  when laser propagated to BDM, Req.050
+lis:seq:procWord180.VALC        # observing floor entered when laser propagated to BDM, Req.075
+lis:seq:procWord180.VALD        # Emergency stop tripped, Req.080
+#[CELL]
+lis:seq:procWord181.VALA        # BTO internal interlock when laser propagated to the sky, Req.090
+lis:seq:procWord181.VALB        # BTO internal interlock when laser propagated to BDM, Req.095
+lis:seq:procWord181.VALC        # BTO door interlock when laser propagated to the sky, Req.100
+lis:seq:procWord181.VALD        # BTO door interlock when laser propagated to BDM, Req.105
+#[CELL]
+lis:seq:procWord182.VALA        # AOM internal interlock when laser propagated to the sky, Req.110
+lis:seq:procWord182.VALB        # AOM door interlock when laser propagated to the sky, Req.120
+lis:seq:procWord182.VALC        # AOM door interlock when laser propagated to BDM, Req.125
+lis:seq:procWord182.VALD        # RTC internal interlock when laser propagated to the sky, Req.130
+#[CELL]
+lis:seq:procWord183.VALA        # LSE door interlock when laser propagated to the sky, Req.136
+lis:seq:procWord183.VALB        # LSE door interlock when laser propagated to BDM, Req.137
+lis:seq:procWord183.VALC        # TCS heartbeat down when laser propagated to the sky, Req.145
+lis:seq:procWord183.VALD        # Laser shutter or safety shutter fault  when Laser ON, Req.150
+#[CELL]
+lis:seq:procWord184.VALA        # BTO shutters faults when Laser ON, Req.155
+lis:seq:procWord184.VALB        # Earthquake when laser propagated to the sky, Req.160
+lis:seq:procWord184.VALC        # Earthquake when laser propagated to BDM, Req.165
+lis:seq:procWord184.VALD        # Interface fault when laser ON and laser shutter open, Req.180
+
+#[SECTION]
+lis:in:eq.VAL   #EQ sensor detection
