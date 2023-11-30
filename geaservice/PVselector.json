@@ -1,4 +1,15 @@
 {
+    "none": {
+      "none": {
+        "none": [
+         {
+          "name":" ",
+          "channels":[" "]
+         }
+	]
+      }
+    },
+
     "instruments": {
       "flamingos2": {
         "Camera Cryostat Temperatures": [
