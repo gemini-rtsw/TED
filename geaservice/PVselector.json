@@ -6,7 +6,7 @@
           "name":" ",
           "channels":[" "]
          }
-	]
+	      ]
       }
     },
 
@@ -6462,50 +6462,6 @@
             "channels": ["tcs:iocStats:APP_DIR1", "tcs:iocStats:APP_DIR2"]
           },
           { "name": "CA Clients", "channels": ["tcs:iocStats:CA_CLNT_CNT"] }
-        ]
-      },
-      "iocStats": {
-        "Mount": [
-          { "name": "Position", "channels": ["mc:elCurrentPos"] },
-          {
-            "name": "cr:iocStats:IOC_CPU_LOAD",
-            "channels": ["cr:iocStats:IOC_CPU_LOAD"]
-          },
-          { "name": "cr:iocStats:FD_FREE", "channels": ["cr:iocStats:FD_FREE"] },
-          { "name": "cr:iocStats:FD_MAX", "channels": ["cr:iocStats:FD_MAX"] },
-          {
-            "name": "cr:iocStats:IFI_ERR_CNT",
-            "channels": ["cr:iocStats:IFI_ERR_CNT"]
-          },
-          {
-            "name": "cr:iocStats:IFO_ERR_CNT",
-            "channels": ["cr:iocStats:IFO_ERR_CNT"]
-          },
-          {
-            "name": "cr:iocStats:MEM_FREE",
-            "channels": ["cr:iocStats:MEM_FREE"]
-          },
-          {
-            "name": "cr:iocStats:MEM_USED",
-            "channels": ["cr:iocStats:MEM_USED"]
-          },
-          { "name": "cr:iocStats:MEM_MAX", "channels": ["cr:iocStats:MEM_MAX"] },
-          {
-            "name": "cr:iocStats:MEM_BLK_FREE",
-            "channels": ["cr:iocStats:MEM_BLK_FREE"]
-          },
-          {
-            "name": "cr:iocStats:RAM_WS_FREE",
-            "channels": ["cr:iocStats:RAM_WS_FREE"]
-          },
-          {
-            "name": "cr:iocStats:RAM_WS_USED",
-            "channels": ["cr:iocStats:RAM_WS_USED"]
-          },
-          {
-            "name": "cr:iocStats:RAM_WS_MAX",
-            "channels": ["cr:iocStats:RAM_WS_MAX"]
-          }
         ]
       },
       "lgsf": {
