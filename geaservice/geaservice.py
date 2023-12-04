@@ -68,14 +68,14 @@ def get_values():
     if ',' in channel:
         channel = channel.split(',')
         for chan in channel:
-            if(chan!=""):
+            if(chan not in [" ",""]):
                 channels_list.append(chan)
     else:
         channels_list =[channel]
 
     output={}
     print("chan_list",channels_list)
-    if channels_list[0] != '':
+    if channels_list[0] not in [" ",""]:
         try:
             sem.acquire()
             geaRecord = gea.archiver.values(int(archive_key), channels_list,
