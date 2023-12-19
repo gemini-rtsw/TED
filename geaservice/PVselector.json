@@ -2588,8 +2588,9 @@
           { "name": "Spotter West", "channels": ["lis:in:spot2.VAL"] }
         ],
         "LIS Internal Inputs / TBAD": [
-          { "name": "TBAD detection", "channels": ["lis:in:tbad.VAL"] },
-          { "name": "TBAD Override", "channels": ["lis:tbadOverrideState.VAL"] }
+          { "name": "TBAD Detection", "channels": ["lis:in:tbad.VAL"] },
+          { "name": "TBAD Override", "channels": ["lis:tbadOverrideState.VAL"] },
+          { "name": "TBAD Heartbeat Lost", "channels": ["lis:in:tbadHbLost"] }
         ],
         "LIS Inputs from BTO": [
           { "name": "BTO Heartbeat", "channels": ["lis:in:btoHb.VAL"] }
