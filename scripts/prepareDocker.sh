@@ -6,4 +6,4 @@ else
 fi
 
 # Build and launch Docker containers
-docker compose build --no-cache elasticsearch geaservice grafana logstash_01
+docker compose build --no-cache elasticsearch geaservice grafana logstash
