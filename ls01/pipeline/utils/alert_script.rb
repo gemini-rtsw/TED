@@ -13,7 +13,7 @@ require "date"
 @slackWebhook = "https://hooks.slack.com/services/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"
 
 #timezone
-@tz = -04
+@tz = `date "+%Z"`.strip
 
 #timer for send alerts (hours,minutes)
 @hours = 2
