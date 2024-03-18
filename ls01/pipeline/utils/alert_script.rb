@@ -59,12 +59,13 @@ end
 #create a mesagge with event fields
 def composeMessage(event)
   timestamp = (DateTime.parse(event.timestamp.to_s).new_offset("#{@tz}").iso8601(9)).to_s
-  messageBody = "Subsystem: " + event.get("subsystem") + "\n" + "Timestamp: " + timestamp + "\n" + "Message: " + event.get("msg") + "\r\n"
+  messageBody ="This is an automatic notification from TED to report the activation of an alarm, the details are: "+"\n\n"+ "Subsystem: " + event.get("subsystem") + "\n" + "Timestamp: " + timestamp + "\n" + "Message: " + event.get("msg") + "\r\n"
   return messageBody
 end
 
 #define flags for alerts
 def flags(event, alert)
+  return false if alert["exclude"].include?(event.get("subsystem"))
   return alert["source"] == "logstash" &&
            (event.get("subsystem") =~ /.*#{alert["subsystem"]}.*/) &&
            (event.get("msg") =~ /.*#{alert["expression"]}.*/)

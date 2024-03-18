@@ -3,19 +3,21 @@
     "ruleName": "Task called pure virtual function - Alarm",
     "subsystem": "gmos",
     "expression": "Task called pure virtual function",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
     ],
     "source": "logstash"
   },
   {
     "ruleName": "ENOBUFS - Alarm",
     "subsystem": "",
-    "expression": "ENOBUFS",
+    "expression": "tmnow",
+    "exclude": ["pwfs2"],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
     ],
     "source": "logstash"
   },
@@ -23,9 +25,10 @@
     "ruleName": "Exception next instruction - Alarm ",
     "subsystem": "gmos",
     "expression": "Exception next instruction",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
     ],
     "source": "logstash"
   },
@@ -33,9 +36,10 @@
     "ruleName": "No more processes - Alarm ",
     "subsystem": "",
     "expression": "No more processes",
+    "exclude": ["gis"],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
     ],
     "source": "logstash"
   },
@@ -43,9 +47,10 @@
     "ruleName": "no data is ready - Alarm ",
     "subsystem": "",
     "expression": "no data is ready",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
     ],
     "source": "logstash"
   }
