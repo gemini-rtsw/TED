@@ -6,18 +6,18 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
   },
   {
-    "ruleName": "ENOBUFS - Alarm",
+    "ruleName": "S_errno_ENOBUFS - Alarm",
     "subsystem": "",
-    "expression": "tmnow",
-    "exclude": ["pwfs2"],
+    "expression": "S_errno_ENOBUFS",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
   },
@@ -28,18 +28,18 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
   },
     {
-    "ruleName": "No more processes - Alarm ",
+    "ruleName": "pthread_create error No more processes - Alarm ",
     "subsystem": "",
-    "expression": "No more processes",
-    "exclude": ["gis"],
+    "expression": "pthread_create error No more processes",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
   },
@@ -50,7 +50,7 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
   }
