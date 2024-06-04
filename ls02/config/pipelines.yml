@@ -1,3 +1,9 @@
+- pipeline.id: cpo-casnooper-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/cpo/casnooper/casnooper.cfg"
+  queue.type: persisted
+  queue.max_bytes: 500mb
+
 - pipeline.id: cpo-dhs-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/cpo/dhs/dhs.cfg"
