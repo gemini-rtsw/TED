@@ -22,7 +22,14 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
-#---------------------------------------- Non-Rotatives ----------------------------------------#
+---------------------------------------- Non-Rotatives ----------------------------------------#
+
+- pipeline.id: cpo-casnooper-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/cpo/casnooper/casnooper.cfg"
+  queue.type: persisted
+  queue.max_bytes: 500mb
+
 - pipeline.id: cpo-qacq-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/cpo/gacq/gacq.cfg"
