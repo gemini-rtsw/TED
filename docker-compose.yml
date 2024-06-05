@@ -102,7 +102,6 @@ services:
       - ${DATA_PATH}/ls01/db:/db
       - /etc/localtime:/etc/localtime
 
-
     logging:
       driver: json-file
       options:

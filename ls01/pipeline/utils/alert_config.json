@@ -1,8 +1,9 @@
 [
   {
-    "ruleName": "Task called pure virtual function - Alarm",
+    "ruleName": "Task called pure virtual function - Alarm - Subsystem restart required",
     "subsystem": "gmos",
     "expression": "Task called pure virtual function",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
@@ -10,9 +11,10 @@
     "source": "logstash"
   },
   {
-    "ruleName": "ENOBUFS - Alarm",
+    "ruleName": "ENOBUFS - Alarm - Subsystem restart likely required",
     "subsystem": "",
     "expression": "ENOBUFS",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
@@ -20,9 +22,10 @@
     "source": "logstash"
   },
   {
-    "ruleName": "Exception next instruction - Alarm ",
+    "ruleName": "Exception next instruction - Alarm - Subsystem restart required",
     "subsystem": "gmos",
     "expression": "Exception next instruction",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
@@ -30,9 +33,10 @@
     "source": "logstash"
   },
     {
-    "ruleName": "pthread_create error No more processes - Alarm ",
+    "ruleName": "pthread_create error No more processes - Alarm - Subsystem restart required",
     "subsystem": "",
     "expression": "pthread_create error No more processes",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
@@ -43,6 +47,7 @@
     "ruleName": "no data is ready - Alarm ",
     "subsystem": "",
     "expression": "no data is ready - This is not an correct alert - To be reviewed by Roberto Rojas",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
@@ -53,6 +58,7 @@
     "ruleName": "REL-4240 test",
     "subsystem": "gmos",
     "expression": "Fake error message",
+    "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
@@ -61,3 +67,4 @@
   }
 
 ]
+
