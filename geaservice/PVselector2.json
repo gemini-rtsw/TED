@@ -1,0 +1,78 @@
+{
+    "MCS":{
+    	"Mount":
+	{
+		"Elevation":
+		{
+			"Position":["mc:elCurrentPos","test"],
+			"Error":["mc:elPosError"],
+			"Velocity":["mc:elCurrentVel"],
+			"TCS Demand":["mc:elDemandPos"],
+			"InPos Flag":["mc:inPositionEl"]
+		},
+		"Azimuth":{
+			"Position":["mc:azCurrentPos"],
+			"Error":["mc:azPosError"],
+			"Velocity":["mc:azCurrentVel"],
+			"TCS Demand":["mc:azDemandPos"],
+			"InPos Flag":["mc:inPositionAz"]
+		}
+	},
+	"MCS-TCS Demands Time Delay":
+	{
+		"TCS-MCS Network Delay":
+		{
+			"mc:Tracking.VALH":["mc:Tracking.VALH"]
+		}
+	
+	},
+	"PMAC Data":
+	{
+		"Elevation":
+		{
+			"PMAC Demand Position":["mc:elPmacDemandPos"],
+			"Error":["mc:elPmacPosError"]
+		},
+		"Azimuth":
+		{	
+			"PMAC Demand Position":["mc:azPmacDemandPos"],
+			"Error":["mc:azPmacPosError"]
+		}
+	
+	},
+	"Elevation:PMAC:Tachos":
+	{
+		"Tachos":
+		{
+			"Tacho1":["mc:elTacho1"],
+			"Tacho2":["mc:elTacho2"],
+			"Tacho3":["mc:elTacho3"],
+			"Tacho4":["mc:elTacho4"]
+		}
+	},
+	"Azimuth:PMAC:Tachos":
+	{
+		"Tachos":
+		{
+			"Tacho1":["mc:azTacho1"],
+			"Tacho2":["mc:azTacho2"],
+			"Tacho3":["mc:azTacho3"],
+			"Tacho4":["mc:azTacho4"],
+			"Tacho5":["mc:azTacho5"],
+			"Tacho6":["mc:azTacho6"],
+			"Tacho7":["mc:azTacho7"],
+			"Tacho8":["mc:azTacho8"]
+		}
+	},
+	"Elevation:PMAC:Currents":
+	{
+		"Motors":
+		{
+			"Motor1":["mc:elMotor1"],
+			"Motor2":["mc:elMotor2"],
+			"Motor3":["mc:elMotor3"],
+			"Motor4":["mc:elMotor4"]
+		}
+	}
+    }
+}

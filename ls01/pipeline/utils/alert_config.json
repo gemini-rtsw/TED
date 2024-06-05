@@ -48,5 +48,16 @@
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
+  },
+  {
+    "ruleName": "REL-4240 test",
+    "subsystem": "gmos",
+    "expression": "Fake error message",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
   }
+
 ]

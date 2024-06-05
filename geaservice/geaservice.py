@@ -100,6 +100,12 @@ def pvSelector():
     data = json.load(f)
     return(data)
 
+@app.route("/PVselector2", methods=['GET'])
+def pvSelector2():
+    f = open('PVselector2.json')
+    data = json.load(f)
+    return(data)
+
 if __name__ == '__main__':
     from waitress import serve
     serve(app, host='0.0.0.0', port=8000, threads=50)
