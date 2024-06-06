@@ -1,0 +1,52 @@
+[
+  {
+    "ruleName": "Task called pure virtual function - Alarm",
+    "subsystem": "gmos",
+    "expression": "Task called pure virtual function",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "ENOBUFS - Alarm",
+    "subsystem": "",
+    "expression": "ENOBUFS",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Exception next instruction - Alarm ",
+    "subsystem": "gmos",
+    "expression": "Exception next instruction",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+    {
+    "ruleName": "pthread_create error No more processes - Alarm ",
+    "subsystem": "",
+    "expression": "pthread_create error No more processes",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "no data is ready - Alarm ",
+    "subsystem": "",
+    "expression": "no data is ready",
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  }
+]
