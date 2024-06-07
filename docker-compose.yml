@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 services:
 #######################################################################################################
 
@@ -16,6 +16,10 @@ services:
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
+    deploy:
+      resources:
+        limits:
+          memory: 10G
 
     networks:
       - elkg
