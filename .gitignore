@@ -1,2 +1,3 @@
 es01/logs/*
 gr01/grafana-data/png
+.env
