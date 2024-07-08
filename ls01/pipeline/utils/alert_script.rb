@@ -47,6 +47,8 @@ def notifyEmail(recipients, subject, messageBody)
     messageHeader << "From: <#{@senderAddress}>\r\n"
     messageHeader << "To: <#{recipientAddress}>\r\n"
     messageHeader << "Subject: #{subject}\r\n"
+    messageHeader << "MIME-Version: 1.0\r\n"
+    messageHeader << "Content-type: text/html\r\n"
     message = messageHeader + "\r\n" + messageBody + "\r\n"
 
     smtp = Net::SMTP.new @smtp_server, @port
@@ -57,9 +59,53 @@ def notifyEmail(recipients, subject, messageBody)
 end
 
 #create a mesagge with event fields
-def composeMessage(event)
+def composeMessage(event, alertMessage)
   timestamp = (DateTime.parse(event.timestamp.to_s).new_offset("#{@tz}").iso8601(9)).to_s
-  messageBody ="This is an automatic notification from TED to report the activation of an alarm, the details are: "+"\n\n"+ "Subsystem: " + event.get("subsystem") + "\n" + "Timestamp: " + timestamp + "\n" + "Message: " + event.get("msg") + "\r\n"
+  messageBody = <<-HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .subsystem, .timestamp, .message {
+            margin-bottom: 5px;
+        }
+        .alert {
+            color: #d9534f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">This is an automatic notification from TED to report the activation of an alarm</div>
+        <div class="content">
+            <div class="subsystem"><strong>Subsystem:</strong> #{event.get("subsystem")}</div>
+            <div class="timestamp"><strong>Timestamp:</strong> #{timestamp}</div>
+            <div class="message"><strong>Message:</strong> #{event.get("msg")}</div>
+            <div class="alert">#{alertMessage}</div>
+        </div>
+    </div>
+</body>
+</html>
+HTML
   return messageBody
 end
 
@@ -117,7 +163,7 @@ readTimer()
 def filter(event)
   for alert in @alerts
     if (flags(event, alert) && timer(event, alert))
-      messageBody = composeMessage(event)
+      messageBody = composeMessage(event, alert["alertMessage"])
       alert["triggerAlarm"].map { |ta|
         case ta["service"]
         when "slack"
@@ -132,3 +178,4 @@ def filter(event)
   end
   return [event]
 end
+

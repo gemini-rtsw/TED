@@ -3,6 +3,7 @@
     "ruleName": "Task called pure virtual function - Alarm - Subsystem restart required",
     "subsystem": "gmos",
     "expression": "Task called pure virtual function",
+    "alertMessage":"",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -14,6 +15,7 @@
     "ruleName": "ENOBUFS - Alarm - Subsystem restart likely required",
     "subsystem": "",
     "expression": "ENOBUFS",
+    "alertMessage":"",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -25,6 +27,7 @@
     "ruleName": "Exception next instruction - Alarm - Subsystem restart required",
     "subsystem": "gmos",
     "expression": "Exception next instruction",
+    "alertMessage":"",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -36,6 +39,7 @@
     "ruleName": "pthread_create error No more processes - Alarm - Subsystem restart required",
     "subsystem": "",
     "expression": "pthread_create error No more processes",
+    "alertMessage":"",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -47,6 +51,7 @@
     "ruleName": "no data is ready - Alarm ",
     "subsystem": "",
     "expression": "no data is ready - This is not an correct alert - To be reviewed by Roberto Rojas",
+    "alertMessage":"",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -54,14 +59,15 @@
     ],
     "source": "logstash"
   },
-  {
-    "ruleName": "REL-4240 test",
-    "subsystem": "gmos",
-    "expression": "Fake error message",
+ {
+    "ruleName": "bad status from timeNowC - Alarm",
+    "subsystem": "",
+    "expression": "bad status from timeNowC",
+    "alertMessage":"This first appeared in GMOS-DC in GSFR-43617, review this FR for more details.",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
     ],
     "source": "logstash"
   }
