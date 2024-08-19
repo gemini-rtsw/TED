@@ -115,7 +115,7 @@ def get_values_by_pattern():
 
         output={}
 
-        if channels_names[0] not in [" ",""]:
+        if channels_names[0] not in [" ","","None"]:
             try:
                 geaRecord = gea.archiver.values(int(archive_key), channels_names,
                                             int(int(date_from)/1000), 0,
