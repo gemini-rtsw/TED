@@ -1,4 +1,4 @@
-FROM logstash:8.11.1
+FROM logstash:8.15
 
 ARG USER
 ARG UID

@@ -1,4 +1,4 @@
-FROM grafana/grafana:10.2.1-ubuntu
+FROM grafana/grafana:11.1.4-ubuntu
 
 ARG UID
 ARG USER
