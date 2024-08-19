@@ -62,12 +62,13 @@ def getValues():
     channelsList = []
 
     if ',' in channel:
-        channelsList = [chan for chan in channel.split(',') if chan.strip()]
+        channelsList = [chan.strip() for chan in channel.split(',') if chan.strip() and chan not in ["", " ", "None"]]
     else:
-        channelsList = [channel]
+        if channel.strip() and channel not in ["", " ", "None"]:
+            channelsList = [channel.strip()]
 
     output = {}
-    if channelsList and channelsList[0].strip():
+    if channelsList:
         try:
             sem.acquire()
             geaRecord = gea.archiver.values(
@@ -87,54 +88,6 @@ def getValues():
 
     sys.stdout.flush()
     return {"values": output}
-
-@app.route("/valuesByPattern", methods=['GET'])
-def get_values_by_pattern():
-    try:
-        archive_key = request.args.get('archive')
-        pattern = request.args.get('pattern')
-
-        date_from = request.args.get('from')
-        date_to = request.args.get('to')
-        mode = request.args.get('value_mode')
-        n_points = request.args.get('n_points')
-
-        sem.acquire()
-        channels = gea.archiver.names(int(archive_key),pattern)
-        channels_names = []
-        for channel in channels:
-            channels_names.append(channel['name'])
-
-        try:
-            n_points = int(n_points)
-            if n_points > 10000:
-                n_points = 10000
-        except:
-            n_points = 3000
-
-
-        output={}
-
-        if channels_names[0] not in [" ","","None"]:
-            try:
-                geaRecord = gea.archiver.values(int(archive_key), channels_names,
-                                            int(int(date_from)/1000), 0,
-                                            int(int(date_to)/1000), 0,
-                                            int(n_points),
-                                            int(str(mode)))
-            except Exception as e:
-                print(e)
-            finally:
-                output=geaRecord
-        else:
-            output=[]
-            sys.stdout.flush()
-    except Exception as e:
-        print(e)
-
-    finally:
-        sem.release()
-        return {"values":output}
 
 @app.route("/pvSelector", methods=['GET'])
 def pvSelector():
