@@ -8,29 +8,29 @@ Hash: SHA512
   "signedByOrg": "marcusolsson",
   "signedByOrgName": "Marcus Olsson",
   "plugin": "marcusolsson-dynamictext-panel",
-  "version": "4.1.0",
-  "time": 1689555003840,
+  "version": "5.2.0",
+  "time": 1721952304216,
   "keyId": "7e4d0c6a708866e7",
   "files": {
-    "plugin.json": "a9075197646d063b5492f8224bfd44e75073edb395f6343a4a8d23d437a9c824",
-    "module.js.LICENSE.txt": "e8c02c32db0a1df801e3d57aab9722d00cf899e5a1b469795e18d19dc3b9f1c4",
-    "CHANGELOG.md": "45c6ff3d8b62f855b737b0a17160532fa4edc9dcc720082115068e15cbada3a0",
-    "LICENSE": "f61b4f79d7a9894e10398b6fd55ce533b206a27df5e045a58eca3ea788cc9119",
+    "module.js.map": "906495aa88f276217a0ac2b0609f3838d7249492c4ed5ec39d8f9d44aed7b099",
+    "img/screenshot.png": "0ad68126239b57c562effa8540836ad90c59e4dca6adb54b5d87853378af3bd5",
     "img/logo.svg": "655cfc72eec8d19bda8f74d9fa3449b7b133b5ee66c7bd3db407fdfeada1cbd1",
-    "img/screenshot.png": "68d355ffafe66ce4855566ccd7bf393e4c0dad66bddb3a2d2adb5e3eb057f50c",
-    "README.md": "6c9088f42f49bb573abd81e105f18477c49f8c202a188ebaa231d3850523f32d",
-    "module.js.map": "81d754a5b71d662b08dc7cc4f2b8f72e9956ae78aaae38891f5a51c81456f395",
-    "module.js": "7059e5cb445236590f70ae6b127a6f5f236021fd0867e8abcdff1a9c0384bf7d"
+    "module.js": "b92f722320d8ecb89d37f0a4c96731323c843acdb1a2b8c33870fb66316534cf",
+    "README.md": "d799fd4f74b39cbc36ab4e4c03b547184d8a26daefc368a9c34dcbe2244b114a",
+    "LICENSE": "d92d4f253fa8d798aed23b851736cc93fb460725aa172c5df85f603acd658703",
+    "plugin.json": "13144a4c5041b0ba5dc52f656ed4af9287bc8c9afb1f9d020f1fe8444fae60d5",
+    "module.js.LICENSE.txt": "fe714d383534c792e9dfa2628b40fe600718ca981faeaf794bd7b2c4524fb25b",
+    "CHANGELOG.md": "99e56d5cbe58f503db95c88703f28d52ba879bfadc941a276fba19172079a5d3"
   }
 }
 -----BEGIN PGP SIGNATURE-----
-Version: OpenPGP.js v4.10.10
+Version: OpenPGP.js v4.10.11
 Comment: https://openpgpjs.org
 
-wrkEARMKAAYFAmS0kDwAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
-cIhm54ljAgkBu6BkbM7cqsP0g4hcfe4pRNMqgHHahok4p0q0PgplejItqIoL
-kfgolAibXj9ma06jQiDCi2lCEZ+vM8SlVoLe0KECCQEYSNwx+Y5YPjTg4QIv
-94vIPENV5uv1aOIaUdnUwHzmFbK+3wC0klzzmPTVdZ4CCVr4PCZtWst7Z+jo
-15gp4yemEw==
-=FMRh
+wrkEARMKAAYFAmai6DAAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm56sdAgkBKsnd9brNhsmLn2eXHvihuynvidP3kXS/fgoYRWMvSaJ/+dzK
+rBpXbzADuhCOY+5DPj9ixk5g+6G//TZj/ZdXQisCCQEb4VR6QH/MaZMkXfr5
+8d7/5dwvW5yAKDMVfD1mIR2cWOAjTfdb1WGW28nvSXfKnK1mfoXq8tvuEV/O
+CBlFA2f35Q==
+=h8Az
 -----END PGP SIGNATURE-----

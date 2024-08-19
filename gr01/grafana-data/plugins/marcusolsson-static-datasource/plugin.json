@@ -1,0 +1,43 @@
+{
+  "$schema": "https://github.com/grafana/grafana/raw/main/docs/sources/developers/plugins/plugin.schema.json",
+  "annotations": true,
+  "dependencies": {
+    "grafanaDependency": ">=10.2.0",
+    "plugins": []
+  },
+  "id": "marcusolsson-static-datasource",
+  "info": {
+    "author": {
+      "name": "Volkov Labs",
+      "url": "https://volkovlabs.io"
+    },
+    "description": "Store and create your data",
+    "keywords": ["static", "test", "development", "mock", "javascript"],
+    "links": [
+      {
+        "name": "Documentation",
+        "url": "https://volkovlabs.io/plugins/volkovlabs-static-datasource/"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/volkovlabs/volkovlabs-static-datasource"
+      }
+    ],
+    "logos": {
+      "large": "img/logo.svg",
+      "small": "img/logo.svg"
+    },
+    "screenshots": [
+      {
+        "name": "Pie Chart",
+        "path": "img/dark.png"
+      }
+    ],
+    "updated": "2024-07-25",
+    "version": "4.2.0"
+  },
+  "logs": true,
+  "metrics": true,
+  "name": "Business Input",
+  "type": "datasource"
+}

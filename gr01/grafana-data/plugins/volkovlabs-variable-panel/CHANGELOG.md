@@ -1,15 +1,104 @@
 # Change Log
 
+## 3.2.0 (2024-07-09)
+
+### Features / Enhancements
+
+- Updated video tutorial (#166)
+- Updated E2E workflow using Docker (#173)
+- Added image threshold style for showing status in Table view (#170)
+
+## 3.1.0 (2024-06-06)
+
+### Features / Enhancements
+
+- Added collapse/expand rows option on initial load (#159)
+- Updated Selection Behavior using Ctrl key (#160)
+- Updated Grafana 11.0.0 and dependencies (#161)
+- Added Reset button for button view (#162)
+- Updated selection for variables with key/value pair (#165)
+
+## 3.0.0 (2024-05-09)
+
+### Breaking changes
+
+- Requires Grafana 10 and Grafana 11
+
+### Features / Enhancements
+
+- Updated selecting and deselecting multi-levels (#139)
+- Updated Auto/Static Minimize label width (#144)
+- Added show and hide Minimize label (#144)
+- Added maximum visible values option in minimize view (#147)
+- Added plugin e2e tests and remove cypress (#149)
+- Added Row count in Table view (#148)
+- Updated AutoScroll Behavior (#152)
+- Added Slider View (#154)
+- Prepared for Grafana 11 (#155)
+- Updated Grafana 10.4.2 and dependencies (#158)
+
+## 2.5.0 (2024-04-01)
+
+### Features / Enhancements
+
+- Added the indeterminate state to the checkboxes (#127)
+- Updated Tree View scrolling (#128)
+- Added Responsive tabs (#130)
+- Added support new items in Variable (minimize mode) (#134)
+- Added Preserve selection of the group between dashboards (#135)
+- Improved Tree view display and scroll (#136)
+- Added Reset dependent variables when selecting the value (#138)
+
+## 2.4.0 (2024-03-17)
+
+### Breaking changes
+
+- Requires Grafana 9.2 and Grafana 10
+
+### Features / Enhancements
+
+- Updated video tutorial in README (#111)
+- Updated timescale data (#119)
+- Updated dependencies and Actions (#120)
+- Updated the default color contrast (#122)
+- Added preserve selected group option (#124)
+- Added label for Button view (#125)
+
+## 2.3.1 (2023-12-14)
+
+### Bugfixes
+
+- Fixed draggable icon for Grafana 10.3 (#107)
+
+## 2.3.0 (2023-12-13)
+
+### Features / Enhancements
+
+- Added clean table state on tab change (#101)
+- Updated ESLint configuration and refactor (#102)
+- Added persistent mode (#103)
+- Updated to Grafana 10.2.2 and Volkov labs packages (#104)
+
+## 2.2.0 (2023-11-20)
+
+### Features / Enhancements
+
+- Added dashboard redirect option (#92)
+- Updated ESLint configuration and sort imports (#93)
+- Updated Safari layout for favorites (#97)
+- Updated to Grafana 10.2.1 (#98)
+- Added clean filter value button (#99)
+
 ## 2.1.0 (2023-11-08)
 
 ### Features / Enhancements
 
-- Add an option for an always-visible search filter (#83)
-- Add Group rename functionality (#84)
-- Add selecting fields from data frames without RefId (#85)
-- Add toggle expanded row state by clicking on the label (#86)
+- Added an option for an always-visible search filter (#83)
+- Added Group rename functionality (#84)
+- Added selecting fields from data frames without RefId (#85)
+- Added toggle expanded row state by clicking on the label (#86)
 
-## Bugfixes
+### Bugfixes
 
 - Update the deselection of All variable value which is not defined in the URL (#87)
 - Removed ability to add group to favorites (#88)
