@@ -1,13 +1,21 @@
 from flask import Flask, request
-import xmlrpc.client as xmlClient
+import xmlrpc.client as XmlClient
 import sys
 import threading
 import json
+import logging
 
+# Configurar el logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Initialize semaphore
 sem = threading.Semaphore()
 
+# Initialize Flask application
 app = Flask(__name__)
-gea = xmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
+
+# Initialize the XML-RPC client
+gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
 
 @app.route("/archives", methods=['GET'])
 def getArchives():
@@ -15,13 +23,15 @@ def getArchives():
     archivesKeyList = []
 
     try:
+        logging.info("Attempting to retrieve archives.")
         sem.acquire()
         archives = gea.archiver.archives()
-        for arch in archives:
-            archivesNameList.append(arch['name'])
-            archivesKeyList.append(arch['key'])
+        for archive in archives:
+            archivesNameList.append(archive['name'])
+            archivesKeyList.append(archive['key'])
+        logging.info("Archives retrieved successfully.")
     except Exception as e:
-        print(e)
+        logging.error(f"Error retrieving archives: {e}")
     finally:
         sem.release()
         return {"names": archivesNameList, "keys": archivesKeyList}
@@ -29,19 +39,21 @@ def getArchives():
 @app.route("/channels", methods=['GET'])
 def getChannels():
     try:
+        logging.info("Attempting to retrieve channels.")
         sem.acquire()
         archiveKey = request.args.get('archive_key')
         channels = gea.archiver.names(int(archiveKey), "")
-        channelsNames = ['None']
+        channelNames = ['None']
         for channel in channels:
-            channelsNames.append(channel['name'])
+            channelNames.append(channel['name'])
+        logging.info("Channels retrieved successfully.")
     except Exception as e:
-        print(e)
+        logging.error(f"Error retrieving channels: {e}")
     finally:
         with open('channels.json', 'w') as jsonFile:
-            json.dump({"channels": channelsNames}, jsonFile, indent=4)
+            json.dump({"channels": channelNames}, jsonFile, indent=4)
         sem.release()
-        return {"channels": channelsNames}
+        return {"channels": channelNames}
 
 @app.route("/values", methods=['GET'])
 def getValues():
@@ -49,15 +61,17 @@ def getValues():
     dateTo = request.args.get('to')
     archiveKey = request.args.get('archive')
     channel = request.args.get('channel')
-    mode = request.args.get('value_mode')
+    valueMode = request.args.get('value_mode')
     nPoints = request.args.get('n_points')
 
     try:
         nPoints = int(nPoints)
         if nPoints > 10000:
             nPoints = 10000
+        logging.info(f"Number of points set to {nPoints}.")
     except ValueError:
         nPoints = 3000
+        logging.warning("Invalid n_points value; defaulting to 3000.")
 
     channelsList = []
 
@@ -70,44 +84,67 @@ def getValues():
     output = {}
     if channelsList:
         try:
+            logging.info(f"Attempting to retrieve values for channels: {channelsList}.")
             sem.acquire()
             geaRecord = gea.archiver.values(
                 int(archiveKey), channelsList,
                 int(int(dateFrom) / 1000), 0,
                 int(int(dateTo) / 1000), 0,
                 int(nPoints),
-                int(mode)
+                int(valueMode)
             )
+            output = geaRecord
+            logging.info("Values retrieved successfully.")
         except Exception as e:
-            print(e)
+            logging.error(f"Error retrieving values: {e}")
         finally:
             sem.release()
-            output = geaRecord
     else:
         output = []
+        logging.warning("No valid channels provided for value retrieval.")
 
     sys.stdout.flush()
     return {"values": output}
 
 @app.route("/pvSelector", methods=['GET'])
 def pvSelector():
-    with open('PVselector.json') as file:
-        data = json.load(file)
-    return data
+    try:
+        logging.info("Loading PV selector data.")
+        with open('PVselector.json') as file:
+            data = json.load(file)
+        logging.info("PV selector data loaded successfully.")
+        return data
+    except Exception as e:
+        logging.error(f"Error loading PV selector data: {e}")
+        return {}
 
 @app.route("/allSubsystems", methods=['GET'])
 def allSubsystems():
-    with open('allSubsystems.json') as file:
-        dataSubs = json.load(file)
-    return dataSubs
+    try:
+        logging.info("Loading all subsystems data.")
+        with open('allSubsystems.json') as file:
+            dataSubs = json.load(file)
+        logging.info("All subsystems data loaded successfully.")
+        return dataSubs
+    except Exception as e:
+        logging.error(f"Error loading all subsystems data: {e}")
+        return {}
 
 @app.route("/allChannels", methods=['GET'])
 def allChannels():
-    with open('channels.json') as file:
-        dataChannels = json.load(file)
-    return dataChannels
+    try:
+        logging.info("Loading all channels data.")
+        with open('channels.json') as file:
+            dataChannels = json.load(file)
+        logging.info("All channels data loaded successfully.")
+        return dataChannels
+    except Exception as e:
+        logging.error(f"Error loading all channels data: {e}")
+        return {}
 
 if __name__ == '__main__':
+    logging.info("Starting the server.")
     from waitress import serve
     serve(app, host='0.0.0.0', port=8000, threads=50)
+    logging.info("Server is running on port 8000.")
 
