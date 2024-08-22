@@ -134,6 +134,8 @@ services:
 
     volumes:
       - ./geaservice/:/geaservice/
+      - /etc/localtime:/etc/localtime
+
 
     logging:
       driver: json-file
