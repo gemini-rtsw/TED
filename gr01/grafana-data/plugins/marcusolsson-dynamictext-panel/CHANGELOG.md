@@ -1,5 +1,107 @@
 # Changelog
 
+## 5.2.0 (2024-07-25)
+
+### Features / Enhancements
+
+- Updated helpers migration (#338)
+- Updated to Grafana 11.1 and dependencies (#339)
+
+## 5.1.0 (2024-07-01)
+
+### Features / Enhancements
+
+- Updated before render code async and pass markdown instance (#322)
+- Added running e2e tests in docker (#323)
+- Updated Video tutorial (#330)
+
+## 5.0.0 (2024-06-06)
+
+### Breaking changes
+
+- Requires Grafana 10 and Grafana 11.
+- Removed external scripts deprecated in Grafana 11. Use import instead.
+- Removed non-context code parameters. Please update parameters to use `context`.
+
+### Code parameters migration guide
+
+- data -> context.data
+- dataFrame -> context.dataFrame
+- eventBus -> context.grafana.eventBus
+- getLocale -> context.grafana.getLocale
+- handlebars -> context.handlebars
+- locationService -> context.grafana.locationService
+- panelData -> context.panelData
+- replaceVariables -> context.grafana.replaceVariables
+- timeRange -> context.grafana.timeRange
+- timezone -> context.grafana.timezone
+
+### Features / Enhancements
+
+- Added plugin e2e tests and remove cypress (#301)
+- Updated name to Business Text Panel (#304)
+- Prepared for Grafana 11 (#304)
+- Added ES6 Modules Support (#312)
+- Added Units and Decimal in panel options (#311)
+- Updated to Grafana 11.0 and dependencies (#315)
+
+## 4.5.0 (2024-03-13)
+
+### Features / Enhancements
+
+- Add Info message if sanitize enabled (#290)
+- Update CSS styles responsive and supporting themes (#281)
+- Update to Grafana 10.4.0 (#291)
+
+## 4.4.0 (2024-03-06)
+
+### Breaking changes
+
+- Requires Grafana 9.2 and Grafana 10
+
+### Features / Enhancements
+
+- Update context parameter (#270)
+- Added theme object, notifySuccess & notifyError (#270)
+- Update dependencies and Actions (#271)
+- Replace custom code parameters with Code Parameters Builder (#285)
+- Update CSS class for the Panel instead of a Row (#272)
+- Update Editor auto height from fixed value (#278)
+- Disable unitScale and fieldMinMax standard panel options (#286)
+
+### Bug fixes
+
+- Fix statusColor for Row (#280)
+
+## 4.3.0 (2023-12-25)
+
+### Features / Enhancements
+
+- Update ESLint configuration and refactor (#239)
+- Update Collapse from @volkovlabs/components (#239)
+- Update Introduction video in README (#240)
+- Add data render mode and passing selected data frame (#246)
+- Update to Grafana 10.2.2 and Volkov labs packages (#247)
+- Add variableValue helper (#252)
+- Add re-render on dashboard refresh (#252)
+
+### Bug fixes
+
+- Fix draggable icon in Grafana 10.3 (#249)
+
+## 4.2.0 (2023-11-20)
+
+### Features / Enhancements
+
+- Add ESLint deprecation check (#203)
+- Add custom code option which is called after content is ready (#231)
+- Add option to enabled/disable wrapping to support empty lines in HTML (#235)
+- Add handlebars (startsWith, endsWith, match) (#211)
+- Update ESLint configuration and sort imports (#236)
+- Update to Plugin Tools 2.1.1 (#236)
+- Use Grafana Access Policy to sign plugin (#236)
+- Update to Grafana 10.2.1 (#237)
+
 ## 4.1.0 (2023-07-16)
 
 ### Features / Enhancements
@@ -8,6 +110,7 @@
 - Increase Tests Coverage (#194)
 - Add status field (#196)
 - Add External JavaScript, CSS Resources (#197)
+- Update to Grafana 10.0.2 dependencies (#201)
 
 ## 4.0.0 (2023-06-26)
 

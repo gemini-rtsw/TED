@@ -1,4 +1,4 @@
-FROM elasticsearch:8.11.1
+FROM elasticsearch:8.15.0
 
 ARG USER
 ARG UID

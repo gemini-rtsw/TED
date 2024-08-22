@@ -3,7 +3,7 @@ services:
 #######################################################################################################
 
   elasticsearch:
-    image: ted-elasticsearch:8.11.1
+    image: ted-elasticsearch:8.15.0
     hostname: elasticsearch
     container_name: es01
     restart: unless-stopped
@@ -44,7 +44,7 @@ services:
 ############################################################################################################
 
   kibana:
-    image: kibana:8.11.1
+    image: kibana:8.15.0
     hostname: kibana
     container_name: ki01
     restart: unless-stopped
@@ -73,7 +73,7 @@ services:
 #################################################################################################################
 
   logstash:
-    image: ted-logstash:8.11.1
+    image: ted-logstash:8.15.0
     hostname: logstash
     container_name: ls01
     restart: unless-stopped
@@ -145,7 +145,7 @@ services:
 #################################################################################################################
 
   grafana:
-    image: ted-grafana:10.2.1-ubuntu
+    image: ted-grafana:11.1.4-ubuntu
     hostname: grafana
     container_name: gr01
     restart: unless-stopped
@@ -184,7 +184,7 @@ services:
 #################################################################################################################
 
   renderer:
-    image: grafana/grafana-image-renderer:3.8.4
+    image: grafana/grafana-image-renderer:3.11.3
     hostname: renderer
     container_name: gr01-render
     restart: unless-stopped

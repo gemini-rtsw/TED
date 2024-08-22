@@ -1,8 +1,8 @@
-# Variable Panel for Grafana
+# Business Variable Panel for Grafana
 
 ![Dashboard](https://github.com/VolkovLabs/volkovlabs-variable-panel/raw/main/src/img/dashboard.png)
 
-![Grafana 10](https://img.shields.io/badge/Grafana-10.1-orange)
+![Grafana](https://img.shields.io/badge/Grafana-11.0-orange)
 ![CI](https://github.com/volkovlabs/volkovlabs-variable-panel/workflows/CI/badge.svg)
 ![E2E](https://github.com/volkovlabs/volkovlabs-variable-panel/workflows/E2E/badge.svg)
 [![codecov](https://codecov.io/gh/VolkovLabs/volkovlabs-variable-panel/branch/main/graph/badge.svg)](https://codecov.io/gh/VolkovLabs/volkovlabs-variable-panel)
@@ -10,19 +10,20 @@
 
 ## Introduction
 
-The Variable panel builds on top of the regular dashboard variables. It allows you to have dashboard filters in a separate panel which you can place anywhere on the dashboard.
+The Business Variable panel builds on top of the regular dashboard variables. It allows you to have dashboard filters in a separate panel which you can place anywhere on the dashboard.
 
 The variable panel offers you single- and multi-variable layouts along with an advanced Tree View.
 
-[![Demonstrates the Variable panel functionality](https://raw.githubusercontent.com/volkovlabs/volkovlabs-variable-panel/main/img/tutorial.png)](https://youtu.be/mYYtMW9qiPA)
+[![Business Variable Panel for Grafana. New features and updates 3.0.0](https://raw.githubusercontent.com/volkovlabs/volkovlabs-variable-panel/main/img/business-variable.png)](https://youtu.be/vcdcLDVQYek)
 
 ## Requirements
 
-- Variable Panel 1.X, 2.X requires **Grafana 9** or **Grafana 10**.
+- Business Variable Panel 3.X requires **Grafana 10** or **Grafana 11**.
+- Variable Panel 1.X, 2.X requires **Grafana 9.2** or **Grafana 10**.
 
 ## Getting Started
 
-The Variable panel can be installed from the [Grafana Catalog](https://grafana.com/grafana/plugins/volkovlabs-variable-panel/) or utilizing the Grafana command line tool.
+The Business Variable panel can be installed from the [Grafana Catalog](https://grafana.com/grafana/plugins/volkovlabs-variable-panel/) or utilizing the Grafana command line tool.
 
 For the latter, please use the following command.
 
@@ -32,21 +33,23 @@ grafana-cli plugins install volkovlabs-variable-panel
 
 ## Highlights
 
-- Allows working with dashboard variables in Table, Tree View, Minimized and Button layouts.
+- Allows working with dashboard variables in the **Table**, **Minimize**, **Button**, and **Slider** display modes.
+- The **Table** display mode can be configured into a TreeView.
 - Displays statuses based on thresholds from data sources.
 - Supports single and multi-value variables with the All option.
 - Allows filtering values by pattern and selected favorites.
-- Supports follow when scrolling (sticky).
-- Supports multiple Tree Views using tabs.
-- Supports input text variables.
+- Supports follow when scrolling (**Sticky position**).
+- Supports multiple TreeViews using groups/tabs.
+- Supports the input text (**Input box**) variables.
 
 ## Documentation
 
-| Section                     | Description                                                         |
-| --------------------------- | ------------------------------------------------------------------- |
-| [Layout](https://volkovlabs.io/plugins/volkovlabs-variable-panel/layout/) | Explains how to display variables in a table and tree view. |
-| [Features](https://volkovlabs.io/plugins/volkovlabs-variable-panel/features/) | Demonstrates panel features. |
-| [Release Notes](https://volkovlabs.io/plugins/volkovlabs-variable-panel/release/)    | Stay up to date with the latest features and updates.               |
+| Section                                                                           | Description                              |
+| --------------------------------------------------------------------------------- | ---------------------------------------- |
+| [Data Flow](https://volkovlabs.io/plugins/volkovlabs-variable-panel/data-flow/)   | Explains the Business Variable data flow |
+| [Display Modes](https://volkovlabs.io/plugins/volkovlabs-variable-panel/layout/)  | Explains different display modes         |
+| [Features](https://volkovlabs.io/plugins/volkovlabs-variable-panel/features/)     | Explains panel features                  |
+| [Release Notes](https://volkovlabs.io/plugins/volkovlabs-variable-panel/release/) | The latest features and updates          |
 
 ## Feedback
 

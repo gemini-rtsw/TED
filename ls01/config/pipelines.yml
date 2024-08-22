@@ -1,6 +1,6 @@
 
 # # ####################################### For Testing ##############################################
-#        
+#
 # - pipeline.id: test
 #   pipeline.workers: 1
 #   path.config: "/usr/share/logstash/pipeline/test/test.cfg"
@@ -89,7 +89,7 @@
   path.config: "/usr/share/logstash/pipeline/cpo/seqexec/seqexec.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
-  
+
 - pipeline.id: cpo-tcc-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/cpo/tcc/tcc.cfg"
@@ -164,37 +164,37 @@
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/flamperle/flamperle.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb 
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-gmos-cc-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/gmos/gmos-cc.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb 
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-gmos-dc-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/gmos/gmos-dc.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb 
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-gsaoi-cc-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/gsaoi/gsaoi-cc.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb  
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-gsaoi-dc-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/gsaoi/gsaoi-dc.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb  
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-mcs-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/mcs/mcs.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb 
+  queue.max_bytes: 100mb
 
 # #---------------------------------------- Non-Rotatives ----------------------------------------#
 
@@ -226,7 +226,7 @@
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/f2oiwfs/f2oiwfs.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb 
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-gcal-${LOGSTASH_MODE}
   pipeline.workers: 1
@@ -238,7 +238,7 @@
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/gis/gis.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb 
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-hrwfs-${LOGSTASH_MODE}
   pipeline.workers: 1
@@ -250,7 +250,7 @@
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/oiwfs/oiwfs.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb  
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-pcs-${LOGSTASH_MODE}
   pipeline.workers: 1
@@ -268,24 +268,24 @@
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/pwfs1/pwfs1.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb  
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-pwfs2-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/pwfs2/pwfs2.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb  
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-scs-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/scs/scs.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb  
+  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-tcs-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/tcs/tcs.cfg"
   queue.type: persisted
-  queue.max_bytes: 100mb 
+  queue.max_bytes: 100mb
 
 
