@@ -9,7 +9,6 @@
 #
  ####################################### CPO ##############################################
 
- #---------------------------------------- Rotatives ----------------------------------------------#
 - pipeline.id: cpo-dhs-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/cpo/dhs/dhs.cfg"
@@ -21,8 +20,6 @@
   path.config: "/usr/share/logstash/pipeline/cpo/seqexec-ng/seqexec-ng.cfg"
   queue.type: persisted
   queue.max_bytes: 200mb
-
-  #---------------------------------------- Non-Rotatives ----------------------------------------#
 
 - pipeline.id: cpo-casnooper-${LOGSTASH_MODE}
   pipeline.workers: 1
@@ -141,7 +138,6 @@
   queue.max_bytes: 100mb
 
 # #################################### SERIALCON ###########################################
-#---------------------------------------- Rotatives ----------------------------------------------#
 - pipeline.id: serialcon-aom-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/aom/aom.cfg"
@@ -195,8 +191,6 @@
   path.config: "/usr/share/logstash/pipeline/serialcon/mcs/mcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
-
-# #---------------------------------------- Non-Rotatives ----------------------------------------#
 
 - pipeline.id: serialcon-ag-${LOGSTASH_MODE}
   pipeline.workers: 1
