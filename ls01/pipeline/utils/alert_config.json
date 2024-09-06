@@ -3,7 +3,7 @@
     "ruleName": "Task called pure virtual function - Alarm - Subsystem restart required",
     "subsystem": "gmos",
     "expression": "Task called pure virtual function",
-    "alertMessage":"",
+    "alertMessage":"Subsystem restart required",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -15,7 +15,7 @@
     "ruleName": "ENOBUFS - Alarm - Subsystem restart likely required",
     "subsystem": "",
     "expression": "ENOBUFS",
-    "alertMessage":"",
+    "alertMessage":"Subsystem restart likely required, be on the watch for this system behaviour",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -27,7 +27,7 @@
     "ruleName": "Exception next instruction - Alarm - Subsystem restart required",
     "subsystem": "gmos",
     "expression": "Exception next instruction",
-    "alertMessage":"",
+    "alertMessage":"Subsystem restart required",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -39,7 +39,7 @@
     "ruleName": "pthread_create error No more processes - Alarm - Subsystem restart required",
     "subsystem": "",
     "expression": "pthread_create error No more processes",
-    "alertMessage":"",
+    "alertMessage":"Subsystem restart required",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
