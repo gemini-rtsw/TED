@@ -46,6 +46,7 @@ def getSubsystems():
 # Creates a configuration file for pipelines and returns their names
 def createPipelinesFile(subsystemsDict, locations, subsystems):
     pipelinesNames = []
+    print(subsystems)
     if not locations:
         locations = subsystemsDict.keys()
 
@@ -69,12 +70,13 @@ def createPipelinesFile(subsystemsDict, locations, subsystems):
 
 # Parses user input to extract specified options
 def parseInput(userInput):
-    pattern = r'-(l|s|i|f) ([^\-]+)'
+    pattern = r'-(l|s|i|f) ("[^"]*"|\S+)'
     matches = re.findall(pattern, userInput)
 
     options = {'l': None, 's': None, 'i': None, 'f': None}
     for option, argument in matches:
-            options[option] = argument.split()
+        cleaned_argument = argument.strip('"')
+        options[option] = cleaned_argument.split()
     return options
 
 # Groups dates by month between a start and end date
@@ -130,6 +132,7 @@ def dockerComposeUp(date,envDic):
 
 # Checks if specified pipelines have finished processing
 def verifyFinished(pipelinesNames):
+    print(pipelinesNames)
     nPipelines = len(pipelinesNames)
     pipelinesFinished = set()
 
