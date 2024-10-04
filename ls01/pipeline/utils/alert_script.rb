@@ -45,7 +45,7 @@ def notifyEmail(recipients, subject, messageBody)
   recipients.each do |recipientAddress|
     messageHeader = ""
     messageHeader << "From: <#{@senderAddress}>\r\n"
-    messageHeader << "To: <#{recipientAddress}>\r\n"
+    messageHeader << "To: #{recipients.map { |r| "<#{r}>" }.join(", ")}\r\n"
     messageHeader << "Subject: #{subject}\r\n"
     messageHeader << "MIME-Version: 1.0\r\n"
     messageHeader << "Content-type: text/html\r\n"
