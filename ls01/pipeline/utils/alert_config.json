@@ -70,7 +70,18 @@
       { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
     ],
     "source": "logstash"
+  },
+  {
+    "ruleName": "Seqexec cannot connect - Alarm",
+    "subsystem": "seqexec-ng",
+    "expression": "Timeout while binding to epics channel(?!.*igrins2)",
+    "alertMessage":"Seqexec was restarted but couldn’t connect to at least one system, please ensure all systems are up and restart the seqexec.\nTo identify the system have a look at the end of the Message field.\nYou won’t receive a new notification about this in 2.5 hours, please check the seqexec logs in ted-grafana.cl.gemini.edu",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+    ],
+    "source": "logstash"
   }
-
 ]
 
