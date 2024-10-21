@@ -79,7 +79,19 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+   {
+    "ruleName": "TCS mbuf - Alarm",
+    "subsystem": "tcs",
+    "expression": "Still waiting for mbuf",
+    "alertMessage":"Check this system, it may need a reboot if it does not recover in 10 minutes.",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
   }
