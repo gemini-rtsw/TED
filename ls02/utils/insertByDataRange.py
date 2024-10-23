@@ -46,7 +46,6 @@ def getSubsystems():
 # Creates a configuration file for pipelines and returns their names
 def createPipelinesFile(subsystemsDict, locations, subsystems):
     pipelinesNames = []
-    print(subsystems)
     if not locations:
         locations = subsystemsDict.keys()
 
@@ -132,7 +131,6 @@ def dockerComposeUp(date,envDic):
 
 # Checks if specified pipelines have finished processing
 def verifyFinished(pipelinesNames):
-    print(pipelinesNames)
     nPipelines = len(pipelinesNames)
     pipelinesFinished = set()
 
