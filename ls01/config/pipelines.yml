@@ -9,6 +9,12 @@
 #
  ####################################### CPO ##############################################
 
+- pipeline.id: cpo-agSeq-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/cpo/agSeq/agSeq.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
 - pipeline.id: cpo-dhs-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/cpo/dhs/dhs.cfg"
@@ -27,17 +33,17 @@
   queue.type: persisted
   queue.max_bytes: 500mb
 
-- pipeline.id: cpo-ghost-cicada-${LOGSTASH_MODE}
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/cpo/ghost/cicada.cfg"
-  queue.type: persisted
-  queue.max_bytes: 500mb
-
-- pipeline.id: cpo-ghost-gmp-server-${LOGSTASH_MODE}
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/cpo/ghost/gmp-server.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
+  #- pipeline.id: cpo-ghost-cicada-${LOGSTASH_MODE}
+  #  pipeline.workers: 1
+  #  path.config: "/usr/share/logstash/pipeline/cpo/ghost/cicada.cfg"
+  #  queue.type: persisted
+  #  queue.max_bytes: 100mb
+  #
+  #- pipeline.id: cpo-ghost-gmp-server-${LOGSTASH_MODE}
+  #  pipeline.workers: 1
+  #  path.config: "/usr/share/logstash/pipeline/cpo/ghost/gmp-server.cfg"
+  #  queue.type: persisted
+  #  queue.max_bytes: 100mb
 
 - pipeline.id: cpo-gws-${LOGSTASH_MODE}
   pipeline.workers: 1
@@ -99,6 +105,12 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
+- pipeline.id: cpo-tcs-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/cpo/tcs/tcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
 - pipeline.id: cpo-vii-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/cpo/vii/vii.cfg"
@@ -157,11 +169,11 @@
   queue.max_bytes: 100mb
 
  
-- pipeline.id: serialcon-flam2sparc-${LOGSTASH_MODE}
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/serialcon/flam2sparc/flam2sparc.cfg"
-  queue.type: persisted
-  queue.max_bytes: 500m
+  #- pipeline.id: serialcon-flam2sparc-${LOGSTASH_MODE}
+  #  pipeline.workers: 1
+  #  path.config: "/usr/share/logstash/pipeline/serialcon/flam2sparc/flam2sparc.cfg"
+  #  queue.type: persisted
+  #  queue.max_bytes: 100m
 
 - pipeline.id: serialcon-flamingos-2-${LOGSTASH_MODE}
   pipeline.workers: 1
