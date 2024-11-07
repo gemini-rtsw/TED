@@ -1,6 +1,6 @@
 [
   {
-    "ruleName": "Task called pure virtual function - Alarm - Subsystem restart required",
+    "ruleName": "Task called pure virtual function - Alarm",
     "subsystem": "gmos",
     "expression": "Task called pure virtual function",
     "alertMessage":"Subsystem restart required",
@@ -12,7 +12,7 @@
     "source": "logstash"
   },
   {
-    "ruleName": "ENOBUFS - Alarm - Subsystem restart likely required",
+    "ruleName": "ENOBUFS - Alarm",
     "subsystem": "",
     "expression": "ENOBUFS",
     "alertMessage":"Subsystem restart likely required, be on the watch for this system behaviour",
@@ -24,7 +24,7 @@
     "source": "logstash"
   },
   {
-    "ruleName": "Exception next instruction - Alarm - Subsystem restart required",
+    "ruleName": "Exception next instruction - Alarm",
     "subsystem": "gmos",
     "expression": "Exception next instruction",
     "alertMessage":"Subsystem restart required",
@@ -36,7 +36,7 @@
     "source": "logstash"
   },
     {
-    "ruleName": "pthread_create error No more processes - Alarm - Subsystem restart required",
+    "ruleName": "Pthread_create error No more processes - Alarm",
     "subsystem": "",
     "expression": "pthread_create error No more processes",
     "alertMessage":"Subsystem restart required",
@@ -48,10 +48,10 @@
     "source": "logstash"
   },
   {
-    "ruleName": "no data is ready - Alarm ",
-    "subsystem": "",
-    "expression": "no data is ready - This is not an correct alert - To be reviewed by Roberto Rojas",
-    "alertMessage":"",
+    "ruleName": "Found huge integral sum - Alarm ",
+    "subsystem": "scs",
+    "expression": "found huge integral sum",
+    "alertMessage":"Open SCS DM, right-click and hold on the 'CONFIG' button, move to 'pid config' and release the button, then click 'SUBMIT' in the new windows. Review GSFR-43946 for more details.",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
@@ -60,7 +60,7 @@
     "source": "logstash"
   },
  {
-    "ruleName": "bad status from timeNowC - Alarm",
+    "ruleName": "Bad status from timeNowC - Alarm",
     "subsystem": "",
     "expression": "bad status from timeNowC",
     "alertMessage":"This first appeared in GMOS-DC in GSFR-43617, review this FR for more details.",
@@ -88,6 +88,18 @@
     "subsystem": "tcs",
     "expression": "Still waiting for mbuf",
     "alertMessage":"Check this system, it may need a reboot if it does not recover in 10 minutes.",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+   {
+    "ruleName": "Exception vector - Alarm",
+    "subsystem": "",
+    "expression": "exception vector",
+    "alertMessage":"System needs to be rebooted ASAP",
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
