@@ -120,8 +120,12 @@ end
 #Timer funtion for avoid flood emails
 def timer(event, alert)
   state = false
+  interval= toSeconds(@hours, @minutes)
+  if !alert["interval"].nil?
+          interval = toSeconds(alert["interval"][0].to_i , alert["interval"][1].to_i )
+  end
   currentTime = Time.now().to_datetime.new_offset("#{@tz}").to_time
-  if @timerDict[alert["expression"]].nil? || (currentTime - @timerDict[alert["expression"]]) >= toSeconds(@hours, @minutes)
+  if @timerDict[alert["expression"]].nil? || (currentTime - @timerDict[alert["expression"]]) >= interval
     @timerDict[alert["expression"]] = currentTime
     writeTimer()
     state = true
