@@ -53,6 +53,7 @@
     "expression": "found huge integral sum",
     "alertMessage":"Open SCS DM, right-click and hold on the 'CONFIG' button, move to 'pid config' and release the button, then click 'SUBMIT' in the new windows. Review GSFR-43946 for more details.",
     "exclude": [],
+    "interval":[0,5],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
