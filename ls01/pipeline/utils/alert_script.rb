@@ -42,10 +42,9 @@ end
 
 #email config
 def notifyEmail(recipients, subject, messageBody)
-  recipients.each do |recipientAddress|
     messageHeader = ""
     messageHeader << "From: <#{@senderAddress}>\r\n"
-    messageHeader << "To: #{recipients.map { |r| "<#{r}>" }.join(", ")}\r\n"
+    messageHeader << "To: <#{recipients.map{ |r| "#{r}" }.join(", ")}>\r\n"
     messageHeader << "Subject: #{subject}\r\n"
     messageHeader << "MIME-Version: 1.0\r\n"
     messageHeader << "Content-type: text/html\r\n"
@@ -53,8 +52,7 @@ def notifyEmail(recipients, subject, messageBody)
 
     smtp = Net::SMTP.new @smtp_server, @port
     smtp.start() do |smtp|
-      smtp.send_message message, @senderAddress, recipientAddress
-    end
+      smtp.send_message message, @senderAddress, recipients
   end
 end
 
