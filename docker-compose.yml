@@ -192,6 +192,8 @@ services:
     restart: unless-stopped
     networks:
       - elkg
+    volumes:
+      - ./gr01/render/config.json:/usr/src/app/config.json
 
 #################################################################################################################
 

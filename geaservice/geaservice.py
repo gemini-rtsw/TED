@@ -20,6 +20,7 @@ app = Flask(__name__)
 # Initialize the XML-RPC client
 gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
 
+
 archivesCache = {}
 channelsByArchiveCache = {}
 
@@ -33,30 +34,28 @@ def initializeCache():
     global archivesCache
     global channelsByArchiveCache
 
-    # Inicializar archivesCache
-    if os.path.exists("archives.json"):
+    if os.path.exists("jsons/archives.json"):
         logging.debug("File 'archives.json' exists.")
         try:
-            with open("archives.json", 'r') as jsonFile:
+            with open("jsons/archives.json", 'r') as jsonFile:
                 archivesCache = json.load(jsonFile)
                 logging.info("Successfully loaded archives from file.")
         except Exception as e:
             logging.error(f"Failed to load archives from file: {e}")
-            archivesCache = readArchives()  # Fallback si falla la carga
+            archivesCache = readArchives() 
     else:
         logging.debug("File 'archives.json' does not exist.")
         archivesCache = readArchives()
 
-    # Inicializar channelsByArchiveCache
-    if os.path.exists("channelsByArchive.json"):
+    if os.path.exists("jsons/channelsByArchive.json"):
         logging.debug("File 'channelsByArchive.json' exists.")
         try:
-            with open("channelsByArchive.json", 'r') as jsonFile:
+            with open("jsons/channelsByArchive.json", 'r') as jsonFile:
                 channelsByArchiveCache = json.load(jsonFile)
                 logging.info("Successfully loaded channels from file.")
         except Exception as e:
             logging.error(f"Failed to load channels from file: {e}")
-            channelsByArchiveCache = readChannels()  # Fallback si falla la carga
+            channelsByArchiveCache = readChannels()
     else:
         logging.debug("File 'channelsByArchive.json' does not exist.")
         channelsByArchiveCache = readChannels()
@@ -72,10 +71,9 @@ def readArchives():
     except Exception as e:
         logging.error(f"Failed to retrieve archives: {e}")
 
-    # Guardar archivos después de recuperar
     try:
         logging.info("Saving archives to 'archives.json'.")
-        with open('archives.json', 'w') as jsonFile:
+        with open('jsons/archives.json', 'w') as jsonFile:
             json.dump(archivesDict, jsonFile, indent=4)
     except Exception as e:
         logging.error(f"Failed to save archives to file: {e}")
@@ -103,10 +101,9 @@ def readChannels():
     except Exception as e:
         logging.error(f"Failed to retrieve channels: {e}")
 
-    # Guardar archivos después de recuperar
     try:
         logging.info("Saving channels by archive to 'channelsByArchive.json'.")
-        with open('channelsByArchive.json', 'w') as jsonFile:
+        with open('jsons/channelsByArchive.json', 'w') as jsonFile:
             json.dump(channelsByArchiveDict, jsonFile, indent=4)
     except Exception as e:
         logging.error(f"Failed to save channels to file: {e}")
@@ -211,7 +208,7 @@ def getValues():
 def pvSelector():
     try:
         logging.info("Loading PV selector data from 'PVselector.json'.")
-        with open('PVselector.json') as file:
+        with open('jsons/PVselector.json') as file:
             data = json.load(file)
         logging.info("Successfully loaded PV selector data.")
         return data
@@ -223,7 +220,7 @@ def pvSelector():
 def allSubsystems():
     try:
         logging.info("Loading all subsystems data from 'allSubsystems.json'.")
-        with open('allSubsystems.json') as file:
+        with open('jsons/allSubsystems.json') as file:
             dataSubs = json.load(file)
         logging.info("Successfully loaded all subsystems data.")
         return dataSubs
@@ -235,13 +232,20 @@ def allSubsystems():
 def allChannels():
     try:
         logging.info("Loading all channels data from 'channels.json'.")
-        with open('channels.json') as file:
+        with open('jsons/channels.json') as file:
             dataChannels = json.load(file)
         logging.info("Successfully loaded all channels data.")
         return dataChannels
     except Exception as e:
         logging.error(f"Failed to load all channels data: {e}")
         return {}
+
+@app.route("/getLinkPage", methods=['GET'])
+def getLinkPage():
+    subsystem = request.args.get('subsystem')
+    with open(f'./linkPages/{subsystem}.html','r') as file:
+        return file.read()
+
 
 if __name__ == '__main__':
     logging.info("Starting the server.")
