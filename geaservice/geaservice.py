@@ -216,6 +216,7 @@ def pvSelector():
         logging.error(f"Failed to load PV selector data: {e}")
         return {}
 
+
 @app.route("/allSubsystems", methods=['GET'])
 def allSubsystems():
     try:
@@ -243,9 +244,19 @@ def allChannels():
 @app.route("/getLinkPage", methods=['GET'])
 def getLinkPage():
     subsystem = request.args.get('subsystem')
-    with open(f'./linkPages/{subsystem}.html','r') as file:
-        return file.read()
-
+    
+    try:
+        logging.info(f"Loading link page for subsystem: {subsystem}.")
+        with open(f'./linkPages/{subsystem}.html', 'r') as file:
+            content = file.read()
+        logging.info(f"Successfully loaded link page for subsystem: {subsystem}.")
+        return content
+    except FileNotFoundError:
+        logging.error(f"Link page for subsystem '{subsystem}' not found.")
+        return {}
+    except Exception as e:
+        logging.error(f"Failed to load link page for subsystem '{subsystem}': {e}")
+        return {}
 
 if __name__ == '__main__':
     logging.info("Starting the server.")
