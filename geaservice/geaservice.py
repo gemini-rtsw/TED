@@ -7,6 +7,10 @@ import json
 from enum import Enum
 from waitress import serve
 import os
+from flask_cors import CORS
+import time
+import datetime
+from joblib import Parallel, delayed
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -16,10 +20,10 @@ sem = threading.Semaphore()
 
 # Initialize Flask application
 app = Flask(__name__)
+CORS(app)
 
 # Initialize the XML-RPC client
-gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
-
+# gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
 
 archivesCache = {}
 channelsByArchiveCache = {}
@@ -42,10 +46,10 @@ def initializeCache():
                 logging.info("Successfully loaded archives from file.")
         except Exception as e:
             logging.error(f"Failed to load archives from file: {e}")
-            archivesCache = readArchives() 
+            archivesCache = fetchArchives()
     else:
         logging.debug("File 'archives.json' does not exist.")
-        archivesCache = readArchives()
+        archivesCache = fetchArchives()
 
     if os.path.exists("jsons/channelsByArchive.json"):
         logging.debug("File 'channelsByArchive.json' exists.")
@@ -55,12 +59,12 @@ def initializeCache():
                 logging.info("Successfully loaded channels from file.")
         except Exception as e:
             logging.error(f"Failed to load channels from file: {e}")
-            channelsByArchiveCache = readChannels()
+            channelsByArchiveCache = fetchChannels()
     else:
         logging.debug("File 'channelsByArchive.json' does not exist.")
-        channelsByArchiveCache = readChannels()
+        channelsByArchiveCache = fetchChannels()
 
-def readArchives():
+def fetchArchives():
     archivesDict = {}
     try:
         logging.info("Retrieving list of archives.")
@@ -77,10 +81,10 @@ def readArchives():
             json.dump(archivesDict, jsonFile, indent=4)
     except Exception as e:
         logging.error(f"Failed to save archives to file: {e}")
-    
+
     return archivesDict
 
-def readChannels():
+def fetchChannels():
     channelsByArchiveDict = {}
     try:
         logging.info("Retrieving channels by archive.")
@@ -107,17 +111,92 @@ def readChannels():
             json.dump(channelsByArchiveDict, jsonFile, indent=4)
     except Exception as e:
         logging.error(f"Failed to save channels to file: {e}")
-    
+
     return channelsByArchiveDict
 
+def adjustResolution(durationSeconds, base=10000, scale=900, factor=0.581):
+    #resolution = base * (durationSeconds / scale) ** factor
+    resolution = base / ((1 + durationSeconds / scale) ** factor)
+    return int(resolution)
+
+def timestampToDate(timestamp):
+    date = datetime.datetime.fromtimestamp(timestamp)
+    return date.strftime("%d/%m/%Y %H:%M:%S")
+
+def saveDataChunk(data, existingDataSet):
+    for geaRecords in data:
+        for record in geaRecords:
+            name = record.get("name")
+            if name in existingDataSet:
+                existingDataSet[name]["values"].extend(record.get("values", []))
+                existingDataSet[name]["count"] = len(existingDataSet[name]["values"])
+            else:
+                existingDataSet[name] = record
+    return existingDataSet
+
+def fetchDataChunk(archiveKey, channel, startTimestamp, endTimestamp, nPoint, mode):
+    try:
+        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+        gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
+        geaRecord = gea.archiver.values(archiveKey, channel, startTimestamp, 0, endTimestamp, 0, nPoint, mode)
+        if not geaRecord or not any(record.get('values') for record in geaRecord):
+            logging.warning(f"No data found for channel '{channel}' from {timestampToDate(startTimestamp)} to {timestampToDate(endTimestamp)}.")
+            return []
+        logging.debug(f"Data obtained from {timestampToDate(startTimestamp)} to {timestampToDate(endTimestamp)} ")
+        return geaRecord
+    except Exception as e:
+        logging.error(f"Error fetching data chunk for channel '{channel}': {str(e)}")
+        return []
+
+def calculateChunkInterval(archiveKey, channel, dateFromTimestamp, dateToTimestamp, nPoint, mode, existingDataSet):
+    try:
+        gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
+        geaRecord = gea.archiver.values(archiveKey, channel, dateFromTimestamp, 0, dateToTimestamp, 0, nPoint, mode)
+        if not geaRecord or not any(record.get('values') for record in geaRecord):
+            logging.warning("No data found during initial chunk estimation.")
+            return dateToTimestamp - dateFromTimestamp
+
+        existingDataSet = saveDataChunk([geaRecord], existingDataSet)
+
+        lastSecs = int(geaRecord[-1].get("values")[-1].get("secs")) * 1000
+        lastNano = int(geaRecord[-1].get("values")[-1].get("nano")) / 1000000
+
+        firstChunkEnd = int((lastSecs + lastNano) / 1000)
+        chunkInterval = (firstChunkEnd - int(dateFromTimestamp))
+        logging.debug(f"Data obtained from {timestampToDate(dateFromTimestamp)} to {timestampToDate(firstChunkEnd)} ")
+
+        logging.info(f"Calculated chunk interval: {chunkInterval} seconds.")
+        return chunkInterval
+    except Exception as e:
+        logging.error(f"Error calculating chunk interval: {str(e)}")
+        return dateToTimestamp - dateFromTimestamp
+
+def fetchDataParallel(archiveKey, channel, dateFromTimestamp, dateToTimestamp, nPoint, mode):
+    existingDataSet = {}
+
+    chunkInterval = calculateChunkInterval(archiveKey, channel, dateFromTimestamp, dateToTimestamp, nPoint, mode, existingDataSet)
+    timeRanges = []
+    currentTimestamp = dateFromTimestamp
+    while currentTimestamp < dateToTimestamp:
+        nextTimestamp = min(currentTimestamp + chunkInterval, dateToTimestamp)
+        timeRanges.append((currentTimestamp, nextTimestamp))
+        currentTimestamp = nextTimestamp
+    if mode != 3:
+        results = Parallel(n_jobs=2)(delayed(fetchDataChunk)(archiveKey, channel, start, end, nPoint, mode)
+                for start, end in timeRanges)
+
+        existingDataSet = saveDataChunk(results, existingDataSet)
+
+    allData = list(existingDataSet.values())
+    return allData
 
 @app.route("/updateArchives", methods=['POST'])
 def updateArchives():
-    global archivesCache 
+    global archivesCache
 
     try:
         with sem:
-            archivesCache = readArchives()  
+            archivesCache = fetchArchives()
             logging.info("Archives cache updated successfully.")
         return jsonify({"message": "Archives updated successfully."}), 200
     except Exception as e:
@@ -126,16 +205,16 @@ def updateArchives():
 
 @app.route("/updateChannels", methods=['POST'])
 def updateChannels():
-    global channelsByArchiveCache 
+    global channelsByArchiveCache
 
     try:
         with sem:
-            channelsByArchiveCache = readChannels()  
+            channelsByArchiveCache = fetchChannels()
             logging.info("Channels by archive cache updated successfully.")
-        return jsonify({"message": "Channels updated successfully."}), 200  
+        return jsonify({"message": "Channels updated successfully."}), 200
     except Exception as e:
         logging.error(f"Failed to update channels: {e}")
-        return jsonify({"error": "Failed to update channels."}), 500  
+        return jsonify({"error": "Failed to update channels."}), 500
 
 
 @app.route("/archives", methods=['GET'])
@@ -159,10 +238,16 @@ def getValues():
     archiveName = request.args.get('archive')
     channel = request.args.get('channel')
     valueMode = request.args.get('value_mode')
-    nPoints = request.args.get('n_points')
     archiveKey = archivesCache.get(archiveName, 10)
-    logging.debug(f"Retrival mode is {valueMode}.") 
+    nPoints = request.args.get('n_points')
+    logging.info(f"Retrival mode is {valueMode}.")
+
     try:
+        if valueMode == "0" or valueMode =="1":
+            nPoints = 10000
+        else:
+            if not nPoints:
+                nPoints = adjustResolution((int(dateTo)-int(dateFrom))/1000)
         nPoints = int(nPoints)
         if nPoints > 10000:
             nPoints = 10000
@@ -184,10 +269,11 @@ def getValues():
         try:
             logging.info(f"Retrieving values for channels: {channelsList}.")
             sem.acquire()
-            geaRecord = gea.archiver.values(
-                int(archiveKey), channelsList,
-                int(int(dateFrom) / 1000), 0,
-                int(int(dateTo) / 1000), 0,
+            geaRecord = fetchDataParallel(
+                int(archiveKey),
+                channelsList,
+                int(int(dateFrom) / 1000),
+                int(int(dateTo) / 1000),
                 int(nPoints),
                 int(valueMode)
             )
@@ -244,7 +330,7 @@ def allChannels():
 @app.route("/getLinkPage", methods=['GET'])
 def getLinkPage():
     subsystem = request.args.get('subsystem')
-    
+
     try:
         logging.info(f"Loading link page for subsystem: {subsystem}.")
         with open(f'./linkPages/{subsystem}.html', 'r') as file:
@@ -263,3 +349,4 @@ if __name__ == '__main__':
     initializeCache()
     serve(app, host='0.0.0.0', port=8000, threads=50)
     logging.info("Server is running on port 8000.")
+

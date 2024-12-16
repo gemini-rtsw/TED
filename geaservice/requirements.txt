@@ -1,2 +1,5 @@
 flask
+flask_cors
 waitress
+joblib
+psutil
