@@ -7,6 +7,9 @@ import json
 from enum import Enum
 from waitress import serve
 import os
+from flask_cors import CORS
+import time
+import datetime
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -16,6 +19,7 @@ sem = threading.Semaphore()
 
 # Initialize Flask application
 app = Flask(__name__)
+CORS(app)
 
 # Initialize the XML-RPC client
 gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
@@ -23,6 +27,7 @@ gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer
 
 archivesCache = {}
 channelsByArchiveCache = {}
+timeZone = (0 - time.timezone)//3600
 
 class DataType(Enum):
     STRING = 0
@@ -110,6 +115,58 @@ def readChannels():
     
     return channelsByArchiveDict
 
+def adjustResolution(durationSeconds, base=10000, scale=900, factor=0.581):
+    #resolution = base * (durationSeconds / scale) ** factor
+    resolution = base / ((1 + durationSeconds / scale) ** factor)
+    return int(resolution)
+
+def timestampToDate(timestamp):
+    date = datetime.datetime.fromtimestamp(timestamp)
+    return date.strftime("%d/%m/%Y %H:%M:%S")
+
+def fetchData(archiveKey, channel, dateFromTimestamp, dateToTimestamp, nPoint, mode):
+    allData = []
+    currentTimestamp = dateFromTimestamp
+    existingDataSet = {}
+    logging.info(f"Attempting from {timestampToDate(dateFromTimestamp)} to {timestampToDate(dateToTimestamp)} ")
+    
+    while currentTimestamp < dateToTimestamp:
+        try:
+            geaRecord = gea.archiver.values(archiveKey, channel, currentTimestamp, 0, dateToTimestamp, 0, nPoint, mode)
+            
+            if not geaRecord or not any(record.get('values') for record in geaRecord):
+                logging.warning(f"No data found for channel “{channel}” from {timestampToDate(currentTimestamp)} to {timestampToDate(dateToTimestamp)}.")
+
+            for record in geaRecord:
+                name = record.get("name")
+                if name in existingDataSet:
+                    existingDataSet[name]["values"].extend(record.get("values", []))
+                    existingDataSet[name]["count"] = len(existingDataSet[name]["values"])
+                else:
+                    existingDataSet[name] = record
+
+            allData = list(existingDataSet.values())
+
+            if allData:
+                lastSecs = int(allData[-1].get("values")[-1].get("secs")) * 1000
+                lastNano = int(allData[-1].get("values")[-1].get("nano")) / 1000000
+                newTimestamp = int((lastSecs + lastNano) / 1000)
+            else:
+                newTimestamp = currentTimestamp
+
+            if newTimestamp == currentTimestamp:
+                logging.info(f"Data retrieval for channel '{channel}' completed.")
+                break
+
+            logging.debug(f"Data obtained from {timestampToDate(currentTimestamp)} to {timestampToDate(newTimestamp)} ")
+            
+            currentTimestamp = newTimestamp
+
+        except Exception as e:
+            logging.error(f"Error fetching data for channel '{channel}': {str(e)}")
+            break
+
+    return allData
 
 @app.route("/updateArchives", methods=['POST'])
 def updateArchives():
@@ -159,10 +216,16 @@ def getValues():
     archiveName = request.args.get('archive')
     channel = request.args.get('channel')
     valueMode = request.args.get('value_mode')
-    nPoints = request.args.get('n_points')
     archiveKey = archivesCache.get(archiveName, 10)
-    logging.debug(f"Retrival mode is {valueMode}.") 
+    nPoints = request.args.get('n_points')
+    logging.info(f"Retrival mode is {valueMode}.")
+
     try:
+        if not nPoints:
+            if valueMode == "0" or valueMode =="1":
+                nPoints = 10000
+            else:
+                nPoints=adjustResolution((int(dateTo)-int(dateFrom))/1000)
         nPoints = int(nPoints)
         if nPoints > 10000:
             nPoints = 10000
@@ -184,10 +247,11 @@ def getValues():
         try:
             logging.info(f"Retrieving values for channels: {channelsList}.")
             sem.acquire()
-            geaRecord = gea.archiver.values(
-                int(archiveKey), channelsList,
-                int(int(dateFrom) / 1000), 0,
-                int(int(dateTo) / 1000), 0,
+            geaRecord = fetchData(
+                int(archiveKey), 
+                channelsList,
+                int(int(dateFrom) / 1000),
+                int(int(dateTo) / 1000),
                 int(nPoints),
                 int(valueMode)
             )
