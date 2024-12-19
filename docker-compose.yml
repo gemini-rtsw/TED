@@ -114,7 +114,7 @@ services:
     image: ted-geaservice:1.0.0
     hostname: geaservice
     container_name: geaservice
-    command: python3 /geaservice/geaservice.py
+    command: app/geaservice
     restart: unless-stopped
 
     build:

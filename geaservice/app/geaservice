@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Run Gunicorn with the desired options
+cd app
+gunicorn -w 4 -c ../config/gunicornConfig.py -b 0.0.0.0:8000 --timeout 300 app:app
