@@ -20,7 +20,7 @@ def timestampToDate(timestamp: float):
 
 def setNPoints(valueMode, dateFrom, dateTo, nPoints):
     try:
-        if valueMode in ["0", "1"]:
+        if valueMode in [0, 1]:
             return 10000
         if not nPoints:
             return adjustResolution((int(dateTo) - int(dateFrom)) / 1000)

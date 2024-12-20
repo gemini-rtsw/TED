@@ -8,7 +8,7 @@ def fetchValues(gea, archiveKey, channelsList, dateFrom, dateTo, nPoints, valueM
     lastSecs = 0
     lastNano = 0
     logging.info(f"Attempting to retrieve data from {timestampToDate(dateFrom)} to {timestampToDate(dateTo)}.")
-
+    logging.info (f"Set number of point to {nPoints}")
     while currentDate < dateTo:
         try:
             geaRecord = gea.archiver.values(

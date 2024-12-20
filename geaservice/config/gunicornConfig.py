@@ -16,12 +16,12 @@ logconfig_dict = {
         },
     },
     "root": {
-        "level": "INFO",
+        "level": "DEBUG",
         "handlers": ["console"],
     },
     "loggers": {
         "gunicorn.error": {
-            "level": "INFO",
+            "level": "DEBUG",
             "handlers": ["console"],
             "propagate": False,
         },
