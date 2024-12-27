@@ -7121,7 +7121,7 @@
             ]
           }
         ],
-	"RINGSS": [
+	"[CP] RINGSS": [
 	    {
 	        "name": "UTC datetime",
 	        "channels": ["ws:ringssDateTimeUTC"]
