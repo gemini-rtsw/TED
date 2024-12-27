@@ -7121,6 +7121,70 @@
             ]
           }
         ],
+	"RINGSS": [
+	    {
+	        "name": "UTC datetime",
+	        "channels": ["ws:ringssDateTimeUTC"]
+	    },
+	    {
+	        "name": "Catalogue HR number",
+	        "channels": ["ws:ringssStar"]
+	    },
+	    {
+	        "name": "Zenith distance",
+	        "channels": ["ws:ringssZen"]
+	    },
+	    {
+	        "name": "Total flux in electrons",
+	        "channels": ["ws:ringssFlux"]
+	    },
+	    {
+	        "name": "Seeing profile-adjusted weight in arcseconds",
+	        "channels": ["ws:ringssSee2"]
+	    },
+	    {
+	        "name": "Seeing in arcseconds",
+	        "channels": ["ws:ringssSee"]
+	    },
+	    {
+	        "name": "FA seeing in arcseconds (1km and above)",
+	        "channels": ["ws:ringssFsee"]
+	    },
+	    {
+	        "name": "Effective wind speed in meters per second",
+	        "channels": ["ws:ringssWind"]
+	    },
+	    {
+	        "name": "Time constant in milliseconds",
+	        "channels": ["ws:ringssTau0"]
+	    },
+	    {
+	        "name": "Isoplanatic angle in arcseconds",
+	        "channels": ["ws:ringssTheta0"]
+	    },
+	    {
+	        "name": "Total variance",
+	        "channels": ["ws:ringssTotvar"]
+	    },
+	    {
+	        "name": "Error RMS residual",
+	        "channels": ["ws:ringssErms"]
+	    },
+	    {
+	        "name": "Zenith-corrected integrals in m1/3",
+	        "channels": [
+	            "ws:ringssJ0",
+	            "ws:ringssJ025",
+	            "ws:ringssJ05",
+	            "ws:ringssJ1",
+	            "ws:ringssJ2",
+	            "ws:ringssJ4",
+	            "ws:ringssJ8",
+	            "ws:ringssJ16"
+	        ]
+	    }
+	]
+	,
         "[CP] DIMM (seeing monitor) old channels": [
           {
             "name": "Mean seeing (total, X & Y)",
