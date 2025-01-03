@@ -41,7 +41,11 @@ def fetchValues(gea, archiveKey, channelsList, dateFrom, dateTo, nPoints, valueM
                 else:
                     existingDataSet[name] = record
 
+            if valueMode == 2:
+                break
+
             newDate = int(lastSecs + lastNano)
+
             if newDate == currentDate:
                 logging.info(f"Data retrieval for channels '{channelsList}' completed.")
                 break
