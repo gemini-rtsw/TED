@@ -107,6 +107,31 @@
       { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
     ],
     "source": "logstash"
+  },
+   {
+    "ruleName": "Low velocity in MCS - Alarm",
+    "subsystem": "mcs",
+    "expression": "Setting Velocity with: I222 = 2.812500",
+    "alertMessage":"The max speed of the MCS has been set below the normal operation of the telescope, check and reset the speed if the mount moves slowly.",
+    "exclude": [],
+    "interval":[1,0],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Drama shared memory - Alarm",
+    "subsystem": "drama",
+    "expression": "unmap shared memory",
+    "alertMessage":"see GSFR-44109",
+    "exclude": [],
+    "interval":[0,5],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
   }
 ]
-
