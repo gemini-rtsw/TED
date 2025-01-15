@@ -21,6 +21,12 @@
   queue.type: persisted
   queue.max_bytes: 200mb
 
+- pipeline.id: cpo-drama-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/cpo/drama/drama.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
 - pipeline.id: cpo-seqexec-ng-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/cpo/seqexec-ng/seqexec-ng.cfg"
@@ -167,7 +173,6 @@
   path.config: "/usr/share/logstash/pipeline/serialcon/bto/bto.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
-
  
   #- pipeline.id: serialcon-flam2sparc-${LOGSTASH_MODE}
   #  pipeline.workers: 1
@@ -175,11 +180,11 @@
   #  queue.type: persisted
   #  queue.max_bytes: 100m
 
-- pipeline.id: serialcon-flamingos-2-${LOGSTASH_MODE}
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/serialcon/flamperle/flamperle.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
+  #- pipeline.id: serialcon-flamingos-2-${LOGSTASH_MODE}
+  #  pipeline.workers: 1
+  #  path.config: "/usr/share/logstash/pipeline/serialcon/flamperle/flamperle.cfg"
+  #  queue.type: persisted
+  #  queue.max_bytes: 100mb
 
 - pipeline.id: serialcon-gmos-cc-${LOGSTASH_MODE}
   pipeline.workers: 1
