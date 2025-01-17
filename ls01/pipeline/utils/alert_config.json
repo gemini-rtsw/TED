@@ -19,7 +19,7 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu","eduardo.toro@noirlab.edu"] }
     ],
     "source": "logstash"
   },
