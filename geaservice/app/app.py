@@ -78,6 +78,18 @@ def pvSelector():
         logging.error(f"Failed to load PV selector data: {e}")
         return jsonify({}) 
 
+@app.route("/pvTree", methods=['GET'])
+def pvTree():
+    try:
+        logging.info("Loading PV selector data from 'PVselector.json'.")
+        with open(f"../jsons/pvTree.json") as file:
+            pvSelectorData = json.load(file)
+        logging.info("Successfully loaded PV selector data.")
+        return jsonify(pvSelectorData)
+    except Exception as e:
+        logging.error(f"Failed to load PV selector data: {e}")
+        return jsonify({}) 
+
 @app.route("/allSubsystems", methods=['GET'])
 def allSubsystems():
     try:
