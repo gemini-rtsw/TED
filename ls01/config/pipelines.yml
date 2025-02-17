@@ -186,18 +186,18 @@
   #  queue.type: persisted
   #  queue.max_bytes: 100mb
 
-- pipeline.id: serialcon-gmos-cc-${LOGSTASH_MODE}
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/serialcon/gmos/gmos-cc.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
-- pipeline.id: serialcon-gmos-dc-${LOGSTASH_MODE}
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/serialcon/gmos/gmos-dc.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
+  #- pipeline.id: serialcon-gmos-cc-${LOGSTASH_MODE}
+  #  pipeline.workers: 1
+  #  path.config: "/usr/share/logstash/pipeline/serialcon/gmos/gmos-cc.cfg"
+  #  queue.type: persisted
+  #  queue.max_bytes: 100mb
+  #
+  #- pipeline.id: serialcon-gmos-dc-${LOGSTASH_MODE}
+  #  pipeline.workers: 1
+  #  path.config: "/usr/share/logstash/pipeline/serialcon/gmos/gmos-dc.cfg"
+  #  queue.type: persisted
+  #  queue.max_bytes: 100mb
+  #
 - pipeline.id: serialcon-gsaoi-cc-${LOGSTASH_MODE}
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/serialcon/gsaoi/gsaoi-cc.cfg"

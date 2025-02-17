@@ -26,6 +26,8 @@ directories=(
     "${DATA_PATH}/ls02/db/sincedb"
     "${DATA_PATH}/ls02/db/completed"
     "${DATA_PATH}/ls02/db/completed"
+    "${DATA_PATH}/ls03/db"
+    "${DATA_PATH}/ls03/db/sincedb"
     "./es01/logs"
 )
 

@@ -109,6 +109,44 @@ services:
         max-file: 1
 
 #################################################################################################################
+
+  logstash-daily:
+    image: ted-logstash:8.15.0
+    hostname: logstash-daily
+    container_name: ls03
+    restart: unless-stopped
+
+    build:
+      context: ./ls03
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+
+    networks:
+      - elkg
+
+    environment:
+      LOGSTASH_MODE: tail
+      HOST_1: "http://elasticsearch:${ES01_PORT}"
+      TIMEZONE: "${LS_TIMEZONE}"
+
+    volumes:
+      - ./ls03/config:/usr/share/logstash/config
+      - ./ls03/pipeline:/usr/share/logstash/pipeline
+      - ${LOGS_PATH}:/usr/logs/log
+      - ${DATA_PATH}/ls03/db:/db
+      - /etc/localtime:/etc/localtime
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+
+#################################################################################################################
   
   geaservice:
     image: ted-geaservice:1.0.0
