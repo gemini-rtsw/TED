@@ -56,7 +56,7 @@
     "interval":[0,5],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+      { "service": "email", "to": ["roberto.rojas@noirlab.edu","miguel.gomez@noirlab.edu"] }
     ],
     "source": "logstash"
   },
@@ -133,5 +133,33 @@
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
+  },
+  {
+    "ruleName": "DHS remote server failure - Alarm",
+    "subsystem": "",
+    "expression": "errno.*pToVxLib\.c.*detControlD",
+    "alertMessage":"It is necessary to restart the remote DHS server and monitor the Wavefront sensors and QLT. <a href='http://swg.wikis-internal.gemini.edu/index.php/Linux_DHS#Known_Issues_and_Workarounds'>Click here for more details</a>",
+    "exclude": [],
+    "interval":[0,5],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu","oscar.fuentes@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "WFS SDSU failure - Alarm",
+    "subsystem": "",
+    "expression": "errno.*sdsuLib\.c",
+    "alertMessage":"It is necessary to restart the Wavefront sensor",
+    "exclude": [],
+    "interval":[0,5],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu","oscar.fuentes@noirlab.edu"] }
+    ],
+    "source": "logstash"
   }
+
 ]
+
