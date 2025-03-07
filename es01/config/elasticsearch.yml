@@ -1,7 +1,7 @@
 cluster.name: "elastic"
 node.name: es01
 network.host: 0.0.0.0
-transport.host: 0.0.0.0
+transport.host: 172.17.71.25
 
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
