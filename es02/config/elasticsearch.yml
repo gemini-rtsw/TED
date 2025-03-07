@@ -1,7 +1,7 @@
 cluster.name: "elastic"
 node.name: es02
 network.host: 0.0.0.0
-
+transport.host: 172.17.71.27
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
 # The following settings, TLS certificates, and keys have been automatically
