@@ -25,7 +25,7 @@ services:
       - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://cpotelobserv-lv1:9200/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -62,7 +62,7 @@ services:
       - ${DATA_PATH}/es02:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://cpotelobserv-lv2:9200/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -86,7 +86,7 @@ services:
 
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http://localhost:${ES01_PORT}"
+      ELASTICSEARCH_HOSTS: "http://cpotelobserv-lv1:${ES01_PORT}"
       elasticsearch.ssl.verificationMode: "none"
 
     depends_on:
@@ -120,7 +120,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "http://localhost:${ES01_PORT}"
+      HOST_1: "cpotelobserv-lv1:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -157,7 +157,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "http://localhost:${ES01_PORT}"
+      HOST_1: "cpotelobserv-lv1:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -175,6 +175,79 @@ services:
 
 #################################################################################################################
   
+  logstash-4:
+    image: ted-logstash:8.15.0
+    hostname: logstash-4
+    container_name: ls04
+    restart: unless-stopped
+
+    build:
+      context: ./ls04
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+
+    network_mode: "host"
+
+    environment:
+      LOGSTASH_MODE: tail
+      HOST_1: "cpotelobserv-lv2:${ES01_PORT}"
+      TIMEZONE: "${LS_TIMEZONE}"
+
+    volumes:
+      - ./ls04/config:/usr/share/logstash/config
+      - ./ls04/pipeline:/usr/share/logstash/pipeline
+      - ${LOGS_PATH}:/usr/logs/log
+      - ${DATA_PATH}/ls04/db:/db
+      - /etc/localtime:/etc/localtime
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+
+#################################################################################################################
+  logstash-5:
+    image: ted-logstash:8.15.0
+    hostname: logstash-5
+    container_name: ls05
+    restart: unless-stopped
+
+    build:
+      context: ./ls05
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+
+    network_mode: "host"
+
+    environment:
+      LOGSTASH_MODE: tail
+      HOST_1: "cpotelobserv-lv2:${ES01_PORT}"
+      TIMEZONE: "${LS_TIMEZONE}"
+
+    volumes:
+      - ./ls05/config:/usr/share/logstash/config
+      - ./ls05/pipeline:/usr/share/logstash/pipeline
+      - ${LOGS_PATH}:/usr/logs/log
+      - ${DATA_PATH}/ls05/db:/db
+      - /etc/localtime:/etc/localtime
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+
+#################################################################################################################
+
   geaservice:
     image: ted-geaservice:1.0.0
     hostname: geaservice
@@ -225,8 +298,8 @@ services:
     network_mode: "host"
 
     environment:
-      GF_RENDERING_SERVER_URL: "http://localhost:8081/render"
-      GF_RENDERING_CALLBACK_URL: "http://localhost:3000/"
+      GF_RENDERING_SERVER_URL: "http://cpotelobserv-lv1:8081/render"
+      GF_RENDERING_CALLBACK_URL: "http://cpotelobserv-lv1:3000/"
       GF_LOG_FILTERS: "rendering:debug"
 
     volumes:
