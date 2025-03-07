@@ -1,4 +1,5 @@
 es01/logs/*
+es02/logs/*
 gr01/grafana-data/png
 ls02/utils/InsertByDataRange.log
 geaservice/app/__pycache__/
