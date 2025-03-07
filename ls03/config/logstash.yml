@@ -1,4 +1,4 @@
-host.name: ls03
+node.name: ls03
 http.host: 172.17.71.25
 xpack.monitoring.elasticsearch.hosts: [ "${HOST_1}" ]
 xpack.monitoring.enabled: true
