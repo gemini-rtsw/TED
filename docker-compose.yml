@@ -17,12 +17,7 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    networks:
-      - elkg
-
-    ports:
-      - "${ES01_PORT}:9200"
-      - "${ES01_TR_PORT}:9300"
+    network_mode: "host"
 
     volumes:
       - ./es01/config:/usr/share/elasticsearch/config
@@ -46,7 +41,7 @@ services:
 
   elasticsearch-2:
     image: ted-elasticsearch:8.15.0
-    hostname: elasticsearch
+    hostname: elasticsearch-2
     container_name: es02
     restart: unless-stopped
 
@@ -59,12 +54,7 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    networks:
-      - elkg
-
-    ports:
-      - "${ES01_PORT}:9200"
-      - "${ES01_TR_PORT}:9300"
+    network_mode: "host"
 
     volumes:
       - ./es02/config:/usr/share/elasticsearch/config
@@ -92,11 +82,7 @@ services:
     container_name: ki01
     restart: unless-stopped
 
-    networks:
-      - elkg
-
-    ports:
-      - "${KI01_PORT}:5601"
+    network_mode: "host"
 
     environment:
       INTERACTIVESETUP_ENABLED: false
@@ -130,8 +116,7 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    networks:
-      - elkg
+    network_mode: "host"
 
     environment:
       LOGSTASH_MODE: tail
@@ -168,8 +153,7 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    networks:
-      - elkg
+    network_mode: "host"
 
     environment:
       LOGSTASH_MODE: tail
@@ -207,11 +191,7 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    networks:
-      - elkg
-
-    ports:
-      - "${GS01_PORT}:8000"
+    network_mode: "host"
 
     volumes:
       - ./geaservice/:/geaservice/
@@ -242,11 +222,7 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    networks:
-      - elkg
-
-    ports:
-      - "${GR01_PORT}:3000"
+    network_mode: "host"
 
     environment:
       GF_RENDERING_SERVER_URL: "http://renderer:8081/render"
@@ -271,14 +247,8 @@ services:
     hostname: renderer
     container_name: gr01-render
     restart: unless-stopped
-    networks:
-      - elkg
+    network_mode: "host" 
     volumes:
       - ./gr01/render/config.json:/usr/src/app/config.json
 
 #################################################################################################################
-
-networks:
-  elkg:
-    driver: bridge
-    external: true
