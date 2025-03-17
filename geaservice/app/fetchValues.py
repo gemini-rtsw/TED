@@ -1,75 +1,75 @@
 import logging
 from utils import timestampToDate
 
-def fetchValues(gea, archiveKey, channelsList, dateFrom, dateTo, nPoints, valueMode):
+def fetchValues(gea, channelsListByArchiveDict, dateFrom, dateTo, nPoints, valueMode, archivesCache):
     allData = []
-    currentDate = dateFrom
     existingDataSet = {}
     logging.info(f"Attempting to retrieve data from {timestampToDate(dateFrom)} to {timestampToDate(dateTo)}.")
     logging.info(f"Set number of points to {nPoints}")
-    
-    while currentDate < dateTo:
-        lastSecs = 0
-        lastNano = 0
-        
-        try:
-            geaRecord = gea.archiver.values(
-                archiveKey,
-                channelsList,
-                currentDate,
-                0,
-                dateTo,
-                0,
-                nPoints,
-                valueMode
-            )
+    for archiveName,channelsList in channelsListByArchiveDict.items():
+        currentDate = dateFrom
+        archiveKey = int(archivesCache.get(archiveName, 10))
+        while currentDate < dateTo:
+            lastSecs = 0
+            lastNano = 0
 
-            if not geaRecord or not any(record.get('values') for record in geaRecord):
-                logging.warning(f"No data found for channels: {channelsList} from {timestampToDate(currentDate)} to {timestampToDate(dateTo)}.")
-                break
+            try:
+                geaRecord = gea.archiver.values(
+                    archiveKey,
+                    channelsList,
+                    currentDate,
+                    0,
+                    dateTo,
+                    0,
+                    nPoints,
+                    valueMode
+                )
 
-            for record in geaRecord:
-                name = record.get("name")
-                values = record.get("values", [])
-                if values:
-                    tmpSecs = values[0].get("secs", 0)
-                    lastSecsInRecord = values[-1].get("secs", 0)
-                    lastNanoInRecord = int(values[-1].get("nano", 1)) / 1000000000
-                    
-                    if name in existingDataSet:
-                        if len(existingDataSet[name]["values"]) > 2:
-                            tmpLastSecs = existingDataSet[name]["values"][-2]["secs"]
-                        else:
-                            tmpLastSecs = existingDataSet[name]["values"][-1]["secs"]
+                if not geaRecord or not any(record.get('values') for record in geaRecord):
+                    logging.warning(f"No data found for channels: {channelsList} from {timestampToDate(currentDate)} to {timestampToDate(dateTo)}.")
+                    break
 
-                        if tmpSecs >= tmpLastSecs:
+                for record in geaRecord:
+                    name = record.get("name")
+                    values = record.get("values", [])
+                    logging.debug(f"Archive: {archiveName} Name: {name}  Values: {len(values)}")
+                    if values:
+                        tmpSecs = values[0].get("secs", 0)
+                        lastSecsInRecord = values[-1].get("secs", 0)
+                        lastNanoInRecord = int(values[-1].get("nano", 1)) / 1000000000
+
+                        if name in existingDataSet:
+                            if len(existingDataSet[name]["values"]) > 2:
+                                tmpLastSecs = existingDataSet[name]["values"][-2]["secs"]
+                            else:
+                                tmpLastSecs = existingDataSet[name]["values"][-1]["secs"]
                             existingDataSet[name]["values"].extend(values)
                             existingDataSet[name]["count"] = len(existingDataSet[name]["values"])
-                    else:
-                        existingDataSet[name] = record
-                        existingDataSet[name]["count"] = len(existingDataSet[name]["values"])
+                        else:
+                            existingDataSet[name] = record
+                            existingDataSet[name]["count"] = len(existingDataSet[name]["values"])
 
-                    # Track the last seconds and nanoseconds
-                    if lastSecs == 0 or lastSecsInRecord < lastSecs:
-                        lastSecs = lastSecsInRecord
-                        lastNano = lastNanoInRecord
+                        # Track the last seconds and nanoseconds
+                        if lastSecs == 0 or lastSecsInRecord < lastSecs:
+                            if len(values) > 2 or len(geaRecord) < 2:
+                                lastSecs = lastSecsInRecord
+                                lastNano = lastNanoInRecord
 
-            if valueMode == 2:  # If valueMode is 2, exit the loop
+                if valueMode == 2:  # If valueMode is 2, exit the loop
+                    break
+
+                newDate = int(lastSecs + lastNano)
+
+                if newDate == currentDate:
+                    logging.info(f"Data retrieval for channels '{channelsList}' completed.")
+                    break
+
+                logging.debug(f"Data obtained from {timestampToDate(currentDate)} to {timestampToDate(newDate)}.")
+                currentDate = newDate
+
+            except Exception as e:
+                logging.error(f"Error fetching data for channels '{channelsList}': {str(e)}")
                 break
-
-            newDate = int(lastSecs + lastNano)
-
-            if newDate == currentDate:
-                logging.info(f"Data retrieval for channels '{channelsList}' completed.")
-                break
-
-            logging.debug(f"Data obtained from {timestampToDate(currentDate)} to {timestampToDate(newDate)}.")
-            currentDate = newDate
-
-        except Exception as e:
-            logging.error(f"Error fetching data for channels '{channelsList}': {str(e)}")
-            break
 
     allData = list(existingDataSet.values())
     return allData
-

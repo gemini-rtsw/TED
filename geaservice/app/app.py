@@ -10,7 +10,7 @@ from waitress import serve
 import xmlrpc.client as XmlClient
 from flask_cors import CORS
 from cache import initializeCache, updateArchivesCache, updateChannelsCache
-from utils import setNPoints, processChannels
+from utils import setNPoints, processChannels, identifyArchive
 from fetchValues import fetchValues
 
 # Initialize Flask application
@@ -61,9 +61,10 @@ def getArchives():
 def getChannels():
     with lock:
         archiveName = request.args.get('archiveName')
-        channels = channelsByArchiveCache.get(archiveName, "Not Found")
-        if channels == "Not Found":
+        channelsTmp = channelsByArchiveCache.get(archiveName, "Not Found")
+        if channelsTmp == "Not Found":
             logging.warning(f"Channels for archive '{archiveName}' not found.")
+        channels = list(map(lambda x: x[0], channelsTmp))
         return jsonify({"channels": channels})
 
 @app.route("/pvSelector", methods=['GET'])
@@ -127,19 +128,18 @@ def getValues():
     channels = request.args.get('channel')
     valueMode = int(request.args.get('value_mode'))
     nPoints = request.args.get('n_points')
-    archiveKey = int(archivesCache.get(archiveName, 10))
 
     nPoints = int(setNPoints(valueMode, dateFrom, dateTo, nPoints))
 
     channelsList = processChannels(channels)
-
+    channelsListByArchiveDict = identifyArchive(channelsByArchiveCache,channelsList)
     output = []
     if channelsList:
         try:
             with lock:
                 logging.info(f"Retrieval mode is {valueMode}.")
                 logging.info(f"Retrieving values for channels: {channelsList}.")
-                output = fetchValues(gea, archiveKey, channelsList, dateFrom, dateTo, nPoints, valueMode)
+                output = fetchValues(gea, channelsListByArchiveDict, dateFrom, dateTo, nPoints, valueMode,archivesCache)
                 logging.info("Successfully retrieved values.")
         except Exception as e:
             logging.error(f"Failed to retrieve values: {e}")

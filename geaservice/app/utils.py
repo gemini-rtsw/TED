@@ -39,3 +39,26 @@ def processChannels(channel):
         return [channel.strip()]
     return []
 
+
+def identifyArchive(channelsByArchive, channelsList):
+    channelsListByArchive = {}
+    localChannelsByArchive = {k: v for k, v in channelsByArchive.items() if k not in ["- All -", "- All - (last restart)", ""]}
+
+    for channel in channelsList:
+        latestEntry = None
+        latestKey = None
+
+        for key, valueList in localChannelsByArchive.items():
+            for sublist in valueList:
+                if channel == sublist[0]:
+                    if latestEntry is None or sublist[2] > latestEntry[2]:
+                        latestEntry = sublist
+                        latestKey = key
+
+        if latestEntry:
+            logging.debug(f"Found latest '{channel}' in archive: {latestKey}")
+            if latestKey not in channelsListByArchive:
+                channelsListByArchive[latestKey] = []
+            channelsListByArchive[latestKey].append(channel)
+
+    return channelsListByArchive

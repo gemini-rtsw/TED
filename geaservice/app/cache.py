@@ -58,7 +58,7 @@ def readChannels(gea, archivesCache):
             try:
                 channels = gea.archiver.names(int(key), "")
                 for channel in channels:
-                    channelNames.append(channel['name'])
+                    channelNames.append([channel['name'],int(channel['start_sec']*1000 + channel['start_nano']/1000000 ),int(channel['end_sec']*1000 + channel['end_nano']/1000000 )])
                 channelsByArchiveDict[name] = channelNames
 
             except Exception as channelError:
