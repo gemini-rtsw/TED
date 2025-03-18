@@ -18,7 +18,6 @@ create_directory_if_not_exists() {
 # List of directories to check/create
 directories=(
     "${DATA_PATH}/es01"
-    "${DATA_PATH}/es02"
     "${DATA_PATH}/ls01"
     "${DATA_PATH}/ls01/db"
     "${DATA_PATH}/ls01/db/sincedb"
@@ -28,12 +27,7 @@ directories=(
     "${DATA_PATH}/ls02/db/completed"
     "${DATA_PATH}/ls03/db"
     "${DATA_PATH}/ls03/db/sincedb"
-    "${DATA_PATH}/ls04/db"
-    "${DATA_PATH}/ls04/db/sincedb"
-    "${DATA_PATH}/ls05/db"
-    "${DATA_PATH}/ls05/db/sincedb"
     "./es01/logs"
-    "./es02/logs"
 )
 
 # Iterate over each directory and check/create

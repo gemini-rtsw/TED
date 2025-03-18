@@ -22,7 +22,7 @@ sem = threading.Semaphore()
 lock = threading.Lock()
 
 # Initialize the XML-RPC client
-gea = XmlClient.ServerProxy('http://geasouth.cl.gemini.edu/run/ArchiveDataServer.cgi')
+gea = XmlClient.ServerProxy('http://geanorth.hi.gemini.edu/run/ArchiveDataServer.cgi')
 
 archivesCache, channelsByArchiveCache = initializeCache(gea)
 
