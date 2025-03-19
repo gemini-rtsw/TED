@@ -137,8 +137,8 @@
   {
     "ruleName": "DHS remote server failure - Alarm",
     "subsystem": "",
-    "expression": "errno.*pToVxLib\.c.*detControlD",
-    "alertMessage":"It is necessary to restart the remote DHS server and monitor the Wavefront sensors and QLT. <a href='http://swg.wikis-internal.gemini.edu/index.php/Linux_DHS#Known_Issues_and_Workarounds'>Click here for more details</a>",
+    "expression": "DHS_CS_ERROR",
+    "alertMessage":"It is necessary to restart the #{event.get('subsystem')} sensors and monitor DHS. <a href='http://swg.wikis-internal.gemini.edu/index.php/Linux_DHS#Known_Issues_and_Workarounds'>Click here for more details</a>",
     "exclude": [],
     "interval":[0,5],
     "triggerAlarm": [
