@@ -39,11 +39,11 @@
   queue.type: persisted
   queue.max_bytes: 500mb
 
-  #- pipeline.id: cpo-ghost-cicada-${LOGSTASH_MODE}
-  #  pipeline.workers: 1
-  #  path.config: "/usr/share/logstash/pipeline/cpo/ghost/cicada.cfg"
-  #  queue.type: persisted
-  #  queue.max_bytes: 100mb
+- pipeline.id: cpo-ghost-cicada-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/cpo/ghost/cicada.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
 
 - pipeline.id: cpo-ghost-gmp-server-${LOGSTASH_MODE}
   pipeline.workers: 1
