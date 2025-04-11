@@ -162,12 +162,12 @@
  #  queue.max_bytes: 100mb
  #
  ## #################################### SERIALCON ###########################################
- #- pipeline.id: serialcon-aom-${LOGSTASH_MODE}
- #  pipeline.workers: 1
- #  path.config: "/usr/share/logstash/pipeline/serialcon/aom/aom.cfg"
- #  queue.type: persisted
- #  queue.max_bytes: 100mb
- #
+- pipeline.id: serialcon-aom-${LOGSTASH_MODE}
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/serialcon/aom/aom.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
  #- pipeline.id: serialcon-bto-${LOGSTASH_MODE}
  #  pipeline.workers: 1
  #  path.config: "/usr/share/logstash/pipeline/serialcon/bto/bto.cfg"

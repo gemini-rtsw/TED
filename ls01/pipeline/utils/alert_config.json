@@ -7,7 +7,7 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu","sos-south@gemini.edu"] }
     ],
     "source": "logstash"
   },
@@ -16,10 +16,10 @@
     "subsystem": "",
     "expression": "ENOBUFS",
     "alertMessage":"Subsystem restart likely required, be on the watch for this system behaviour",
-    "exclude": [],
+    "exclude": ["gea"],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu","eduardo.toro@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu","sos-south@gemini.edu","eduardo.toro@noirlab.edu"] }
     ],
     "source": "logstash"
   },
@@ -31,7 +31,7 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu","sos-south@gemini.edu"] }
     ],
     "source": "logstash"
   },
@@ -43,7 +43,7 @@
     "exclude": [],
     "triggerAlarm": [
       { "service": "slack" },
-      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+      { "service": "email", "to": ["swc-gs@gemini.edu","sos-south@gemini.edu"] }
     ],
     "source": "logstash"
   },

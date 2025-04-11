@@ -1,5 +1,5 @@
 node.name: ls01
-http.host: 172.17.71.25
+http.host: 172.17.71.27
 xpack.monitoring.elasticsearch.hosts: [ "${HOST_1}" ]
 xpack.monitoring.enabled: true
 config.reload.automatic: true
