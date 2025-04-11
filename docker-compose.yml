@@ -86,7 +86,7 @@ services:
 
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http://172.17.71.25:${ES01_PORT}"
+      ELASTICSEARCH_HOSTS: "http://172.17.71.27:${ES01_PORT}"
       elasticsearch.ssl.verificationMode: "none"
 
     depends_on:
