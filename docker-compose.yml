@@ -120,7 +120,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.25:${ES01_PORT}"
+      HOST_1: "172.17.71.27:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -157,7 +157,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.25:${ES01_PORT}"
+      HOST_1: "172.17.71.27:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -194,7 +194,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.27:${ES01_PORT}"
+      HOST_1: "172.17.71.25:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -230,7 +230,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.27:${ES01_PORT}"
+      HOST_1: "172.17.71.25:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
