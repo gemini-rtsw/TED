@@ -5,12 +5,11 @@ services:
     hostname: logstash02
     container_name: ls02
 
-    networks:
-      - elkg
+    network_mode: "host"
 
     environment:
       LOGSTASH_MODE: read
-      HOST_1: "http://elasticsearch:${ES01_PORT}"
+      HOST_1: "http://172.17.71.25:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
       DAY: "${DAY}"
       MONTH: "${MONTH}"
@@ -29,7 +28,3 @@ services:
         max-size: 100m
         max-file: 1
 
-networks:
-  elkg:
-    driver: bridge
-    external: true

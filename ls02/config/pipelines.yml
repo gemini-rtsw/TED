@@ -1,6 +1,6 @@
-- pipeline.id: serialcon-flam2sparc-${LOGSTASH_MODE}
+- pipeline.id: serialcon-flamingos-2-${LOGSTASH_MODE}
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/serialcon/flam2sparc/flam2sparc.cfg"
+  path.config: "/usr/share/logstash/pipeline/serialcon/flamperle/flamperle.cfg"
   queue.type: persisted
-  queue.max_bytes: 500m
+  queue.max_bytes: 100mb
 
