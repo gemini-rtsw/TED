@@ -53,9 +53,9 @@ services:
     environment:
       HOST_IP: "${HOST01_IP}"
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http:${HOST01_IP}:${ES01_PORT}"
+      ELASTICSEARCH_HOSTS: "http://${HOST01_IP}:${ES01_PORT}"
       elasticsearch.ssl.verificationMode: "none"
-      SERVER_PORT: "${ki01_PORT}"
+      SERVER_PORT: "${KI01_PORT}"
 
     depends_on:
           elasticsearch:
@@ -95,7 +95,7 @@ services:
     volumes:
       - ./ls01/config:/usr/share/logstash/config
       - ./ls01/pipeline:/usr/share/logstash/pipeline
-      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${LOGS_PATH}:/gemsoft/var/
       - ${DATA_PATH}/ls01/db:/db
       - /etc/localtime:/etc/localtime
 

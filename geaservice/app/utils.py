@@ -51,6 +51,7 @@ def identifyArchive(channelsByArchive, channelsList):
         for key, valueList in localChannelsByArchive.items():
             for sublist in valueList:
                 if channel == sublist[0]:
+                    logging.debug(f"Found '{channel}' in archive: {key}")
                     if latestEntry is None or sublist[2] > latestEntry[2]:
                         latestEntry = sublist
                         latestKey = key
