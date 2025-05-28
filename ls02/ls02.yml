@@ -4,13 +4,10 @@ services:
     image: ted-logstash:8.15.0
     hostname: logstash02
     container_name: ls02
-
-    networks:
-      - elkg
-
+    network_mode: "host"
     environment:
       LOGSTASH_MODE: read
-      HOST_1: "http://elasticsearch:${ES01_PORT}"
+      HOST_1: "http://${HOST01_IP}:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
       DAY: "${DAY}"
       MONTH: "${MONTH}"
@@ -19,8 +16,7 @@ services:
     volumes:
       - ./config:/usr/share/logstash/config
       - ./pipeline:/usr/share/logstash/pipeline
-      - ./logs:/usr/share/logstash/logs
-      - ${LOGS_PATH}:/usr/logs/log
+      - ${LOGS_PATH}:/gemsoft/var
       - ${DATA_PATH}/ls02/db:/db
 
     logging:
@@ -28,8 +24,3 @@ services:
       options:
         max-size: 100m
         max-file: 1
-
-networks:
-  elkg:
-    driver: bridge
-    external: true

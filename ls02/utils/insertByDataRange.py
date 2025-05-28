@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import time
 import yaml
 import re
@@ -139,7 +141,7 @@ def verifyFinished(pipelinesNames):
             if pipelineName in pipelinesFinished:
                 continue
 
-            cmdPipeline = f"curl -sS 'http://localhost:9600/_node/stats/pipelines/{pipelineName}'"
+            cmdPipeline = f"curl -sS 'http://10.1.76.15:8999/_node/stats/pipelines/{pipelineName}'"
             cmd = f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
 
             try:
