@@ -2,7 +2,7 @@
 #!/bin/bash
 
 # Load environment variables
-source ./.env
+source ./../.env
 
 # Function to check and create directories if they do not exist
 create_directory_if_not_exists() {
@@ -27,7 +27,7 @@ directories=(
     "${DATA_PATH}/ls02/db/completed"
     "${DATA_PATH}/ls03/db"
     "${DATA_PATH}/ls03/db/sincedb"
-    "./es01/logs"
+    "../elasticsearch/es01/logs"
 )
 
 # Iterate over each directory and check/create
