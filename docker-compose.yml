@@ -69,14 +69,14 @@ services:
 
 #################################################################################################################
 
-  logstash:
+  ls-core:
     image: ted-logstash:8.15.0
     hostname: logstash
-    container_name: ls01
+    container_name: ls-core
     restart: unless-stopped
 
     build:
-      context: ./ls01
+      context: "./logstash/${SITE}/ls-core"
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -88,15 +88,14 @@ services:
 
     environment:
       HOST_IP: "${HOST01_IP}"
-      LOGSTASH_MODE: tail
       HOST_1: "${HOST01_IP}:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
-      - ./ls01/config:/usr/share/logstash/config
-      - ./ls01/pipeline:/usr/share/logstash/pipeline
+      - "./logstash/${SITE}/ls-core/config:/usr/share/logstash/config"
+      - "./logstash/${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline"
       - ${LOGS_PATH}:/gemsoft/var/
-      - ${DATA_PATH}/ls01/db:/db
+      - ${DATA_PATH}/ls-core/db:/db
       - /etc/localtime:/etc/localtime
 
     logging:
