@@ -18,15 +18,13 @@ create_directory_if_not_exists() {
 # List of directories to check/create
 directories=(
     "${DATA_PATH}/es01"
-    "${DATA_PATH}/ls01"
-    "${DATA_PATH}/ls01/db"
-    "${DATA_PATH}/ls01/db/sincedb"
-    "${DATA_PATH}/ls02"
-    "${DATA_PATH}/ls02/db"
-    "${DATA_PATH}/ls02/db/sincedb"
-    "${DATA_PATH}/ls02/db/completed"
-    "${DATA_PATH}/ls03/db"
-    "${DATA_PATH}/ls03/db/sincedb"
+    "${DATA_PATH}/ls-core"
+    "${DATA_PATH}/ls-core/db"
+    "${DATA_PATH}/ls-core/db/sincedb"
+    "${DATA_PATH}/ls-read"
+    "${DATA_PATH}/ls-read/db"
+    "${DATA_PATH}/ls-read/db/sincedb"
+    "${DATA_PATH}/ls-read/db/completed"
     "../elasticsearch/es01/logs"
 )
 
