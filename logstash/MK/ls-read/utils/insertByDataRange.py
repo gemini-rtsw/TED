@@ -10,17 +10,31 @@ import calendar
 import os
 import json
 
-# Sets up logging with a specified log level, format, and log file
+# --- Logger Setup ---
 def setupLogger():
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
-                        filename='InsertByDataRange.log',
-                        filemode='a')
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        filename='InsertByDataRange.log',
+        filemode='a'
+    )
 
-# Reads and returns environment variables from a .env file
-def getEnvironment():
+# --- Retry Helper ---
+def retryCommand(command, retries=3, delay=3):
+    for attempt in range(retries):
+        try:
+            subprocess.run(command, check=True)
+            return
+        except subprocess.CalledProcessError as e:
+            logging.warning(f"Retry {attempt + 1}/{retries} failed: {e}")
+            time.sleep(delay)
+    logging.error(f"Command failed after {retries} retries: {' '.join(command)}")
+
+# --- Environment Handling ---
+def loadEnvironment(path="../../../../.env"):
     envDict = {}
     try:
-        with open("../../.env", "r") as file:
+        with open(path, "r") as file:
             for line in file:
                 key, _, value = line.partition("=")
                 envDict[key.strip()] = value.strip()
@@ -28,206 +42,215 @@ def getEnvironment():
         logging.error(f"Error loading environment file: {exc}")
     return envDict
 
-# Loads and parses pipeline configurations from a YAML file
-def getSubsystems():
-    subsystemsDict = {}
+# --- Pipeline Configuration ---
+def loadSubsystems(group):
+    configPath=f"../../ls-{group}/config/pipelines.yml"
+    subsystems = {}
     try:
-        with open("../../ls01/config/pipelines.yml", "r") as file:
+        with open(configPath, "r") as file:
             pipelines = yaml.safe_load(file)
         for pipeline in pipelines:
-            pipelineDetails = pipeline["pipeline.id"].split("-")
-            location, name = pipelineDetails[:2]
-            if len(pipelineDetails) > 3:
-                name += "-" + pipelineDetails[2]
-            subsystemsDict.setdefault(location, {})[name] = pipeline
-    except (yaml.YAMLError, IOError) as exc:
+            parts = pipeline["pipeline.id"].split("-")
+            location, name = parts[:2]
+            if len(parts) > 3:
+                name += f"-{parts[2]}"
+            pipeline['pipeline.id'] = f"{location}-{name}-read"
+            subsystems.setdefault(group, {})[name] = pipeline
+    except Exception as exc:
         logging.error(f"Error loading configuration file: {exc}")
-    return subsystemsDict
+    return subsystems
 
-
-# Creates a configuration file for pipelines and returns their names
-def createPipelinesFile(subsystemsDict, locations, subsystems):
-    pipelinesNames = []
-    if not locations:
-        locations = subsystemsDict.keys()
-
+def createPipelinesFile(subsystems, groups, subsystemsFilter, outputPath="../config/pipelines.yml"):
+    pipelineNames = []
+    groups =  groups or subsystems.keys()
     try:
-        with open("../config/pipelines.yml", 'w') as file:
-            for location in locations:
-                if subsystemsDict.get(location):
-                    subsystemsToInclude = subsystems if subsystems else subsystemsDict[location].keys()
-                    for subsystem in subsystemsToInclude:
-                        pipeline = subsystemsDict.get(location, {}).get(subsystem)
+        with open(outputPath, 'w') as file:
+            for group in groups:
+                if group in subsystems:
+                    filteredSubs = subsystemsFilter or subsystems[group].keys()
+                    for subsystem in filteredSubs:
+                        pipeline = subsystems[group].get(subsystem)
                         if pipeline:
                             file.write(f"- pipeline.id: {pipeline['pipeline.id']}\n")
                             file.write(f"  pipeline.workers: {pipeline['pipeline.workers']}\n")
                             file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
                             file.write(f"  queue.type: {pipeline['queue.type']}\n")
                             file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
-                            pipelinesNames.append(f'{location}-{subsystem}-read')
+                            pipelineNames.append(pipeline['pipeline.id'])
     except Exception as exc:
         logging.error(f"Error creating pipelines file: {exc}")
-    return pipelinesNames
 
-# Parses user input to extract specified options
+    return pipelineNames
+
+# --- Input Parsing ---
 def parseInput(userInput):
-    pattern = r'-(l|s|i|f) ("[^"]*"|\S+)'
-    matches = re.findall(pattern, userInput)
-
+    matches = re.findall(r'-(l|s|i|f) ("[^\"]*"|\S+)', userInput)
     options = {'l': None, 's': None, 'i': None, 'f': None}
-    for option, argument in matches:
-        cleaned_argument = argument.strip('"')
-        options[option] = cleaned_argument.split()
+    for opt, arg in matches:
+        cleaned = arg.strip('"')
+        options[opt] = cleaned.split()
+    print(options)
     return options
 
-# Groups dates by month between a start and end date
-def getDatesGroupedByMonth(startDate, endDate):
-    groupedDates = {}
+# --- Date Handling ---
+def getDatesByMonth(startDate, endDate):
+    grouped = {}
     try:
-        startDate = datetime.strptime(startDate, "%Y/%m/%d").date()
-        endDate = datetime.strptime(endDate, "%Y/%m/%d").date()
+        start = datetime.strptime(startDate, "%Y/%m/%d").date()
+        end = datetime.strptime(endDate, "%Y/%m/%d").date()
     except ValueError as exc:
-        printInvalidInputMessage()
         logging.error(f"Date format error: {exc}")
-        return groupedDates
+        return []
 
-    while startDate <= endDate:
-        yearMonthKey = (startDate.year, startDate.month)
-        if yearMonthKey not in groupedDates:
-            groupedDates[yearMonthKey] = []
+    while start <= end:
+        ymKey = (start.year, start.month)
+        grouped.setdefault(ymKey, []).append(start.day)
+        start += timedelta(days=1)
 
-        lastDayOfMonth = calendar.monthrange(startDate.year, startDate.month)[1]
-        if startDate.day <= lastDayOfMonth:
-            groupedDates[yearMonthKey].append(startDate.day)
+    return [[f"{y:04d}", f"{{{m:02d},{calendar.month_abbr[m]}}}", f"{{{','.join(f'{d:02d}' for d in days)}}}", calendar.month_abbr[m]]
+            for (y, m), days in grouped.items()]
 
-        startDate += timedelta(days=1)
+# --- Docker Actions ---
+def dockerUp(date, env):
+    print(f"\n### Logs ingestion for {date[3]} {date[0]} ###\n")
+    print(date)
+    os.environ.update({
+        'HOST01_IP': env.get('HOST01_IP'),
+        'ES01_PORT': env.get('ES01_PORT', ''),
+        'LS_TIMEZONE': env.get('LS_TIMEZONE', ''),
+        'LOGS_PATH': env.get('LOGS_PATH', ''),
+        'DATA_PATH': env.get('DATA_PATH', ''),
+        'DAY': date[2],
+        'MONTH': date[1],
+        'YEAR': date[0],
+    })
+    retryCommand(['/bin/docker', 'compose', '-f', '../ls-read.yml', 'up', '-d', 'ls-read'])
 
-    groupedDatesArray = []
-    for (year, month), days in groupedDates.items():
-        monthName = calendar.month_name[int(month)][0:3]
-        formattedYear = f"{year:04d}"
-        formattedMonth = f"{month:02d},{monthName}"
-        formattedDays = [f"{day:02d}" for day in days]
-        groupedDatesArray.append([formattedYear, "{" + formattedMonth + "}", "{" + ",".join(formattedDays) + "}", monthName])
-    return groupedDatesArray
+def dockerDown():
+    retryCommand(['/bin/docker', 'rm', '-f', 'ls-read'])
 
-
-# Starts Docker Compose services and sets environment variables
-def dockerComposeUp(date,envDic):
-    print(f"\n##############################################")
-    print(f"##     Logs ingestion as of {date[3]} {date[0]}        ##")
-    print(f"##############################################\n")
-    try:
-        os.environ['LOGSTASH_MODE']= "read"
-        os.environ['ES01_PORT']= envDic.get('ES01_PORT')
-        os.environ['LS_TIMEZONE']= envDic.get('LS_TIMEZONE')
-        os.environ['LOGS_PATH']= envDic.get('LOGS_PATH')
-        os.environ['DATA_PATH']= envDic.get('DATA_PATH')
-        os.environ['DAY'] = date[2]
-        os.environ['MONTH'] = date[1]
-        os.environ['YEAR'] = date[0][2:]
-        subprocess.run(['/bin/docker','compose', '-f', '../ls02.yml', 'up','-d','logstash02'] ,check=True)
-    except subprocess.CalledProcessError as e:
-        print ("Error executing Docker Compose")
-        logging.error(f"Error executing Docker Compose: {e}")
-
-# Checks if specified pipelines have finished processing
-def verifyFinished(pipelinesNames):
-    nPipelines = len(pipelinesNames)
-    pipelinesFinished = set()
-
-    while len(pipelinesFinished) < nPipelines:
-        for pipelineName in pipelinesNames:
-            if pipelineName in pipelinesFinished:
+# --- Pipeline Monitoring ---
+def checkPipelineCompletion(pipelineNames):
+    finished = set()
+    total = len(pipelineNames)
+    print("pipelineNames: ",pipelineNames) 
+    print("finished: ", finished)
+    print("total", total)
+    while len(finished) < total:
+        for name in pipelineNames:
+            print("name", name)
+            if name in finished:
                 continue
 
-            cmdPipeline = f"curl -sS 'http://10.1.76.15:8999/_node/stats/pipelines/{pipelineName}'"
-            cmd = f"docker exec ls02 /bin/sh -c '{cmdPipeline}'"
-
+            cmd = f"docker exec ls-read curl -sS 'http://10.1.76.15:8999/_node/stats/pipelines/{name}'"
             try:
-                process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                if process.returncode != 0:
-                    raise Exception(process.stderr)
-                else:
-                    statsPipeline = json.loads(process.stdout.decode())
-                    pipelineStats = statsPipeline.get('pipelines', {}).get(pipelineName, {}).get('flow', {})
+                result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if result.returncode != 0:
+                    raise Exception(result.stderr.decode())
+                stats = json.loads(result.stdout.decode())
+                pipelineStats = stats.get('pipelines', {}).get(name, {})
+                flow = pipelineStats.get('flow', {})
+                events = pipelineStats.get('events', {})
 
-                    if all(pipelineStats.get(metric, {}).get('current', -1) == 0.0 for metric in
-                        ['output_throughput', 'filter_throughput', 'input_throughput',
-                            'queue_backpressure', 'worker_concurrency',
-                            'queue_persisted_growth_bytes', 'queue_persisted_growth_events']):
-                        pipelinesFinished.add(pipelineName)
-                        print(f'Pipeline finished: {pipelineName}')
+                flowCondition = True
 
-            except json.JSONDecodeError:
-                logging.error(f"Error parsing JSON response from pipeline {pipelineName}")
+                for m in ['output_throughput', 'filter_throughput', 'input_throughput','queue_backpressure', 'queue_persisted_growth_bytes', 'queue_persisted_growth_events']:
+                    value = flow.get(m, {}).get('current', -1)
+                    comparison = (value == 0.0)
+                    print(f"{m}: current={value} → {comparison}")
+                    if not comparison:
+                        flowCondition = False
+
+                eventsIn = events.get('in', 0)
+                print("eventsIn", eventsIn)
+                eventsOut = events.get('out', 0)
+                print("eventsOut", eventsOut)
+                eventsCondition = eventsIn == eventsOut
+                print("flowCondition", flowCondition)
+                print("eventsCondition", eventsCondition)
+                if flowCondition and eventsCondition:
+                    finished.add(name)
+                    print(f"✔ Finished: {name}")
             except Exception as e:
-                logging.error(f"Error while processing the pipeline {pipelineName}: {e}")
-
+                logging.error(f"Error monitoring pipeline {name}: {e}")
         time.sleep(5)
 
+# --- User Messages ---
+def printHelp(subsystems=None, showLocations=False, showSubsystems=False):
+    print("""
+Options:
+  -g [groups]     : Example: "core wfs gmos ghost"
+  -s [subsystems]    : Example: "tcs vii"
+  -i [start date]    : Format: YYYY/MM/DD
+  -f [end date]      : Format: YYYY/MM/DD
 
+Example:
+  -l core -s tcs -i 2022/11/25 -f 2022/12/30
+""")
+    if subsystems:
+        if showLocations:
+            print("\nAvailable Locations:")
+            for location in sorted(subsystems.keys()):
+                print(f"  - {location}")
+        if showSubsystems:
+            print("\nAvailable Subsystems:")
+            allSubs = set()
+            for subs in subsystems.values():
+                allSubs.update(subs.keys())
+            for name in sorted(allSubs):
+                print(f"  - {name}")
 
-# Stops and removes the Docker container 'ls02'
-def dockerComposeDown():
-    try:
-        subprocess.run(['/bin/docker', 'rm', '-f', 'ls02'])
-    except subprocess.CalledProcessError as e:
-        logging.error(f"Error executing Docker Compose: {e}")
+def printInvalid():
+    print("Invalid input. Use -h for help.")
 
+# --- Main Menu ---
+def main():
+    setupLogger()
+    subsystems = loadSubsystems("core")
+    print("subsystems", subsystems)
+    env = loadEnvironment()
+    defaultEndDate = (datetime.now() - timedelta(days=1)).strftime("%Y/%m/%d")
 
-def printHelpMessage():
-            print("-l [locations] : Specify locations separated by spaces. Example: 'cpo sbf'")
-            print("-s [subsystems] : Specify subsystems separated by spaces. Example: 'tcs vii'")
-            print("-i [start date] : Specify the start date in YYYY/MM/DD format. Example: '2022/11/25'")
-            print("-f [end date] : Specify the end date in YYYY/MM/DD format. Example: '2022/12/30'")
-            print("Complete input example: '-l cpo sbf -s tcs vii -i 2022/11/25 -f 2022/12/30'")
+    print("""
+###############################################################
+##  Welcome to the script for ingesting logs by date ranges  ##
+##                                                           ##
+##  Type '-h' for help and '-q' to terminate the program.    ##
+###############################################################
+""")
 
-def printInvalidInputMessage():
-            print("\nInput not recognized or missing options.")
-            print("Please make sure to enter the options correctly.")
-            print("Valid options are -l, -s, -i, -f")
-            print("Dates should be in the format YYYY/MM/DD.")
-            print("Example: '-l cpo sbf -s tcs vii -i 2022/11/25 -f 2022/12/30'")
-
-# Main menu function to interact with the user and execute script functionalities
-def mainMenu(subsystemsDict):
-    envDict= getEnvironment()
-    yesterday=datetime.now()-timedelta(days=1)
-    yesterdayDate=yesterday.strftime("%Y/%m/%d")
-    print("###############################################################")
-    print("##  Welcome to the script for ingesting logs by date ranges  ##")
-    print("##                                                           ##")
-    print("##  Type '-h' for help and '-q' to terminate the program.    ##")
-    print("###############################################################")
     while True:
-        userInput = input("\nEnter your options: ").lower()
-        if userInput == '-q':
-            print("Exiting the program...")
+        userInput = input("\nEnter your options: ").strip().lower()
+        if userInput in ['-q', '--quit']:
+            print("Exiting...")
             break
+        if userInput in ['-h', '--help']:
+            printHelp(subsystems)
+            continue
+        if userInput in ['-h -s', '--help --subsystems']:
+            printHelp(subsystems, showSubsystems=True)
+            continue
+        if userInput in ['-h -l', '--help --locations']:
+            printHelp(subsystems, showLocations=True)
+            continue
 
-        if userInput == '-h':
-            printHelpMessage()
+        options = parseInput(userInput)
+        print("OPTIONS", options)
+        pipelines = createPipelinesFile(subsystems, options['l'], options['s'])
+        print("PIPELINES", pipelines)
+        if pipelines and options['i']:
+            end = options['f'][0] if options['f'] else defaultEndDate
+            for datesByMonth in getDatesByMonth(options['i'][0], end):
+                print(datesByMonth)
+                print("\nPreparing to run the following pipelines:")
+                for p in pipelines:
+                    print(f"  - {p}")
+                dockerUp(datesByMonth, env)
+                checkPipelineCompletion(pipelines)
+                #dockerDown()
         else:
-            dates=None
-            options = parseInput(userInput)
-            pipelinesNames=createPipelinesFile(subsystemsDict, options['l'], options['s'])
-            if (len(pipelinesNames) > 0):
-                if options['i'] and options['f']:
-                        dates = getDatesGroupedByMonth(options['i'][0], options['f'][0])
-                elif options['i']:
-                        dates = getDatesGroupedByMonth(options['i'][0], yesterdayDate)
-                else:
-                    printInvalidInputMessage()
-                if dates:
-                    for date in dates:
-                        dockerComposeUp(date,envDict)
-                        verifyFinished(pipelinesNames)
-                        dockerComposeDown()
-            else:
-                    printInvalidInputMessage()
+            printInvalid()
 
 if __name__ == "__main__":
-    setupLogger()
-    subsystemsDict = getSubsystems()
-    mainMenu(subsystemsDict)
+    main()
+
