@@ -1,5 +1,5 @@
-node.name: ls02
-http.host: 10.1.76.15
+node.name: ls-read
+http.host: 0.0.0.0
 http.port: 8999
 xpack.monitoring.elasticsearch.hosts: [ "${HOST_1}" ]
 xpack.monitoring.enabled: true
