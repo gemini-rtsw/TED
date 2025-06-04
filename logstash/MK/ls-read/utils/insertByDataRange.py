@@ -69,7 +69,9 @@ def createPipelinesFile(subsystems, groups, subsystemsFilter, outputPath="../con
                 if group in subsystems:
                     filteredSubs = subsystemsFilter or subsystems[group].keys()
                     for subsystem in filteredSubs:
+                        print("subsystem", subsystem)
                         pipeline = subsystems[group].get(subsystem)
+                        print("pipeline: ", pipeline)
                         if pipeline:
                             file.write(f"- pipeline.id: {pipeline['pipeline.id']}\n")
                             file.write(f"  pipeline.workers: {pipeline['pipeline.workers']}\n")
@@ -247,7 +249,7 @@ def main():
                     print(f"  - {p}")
                 dockerUp(datesByMonth, env)
                 checkPipelineCompletion(pipelines)
-                #dockerDown()
+                dockerDown()
         else:
             printInvalid()
 
