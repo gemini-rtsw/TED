@@ -1,18 +1,13 @@
 [
-  "None",
+  "ag",
   "crcs",
   "ecs",
+  "gcal",
   "gis",
-  "gmos-cc",
-  "gmos-dc",
-  "hrwfs",
-  "oiwfs",
+  "mcs",
   "pcs",
-  "prcs",
-  "pwfs1",
-  "pwfs2",
   "scs",
-  "tcs",
-  "gws"
+  "tcs"	
 ]
+
 

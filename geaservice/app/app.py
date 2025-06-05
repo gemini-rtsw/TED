@@ -1,4 +1,5 @@
 # Standard library imports
+import os
 import sys
 import logging
 import threading
@@ -21,8 +22,15 @@ CORS(app)
 sem = threading.Semaphore()
 lock = threading.Lock()
 
+# Load Site
+site = os.getenv("SITE")
+if site == "CP":
+    domLoc = "cl"
+else:
+    domLoc = "hi"
+
 # Initialize the XML-RPC client
-gea = XmlClient.ServerProxy('http://geanorth.hi.gemini.edu/run/ArchiveDataServer.cgi')
+gea = XmlClient.ServerProxy(f'http://geanorth.{domLoc}.gemini.edu/run/ArchiveDataServer.cgi')
 
 archivesCache, channelsByArchiveCache = initializeCache(gea)
 
