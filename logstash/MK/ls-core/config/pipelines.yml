@@ -1,8 +1,8 @@
-#- pipeline.id: mk-gws-tail
-#  pipeline.workers: 1
-#  path.config: "/usr/share/logstash/pipeline/gws/gws.cfg"
-#  queue.type: persisted
-#  queue.max_bytes: 100mb
+- pipeline.id: mk-gws-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gws/gws.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
 
 - pipeline.id: mk-prcs-tail
   pipeline.workers: 1
@@ -40,9 +40,27 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
+- pipeline.id: mk-ag-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/ag/ag.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gcal-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gcal/gcal.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
 - pipeline.id: mk-tcs-tail
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/tcs/tcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-mcs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/mcs/mcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
