@@ -104,43 +104,6 @@ services:
         max-size: 100m
         max-file: 1
 
-#################################################################################################################
-
-  logstash-daily:
-    image: ted-logstash:8.15.0
-    hostname: logstash-daily
-    container_name: ls03
-    restart: unless-stopped
-
-    build:
-      context: ./ls03
-      dockerfile: Dockerfile
-      args:
-        - USER=${USER}
-        - UID=${U_ID}
-        - GROUP=${GROUP}
-        - GID=${G_ID}
-
-    network_mode: "host"
-
-    environment:
-      HOST_IP: "${HOST01_IP}"
-      LOGSTASH_MODE: tail
-      HOST_1: "${HOST01_IP}:${ES01_PORT}"
-      TIMEZONE: "${LS_TIMEZONE}"
-
-    volumes:
-      - ./ls03/config:/usr/share/logstash/config
-      - ./ls03/pipeline:/usr/share/logstash/pipeline
-      - ${LOGS_PATH}:/gemsoft/var/log
-      - ${DATA_PATH}/ls03/db:/db
-      - /etc/localtime:/etc/localtime
-
-    logging:
-      driver: json-file
-      options:
-        max-size: 100m
-        max-file: 1
 
 #################################################################################################################
 
@@ -165,6 +128,7 @@ services:
     environment:
       HOST_IP: "${HOST01_IP}"
       GS01_PORT: "${GS01_PORT}"
+      SITE: "${SITE}"
 
     volumes:
       - ./geaservice/:/geaservice/
@@ -183,11 +147,11 @@ services:
   grafana:
     image: ted-grafana:11.1.4-ubuntu
     hostname: grafana
-    container_name: gr01
+    container_name: grafana
     restart: unless-stopped
 
     build:
-      context: ./gr01
+      context: ./grafana
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -205,8 +169,8 @@ services:
         #GF_LOG_FILTERS: "rendering:debug"
 
     volumes:
-      - ./gr01/grafana-data:/var/lib/grafana
-      - ./gr01/conf/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/grafana-data:/var/lib/grafana
+      - ./grafana/conf/grafana.ini:/etc/grafana/grafana.ini
 
     logging:
       driver: json-file
