@@ -103,7 +103,7 @@ def pvTree():
 def allSubsystems():
     try:
         logging.info("Loading all subsystems data from 'allSubsystems.json'.")
-        with open('../jsons/allSubsystems.json') as file:
+        with open(f'../jsons/{site}/allSubsystems.json') as file:
             dataSubs = json.load(file)
         logging.info("Successfully loaded all subsystems data.")
         return jsonify(dataSubs)
