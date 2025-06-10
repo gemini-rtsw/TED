@@ -104,6 +104,41 @@ services:
         max-size: 100m
         max-file: 1
 
+#################################################################################################################
+
+  ls-wfs:
+    image: ted-logstash:8.15.0
+    container_name: ls-wfs
+    restart: unless-stopped
+
+    build:
+      context: "./logstash/${SITE}/ls-wfs"
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+
+    network_mode: "host"
+
+    environment:
+      HOST_IP: "${HOST01_IP}"
+      HOST_1: "${HOST01_IP}:${ES01_PORT}"
+      TIMEZONE: "${LS_TIMEZONE}"
+
+    volumes:
+      - "./logstash/${SITE}/ls-wfs/config:/usr/share/logstash/config"
+      - "./logstash/${SITE}/ls-wfs/pipeline:/usr/share/logstash/pipeline"
+      - ${LOGS_PATH}:/gemsoft/var/
+      - ${DATA_PATH}/ls-wfs/db:/db
+      - /etc/localtime:/etc/localtime
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
 
 #################################################################################################################
 
