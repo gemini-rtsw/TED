@@ -1,0 +1,23 @@
+- pipeline.id: mk-hrwfs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/hrwfs/hrwfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-pwfs1-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/pwfs1/pwfs1.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-pwfs2-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/pwfs2/pwfs2.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-oiwfs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/oiwfs/oiwfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb

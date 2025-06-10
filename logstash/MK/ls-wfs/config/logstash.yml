@@ -1,0 +1,5 @@
+node.name: ls-wfs
+http.host: "0.0.0.0"
+xpack.monitoring.elasticsearch.hosts: [ "${HOST_1}" ]
+xpack.monitoring.enabled: true
+config.reload.automatic: true
