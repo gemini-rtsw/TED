@@ -1,6 +1,12 @@
-- pipeline.id: mk-crcs-read
+- pipeline.id: mk-hrwfs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/crcs/crcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/hrwfs/hrwfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-pwfs1-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/pwfs1/pwfs1.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 

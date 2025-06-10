@@ -208,7 +208,7 @@ def printInvalid():
 # --- Main Menu ---
 def main():
     setupLogger()
-    subsystems = loadSubsystems("core")
+    subsystems = loadSubsystems("wfs")
     print("subsystems", subsystems)
     env = loadEnvironment()
     defaultEndDate = (datetime.now() - timedelta(days=1)).strftime("%Y/%m/%d")
