@@ -43,42 +43,35 @@ def loadEnvironment(path="../../../../.env"):
     return envDict
 
 # --- Pipeline Configuration ---
-def loadSubsystems(group):
-    configPath=f"../../ls-{group}/config/pipelines.yml"
+def loadSubsystems():
+    configPath=f"../config/all-pipelines.yml"
     subsystems = {}
     try:
         with open(configPath, "r") as file:
             pipelines = yaml.safe_load(file)
         for pipeline in pipelines:
-            parts = pipeline["pipeline.id"].split("-")
-            location, name = parts[:2]
-            if len(parts) > 3:
-                name += f"-{parts[2]}"
-            pipeline['pipeline.id'] = f"{location}-{name}-read"
-            subsystems.setdefault(group, {})[name] = pipeline
+            name = pipeline['pipeline.id'].split('-')[1]
+            subsystems[name] = pipeline
     except Exception as exc:
         logging.error(f"Error loading configuration file: {exc}")
     return subsystems
 
-def createPipelinesFile(subsystems, groups, subsystemsFilter, outputPath="../config/pipelines.yml"):
+def createPipelinesFile(subsystems, subsystemsFilter, outputPath="../config/pipelines.yml"):
+    print("crpf, sysFilter", subsystemsFilter)
     pipelineNames = []
-    groups =  groups or subsystems.keys()
     try:
         with open(outputPath, 'w') as file:
-            for group in groups:
-                if group in subsystems:
-                    filteredSubs = subsystemsFilter or subsystems[group].keys()
-                    for subsystem in filteredSubs:
-                        print("subsystem", subsystem)
-                        pipeline = subsystems[group].get(subsystem)
-                        print("pipeline: ", pipeline)
-                        if pipeline:
-                            file.write(f"- pipeline.id: {pipeline['pipeline.id']}\n")
-                            file.write(f"  pipeline.workers: {pipeline['pipeline.workers']}\n")
-                            file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
-                            file.write(f"  queue.type: {pipeline['queue.type']}\n")
-                            file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
-                            pipelineNames.append(pipeline['pipeline.id'])
+            for subsystem in subsystemsFilter:
+                print("subsystem", subsystem)
+                pipeline = subsystems.get(subsystem)
+                print("pipeline: ", pipeline)
+                if pipeline:
+                    file.write(f"- pipeline.id: {pipeline['pipeline.id']}\n")
+                    file.write(f"  pipeline.workers: {pipeline['pipeline.workers']}\n")
+                    file.write(f"  path.config: \"{pipeline['path.config']}\"\n")
+                    file.write(f"  queue.type: {pipeline['queue.type']}\n")
+                    file.write(f"  queue.max_bytes: {pipeline['queue.max_bytes']}\n\n")
+                    pipelineNames.append(pipeline['pipeline.id'])
     except Exception as exc:
         logging.error(f"Error creating pipelines file: {exc}")
 
@@ -208,7 +201,7 @@ def printInvalid():
 # --- Main Menu ---
 def main():
     setupLogger()
-    subsystems = loadSubsystems("wfs")
+    subsystems = loadSubsystems()
     print("subsystems", subsystems)
     env = loadEnvironment()
     defaultEndDate = (datetime.now() - timedelta(days=1)).strftime("%Y/%m/%d")
@@ -237,9 +230,9 @@ def main():
             continue
 
         options = parseInput(userInput)
-        print("OPTIONS", options)
-        pipelines = createPipelinesFile(subsystems, options['l'], options['s'])
+        pipelines = createPipelinesFile(subsystems, options['s'])
         print("PIPELINES", pipelines)
+        
         if pipelines and options['i']:
             end = options['f'][0] if options['f'] else defaultEndDate
             for datesByMonth in getDatesByMonth(options['i'][0], end):

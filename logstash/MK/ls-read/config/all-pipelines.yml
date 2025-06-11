@@ -1,0 +1,103 @@
+#- pipeline.id: mk-gws-read
+#  pipeline.workers: 1
+#  path.config: "/usr/share/logstash/pipeline/gws/gws.cfg"
+#  queue.type: persisted
+#  queue.max_bytes: 100mb
+
+#- pipeline.id: mk-prcs-read
+#  pipeline.workers: 1
+#  path.config: "/usr/share/logstash/pipeline/prcs/prcs.cfg"
+#  queue.type: persisted
+# queue.max_bytes: 100mb
+
+- pipeline.id: mk-pcs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/pcs/pcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-scs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/scs/scs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-crcs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/crcs/crcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gis-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gis/gis.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-ecs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/ecs/ecs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-ag-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/ag/ag.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gcal-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gcal/gcal.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-tcs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/tcs/tcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-mcs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/mcs/mcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-tcc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/tcc/tcc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+#ls-wfs---------------------------------------------------------
+- pipeline.id: mk-hrwfs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/hrwfs/hrwfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-pwfs1-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/pwfs1/pwfs1.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-pwfs2-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/pwfs2/pwfs2.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-oiwfs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/oiwfs/oiwfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+    
+#ls-tools------------------------------------------------------
+- pipeline.id: mk-seqexecng-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/seqexec-ng/seqexec-ng.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb

@@ -1,12 +1,6 @@
-- pipeline.id: mk-hrwfs-read
+- pipeline.id: mk-seqexecng-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/hrwfs/hrwfs.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
-- pipeline.id: mk-pwfs1-read
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pwfs1/pwfs1.cfg"
+  path.config: "/usr/share/logstash/pipeline/seqexec-ng/seqexec-ng.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
