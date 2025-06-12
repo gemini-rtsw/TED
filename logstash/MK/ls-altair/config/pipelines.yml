@@ -1,23 +1,23 @@
 - pipeline.id: mk-altairioc-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairioc/altairioc.cfg"
+  path.config: "/usr/share/logstash/pipeline/altair-ioc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-altairlgsioc-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairlgsioc/altairlgsioc.cfg"
+  path.config: "/usr/share/logstash/pipeline/altairlgsioc/altair-lgsioc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-altairwfcs-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairwfcs/altairwfcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/altairwfcs/altair-wfcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-altairsfo-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairsfo/altairsfo.cfg"
+  path.config: "/usr/share/logstash/pipeline/altairsfo/altair-sfo.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb

@@ -1,5 +1,5 @@
 services:
-  ls-gnirs:
+  ls-altair:
     image: ted-logstash:8.15.0
     hostname: ls-altair
     container_name: ls-altair
