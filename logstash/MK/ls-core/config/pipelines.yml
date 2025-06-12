@@ -1,71 +1,71 @@
 #- pipeline.id: mk-gws-tail
 #  pipeline.workers: 1
-#  path.config: "/usr/share/logstash/pipeline/gws/gws.cfg"
+#  path.config: "/usr/share/logstash/pipeline/gws.cfg"
 #  queue.type: persisted
 #  queue.max_bytes: 100mb
 
 #- pipeline.id: mk-prcs-tail
 #  pipeline.workers: 1
-#  path.config: "/usr/share/logstash/pipeline/prcs/prcs.cfg"
+#  path.config: "/usr/share/logstash/pipeline/prcs.cfg"
 #  queue.type: persisted
 # queue.max_bytes: 100mb
 
 - pipeline.id: mk-pcs-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pcs/pcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/pcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-scs-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/scs/scs.cfg"
+  path.config: "/usr/share/logstash/pipeline/scs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-crcs-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/crcs/crcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/crcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gis-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gis/gis.cfg"
+  path.config: "/usr/share/logstash/pipeline/gis.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-ecs-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/ecs/ecs.cfg"
+  path.config: "/usr/share/logstash/pipeline/ecs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-ag-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/ag/ag.cfg"
+  path.config: "/usr/share/logstash/pipeline/ag.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gcal-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gcal/gcal.cfg"
+  path.config: "/usr/share/logstash/pipeline/gcal.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-tcs-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/tcs/tcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/tcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-mcs-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/mcs/mcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/mcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-tcc-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/tcc/tcc.cfg"
+  path.config: "/usr/share/logstash/pipeline/tcc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
