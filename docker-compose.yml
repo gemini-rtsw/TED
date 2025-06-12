@@ -6,7 +6,8 @@ services:
     hostname: elasticsearch
     container_name: es01
     restart: unless-stopped
-
+    cpus: 2.0
+    mem_limit: 4g
     build:
       context: ./elasticsearch/es01
       dockerfile: Dockerfile
@@ -47,6 +48,9 @@ services:
     container_name: ki01
     restart: unless-stopped
 
+    cpus: 1.0
+    mem_limit: 1g
+
     network_mode: "host"
 
     environment:
@@ -73,7 +77,8 @@ services:
     hostname: logstash
     container_name: ls-core
     restart: unless-stopped
-
+    cpus: 1.0
+    mem_limit: 1g
     build:
       context: "./logstash/${SITE}/ls-core"
       dockerfile: Dockerfile
@@ -109,6 +114,9 @@ services:
     image: ted-logstash:8.15.0
     container_name: ls-wfs
     restart: unless-stopped
+
+    cpus: 1.0
+    mem_limit: 1g
 
     build:
       context: "./logstash/${SITE}/ls-wfs"
@@ -146,6 +154,8 @@ services:
     container_name: ls-tools
     restart: unless-stopped
 
+    cpus: 1.0
+    mem_limit: 1g
     build:
       context: "./logstash/${SITE}/ls-tools"
       dockerfile: Dockerfile
