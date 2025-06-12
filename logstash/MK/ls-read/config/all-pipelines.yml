@@ -12,61 +12,61 @@
 
 - pipeline.id: mk-pcs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pcs/pcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/pcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-scs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/scs/scs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/scs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-crcs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/crcs/crcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/crcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gis-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gis/gis.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/gis.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-ecs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/ecs/ecs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/ecs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-ag-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/ag/ag.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/ag.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gcal-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gcal/gcal.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/gcal.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-tcs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/tcs/tcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/tcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-mcs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/mcs/mcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/mcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-tcc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/tcc/tcc.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/tcc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
@@ -105,17 +105,17 @@
 #ls-gmos------------------------------------------------------
 - pipeline.id: mk-gmoscc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gmoscc/gmoscc.cfg"
+  path.config: "/usr/share/logstash/pipeline/gmos/gmos-cc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gmosdc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gmosdc/gmosdc.cfg"
+  path.config: "/usr/share/logstash/pipeline/gmos/gmos-dc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-
+#ls-gnirs-----------------------------------------------------
 - pipeline.id: mk-gnirscc-read
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/gnirscc/gnirscc.cfg"
@@ -133,6 +133,8 @@
   path.config: "/usr/share/logstash/pipeline/gnirswfs/gnirswfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+#ls-altair-----------------------------------------------------
 
 - pipeline.id: mk-altairioc-read
   pipeline.workers: 1

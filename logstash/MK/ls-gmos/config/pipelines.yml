@@ -1,11 +1,11 @@
 - pipeline.id: mk-gmoscc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gmoscc/gmoscc.cfg"
+  path.config: "/usr/share/logstash/pipeline/gmos-cc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gmosdc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gmosdc/gmosdc.cfg"
+  path.config: "/usr/share/logstash/pipeline/gmos-dc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
