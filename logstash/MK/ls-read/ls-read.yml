@@ -4,6 +4,8 @@ services:
     hostname: ls-read
     container_name: ls-read
     network_mode: "host"
+    cpus: 2.0
+    mem_limit: 1g
     environment:
       LOGSTASH_MODE: read
       HOST_1: "http://${HOST01_IP}:${ES01_PORT}"

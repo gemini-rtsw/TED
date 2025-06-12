@@ -1,0 +1,37 @@
+services:
+  ls-core:
+    image: ted-logstash:8.15.0
+    hostname: ls-gmos
+    container_name: ls-gmos
+    restart: unless-stopped
+    cpus: 1.0
+    mem_limit: 1g
+    build:
+      context: "."
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+
+    network_mode: "host"
+
+    environment:
+      HOST_IP: "${HOST01_IP}"
+      HOST_1: "${HOST01_IP}:${ES01_PORT}"
+      TIMEZONE: "${LS_TIMEZONE}"
+
+    volumes:
+      - "./config:/usr/share/logstash/config"
+      - "./pipeline:/usr/share/logstash/pipeline"
+      - ${LOGS_PATH}:/gemsoft/var/
+      - ${DATA_PATH}/ls-gmos/db:/db
+      - /etc/localtime:/etc/localtime
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+

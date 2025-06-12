@@ -1,6 +1,6 @@
-- pipeline.id: mk-seqexecng-read
+- pipeline.id: mk-altairwfcs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/seqexec-ng/seqexec-ng.cfg"
+  path.config: "/usr/share/logstash/pipeline/altairwfcs/altairwfcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 

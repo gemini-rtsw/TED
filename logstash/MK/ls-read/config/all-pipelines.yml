@@ -101,3 +101,59 @@
   path.config: "/usr/share/logstash/pipeline/seqexec-ng/seqexec-ng.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+#ls-gmos------------------------------------------------------
+- pipeline.id: mk-gmoscc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gmoscc/gmoscc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gmosdc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gmosdc/gmosdc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+
+- pipeline.id: mk-gnirscc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gnirscc/gnirscc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gnirsdc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gnirsdc/gnirsdc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gnirswfs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gnirswfs/gnirswfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altairioc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/altairioc/altairioc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altairlgsioc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/altairlgsioc/altairlgsioc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altairwfcs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/altairwfcs/altairwfcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altairsfo-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/altairsfo/altairsfo.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
