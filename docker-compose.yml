@@ -147,43 +147,7 @@ services:
         max-size: 100m
         max-file: 1
 
-#################################################################################################################
 
-  ls-tools:
-    image: ted-logstash:8.15.0
-    container_name: ls-tools
-    restart: unless-stopped
-
-    cpus: 1.0
-    mem_limit: 1g
-    build:
-      context: "./logstash/${SITE}/ls-tools"
-      dockerfile: Dockerfile
-      args:
-        - USER=${USER}
-        - UID=${U_ID}
-        - GROUP=${GROUP}
-        - GID=${G_ID}
-
-    network_mode: "host"
-
-    environment:
-      HOST_IP: "${HOST01_IP}"
-      HOST_1: "${HOST01_IP}:${ES01_PORT}"
-      TIMEZONE: "${LS_TIMEZONE}"
-
-    volumes:
-      - "./logstash/${SITE}/ls-tools/config:/usr/share/logstash/config"
-      - "./logstash/${SITE}/ls-tools/pipeline:/usr/share/logstash/pipeline"
-      - ${LOGS_PATH}:/gemsoft/var/
-      - ${DATA_PATH}/ls-tools/db:/db
-      - /etc/localtime:/etc/localtime
-
-    logging:
-      driver: json-file
-      options:
-        max-size: 100m
-        max-file: 1
 
 #################################################################################################################
 

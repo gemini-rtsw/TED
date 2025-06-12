@@ -8,7 +8,7 @@
 #  pipeline.workers: 1
 #  path.config: "/usr/share/logstash/pipeline/prcs/prcs.cfg"
 #  queue.type: persisted
-# queue.max_bytes: 100mb
+#  queue.max_bytes: 100mb
 
 - pipeline.id: mk-pcs-read
   pipeline.workers: 1
@@ -98,7 +98,7 @@
 #ls-tools------------------------------------------------------
 - pipeline.id: mk-seqexecng-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/seqexec-ng/seqexec-ng.cfg"
+  path.config: "/usr/share/logstash/pipeline/opstools/seqexec-ng.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
