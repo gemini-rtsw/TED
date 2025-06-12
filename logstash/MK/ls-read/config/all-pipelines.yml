@@ -73,25 +73,25 @@
 #ls-wfs---------------------------------------------------------
 - pipeline.id: mk-hrwfs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/hrwfs/hrwfs.cfg"
+  path.config: "/usr/share/logstash/pipeline/wfs/hrwfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-pwfs1-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pwfs1/pwfs1.cfg"
+  path.config: "/usr/share/logstash/pipeline/wfs/pwfs1.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-pwfs2-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pwfs2/pwfs2.cfg"
+  path.config: "/usr/share/logstash/pipeline/wfs/pwfs2.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-oiwfs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/oiwfs/oiwfs.cfg"
+  path.config: "/usr/share/logstash/pipeline/wfs/oiwfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
     
