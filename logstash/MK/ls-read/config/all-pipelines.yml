@@ -105,32 +105,32 @@
 #ls-gmos------------------------------------------------------
 - pipeline.id: mk-gmoscc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gmos/gmos-cc.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/gmos/gmos-cc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gmosdc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gmos/gmos-dc.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/gmos/gmos-dc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 #ls-gnirs-----------------------------------------------------
 - pipeline.id: mk-gnirscc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gnirscc/gnirscc.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/gnirs/gnirs-cc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gnirsdc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gnirsdc/gnirsdc.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/gnirs/gnirs-dc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-gnirswfs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gnirswfs/gnirswfs.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/gnirs/gnirs-wfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
@@ -138,24 +138,24 @@
 
 - pipeline.id: mk-altairioc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairioc/altairioc.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/altair/altairioc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-altairlgsioc-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairlgsioc/altairlgsioc.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/altair/altairlgsioc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-altairwfcs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairwfcs/altairwfcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/altair/altairwfcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-altairsfo-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/altairsfo/altairsfo.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/altair/altairsfo.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
