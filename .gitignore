@@ -6,3 +6,5 @@ geaservice/app/__pycache__/
 geaservice/config/__pycache__/
 .env
 logstash/MK/ls-read/utils/InsertByDataRange.log
+logstash/MK/ls-read/config/pipelines.yml
+grafana/grafana-data/grafana.db
