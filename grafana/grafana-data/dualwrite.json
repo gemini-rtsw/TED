@@ -1,0 +1,24 @@
+{
+  "dashboards.dashboard.grafana.app": {
+    "group": "dashboard.grafana.app",
+    "resource": "dashboards",
+    "write_legacy": false,
+    "write_unified": true,
+    "read_unified": true,
+    "migrated": 1749835422683,
+    "migrating": 0,
+    "runtime": false,
+    "update_key": 2
+  },
+  "folders.folder.grafana.app": {
+    "group": "folder.grafana.app",
+    "resource": "folders",
+    "write_legacy": false,
+    "write_unified": true,
+    "read_unified": true,
+    "migrated": 1749835422683,
+    "migrating": 0,
+    "runtime": false,
+    "update_key": 2
+  }
+}

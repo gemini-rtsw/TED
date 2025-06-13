@@ -206,16 +206,16 @@ services:
     network_mode: "host"
 
     environment:
+      GF_SERVER_PROTOCOL: "https"
+      GF_SERVER_CERT_FILE: "/etc/grafana/certs/grafana.crt"
+      GF_SERVER_CERT_KEY: "/etc/grafana/certs/grafana.key"
       GR01_PORT: "${GR01_PORT}"
       HOST_IP: "${HOST01_IP}"
-        #      GF_RENDERING_SERVER_URL: "http://${HOST01_IP}:8081/render"
-        #      GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
-        #GF_LOG_FILTERS: "rendering:debug"
 
     volumes:
       - ./grafana/grafana-data:/var/lib/grafana
-      - ./grafana/conf/grafana.ini:/etc/grafana/grafana.ini
-
+      - ./grafana/conf/:/etc/grafana/
+      - ./grafana/conf/provisioning:/usr/share/grafana/conf/provisioning
     logging:
       driver: json-file
       options:
