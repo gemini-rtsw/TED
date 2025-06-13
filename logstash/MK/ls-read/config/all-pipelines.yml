@@ -70,7 +70,7 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
-#ls-wfs---------------------------------------------------------
+#ls-guiders-------------------------------------------------------
 - pipeline.id: mk-hrwfs-read
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/wfs/hrwfs.cfg"
@@ -86,12 +86,6 @@
 - pipeline.id: mk-pwfs2-read
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/wfs/pwfs2.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
-- pipeline.id: mk-oiwfs-read
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/wfs/oiwfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
     
@@ -112,6 +106,12 @@
 - pipeline.id: mk-gmosdc-read
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/instruments/gmos/gmos-dc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gmoswfs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/wfs/oiwfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
