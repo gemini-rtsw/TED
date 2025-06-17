@@ -1,4 +1,62 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_ELASTICSEARCH",
+      "label": "Elasticsearch",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    },
+    {
+      "name": "DS_ELASTICSEARCH_API",
+      "label": "Elasticsearch API",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
+    },
+    {
+      "name": "VAR_LUCENE_QUERY",
+      "type": "constant",
+      "label": "Lucene Query",
+      "value": "",
+      "description": ""
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.1.4"
+    },
+    {
+      "type": "panel",
+      "id": "marcusolsson-dynamictext-panel",
+      "name": "Business Text",
+      "version": "5.7.0"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.24"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -25,14 +83,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "id": 104,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "F1zgMdwVz"
+        "uid": 
       },
       "fieldConfig": {
         "defaults": {
@@ -105,7 +163,7 @@
         ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 4,
         "w": 24,
         "x": 0,
         "y": 0
@@ -150,7 +208,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "F1zgMdwVz"
+            "uid": 1
           },
           "metrics": [
             {
@@ -235,7 +293,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "F1zgMdwVz"
+        "uid": 1
       },
       "fieldConfig": {
         "defaults": {
@@ -255,12 +313,13 @@
         "h": 22,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 4
       },
       "id": 12,
       "options": {
         "afterRender": "",
         "content": "<table class=\"dataTable\">\n  <tr>\n    <th>Timestamp</th>\n    <th>Subsystem</th>\n    <th>Message</th>\n  </tr>\n  {{#each data}}\n  <tr>\n    <td class=\"ts\">{{changeTime timestamp}}</td>\n    <td class=\"ss\">{{subsystem}}</td>\n    <td class=\"msg\">{{msg}}</td>\n  </tr>\n  {{/each}}\n</table>\n",
+        "contentPartials": [],
         "defaultContent": "<table class=\"dataTable\">\n  <tr>\n    <th>Timestamp</th>\n    <th>Subsystem</th>\n    <th>Message</th>\n  </tr>\n</table>",
         "editor": {
           "format": "auto",
@@ -278,14 +337,14 @@
         "styles": ".dataTable {\n  width: 100%;\n}\n\n.ts {\n  min-width: 11vw;\n}\n\n.ss {\n  min-width: 5vw;\n}\n\n.msg {\n  min-width: 80vw;\n}\n\nth {\n  top: -1px;\n  margin: 0%;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 2;\n}",
         "wrap": true
       },
-      "pluginVersion": "5.2.0",
+      "pluginVersion": "5.7.0",
       "targets": [
         {
           "alias": "",
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "F1zgMdwVz"
+            "uid": 1
           },
           "hide": false,
           "metrics": [
@@ -354,20 +413,12 @@
     "list": [
       {
         "allValue": " None",
-        "current": {
-          "selected": true,
-          "text": [
-            "None"
-          ],
-          "value": [
-            "None"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": "Cgf7JOwVz"
+          "uid": 2
         },
-        "definition": "$.*",
+        "definition": "$.data_streams[*].name",
         "description": "Subsystems available",
         "hide": 0,
         "includeAll": false,
@@ -376,18 +427,20 @@
         "name": "subsystem",
         "options": [],
         "query": {
-          "cacheDurationSeconds": 0,
+          "cacheDurationSeconds": 3600,
           "fields": [
             {
-              "jsonPath": "$.*"
+              "jsonPath": "$.data_streams[*].name",
+              "name": "text",
+              "type": "string"
             }
           ],
           "method": "GET",
           "queryParams": "",
-          "urlPath": "/allSubsystems"
+          "urlPath": "/_data_stream"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": ".*\\.[^-]+-(?<text>.+)",
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
@@ -425,9 +478,21 @@
         "hide": 2,
         "label": "Lucene Query",
         "name": "lucene_query",
-        "query": "",
+        "query": "${VAR_LUCENE_QUERY}",
         "skipUrlSync": false,
-        "type": "constant"
+        "type": "constant",
+        "current": {
+          "value": "${VAR_LUCENE_QUERY}",
+          "text": "${VAR_LUCENE_QUERY}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_LUCENE_QUERY}",
+            "text": "${VAR_LUCENE_QUERY}",
+            "selected": false
+          }
+        ]
       },
       {
         "current": {
@@ -453,13 +518,13 @@
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2025-06-14T10:00:00.000Z",
+    "to": "2025-06-15T09:59:59.000Z"
   },
   "timepicker": {},
-  "timezone": "America/Santiago",
+  "timezone": "",
   "title": "1. Logs",
   "uid": "e5760f92-16d7-4175-8251-4b65f2413639",
-  "version": 35,
+  "version": 7,
   "weekStart": ""
 }
