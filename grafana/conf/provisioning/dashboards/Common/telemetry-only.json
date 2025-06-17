@@ -1,0 +1,1164 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_GEA_API",
+      "label": "GEA API",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.1.4"
+    },
+    {
+      "type": "panel",
+      "id": "marcusolsson-dynamictext-panel",
+      "name": "Business Text",
+      "version": "5.2.0"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.5"
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "volkovlabs-variable-panel",
+      "name": "Business Variable",
+      "version": "4.0.0"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 2,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": 3
+      },
+      "description": "WARNING: Don't delete",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "afterRender": "",
+        "content": "",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "markdown"
+        },
+        "editors": [],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": true
+      },
+      "pluginVersion": "5.2.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": 3
+          },
+          "fields": [
+            {
+              "jsonPath": "$.values.values.value.%.(secs*1000+nano/1000000)",
+              "language": "jsonata",
+              "name": "Timestamp",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.values.values.{\n    \"result\": (\n        $nValue:= value;\n        %.type = 1 ? $uppercase(value.%.%.meta.states[$nValue]): \n        $count(value) > 0 ? $map(value, function($v, $i){\n        sevr = 3 ? \"INVALID\":\n        sevr = 3904 ? \"DISCONNECTED\" :\n        sevr = 3872 ? \"ARCHIVE_OFF\" :\n        sevr = 3848 ? \"ARCHIVE_DISABLED\" :\n        $v  \n        })\n)}.result",
+              "language": "jsonata",
+              "name": "Value"
+            },
+            {
+              "jsonPath": "$.values.values.value.%.%.name",
+              "language": "jsonata",
+              "name": "Channel"
+            },
+            {
+              "jsonPath": "$.values.values.value.%.%.type",
+              "language": "jsonata",
+              "name": "meta_type",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.values.values.($map(value, function($v,$i){'['&$i&']'}))",
+              "language": "jsonata",
+              "name": "meta_index"
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "archive",
+              "${archives}"
+            ],
+            [
+              "channel",
+              "${channel:csv}"
+            ],
+            [
+              "value_mode",
+              "${value_mode}"
+            ],
+            [
+              "n_points",
+              "${n_points}"
+            ],
+            [
+              "from",
+              "${__from}"
+            ],
+            [
+              "to",
+              "${__to}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "Data",
+          "urlPath": "/values"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel",
+              "meta_index"
+            ],
+            "naming": {
+              "asLabels": false
+            }
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {}
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^(?!.*(?:meta_type|meta_count)).*"
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "super-light-blue",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 18,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 2,
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 20,
+        "x": 0,
+        "y": 1
+      },
+      "id": 5,
+      "options": {
+        "alignValue": "right",
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "always",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 3,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "State Timeline",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 1
+                  }
+                },
+                "fieldName": "meta_type"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel",
+              "meta_index"
+            ],
+            "naming": {
+              "asLabels": false
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^(?!.*(?:meta_type)).*"
+            }
+          }
+        }
+      ],
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": 3
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "thresholdsStyle": {
+              "mode": "color",
+              "thresholds": []
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 19,
+        "w": 4,
+        "x": 20,
+        "y": 1
+      },
+      "id": 8,
+      "interval": "1s",
+      "options": {
+        "alertCustomMessage": "",
+        "alwaysVisibleFilter": false,
+        "autoScroll": true,
+        "browserTabNamePattern": "",
+        "collapsedByDefault": true,
+        "customValue": false,
+        "displayMode": "table",
+        "emptyValue": false,
+        "favorites": {
+          "addQuery": {},
+          "datasource": "",
+          "deleteQuery": {},
+          "enabled": false,
+          "getQuery": {},
+          "storage": "browser"
+        },
+        "filter": true,
+        "groupSelection": false,
+        "groups": [
+          {
+            "items": [
+              {
+                "name": "subsystem",
+                "source": "Systems"
+              },
+              {
+                "name": "section",
+                "source": "Systems"
+              },
+              {
+                "name": "names",
+                "source": "Systems"
+              },
+              {
+                "name": "channel",
+                "source": "Systems"
+              }
+            ],
+            "name": "Systems"
+          },
+          {
+            "items": [
+              {
+                "name": "subsystem",
+                "source": "Instruments"
+              },
+              {
+                "name": "section",
+                "source": "Instruments"
+              },
+              {
+                "name": "names",
+                "source": "Instruments"
+              },
+              {
+                "name": "channel",
+                "source": "Instruments"
+              }
+            ],
+            "name": "Instruments"
+          },
+          {
+            "items": [
+              {
+                "name": "subsystem",
+                "source": "Engineering"
+              },
+              {
+                "name": "section",
+                "source": "Engineering"
+              },
+              {
+                "name": "names",
+                "source": "Engineering"
+              },
+              {
+                "name": "channel",
+                "source": "Engineering"
+              }
+            ],
+            "name": "Engineering"
+          }
+        ],
+        "header": true,
+        "isMinimizeForTable": false,
+        "isUseLocalTime": false,
+        "minimizeOutputFormat": "text",
+        "padding": 10,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "selectedValues": {
+          "maxCount": 0,
+          "showSelected": false
+        },
+        "showGroupTotal": false,
+        "showLabel": false,
+        "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
+        "statusSort": false,
+        "sticky": false,
+        "tabsInOrder": true
+      },
+      "pluginVersion": "4.0.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 18000,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": 3
+          },
+          "fields": [
+            {
+              "jsonPath": "$.systems.*.*.*.*.*",
+              "name": "channel"
+            },
+            {
+              "jsonPath": "$.systems.*.*.*.*.*^^^.name",
+              "language": "jsonpath",
+              "name": "names"
+            },
+            {
+              "jsonPath": "$.systems.*.*.*.*.*^^^^^~",
+              "language": "jsonpath",
+              "name": "section"
+            },
+            {
+              "jsonPath": "$.systems.*.*.*.*.*^^^^^^^~",
+              "language": "jsonpath",
+              "name": "subsystem"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "Systems",
+          "urlPath": "/pvSelector"
+        },
+        {
+          "cacheDurationSeconds": 18000,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": 3
+          },
+          "fields": [
+            {
+              "jsonPath": "$.engineering.*.*.*.*.*",
+              "name": "channel"
+            },
+            {
+              "jsonPath": "$.engineering.*.*.*.*.*^^^.name",
+              "language": "jsonpath",
+              "name": "names"
+            },
+            {
+              "jsonPath": "$.engineering.*.*.*.*.*^^^^^~",
+              "language": "jsonpath",
+              "name": "section"
+            },
+            {
+              "jsonPath": "$.engineering.*.*.*.*.*^^^^^^^~",
+              "language": "jsonpath",
+              "name": "subsystem"
+            }
+          ],
+          "hide": false,
+          "method": "GET",
+          "queryParams": "",
+          "refId": "Engineering",
+          "urlPath": "/pvSelector"
+        },
+        {
+          "cacheDurationSeconds": 18000,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": 3
+          },
+          "fields": [
+            {
+              "jsonPath": "$.instruments.*.*.*.*.*",
+              "name": "channel"
+            },
+            {
+              "jsonPath": "$.instruments.*.*.*.*.*^^^.name",
+              "language": "jsonpath",
+              "name": "names"
+            },
+            {
+              "jsonPath": "$.instruments.*.*.*.*.*^^^^^~",
+              "language": "jsonpath",
+              "name": "section"
+            },
+            {
+              "jsonPath": "$.instruments.*.*.*.*.*^^^^^^^~",
+              "language": "jsonpath",
+              "name": "subsystem"
+            }
+          ],
+          "hide": false,
+          "method": "GET",
+          "queryParams": "",
+          "refId": "Instruments",
+          "urlPath": "/pvSelector"
+        }
+      ],
+      "title": "Channel Selector",
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "string"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 20,
+        "x": 0,
+        "y": 5
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 3,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "Time Series",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "lower",
+                  "options": {
+                    "value": 2
+                  }
+                },
+                "fieldName": "meta_type"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "disabled": true,
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "0"
+                  }
+                },
+                "fieldName": "Data"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel",
+              "meta_index"
+            ],
+            "naming": {
+              "asLabels": false
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^(?!.*(?:meta_type|meta_count|meta_values_length)).*"
+            }
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "Value"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto",
+              "wrapText": false
+            },
+            "filterable": false,
+            "inspect": false,
+            "minWidth": 180
+          },
+          "decimals": 9,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 20,
+        "x": 0,
+        "y": 14
+      },
+      "id": 10,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [],
+          "show": false
+        },
+        "frameIndex": 2,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 3,
+          "refId": "A",
+          "withTransforms": true
+        }
+      ],
+      "title": "Telemetry Table",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Channel"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 148
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 20,
+        "y": 20
+      },
+      "id": 7,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 3,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "Channels Info",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNotNull",
+                  "options": {}
+                },
+                "fieldName": "Data"
+              }
+            ],
+            "match": "any",
+            "type": "include"
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Channel": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Data": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              },
+              "Timestamp": {
+                "aggregations": [
+                  "distinctCount"
+                ],
+                "operation": "aggregate"
+              },
+              "Type": {
+                "aggregations": [
+                  "first"
+                ],
+                "operation": "aggregate"
+              },
+              "meta_values_length": {
+                "aggregations": [
+                  "first"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 26
+      },
+      "id": 4,
+      "options": {
+        "afterRender": "",
+        "content": "<button class='btn mybutton' onclick=\"myFunc()\">Clear Selection</button>",
+        "defaultContent": "<button class='mybutton' onclick=\"myFunc()\">Clear Selection</button>",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "html"
+        },
+        "editors": [
+          "helpers",
+          "default",
+          "styles"
+        ],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "myFunc = () => {\n  context.grafana.locationService.partial(\n    {\n      'var-channel': '',\n    },\n    true\n  )\n};",
+        "renderMode": "allRows",
+        "styles": ".mybutton {\n  width: 100%;\n  border-radius: 10px;\n  background-color: rgb(163, 0, 0);\n}",
+        "wrap": true
+      },
+      "pluginVersion": "5.2.0",
+      "title": "Action Buttons",
+      "type": "marcusolsson-dynamictext-panel"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [
+    "Template"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": 3
+        },
+        "definition": "$.names[*]",
+        "description": "In general each subsystem have his own archive, select \"-- All --\" option to combine channels from multiple archives. ",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Archive",
+        "multi": false,
+        "name": "archives",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 0,
+          "experimentalVariableTextField": "values",
+          "experimentalVariableValueField": "keys",
+          "fields": [
+            {
+              "jsonPath": "$.names[*]",
+              "name": "values"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/archives"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": 3
+        },
+        "definition": "$.channels[*]",
+        "description": "All the channels in the tree selector leaves",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Channels",
+        "multi": true,
+        "name": "channel",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 3600,
+          "fields": [
+            {
+              "jsonPath": "$.channels[*]",
+              "name": "channel"
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "archiveName",
+              "${archives}"
+            ]
+          ],
+          "queryParams": "",
+          "urlPath": "/channels"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Plot-binning",
+          "value": "3"
+        },
+        "description": "- RAW: Provides raw values. \n- Spreadsheet: Optimizes data for tabular representation, ensuring a value is available for each channel every second.\n- Averaged: Calculates average values per bin.\nPlot-binning: Designed specifically for plotting. Each bin displays four values: start, end, maximum, and minimum. It the only mode that IS NOT LIMITED TO 10.000 SAMPLES PER CHANNEL.\nLinear: Applies linear interpolation to the data.",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Retrieval Mode",
+        "multi": false,
+        "name": "value_mode",
+        "options": [
+          {
+            "selected": false,
+            "text": "Raw",
+            "value": "0"
+          },
+          {
+            "selected": false,
+            "text": "Spreadsheet",
+            "value": "1"
+          },
+          {
+            "selected": false,
+            "text": "Average",
+            "value": "2"
+          },
+          {
+            "selected": true,
+            "text": "Plot-binning",
+            "value": "3"
+          },
+          {
+            "selected": false,
+            "text": "Linear",
+            "value": "4"
+          }
+        ],
+        "query": "Raw : 0 , Spreadsheet : 1 , Average : 2 , Plot-binning : 3 , Linear : 4",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "description": "Max points available = 10.000. USING PLOT BINNING THIS IS INTERPRETED AS NUMBER OF BINS. ",
+        "hide": 0,
+        "label": "№ Points",
+        "name": "n_points",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "2. Telemetry",
+  "uid": "f7ff5e99-647a-4645-adb0-14ea0cc9dc10",
+  "version": 90,
+  "weekStart": ""
+}
