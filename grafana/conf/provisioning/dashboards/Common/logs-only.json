@@ -9,14 +9,6 @@
       "pluginName": "Elasticsearch"
     },
     {
-      "name": "DS_ELASTICSEARCH_API",
-      "label": "Elasticsearch API",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "marcusolsson-json-datasource",
-      "pluginName": "JSON API"
-    },
-    {
       "name": "VAR_LUCENE_QUERY",
       "type": "constant",
       "label": "Lucene Query",
@@ -36,19 +28,13 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.1.4"
+      "version": "12.0.0"
     },
     {
       "type": "panel",
       "id": "marcusolsson-dynamictext-panel",
       "name": "Business Text",
       "version": "5.7.0"
-    },
-    {
-      "type": "datasource",
-      "id": "marcusolsson-json-datasource",
-      "name": "JSON API",
-      "version": "1.3.24"
     },
     {
       "type": "panel",
@@ -79,13 +65,11 @@
       }
     ]
   },
-  "description": "",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
   "id": null,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -104,6 +88,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "bars",
             "fillOpacity": 90,
             "gradientMode": "none",
@@ -134,8 +119,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -177,11 +161,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "alias": "",
@@ -301,8 +286,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -344,7 +328,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": 1
+            "uid": "${DS_ELASTICSEARCH}"
           },
           "hide": false,
           "metrics": [
@@ -405,7 +389,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 41,
   "tags": [
     "Template"
   ],
@@ -413,34 +397,13 @@
     "list": [
       {
         "allValue": " None",
-        "current": {
-          "selected": true,
-          "text": [
-            "ag",
-            "crcs",
-            "ecs",
-            "gcal",
-            "mcs",
-            "pcs",
-            "scs"
-          ],
-          "value": [
-            "ag",
-            "crcs",
-            "ecs",
-            "gcal",
-            "mcs",
-            "pcs",
-            "scs"
-          ]
-        },
+        "current": {},
         "datasource": {
-          "type": "marcusolsson-json-datasource",
-          "uid": 2
+          "type": "elasticsearch",
+          "uid": 1
         },
         "definition": "$.data_streams[*].name",
         "description": "Subsystems available",
-        "hide": 0,
         "includeAll": false,
         "label": "Subsystem",
         "multi": true,
@@ -461,20 +424,16 @@
         },
         "refresh": 1,
         "regex": ".*\\.[^-]+-(?<text>.+)",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
-          "text": "Simple",
+          "text": "1",
           "value": "1"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Search Type",
-        "multi": false,
         "name": "search_type",
         "options": [
           {
@@ -489,8 +448,6 @@
           }
         ],
         "query": "Simple : 1, Advanced : 2",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
@@ -498,41 +455,50 @@
         "hide": 2,
         "label": "Lucene Query",
         "name": "lucene_query",
-        "query": "",
-        "skipUrlSync": false,
-        "type": "constant"
+        "query": "${VAR_LUCENE_QUERY}",
+        "skipUrlSync": true,
+        "type": "constant",
+        "current": {
+          "value": "${VAR_LUCENE_QUERY}",
+          "text": "${VAR_LUCENE_QUERY}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_LUCENE_QUERY}",
+            "text": "${VAR_LUCENE_QUERY}",
+            "selected": false
+          }
+        ]
       },
       {
         "current": {
-          "selected": false,
-          "text": "",
-          "value": ""
+          "text": "error",
+          "value": "error"
         },
         "description": "USE msg:** IN ADVANCED MODE TO RETRIEVE ALL DATA",
-        "hide": 0,
         "label": "Search message",
         "name": "search_message",
         "options": [
           {
             "selected": true,
-            "text": "",
-            "value": ""
+            "text": "error",
+            "value": "error"
           }
         ],
-        "query": "",
-        "skipUrlSync": false,
+        "query": "error",
         "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "2025-06-17T19:23:44.149Z",
-    "to": "2025-06-17T20:53:31.099Z"
+    "from": "2025-06-17T10:39:52.928Z",
+    "to": "2025-06-17T11:34:42.162Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "1. Logs",
   "uid": "e5760f92-16d7-4175-8251-4b65f2413639",
-  "version": 17,
+  "version": 1,
   "weekStart": ""
 }
