@@ -1,62 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_ELASTICSEARCH",
-      "label": "Elasticsearch",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "elasticsearch",
-      "pluginName": "Elasticsearch"
-    },
-    {
-      "name": "DS_GEA_API",
-      "label": "GEA API",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "marcusolsson-json-datasource",
-      "pluginName": "JSON API"
-    },
-    {
-      "name": "VAR_LUCENE_QUERY",
-      "type": "constant",
-      "label": "Lucene Query",
-      "value": "",
-      "description": ""
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "datasource",
-      "id": "elasticsearch",
-      "name": "Elasticsearch",
-      "version": "1.0.0"
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.1.4"
-    },
-    {
-      "type": "panel",
-      "id": "marcusolsson-dynamictext-panel",
-      "name": "Business Text",
-      "version": "5.2.0"
-    },
-    {
-      "type": "datasource",
-      "id": "marcusolsson-json-datasource",
-      "name": "JSON API",
-      "version": "1.3.5"
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -83,14 +25,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "id": null,
+  "id": 104,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "1"
+        "uid": "F1zgMdwVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -208,7 +150,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "${DS_ELASTICSEARCH}"
+            "uid": "F1zgMdwVz"
           },
           "metrics": [
             {
@@ -293,7 +235,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "1"
+        "uid": "F1zgMdwVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -343,7 +285,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "1"
+            "uid": "F1zgMdwVz"
           },
           "hide": false,
           "metrics": [
@@ -412,10 +354,18 @@
     "list": [
       {
         "allValue": " None",
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "None"
+          ],
+          "value": [
+            "None"
+          ]
+        },
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": "3"
+          "uid": "Cgf7JOwVz"
         },
         "definition": "$.*",
         "description": "Subsystems available",
@@ -475,21 +425,9 @@
         "hide": 2,
         "label": "Lucene Query",
         "name": "lucene_query",
-        "query": "${VAR_LUCENE_QUERY}",
+        "query": "",
         "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "${VAR_LUCENE_QUERY}",
-          "text": "${VAR_LUCENE_QUERY}",
-          "selected": false
-        },
-        "options": [
-          {
-            "value": "${VAR_LUCENE_QUERY}",
-            "text": "${VAR_LUCENE_QUERY}",
-            "selected": false
-          }
-        ]
+        "type": "constant"
       },
       {
         "current": {
