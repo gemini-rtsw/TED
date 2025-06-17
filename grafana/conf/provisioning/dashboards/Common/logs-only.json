@@ -90,7 +90,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": 
+        "uid": 1
       },
       "fieldConfig": {
         "defaults": {
