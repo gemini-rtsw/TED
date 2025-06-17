@@ -227,7 +227,7 @@ services:
 #################################################################################################################
 
   grafana:
-    image: ted-grafana:11.1.4-ubuntu
+    image: ted-grafana:12.0.0
     hostname: grafana
     container_name: grafana
     restart: unless-stopped
