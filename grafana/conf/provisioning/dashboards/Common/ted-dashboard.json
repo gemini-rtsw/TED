@@ -1,0 +1,880 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_GEA_API",
+      "label": "GEA API",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
+    },
+    {
+      "name": "DS_ELASTICSEARCH",
+      "label": "Elasticsearch",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "elasticsearch",
+      "pluginName": "Elasticsearch"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.1.4"
+    },
+    {
+      "type": "panel",
+      "id": "marcusolsson-dynamictext-panel",
+      "name": "Business Text",
+      "version": "5.2.0"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.5"
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 2,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "${DS_GEA_API}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 30,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "afterRender": "const searchChannelInput = document.getElementById(\"searchChannelInput\");\n\nconst channelSelection = document.getElementById(\"channelSelection\");\nconst searchChannelResult = document.getElementById(\"searchChannelResult\")\n\nconst allChannels = context.grafana.replaceVariables(\"${allChannels:csv}\");\nconst allChannelsList = allChannels.split(\",\")\n\nconst channelsGrafVar = context.grafana.replaceVariables(\"${channels:csv}\");\nlet chosenChannelsList = channelsGrafVar.split(\",\").filter(chan => chan != \"\");\n\n\n\n//Tree\nconst treeData = context.grafana.replaceVariables(\"${pvTree:text}\");\nconst treeJSON = JSON.parse(treeData);\nconst tree = treeJSON[\"systems\"]\n\n// //Tree Selector\nconst treeHTML = document.getElementById(\"treeHTML\")\ntreeHTML.innerHTML = \"\";\n\n\nsetTree = (button) => {\n  const tree = treeJSON[button.value];\n  treeHTML.innerHTML = \"\";\n  getChannels(tree, button.value, treeHTML, 0, showChildrenEvent)\n\n}\n\nappendChannel = (channel) => {\n  if (!chosenChannelsList.includes(channel)) {\n    chosenChannelsList.push(channel);\n    queryChannel = \"\";\n    searchChannelInput.value = \"\";\n    drawChosenChannels();\n  }\n}\nappendChildEvent = (event, targetDiv) => {\n  if (event.target === targetDiv) {\n    appendChannel(event.target.textContent)\n  }\n}\n\nshowChildrenEvent = (event, targetDiv) => {\n  if (event.target === targetDiv) {\n    const showChildren = event.target.getAttribute(\"showchildren\");\n    if (showChildren == \"true\") {\n      Array.from(event.target.children).forEach(child => {\n        child.style.display = \"none\";\n        event.target.setAttribute(\"showchildren\", \"false\");\n      })\n    }\n    else {\n      Array.from(event.target.children).forEach(child => {\n        child.style.display = \"\";\n        event.target.setAttribute(\"showchildren\", \"true\");\n      })\n    }\n  }\n}\n\ncreateHTML = (className, root, section, depth, eventFunction) => {\n  const newDiv = document.createElement(\"div\");\n  newDiv.style.marginLeft = `${depth / 3}vw`;\n  newDiv.style.marginRight = \"0px\";\n  if (depth != 0) {\n    newDiv.style.display = 'none';\n    newDiv.style.fontWeight = 300;\n  }\n  else {\n    newDiv.style.fontWeight = 600;\n  }\n  newDiv.className = className;\n  newDiv.setAttribute('showChildren', 'false');\n  newDiv.id = `${root.id}-${section}`;\n  newDiv.addEventListener('click', (event) => { eventFunction(event, newDiv) });\n  newDiv.textContent = section;\n  root.appendChild(newDiv);\n  const sectionHTML = document.getElementById(`${root.id}-${section}`);\n  return sectionHTML;\n}\n\ngetChannels = (sections, trace, rootHTML, depth) => {\n\n  sections.map(section => {\n    const sectionHTML = createHTML(\"section\", rootHTML, section[\"name\"], depth, showChildrenEvent);\n\n    if (\"channels\" in section && section[\"channels\"].length > 0) {\n      const sectionWithChannels = section[\"channels\"];\n      sectionWithChannels.map(channel => {\n        const newDiv = createHTML(\"section\", sectionHTML, channel[\"name\"], depth, showChildrenEvent)\n        const codes = channel[\"codes\"]\n        codes.map(code => {\n          createHTML(\"leaf\", newDiv, code, depth, appendChildEvent)\n        })\n      })\n    }\n\n    if (\"sections\" in section && section[\"sections\"].length > 0) {\n      section[\"sections\"].map(subsection => {\n        getChannels([subsection], `${trace}-${subsection[\"name\"]}`, sectionHTML, depth + 1)\n      })\n    }\n  })\n\n}\n\n\n//Channel Selector\nlet queryChannel = \"\";\nlet debounceTimeout;\nsearchChannelInput.addEventListener(\"input\", () => {\n  clearTimeout(debounceTimeout);\n  debounceTimeout = setTimeout(() => {\n    queryChannel = searchChannelInput.value;\n    searchChannelResult.innerHTML = \"\";\n    if (queryChannel.length > 3) {\n      const filteredChannels = allChannelsList.filter(channel => channel.toLowerCase().includes(queryChannel.toLowerCase()));\n      filteredChannels.forEach(channel => {\n        const channelSearchEntry = `\n      <div class=\"channelSearchChip\" channelname=${channel}>\n        <div class=\"channelChipName\" channelname=${channel}>${channel}</div>\n      </div>\n      `;\n        searchChannelResult.innerHTML += channelSearchEntry;\n      });\n    }\n  }, 1000);\n});\n\n\nsearchChannelResult.addEventListener(\"click\", (event) => {\n  event.preventDefault();\n  const channel = event.target.getAttribute(\"channelname\");\n  if (!chosenChannelsList.includes(channel) && channel != null) {\n    chosenChannelsList.push(channel);\n    drawChosenChannels();\n  }\n})\n\n// searchChannelInput.addEventListener(\"keydown\", (event) => {\n//   if (event.key === \"Enter\") {\n//     const channel = searchChannelInput.value;\n//     if (!chosenChannelsList.includes(channel) && channel !== null) {\n//       chosenChannelsList.push(channel);\n//       drawChosenChannels();\n//       setTimeout(() => {\n//         searchChannelInput.value = \"\";\n//       }, 0);\n//     }\n//   }\n// });\n\nremoveChannel = (button) => {\n  const newChosenChannelsList = chosenChannelsList.filter(channel => channel != button.getAttribute(\"channelname\"));\n  chosenChannelsList = newChosenChannelsList;\n  drawChosenChannels();\n}\n\ndrawChosenChannels = () => {\n  channelSelection.innerHTML = \"\";\n  chosenChannelsList.map(channel => {\n    channelSelection.innerHTML += `\n  <div class=\"channelChip\">\n    <div class=\"channelChipName\">${channel}</div>\n    <button class=\"btn removeChannelBtn\" onclick=\"removeChannel(this)\" channelname=${channel}>x</button>\n  </div>\n  `;\n  })\n}\n\n//Time Picker\nconst dateTimeFrom = document.getElementById(\"datetime-from\");\nconst dateTimeTo = document.getElementById(\"datetime-to\");\n\nformatDate = (date) => {\n  if (date) {\n    const year = date.getFullYear();\n    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based\n    const day = String(date.getDate()).padStart(2, '0');\n    const hours = String(date.getHours()).padStart(2, '0');\n    const minutes = String(date.getMinutes()).padStart(2, '0');\n    const formattedNow = `${year}-${month}-${day}T${hours}:${minutes}`;\n    return formattedNow;\n  }\n}\n\nconst currFrom = context.grafana.replaceVariables(\"${__from}\");\nconst currFormDate = new Date(Number(currFrom));\ndateTimeFrom.value = formatDate(currFormDate);\nconst currTo = context.grafana.replaceVariables(\"${__to}\");\nconst currToDate = new Date(Number(currTo));\ndateTimeTo.value = formatDate(currToDate);\n\n\nsetStartPlus = (button) => {\n  const startPlus = button.getAttribute(\"plusminutes\");\n  const fromTS = new Date(dateTimeFrom.value).getTime();\n  if (isNaN(fromTS)) {\n    context.grafana.notifyError([\"You need to define START first!\"]);\n  }\n  else {\n    const endTS = new Date(fromTS + startPlus * 60 * 1000);\n    console.log(\"endTS\")\n    console.log(endTS);\n    dateTimeTo.value = formatDate(endTS);\n  }\n}\n\nsetRelativetime = (button) => {\n  const relativeTimerange = button.getAttribute(\"relhours\");\n\n  if (relativeTimerange == 0) {\n    const nowDate = new Date();\n\n    const today = new Date(nowDate.setHours(8, 0, 0, 0));\n\n    const yesterdayDate = new Date(nowDate.setDate(nowDate.getDate() - 1));\n    const yesterday = new Date(yesterdayDate.setHours(20, 0, 0, 0));\n\n    dateTimeTo.value = formatDate(today);\n    dateTimeFrom.value = formatDate(yesterday);\n\n  }\n  else {\n    const nowDate = new Date();\n    dateTimeTo.value = formatDate(nowDate);\n    const fromRelative = new Date(nowDate - relativeTimerange * 60 * 60 * 1000);\n    dateTimeFrom.value = formatDate(fromRelative);\n  }\n}\n\n\n//Archiver Options\nconst modeDropdown = document.getElementById(\"modeDropdown\");\nconst npoints = document.getElementById(\"npoints\");\nconst npointsLabel = document.getElementById(\"npointsLabel\");\n\nmodeDropdown.addEventListener('change', (event) => {\n  const selectedMode = event.target.value;\n  switch (selectedMode) {\n    case \"0\":\n      npointsLabel.hidden = true;\n      npoints.hidden = true;\n      npoints.value = 3000;\n      break;\n    case \"1\":\n      npointsLabel.hidden = true;\n      npoints.hidden = true;\n      npoints.value = 3000;\n      break;\n    case \"2\":\n      npointsLabel.hidden = false;\n      npoints.hidden = false;\n      npoints.value = 3000;\n      break;\n    case \"3\":\n      npointsLabel.hidden = false;\n      npoints.hidden = false;\n      break;\n    case \"4\":\n      npointsLabel.hidden = false;\n      npoints.hidden = false;\n      break;\n  }\n})\n\n\n//Action Buttons\nplotData = () => {\n  const fromTS = new Date(dateTimeFrom.value).getTime();\n  const toTS = new Date(dateTimeTo.value).getTime();\n\n  const now = new Date().getTime();\n\n  if (toTS < fromTS) {\n    context.grafana.notifyError([\"START datetime must be earlier than END\"]);\n  }\n  else if (toTS > now) {\n    context.grafana.notifyError([\"START datetime must be earlier than NOW\"]);\n  }\n\n  else {\n    context.grafana.locationService.partial({\n      \"from\": fromTS,\n    }, true);\n    context.grafana.locationService.partial({\n      \"to\": toTS,\n    }, true);\n    context.grafana.locationService.partial({\n      \"var-channels\": chosenChannelsList.join(\",\"),\n    }, true);\n    let searchMsg = context.grafana.replaceVariables(\"${search_message:text}\");\n    if (searchMsg == \"\") { searchMsg = \"msg:**\" };\n    context.grafana.locationService.partial(\n      {\n        'var-search_message': searchMsg,\n      },\n      true\n    )\n\n    //Archiver mode Grafana variables setting\n    context.grafana.locationService.partial(\n      {\n        'var-value_mode': modeDropdown.value,\n      },\n      true\n    )\n\n    context.grafana.locationService.partial(\n      {\n        'var-n_points': npoints.value,\n      },\n      true\n    )\n  }\n}\n\n\nclearChannels = () => {\n  chosenChannelsList = [];\n  drawChosenChannels();\n}\n\ngoBackHome = () => {\n  window.location.href = \"http://ted-grafana/d/ce51e8yzio8owf/home-select?orgId=1\"\n}\n\ndownloadCSV = () => {\n  let data = context.data;\n  let headers = \"\";\n  keys = Object.keys(data[0]);\n  for (let key of keys) {\n    if (key != \"statusColor\") {\n      headers += key;\n      headers += \",\"\n    }\n  }\n  let values = \"\";\n  data.map(row => {\n    for (let key of keys) {\n      if (key != \"statusColor\") {\n        if (key == \"Timestamp\") {\n          const datetime = new Date(row[key]);\n          values += datetime.toISOString();\n        }\n        else {\n          if (row[key] == undefined) {\n            values += \"0\"\n          }\n          else {\n            values += row[key];\n          }\n        }\n        values += \",\"\n      }\n    }\n    values += '\\n';\n  })\n  const csv = `${headers}\\n${values}`;\n  const blob = new Blob([csv], { type: 'text/csv' });\n  const url = URL.createObjectURL(blob);\n  const link = document.createElement(\"a\");\n  link.href = url;\n  link.download = \"data.csv\";\n  link.click();\n  URL.revokeObjectURL(url);\n}\n\ngetChannels(tree, \"systems\", treeHTML, 0, showChildrenEvent)\n\ndrawChosenChannels();\n",
+        "content": "<div class=\"mainContainer\">\n  <div class=\"timePickerContainer\">\n    <div class=\"sectionLabel\">Time Picker</div>\n    <div class=\"inputDateTime\">\n      <label for=\"datetime-from\">START</label>\n      <input type=\"datetime-local\" id=\"datetime-from\" name=\"datetime-from\">\n    </div>\n    <div class=\"inputDateTime\">\n      <label for=\"datetime-to\">END</label>\n      <input type=\"datetime-local\" id=\"datetime-to\" name=\"datetime-to\">\n    </div>\n    <div class=\"sectionLabel\">Set END from START</div>\n    <div class=\"setRelative\">\n      <button class=\"btn\" plusminutes=180 onclick=\"setStartPlus(this)\">Start +3h</button>\n      <button class=\"btn\" plusminutes=60 onclick=\"setStartPlus(this)\">Start +1h</button>\n      <button class=\"btn\" plusminutes=30 onclick=\"setStartPlus(this)\">Start +30m</button>\n      <button class=\"btn\" plusminutes=10 onclick=\"setStartPlus(this)\">Start +10m</button>\n      <button class=\"btn\" plusminutes=5 onclick=\"setStartPlus(this)\">Start +5m</button>\n      <button class=\"btn\" plusminutes=1 onclick=\"setStartPlus(this)\">Start +1m</button>\n    </div>\n    <div class=\"sectionLabel\">Relative Time Picker</div>\n    <div class=\"setRelative\">\n      <button class=\"btn\" relhours=1 onclick=\"setRelativetime(this)\">Last 1h</button>\n      <button class=\"btn\" relhours=3 onclick=\"setRelativetime(this)\">Last 3h</button>\n      <button class=\"btn\" relhours=6 onclick=\"setRelativetime(this)\">Last 6h</button>\n      <button class=\"btn\" relhours=12 onclick=\"setRelativetime(this)\">Last 12h</button>\n      <button class=\"btn\" relhours=24 onclick=\"setRelativetime(this)\">Last 24h</button>\n      <button class=\"btn\" relhours=0 onclick=\"setRelativetime(this)\">Last Night</button>\n    </div>\n  </div>\n\n  <div class=\"sectionLabel\">Channels Selector</div>\n  <div class=\"treeButtonsContainer\">\n    <!-- <button class=\"btn\" value=\"engineering\" onclick=\"setTree(this)\">Engineering</button> -->\n    <button class=\"btn\" value=\"systems\" onclick=\"setTree(this)\">Systems</button>\n    <button class=\"btn\" value=\"instruments\" onclick=\"setTree(this)\">Instruments</button>\n  </div>\n  <div id=\"tree-container\">\n    <div id=\"treeHTML\">\n    </div>\n  </div>\n  <div class=\"channelsContainer\">\n    <div class=\"channelSearch\">\n      <input type=\"text\" id=\"searchChannelInput\" placeholder=\"Search Channel (5 letters min.)\"></input>\n      <div class=\"searchChannelResult\" id=\"searchChannelResult\"></div>\n    </div>\n    <div class=\"selectedContainer\">\n      <div class=\"selectedTitle\">SELECTED CHANNELS</div>\n      <div class=\"channelSelection\" id=\"channelSelection\"></div>\n    </div>\n  </div>\n\n\n\n  <div class=\"sectionLabel\">Archiver Config</div>\n  <div class=\"archOptContainer\">\n    <div class=\"archOptField\">\n      <label for=\"modeDropdown\">MODE</label>\n      <select id=\"modeDropdown\" name=\"options\">\n        <option value=\"0\">RAW</option>\n        <option value=\"1\">SPREADSHEET</option>\n        <option value=\"2\">PLOT-BINNING</option>\n        <option value=\"3\" selected>AVERAGE</option>\n        <option value=\"4\"\">LINEAR</option>\n      </select>\n    </div>\n    <div class=\"archOptField\">\n      <label for=\"npoints\" id=\"npointsLabel\">BINS</label>\n      <input type=\"number\" id=\"npoints\" value=\"3000\"/>\n    </div>\n  </div>\n\n  <div class=\"sectionLabel\">Action Buttons</div>\n  <div class=\"buttonContainer\">\n    <button class='btn plotDataBtn' onclick=\"plotData()\">Plot Data</button>\n    <button class='btn downloadCSVBtn' onclick=\"downloadCSV()\">DownloadCSV</button>\n    <button class='btn clearChannelsBtn' onclick=\"clearChannels()\">Clear Channels</button>\n    <button class='btn goBackHomeBtn' onclick=\"goBackHome()\">Go back HOME</button>\n  </div>\n</div>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "markdown"
+        },
+        "editors": [
+          "styles",
+          "afterRender"
+        ],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": ".mainContainer {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  background-color: rgb(17, 18, 23)\n  height: 50vh;\n}\n\n.sectionLabel {\n  // background-color: rgb(19, 161, 0);\n  color: white;\n  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\n  font-weight: 600;\n  border-bottom: 1px solid white;\n  margin: 0.1vh;\n}\n\n// Channels human selector\n#tree-container{\n  background-color: rgb(68, 68, 68);\n  height: 15vh;\n  padding: 1vh;\n  overflow-y: scroll;\n  overflow-x: hidden;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin: 0.3vh;\n}\n#treeHTML{\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.treeButtonsContainer{\n  background-color: blue;\n  width: 100%;\n  display: flex;\n  margin-bottom: 0.3vh;\n}\n.treeButtonsContainer button{\n  width: 100%;\n  border-radius: 0;\n}\n.section{\n  width: 100%;\n  background-color: gray;\n  color: black;\n  margin-bottom: 0.1vh;\n  padding: 0.3vh;\n  cursor: pointer;\n  overflow-x: hidden;\n  border-bottom: 1px solid black;\n  text-transform: uppercase;\n}\n// .section:hover{\n//   background-color: white;\n// }\n.leaf{\n  overflow-x: hidden;\n  width: 100%;\n  border-radius: 1vh;\n  text-transform: none;\n}\n.leaf:hover{\n  cursor: pointer;\n  background-color: rgb(216, 148, 0);\n}\n\n// Channels Section\n.channelsContainer {\n  background-color: rgb(68, 68, 68);\n  display: flex;\n  width: 100%;\n  height: 15vh;\n  margin-top: 1vh;\n  display: flex;\n}\n.channelsContainer .channelSearch {\n  width: 50%;\n\n}\n.channelsContainer .channelSearch #searchChannelInput {\n  width: 100%;\n\n}\n.channelsContainer .channelSearch #searchChannelInput:focus {\n\n}\n.channelsContainer .channelSearch .searchChannelResult {\n  background-color: rgb(68, 68, 68);\n  overflow-y: scroll;\n  height: 80%;\n} \n.selectedContainer{\n  height: 15vh;\n  background-color: rgb(68, 68, 68);\n  width: 50%;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  border-left: 2px solid black;\n}\n\n.selectedTitle {\n  \n  font-weight: 600;\n  border-bottom: 1px solid black;\n  width: 100%;\n  text-align: center;\n}\n\n.channelSelection {\n  width: 100%;\n  overflow-y: scroll;\n}\n.channelChip {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  background-color: rgb(17, 18, 23);\n  color: #FAFAFA;\n  margin: 0.3vh;\n  border-radius: 4px;\n  padding: 0.3vh;\n}\n\n.channelSearchChip:hover{\n  background-color:rgb(216, 148, 0);\n  color: black;\n  cursor: pointer;\n}\n\n.channelChipName {\n  width: 100%;\n  height: 100%;\n}\n.removeChannelBtn{\n  background-color: rgb(130, 0, 0) !important;\n  color: white !important;\n  border-radius: 0.3vh;\n  height: 2vh;\n  width: 2vh;\n  border-radius: 0.3vh;\n  padding: 0;\n}\n\n//Time Picker Section\n.timePickerContainer {\n  width: 100%;\n  height: 33%;\n  display: flex;\n  flex-direction: column;\n}\n.inputDateTime {\n  padding: 0.5vh;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n}\n.inputDateTime label {\n  background-color: rgb(68, 68, 68);\n  padding: 0.5vh;\n  width: 25%;\n  border-radius: 0.3vh;\n  font-weight: 600;\n}\n.inputDateTime input {\n  background-color: rgb(68, 68, 68);\n  padding: 0.4vh;\n  width: 70%;\n  border-radius: 0.3vh;\n}\n.setRelative {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  padding: 0.5vh;\n}\n.setRelative .btn {\n  margin: 0.3vh;\n  width: 100%;\n  background-color: rgb(68, 68, 68);\n  font-size: small;\n}\n#datetime-from:hover, #datetime-to:hover {\n  background-color: rgb(216, 148, 0);\n  color: black;\n}\n\n\n//Archiver options\n.archOptContainer{\n  width: 100%;\n  height: 33%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 1vh;\n}\n\n.archOptField{\n  width: 100%;\n  margin-bottom: 1vh;\n}\n\n.archOptField select,.archOptField input{\n  width: 68%;\n  padding: 0.5vh;\n  border-radius: 0.3vh;\n}\n.archOptField label{\n  width: 30%;\n  background-color: rgb(68, 68, 68);\n  border-radius: 0.3vh;\n  padding: 0.5vh;\n  font-weight: 600;\n}\n\n//Action Buttons Section\n.buttonContainer {\n  width: 100%;\n  height: 33%;\n  display: flex;\n  flex-direction: column;\n  padding: 1vh;\n}\n\n.buttonContainer .btn {\n  background-color: rgb(68, 68, 68);\n  margin-bottom: 0.5vh;\n  border-radius: 0.3vh;\n}\n.buttonContainer .btn:hover {\n  background-color: rgb(204, 204, 204);\n}\n\n.btn:hover {\n  background-color: rgb(216, 148, 0);\n  color: black;\n}\n\n.plotDataBtn {\n  background-color: rgb(216, 148, 0) !important;\n  color: black;\n}\n.plotDataBtn:hover{ \n    animation: pulse 2s infinite;\n\n}\n\n@keyframes pulse {\n  0%, 100% {\n    transform: scale(1);\n    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);\n    font-weight: 600;\n  }\n  50% {\n    transform: scale(1.02);\n    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);\n    font-weight: 800;\n  }\n}",
+        "wrap": true
+      },
+      "pluginVersion": "5.2.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "${DS_GEA_API}"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.values.values.value.%.(secs*1000+nano/1000000)",
+              "language": "jsonata",
+              "name": "Timestamp",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.values.values.{\n    \"result\": (\n        $nValue:= value;\n        %.type = 1 ? $uppercase(value.%.%.meta.states[$nValue]): \n        $count(value) > 0 ? $map(value, function($v, $i){\n        sevr = 3 ? \"INVALID\":\n        sevr = 3904 ? \"DISCONNECTED\" :\n        sevr = 3872 ? \"ARCHIVE_OFF\" :\n        sevr = 3848 ? \"ARCHIVE_DISABLED\" :\n        $v  \n        })\n)}.result",
+              "language": "jsonata",
+              "name": "Value"
+            },
+            {
+              "jsonPath": "$.values.values.value.%.%.name",
+              "language": "jsonata",
+              "name": "Channel"
+            },
+            {
+              "jsonPath": "$.values.values.value.%.%.type",
+              "language": "jsonata",
+              "name": "meta_type",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.values.values.($map(value, function($v,$i){'['&$i&']'}))",
+              "language": "jsonata",
+              "name": "meta_index"
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "archive",
+              "${archives}"
+            ],
+            [
+              "channel",
+              "${channels}"
+            ],
+            [
+              "value_mode",
+              "${value_mode}"
+            ],
+            [
+              "n_points",
+              "${n_points}"
+            ],
+            [
+              "from",
+              "${__from}"
+            ],
+            [
+              "to",
+              "${__to}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "Data",
+          "urlPath": "/values"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel",
+              "meta_index"
+            ],
+            "naming": {
+              "asLabels": false
+            }
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {}
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^(?!.*(?:meta_type|meta_count)).*"
+            }
+          }
+        }
+      ],
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "super-light-blue",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 18,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 2,
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 6,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "alignValue": "right",
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "always",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 3,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "State Timeline",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 1
+                  }
+                },
+                "fieldName": "meta_type"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel",
+              "meta_index"
+            ],
+            "keepFields": false,
+            "naming": {
+              "asLabels": false
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "byVariable": false,
+            "include": {
+              "pattern": "^(?!.*(?:meta_type)).*"
+            }
+          }
+        }
+      ],
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": true,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 18,
+        "x": 6,
+        "y": 3
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "mean",
+            "variance",
+            "count"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 3,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "Time Series",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "lower",
+                  "options": {
+                    "value": 2
+                  }
+                },
+                "fieldName": "meta_type"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "disabled": true,
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "0"
+                  }
+                },
+                "fieldName": "Data"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel",
+              "meta_index"
+            ],
+            "naming": {
+              "asLabels": false
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "byVariable": false,
+            "include": {
+              "pattern": "^(?!.*(?:meta_type|meta_count|meta_values_length)).*"
+            }
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "Value"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${DS_ELASTICSEARCH}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 18,
+        "x": 6,
+        "y": 17
+      },
+      "id": 10,
+      "options": {
+        "afterRender": "\nconst allSystems = context.grafana.replaceVariables(\"${aux_logs_subsystems:csv}\");\nconst systemSelector = document.getElementById(\"systemSelector\");\nconst selectedSystems = context.grafana.replaceVariables(\"${logs_subsystem:text}\");\n\nif (systemSelector != null) {\n  const systemList = allSystems.split(\",\");\n  systemSelector.innerHTML = \"\";\n  systemList.map(system => {\n    const containerDiv = document.createElement('div');\n    containerDiv.className = \"logsSystemContainer\";\n    const checkbox = document.createElement('input');\n    checkbox.type = 'checkbox';\n    checkbox.value = system;\n    checkbox.name = 'system';\n    const label = document.createElement('label');\n    label.className = \"logsSystemLabel\";\n    label.textContent = system;\n    if (selectedSystems.includes(system)) {\n      checkbox.checked = true;\n    }\n    containerDiv.appendChild(checkbox);\n    containerDiv.appendChild(label);\n    systemSelector.appendChild(containerDiv);\n  })\n\n  const checkboxes = document.querySelectorAll('input[name=\"system\"]');\n  checkboxes.forEach(checkbox => {\n    checkbox.addEventListener('change', () => {\n      console.log(checkboxes)\n      selectedList = [];\n      Array.from(checkboxes).map(checkbox => {\n        subsystem = checkbox.value;\n        if (checkbox.checked == true && !selectedList.includes(subsystem)) {\n          selectedList.push(subsystem);\n        }\n      })\n      console.log(selectedList);\n      context.grafana.locationService.partial(\n        {\n          'var-logs_subsystem': selectedList.map(selected => `subsystem:${selected} `).join(\" \"),\n        },\n        true\n      )\n\n    });\n  });\n}\n\nconst input = document.getElementById(\"searchMsgInput\");\nconst auxMsg = context.grafana.replaceVariables(\"${aux_search_message:text}\");\n\ninput.value = auxMsg;\n\nsearchMsg = () => {\n  const input = document.getElementById(\"searchMsgInput\").value;\n  const inputList = input.split(\" \");\n\n  let stringToSearch = \"\"\n  if (input == \"\") {\n    stringToSearch = \"msg:**\"\n  }\n  else {\n    for (let element of inputList) {\n      if ([\"AND\", \"OR\", \"NOT\", \"(\", \")\"].some(logicOperator => element.includes(logicOperator))) {\n        stringToSearch += element;\n      }\n      else {\n        stringToSearch += `msg:*${element}*`\n      }\n      stringToSearch += \" \";\n    }\n  }\n\n\n  context.grafana.locationService.partial(\n    {\n      'var-search_message': stringToSearch,\n    },\n    true\n  )\n  context.grafana.locationService.partial(\n    {\n      'var-aux_search_message': input,\n    },\n    true\n  )\n};\n\n\ndocument.getElementById('searchMsgInput').addEventListener('keydown', function (event) {\n  if (event.key === 'Enter') {\n    event.preventDefault();\n    searchMsg();\n  }\n});\n\nif (context.panelData.series.length < 1) {\n  msgWarnLogs.innerText = \"No data in response.\";\n  msgWarnLogs.style.color = \"red\";\n}\nelse {\n  const logsRetrieved = context.panelData.series[0].length;\n  msgWarnLogs = document.getElementById(\"msgWarnLogs\");\n  if (logsRetrieved == 10000) {\n    msgWarnLogs.innerText = \"Only 10.000 logs are displayed, limit reached!\";\n    msgWarnLogs.style.color = \"red\";\n  }\n  else {\n    msgWarnLogs.innerText = `Logs retrieved: ${logsRetrieved}`;\n    msgWarnLogs.style.color = \"white\";\n  }\n}",
+        "content": "<div class=\"containerMain\">\n\n <div class=\"actions\">\n    <div class=\"sectionLabel\">Logs retrieval - select systems</div>\n    <div id=\"systemSelector\"></div>\n    <div class=\"sectionLabel\">Search Msg:</div>\n    <input id=\"searchMsgInput\" type=\"text\"/>\n    <div class=\"infoContainer\">\n    <p>Remember to escape with a \"\\\" any of the following characters:</p>\n    <p> + - && || ! ( ) { } [ ] ^ \" ~ * ? : \\\n    <p>This searching supports AND, OR and NOT operators</p>\n    <p>E.G.: ( word1 AND word2 ) OR word3</p>\n    </div>\n  </div>\n\n  <div class=\"tableContainer\">   \n    <div id=\"msgWarnLogsContainer\">\n    <p id=\"msgWarnLogs\">10000 logs returned</p>\n    </div>\n    <table class=\"dataTable\">\n    <tr>\n      <th>Timestamp</th>\n      <th>Subsystem</th>\n      <th>Message</th>\n    </tr>\n    {{#each data}}\n    <tr class=\"tableEntry\">\n      <td class=\"ts\">{{changeTime timestamp}}</td>\n      <td class=\"ss\">{{subsystem}}</td>\n      <td class=\"msg\">{{msg}}</td>\n    </tr>\n    {{/each}}\n  </table>\n  </div>\n</div>",
+        "defaultContent": "<div class=\"containerMain\">\n\n <div class=\"actions\">\n    <div class=\"sectionLabel\">Logs retrieval - select systems</div>\n    <div id=\"systemSelector\"></div>\n    <div class=\"sectionLabel\">Search Msg:</div>\n    <input id=\"searchMsgInput\" type=\"text\"/>\n    <div class=\"infoContainer\">\n    <p>Remember to escape with a \"\\\" any of the following characters:</p>\n    <p> + - && || ! ( ) { } [ ] ^ \" ~ * ? : \\\n    <p>This searching supports AND, OR and NOT operators</p>\n    <p>E.G.: ( word1 AND word2 ) OR word3</p>\n    </div>\n  </div>\n\n  <div class=\"tableContainer\">   \n    <div id=\"msgWarnLogsContainer\">\n    <p id=\"msgWarnLogs\">No data</p>\n    </div>\n    <table class=\"dataTable\">\n    <tr>\n      <th>Timestamp</th>\n      <th>Subsystem</th>\n      <th>Message</th>\n    </tr>\n\n  </table>\n  </div>\n</div>",
+        "editor": {
+          "format": "auto",
+          "height": 283,
+          "language": "handlebars"
+        },
+        "editors": [
+          "helpers",
+          "styles",
+          "afterRender"
+        ],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "const formatOptions = {\n  year: 'numeric',\n  month: 'numeric',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n  second: '2-digit',\n  fractionalSecondDigits: 3,\n  hourCycle: 'h23',\n  timeZone: context.panelData.request.timezone != 'browser' ? context.panelData.request.timezone : Intl.DateTimeFormat().resolvedOptions().timeZone\n};\n\ncontext.handlebars.registerHelper('changeTime', function (timestamp) {\n  const date = new Date(timestamp);\n  const formattedTime = date.toLocaleString('en-US', formatOptions);\n  const [datePart, timePart] = formattedTime.split(', ');\n  const [month, day, year] = datePart.split('/');\n  const [hours, minutes, seconds] = timePart.split(':');\n  const [second, fraction] = seconds.split('.');\n  return `${day}/${month}/${year} ${hours}:${minutes}:${second}.${fraction}`;\n});\n\n\n\n",
+        "renderMode": "allRows",
+        "styles": "// // & {\n// //   position: relative;\n// //   display: flex;\n// //   justify-content: center;\n// //   align-items: center;\n// // }\n.dt-row {\n  height: 100%;\n}\n\n.containerMain {\n  height: 100%;\n  width: 100%;\n  display: flex;\n}\n.actions {\n  background-color: rgb(87, 87, 87);\n  padding: 1vh;\n  width: 30%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.sectionLabel {\n  color: white;\n  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\n  font-weight: 600;\n  border-bottom: 1px solid white;\n  margin: 0.1vh;\n  width: 100%;\n}\n#systemSelector {\n  width: 100%;\n  height: 40%;\n  background-color: rgb(17, 18, 23);\n  padding: 1vh;\n  overflow-y:scroll;\n  margin-bottom: 1vh;\n}\n#searchMsgInput {\n  width: 100%;\n  margin-bottom: 1vh;\n}\n.logsSystemContainer{\n  display: flex;\n  align-items: center;\n}\n.logsSystemLabel {\n  margin-left: 1vh;\n  text-transform: uppercase;\n}\n.infoContainer {\n  width: 100%;\n}\np {\n  margin: 0;\n}\n\n.tableContainer {\n  // background-color: blue;\n  width: 70%;\n  height: 100%;\n  overflow-y: scroll;\n  background-color: rgb(17, 18, 23);\n}\n\n.dataTable {\n  position: relative;\n\n  width: 100%;\n  padding: 1vh;\n}\n\n.tableEntry {\n  max-height: 2%;\n}\n.ts {\n  max-width: 10vw;\n  min-width: 10vw;\n  width: 10%;\n}\n.ss {\n  max-width: 4vw;\n  min-width: 4vw;\n  width: 10%;\n}\n.msg {\n  max-width: 20vw;\n}\n\nth {\n  height: 1vh;\n  top: -1px;\n  margin: 0%;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 2;\n}\n\n#msgWarnLogs {\n  margin: 0;\n}\n\n#msgWarnLogsContainer {\n  // background-color: red;\n  z-index: 6;\n  position: fixed;\n  top:2%;\n  right: 2%;\n}\n",
+        "wrap": true
+      },
+      "pluginVersion": "5.2.0",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "${DS_ELASTICSEARCH}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "size": "10000"
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "(${logs_subsystem:text}) AND (${search_message:text})",
+          "refId": "Logs",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Logs",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "data_stream.dataset": true,
+              "data_stream.namespace": true,
+              "data_stream.type": true,
+              "event.original": true,
+              "highlight": true,
+              "location": true,
+              "log.file.path": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "@timestamp": "timestamp",
+              "event.original": "original"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "sort"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "marcusolsson-dynamictext-panel"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "${DS_GEA_API}"
+        },
+        "definition": "$.names[*]",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "archives",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": "$.names[*]"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/archives"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "${DS_GEA_API}"
+        },
+        "definition": "$.channels[1:]",
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "allChannels",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": "$.channels[1:]"
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "archiveName",
+              "${archives}"
+            ]
+          ],
+          "queryParams": "",
+          "urlPath": "/channels"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "2",
+          "value": "2"
+        },
+        "hide": 2,
+        "name": "value_mode",
+        "options": [
+          {
+            "selected": true,
+            "text": "2",
+            "value": "2"
+          }
+        ],
+        "query": "2",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "3000",
+          "value": "3000"
+        },
+        "description": "",
+        "hide": 2,
+        "name": "n_points",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "3000",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "hide": 2,
+        "name": "channels",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "${DS_GEA_API}"
+        },
+        "definition": "$.[1:]",
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "aux_logs_subsystems",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": "$.[1:]"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/allSubsystems"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        },
+        "hide": 2,
+        "name": "logs_subsystem",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "msg:**",
+          "value": "msg:**"
+        },
+        "description": "USE msg:** IN ADVANCED MODE TO RETRIEVE ALL DATA",
+        "hide": 2,
+        "label": "Search message",
+        "name": "search_message",
+        "options": [
+          {
+            "selected": true,
+            "text": "msg:**",
+            "value": "msg:**"
+          }
+        ],
+        "query": "msg:**",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {},
+        "hide": 2,
+        "name": "aux_search_message",
+        "options": [],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "${DS_GEA_API}"
+        },
+        "definition": "$.",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "pvTree",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 18000,
+          "fields": [
+            {
+              "jsonPath": "$.",
+              "type": "string"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/pvTree"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true,
+    "refresh_intervals": []
+  },
+  "timezone": "",
+  "title": "TED-dashboard",
+  "uid": "feayfw715mv40b",
+  "version": 32,
+  "weekStart": ""
+}
