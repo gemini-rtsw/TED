@@ -73,19 +73,19 @@
 #ls-guiders-------------------------------------------------------
 - pipeline.id: mk-hrwfs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/wfs/hrwfs.cfg"
+  path.config: "/usr/share/logstash/pipeline/guiders/hrwfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-pwfs1-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/wfs/pwfs1.cfg"
+  path.config: "/usr/share/logstash/pipeline/guiders/pwfs1.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
 - pipeline.id: mk-pwfs2-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/wfs/pwfs2.cfg"
+  path.config: "/usr/share/logstash/pipeline/guiders/pwfs2.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
     
