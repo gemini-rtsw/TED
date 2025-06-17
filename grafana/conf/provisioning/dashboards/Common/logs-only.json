@@ -216,7 +216,7 @@
               "type": "count"
             }
           ],
-          "query": "subsystem:${subsystem} AND ${lucene_query:text}",
+          "query": "subsystem:${subsystem}",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -356,7 +356,7 @@
               "type": "raw_data"
             }
           ],
-          "query": "subsystem:${subsystem} AND ${lucene_query:text}",
+          "query": "subsystem:${subsystem}",
           "refId": "Logs",
           "timeField": "@timestamp"
         }
@@ -413,7 +413,27 @@
     "list": [
       {
         "allValue": " None",
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "ag",
+            "crcs",
+            "ecs",
+            "gcal",
+            "mcs",
+            "pcs",
+            "scs"
+          ],
+          "value": [
+            "ag",
+            "crcs",
+            "ecs",
+            "gcal",
+            "mcs",
+            "pcs",
+            "scs"
+          ]
+        },
         "datasource": {
           "type": "marcusolsson-json-datasource",
           "uid": 2
@@ -427,7 +447,7 @@
         "name": "subsystem",
         "options": [],
         "query": {
-          "cacheDurationSeconds": 3600,
+          "cacheDurationSeconds": 0,
           "fields": [
             {
               "jsonPath": "$.data_streams[*].name",
@@ -478,21 +498,9 @@
         "hide": 2,
         "label": "Lucene Query",
         "name": "lucene_query",
-        "query": "${VAR_LUCENE_QUERY}",
+        "query": "",
         "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "${VAR_LUCENE_QUERY}",
-          "text": "${VAR_LUCENE_QUERY}",
-          "selected": false
-        },
-        "options": [
-          {
-            "value": "${VAR_LUCENE_QUERY}",
-            "text": "${VAR_LUCENE_QUERY}",
-            "selected": false
-          }
-        ]
+        "type": "constant"
       },
       {
         "current": {
@@ -518,13 +526,13 @@
     ]
   },
   "time": {
-    "from": "2025-06-14T10:00:00.000Z",
-    "to": "2025-06-15T09:59:59.000Z"
+    "from": "2025-06-17T19:23:44.149Z",
+    "to": "2025-06-17T20:53:31.099Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "1. Logs",
   "uid": "e5760f92-16d7-4175-8251-4b65f2413639",
-  "version": 7,
+  "version": 17,
   "weekStart": ""
 }
