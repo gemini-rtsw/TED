@@ -4,34 +4,33 @@ Hash: SHA512
 
 {
   "manifestVersion": "2.0.0",
-  "signatureType": "community",
-  "signedByOrg": "marcusolsson",
-  "signedByOrgName": "Marcus Olsson",
+  "signatureType": "grafana",
+  "signedByOrg": "grafana",
+  "signedByOrgName": "Grafana Labs",
   "plugin": "marcusolsson-json-datasource",
-  "version": "1.3.5",
-  "time": 1680707292363,
+  "version": "1.3.24",
+  "time": 1742580725356,
   "keyId": "7e4d0c6a708866e7",
   "files": {
-    "LICENSE": "ee4141d02acd9ce8d5ec0b3b79fc286a7e2b2c430f8b58bc6261446c0dd9b23c",
-    "CHANGELOG.md": "842959ac38a9f69a49a4eba3b45e963bf270be882201b8d864ebb702c62f7028",
-    "module.js.LICENSE.txt": "cdf963ced7d25a0f98901a547647b4d6e2dbe0197fd78c87a059a87b0e542fe2",
-    "module.js.map": "58fef904f7facb3fefe5c18ecebee4554752c17ef6556f4d7334b1b068116e54",
-    "plugin.json": "fabe7c9fcee3b12a8ab3eb8f7f09b6cc3e2c232efb98f4ff7b190b233449b3d3",
-    "README.md": "a99e4bdda5ecfac94668451f4e167b4242d3ef237eae20cda28efe316d525116",
-    "img/dark.png": "52a33e32b68f611273ef247dce0e60c3553fa2e54bf47b44ff93a7336bd3dbb9",
+    "LICENSE": "1fc73e522961e161c9379bf3933e639068753fee8330b0f4e9b3c57ced59cc64",
+    "CHANGELOG.md": "c152f1a87b6030b861bf823f9186f06dae9f05ca24218b62696d68e085b887bc",
     "img/light.png": "caa7b8fa6179e4e388de0380e122b8531eb16ff6b8f3eaa23faa1f362363b0da",
+    "img/dark.png": "52a33e32b68f611273ef247dce0e60c3553fa2e54bf47b44ff93a7336bd3dbb9",
     "img/logo.svg": "970745c7099fd3fe4f8c8cac1de5e38410fbee44e02bac0534cefa9f6c21d984",
-    "module.js": "3929434073e0ff099d38142be777882cdeaa7976e2c086baab130ea2449479af"
+    "README.md": "7c05116813031e28528960538bb13fdc01f1ee6d935774a5f0acc791eff75403",
+    "module.js.map": "7c06ae37df0685a39c87f6be697aa198aa1b31db7fd41263d973c92b3515e184",
+    "plugin.json": "f0f595f3dd037c6621994d1418cb0066139debd1c3c8f9870c158b58963e2970",
+    "module.js": "ffa4726e7d698982c2792eef101298d16cc35fb062e48db27930907bbeb554c8"
   }
 }
 -----BEGIN PGP SIGNATURE-----
-Version: OpenPGP.js v4.10.10
+Version: OpenPGP.js v4.10.11
 Comment: https://openpgpjs.org
 
-wrkEARMKAAYFAmQtjtwAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
-cIhm56vtAgkB7XHM3C0sNY5rinYg352i1M6jSvV1GMUj4rULm3TVYbn0zUyp
-TrERUkyCM00bOEKOwaFCMmDMvRm6B8eYa11rdAQCCQG+zHFvAfmOtCC8WyX7
-TM2W00Jgji0Ta06jP5By6iKnZuE+Mij0bvwkGHcvN9yLSxHx8nFl5v+A3SEr
-2HjKzEpqyg==
-=ae/Q
+wrkEARMKAAYFAmfdq/UAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm5xY3AgkBqfAiFfJMEvo93v5V5bbWgPlOy1BzbB87MOvUO3Sj8T3Rdc7Q
+qDvrheL6P/yboZdsH//u7iuTyQP2vIvfkmPfEuECCQAQrEIVV0eiXZKZSfg9
+U1VIZ77reE+2lt0SkUgVDhKGzX3hKqOgbiDfJNYQZgvCi4OJKegQBj8J6vTw
+5JjXCcNjsQ==
+=9CWL
 -----END PGP SIGNATURE-----

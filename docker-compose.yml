@@ -213,8 +213,8 @@ services:
         #GF_LOG_FILTERS: "rendering:debug"
 
     volumes:
-      - ./grafana/grafana-data:/var/lib/grafana
-      - ./grafana/conf/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/grafana-data/plugins:/var/lib/grafana/plugins
+      - ./grafana/conf/:/etc/grafana/
 
     logging:
       driver: json-file
