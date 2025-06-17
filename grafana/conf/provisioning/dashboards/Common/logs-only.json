@@ -328,7 +328,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "${DS_ELASTICSEARCH}"
+            "uid": 1
           },
           "hide": false,
           "metrics": [
@@ -400,7 +400,7 @@
         "current": {},
         "datasource": {
           "type": "elasticsearch",
-          "uid": 1
+          "uid": 2
         },
         "definition": "$.data_streams[*].name",
         "description": "Subsystems available",
