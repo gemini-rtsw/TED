@@ -82,7 +82,7 @@
     {
       "datasource": {
         "type": "marcusolsson-json-datasource",
-        "uid": "${DS_GEA_API}"
+        "uid": 3
       },
       "description": "",
       "fieldConfig": {
@@ -132,7 +132,7 @@
           "cacheDurationSeconds": 0,
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "${DS_GEA_API}"
+            "uid": 3
           },
           "fields": [
             {
@@ -516,7 +516,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "${DS_ELASTICSEARCH}"
+        "uid": 1
       },
       "fieldConfig": {
         "defaults": {
@@ -571,7 +571,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "${DS_ELASTICSEARCH}"
+            "uid": 1
           },
           "hide": false,
           "metrics": [
@@ -836,7 +836,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": "${DS_GEA_API}"
+          "uid": 3
         },
         "definition": "$.",
         "hide": 2,
