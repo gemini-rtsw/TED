@@ -82,7 +82,7 @@
     {
       "datasource": {
         "type": "marcusolsson-json-datasource",
-        "uid": 3
+        "uid": "Cgf7JOwVz"
       },
       "description": "",
       "fieldConfig": {
@@ -132,7 +132,7 @@
           "cacheDurationSeconds": 0,
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": 3
+            "uid": "Cgf7JOwVz"
           },
           "fields": [
             {
@@ -516,7 +516,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": 1
+        "uid": "F1zgMdwVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -571,7 +571,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": 1
+            "uid": "F1zgMdwVz"
           },
           "hide": false,
           "metrics": [
@@ -636,7 +636,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": "${DS_GEA_API}"
+          "uid": "Cgf7JOwVz"
         },
         "definition": "$.names[*]",
         "hide": 2,
@@ -665,7 +665,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": "${DS_GEA_API}"
+          "uid": "Cgf7JOwVz"
         },
         "definition": "$.channels[1:]",
         "hide": 2,
@@ -758,7 +758,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": "${DS_GEA_API}"
+          "uid": "Cgf7JOwVz"
         },
         "definition": "$.[1:]",
         "hide": 2,
@@ -836,7 +836,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": 3
+          "uid": "Cgf7JOwVz"
         },
         "definition": "$.",
         "hide": 2,
