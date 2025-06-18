@@ -5,7 +5,7 @@ apiVersion: 1
 # # available in the database.
 datasources:
   - id: 1
-    uid: F1zgMdwVz
+    uid: 1
     orgId: 1
     name: Elasticsearch
     type: elasticsearch
@@ -29,7 +29,7 @@ datasources:
     readOnly: false
     
   - id: 2
-    uid: X9mrkFjVk
+    uid: 2
     orgId: 1
     name: Elasticsearch API
     type: marcusolsson-json-datasource
@@ -45,7 +45,7 @@ datasources:
     readOnly: false
 
   - id: 3
-    uid: Cgf7JOwVz
+    uid: 3
     orgId: 1
     name: GEA API
     type: marcusolsson-json-datasource
