@@ -80,7 +80,7 @@
     {
       "datasource": {
         "type": "marcusolsson-json-datasource",
-        "uid": 3
+        "uid": "Cgf7JOwVz"
       },
       "description": "WARNING: Don't delete",
       "fieldConfig": {
@@ -131,7 +131,7 @@
           "cacheDurationSeconds": 0,
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": 3
+            "uid": "Cgf7JOwVz"
           },
           "fields": [
             {
@@ -338,7 +338,7 @@
     {
       "datasource": {
         "type": "marcusolsson-json-datasource",
-        "uid": 3
+        "uid": "Cgf7JOwVz"
       },
       "fieldConfig": {
         "defaults": {
@@ -479,7 +479,7 @@
           "cacheDurationSeconds": 18000,
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": 3
+            "uid": "Cgf7JOwVz"
           },
           "fields": [
             {
@@ -511,7 +511,7 @@
           "cacheDurationSeconds": 18000,
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": 3
+            "uid": "Cgf7JOwVz"
           },
           "fields": [
             {
@@ -544,7 +544,7 @@
           "cacheDurationSeconds": 18000,
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": 3
+            "uid": "Cgf7JOwVz"
           },
           "fields": [
             {
@@ -1016,7 +1016,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": 3
+          "uid": "Cgf7JOwVz"
         },
         "definition": "$.names[*]",
         "description": "In general each subsystem have his own archive, select \"-- All --\" option to combine channels from multiple archives. ",
@@ -1050,7 +1050,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": 3
+          "uid": "Cgf7JOwVz"
         },
         "definition": "$.channels[*]",
         "description": "All the channels in the tree selector leaves",
