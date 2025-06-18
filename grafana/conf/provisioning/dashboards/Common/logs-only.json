@@ -81,7 +81,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "${DS_ELASTICSEARCH}"
+        "uid": 1
       },
       "fieldConfig": {
         "defaults": {
@@ -200,7 +200,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "${DS_ELASTICSEARCH}"
+            "uid": 1
           },
           "metrics": [
             {
@@ -285,7 +285,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "${DS_ELASTICSEARCH}"
+        "uid": 1
       },
       "fieldConfig": {
         "defaults": {
@@ -335,7 +335,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "${DS_ELASTICSEARCH}"
+            "uid": 1
           },
           "hide": false,
           "metrics": [
@@ -407,7 +407,7 @@
         "current": {},
         "datasource": {
           "type": "marcusolsson-json-datasource",
-          "uid": "${DS_ELASTICSEARCH_API}"
+          "uid": 2
         },
         "definition": "",
         "label": "Subsystem",
