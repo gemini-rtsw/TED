@@ -174,8 +174,8 @@ services:
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
-      - "./config:/usr/share/logstash/config"
-      - "./pipeline:/usr/share/logstash/pipeline"
+      - "./logstash/${SITE}/ls-opstools/config:/usr/share/logstash/config"
+      - "./logstash/${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
       - ${LOGS_PATH}:/gemsoft/var/
       - ${DATA_PATH}/ls-opstools/db:/db
       - /etc/localtime:/etc/localtime
