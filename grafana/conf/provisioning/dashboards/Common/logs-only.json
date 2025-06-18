@@ -9,11 +9,12 @@
       "pluginName": "Elasticsearch"
     },
     {
-      "name": "VAR_LUCENE_QUERY",
-      "type": "constant",
-      "label": "Lucene Query",
-      "value": "",
-      "description": ""
+      "name": "DS_ELASTICSEARCH_API",
+      "label": "Elasticsearch API",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
     }
   ],
   "__elements": {},
@@ -35,6 +36,12 @@
       "id": "marcusolsson-dynamictext-panel",
       "name": "Business Text",
       "version": "5.7.0"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.24"
     },
     {
       "type": "panel",
@@ -74,7 +81,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": 1
+        "uid": "${DS_ELASTICSEARCH}"
       },
       "fieldConfig": {
         "defaults": {
@@ -193,7 +200,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": 1
+            "uid": "${DS_ELASTICSEARCH}"
           },
           "metrics": [
             {
@@ -278,7 +285,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": 1
+        "uid": "${DS_ELASTICSEARCH}"
       },
       "fieldConfig": {
         "defaults": {
@@ -316,7 +323,7 @@
         ],
         "externalScripts": [],
         "externalStyles": [],
-        "helpers": "const searchType = context.grafana.replaceVariables(\"${search_type}\");\n\nlet lucene;\nif (searchType == 2) {\n  lucene = context.grafana.replaceVariables(\"$search_message\");\n} else {\n  let query = context.grafana.replaceVariables(\"$search_message\").split(\" \");\n  let stringQuery = query.join(\"\\\\ \");\n  lucene = `msg:*${stringQuery}*`;\n}\n\ncontext.grafana.locationService.partial({ \"var-lucene_query\": lucene });\n\nconst formatOptions = {\n  year: 'numeric',\n  month: 'numeric',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n  second: '2-digit',\n  fractionalSecondDigits: 3,\n  hourCycle: 'h23',\n  timeZone: context.panelData.request.timezone != 'browser' ? context.panelData.request.timezone : Intl.DateTimeFormat().resolvedOptions().timeZone\n};\n\ncontext.handlebars.registerHelper('changeTime', function (timestamp) {\n  const date = new Date(timestamp);\n  const formattedTime = date.toLocaleString('en-US', formatOptions);\n  const [datePart, timePart] = formattedTime.split(', ');\n  const [month, day, year] = datePart.split('/');\n  const [hours, minutes, seconds] = timePart.split(':');\n  const [second, fraction] = seconds.split('.');\n  return `${day}/${month}/${year} ${hours}:${minutes}:${second}.${fraction}`;\n});\n\n",
+        "helpers": "const formatOptions = {\n  year: 'numeric',\n  month: 'numeric',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n  second: '2-digit',\n  fractionalSecondDigits: 3,\n  hourCycle: 'h23',\n  timeZone: context.panelData.request.timezone != 'browser' ? context.panelData.request.timezone : Intl.DateTimeFormat().resolvedOptions().timeZone\n};\n\ncontext.handlebars.registerHelper('changeTime', function (timestamp) {\n  const date = new Date(timestamp);\n  const formattedTime = date.toLocaleString('en-US', formatOptions);\n  const [datePart, timePart] = formattedTime.split(', ');\n  const [month, day, year] = datePart.split('/');\n  const [hours, minutes, seconds] = timePart.split(':');\n  const [second, fraction] = seconds.split('.');\n  return `${day}/${month}/${year} ${hours}:${minutes}:${second}.${fraction}`;\n});\n\n\n\nlet lucene = \"\";\nconst query = context.grafana.replaceVariables(\"$search_message\").split(\" \");\nconsole.log(query);\n\nif (query == \"\") {\n  lucene = \"msg:**\";\n}\nelse {\n  for (let word of query) {\n    if ([\"AND\", \"OR\", \"NOT\", \"(\", \")\"].some(logicOperator => word.includes(logicOperator))) {\n      lucene += word;\n    }\n    else {\n      lucene += `msg:*${word}*`\n    }\n    lucene += \" \";\n  }\n}\n\ncontext.grafana.locationService.partial({ \"var-lucene_query\": lucene }, true);\n\ndocument.addEventListener('keydown', (e) => {\n  if (e.key == \"Enter\") {\n    context.grafana.refresh();\n  }\n})\n\n",
         "renderMode": "allRows",
         "styles": ".dataTable {\n  width: 100%;\n}\n\n.ts {\n  min-width: 11vw;\n}\n\n.ss {\n  min-width: 5vw;\n}\n\n.msg {\n  min-width: 80vw;\n}\n\nth {\n  top: -1px;\n  margin: 0%;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 2;\n}",
         "wrap": true
@@ -328,7 +335,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": 1
+            "uid": "${DS_ELASTICSEARCH}"
           },
           "hide": false,
           "metrics": [
@@ -340,7 +347,7 @@
               "type": "raw_data"
             }
           ],
-          "query": "subsystem:${subsystem}",
+          "query": "subsystem:${subsystem} AND (${lucene_query:text})",
           "refId": "Logs",
           "timeField": "@timestamp"
         }
@@ -396,26 +403,22 @@
   "templating": {
     "list": [
       {
-        "allValue": " None",
+        "allowCustomValue": false,
         "current": {},
         "datasource": {
-          "type": "elasticsearch",
-          "uid": 2
+          "type": "marcusolsson-json-datasource",
+          "uid": "${DS_ELASTICSEARCH_API}"
         },
-        "definition": "$.data_streams[*].name",
-        "description": "Subsystems available",
-        "includeAll": false,
+        "definition": "",
         "label": "Subsystem",
         "multi": true,
         "name": "subsystem",
         "options": [],
         "query": {
-          "cacheDurationSeconds": 0,
+          "cacheDurationSeconds": 300,
           "fields": [
             {
-              "jsonPath": "$.data_streams[*].name",
-              "name": "text",
-              "type": "string"
+              "jsonPath": "$.data_streams[*].name"
             }
           ],
           "method": "GET",
@@ -424,57 +427,30 @@
         },
         "refresh": 1,
         "regex": ".*\\.[^-]+-(?<text>.+)",
-        "sort": 1,
         "type": "query"
       },
       {
         "current": {
-          "text": "1",
-          "value": "1"
+          "text": "msg:**",
+          "value": "msg:**"
         },
-        "includeAll": false,
-        "label": "Search Type",
-        "name": "search_type",
-        "options": [
-          {
-            "selected": true,
-            "text": "Simple",
-            "value": "1"
-          },
-          {
-            "selected": false,
-            "text": "Advanced",
-            "value": "2"
-          }
-        ],
-        "query": "Simple : 1, Advanced : 2",
-        "type": "custom"
-      },
-      {
-        "description": "[msg:**] will retrieve all the logs.\nIf you let this field empty, no data will be retrieved.",
         "hide": 2,
         "label": "Lucene Query",
         "name": "lucene_query",
-        "query": "${VAR_LUCENE_QUERY}",
-        "skipUrlSync": true,
-        "type": "constant",
-        "current": {
-          "value": "${VAR_LUCENE_QUERY}",
-          "text": "${VAR_LUCENE_QUERY}",
-          "selected": false
-        },
         "options": [
           {
-            "value": "${VAR_LUCENE_QUERY}",
-            "text": "${VAR_LUCENE_QUERY}",
-            "selected": false
+            "selected": true,
+            "text": "msg:**",
+            "value": "msg:**"
           }
-        ]
+        ],
+        "query": "msg:**",
+        "type": "textbox"
       },
       {
         "current": {
-          "text": "error",
-          "value": "error"
+          "text": "",
+          "value": ""
         },
         "description": "USE msg:** IN ADVANCED MODE TO RETRIEVE ALL DATA",
         "label": "Search message",
@@ -482,23 +458,23 @@
         "options": [
           {
             "selected": true,
-            "text": "error",
-            "value": "error"
+            "text": "",
+            "value": ""
           }
         ],
-        "query": "error",
+        "query": "",
         "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "2025-06-17T10:39:52.928Z",
-    "to": "2025-06-17T11:34:42.162Z"
+    "from": "now-1h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "1. Logs",
   "uid": "e5760f92-16d7-4175-8251-4b65f2413639",
-  "version": 1,
+  "version": 40,
   "weekStart": ""
 }
