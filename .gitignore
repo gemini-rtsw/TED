@@ -9,3 +9,4 @@ logstash/MK/ls-read/utils/InsertByDataRange.log
 logstash/MK/ls-read/config/pipelines.yml
 grafana/grafana-data/grafana.db
 logstash/MK/ls-read/config/pipelines.yml
+grafana/grafana-data/plugins/grafana-metricsdrilldown-app
