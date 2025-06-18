@@ -12,7 +12,7 @@ datasources:
     typeName: Elasticsearch
     typeLogoUrl: public/app/plugins/datasource/elasticsearch/img/elasticsearch.svg
     access: proxy
-    url: http://172.17.71.27:9200
+    url: http://${HOST_IP}:9200
     user: ''
     database: logs-*
     basicAuth: false
@@ -36,7 +36,7 @@ datasources:
     typeName: JSON API
     typeLogoUrl: public/plugins/marcusolsson-json-datasource/img/logo.svg
     access: proxy
-    url: http://172.17.71.27:9200/
+    url: http://${HOST_IP}:9200/
     user: ''
     database: ''
     basicAuth: false
@@ -52,7 +52,7 @@ datasources:
     typeName: JSON API
     typeLogoUrl: public/plugins/marcusolsson-json-datasource/img/logo.svg
     access: proxy
-    url: http://localhost:8000
+    url: http://${HOST_IP}:8000
     user: ''
     database: ''
     basicAuth: false
