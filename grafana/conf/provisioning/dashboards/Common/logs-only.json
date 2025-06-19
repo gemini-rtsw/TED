@@ -81,7 +81,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "F1zgMdwVz"
+        "uid": "${DS_ELASTICSEARCH}"
       },
       "fieldConfig": {
         "defaults": {
@@ -200,7 +200,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "F1zgMdwVz"
+            "uid": "${DS_ELASTICSEARCH}"
           },
           "metrics": [
             {
@@ -208,7 +208,7 @@
               "type": "count"
             }
           ],
-          "query": "subsystem:${subsystem}",
+          "query": "subsystem:${subsystem} AND (${lucene_query:text})",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -285,7 +285,7 @@
     {
       "datasource": {
         "type": "elasticsearch",
-        "uid": "F1zgMdwVz"
+        "uid": "${DS_ELASTICSEARCH}"
       },
       "fieldConfig": {
         "defaults": {
@@ -323,7 +323,7 @@
         ],
         "externalScripts": [],
         "externalStyles": [],
-        "helpers": "const formatOptions = {\n  year: 'numeric',\n  month: 'numeric',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n  second: '2-digit',\n  fractionalSecondDigits: 3,\n  hourCycle: 'h23',\n  timeZone: context.panelData.request.timezone != 'browser' ? context.panelData.request.timezone : Intl.DateTimeFormat().resolvedOptions().timeZone\n};\n\ncontext.handlebars.registerHelper('changeTime', function (timestamp) {\n  const date = new Date(timestamp);\n  const formattedTime = date.toLocaleString('en-US', formatOptions);\n  const [datePart, timePart] = formattedTime.split(', ');\n  const [month, day, year] = datePart.split('/');\n  const [hours, minutes, seconds] = timePart.split(':');\n  const [second, fraction] = seconds.split('.');\n  return `${day}/${month}/${year} ${hours}:${minutes}:${second}.${fraction}`;\n});\n\n\n\nlet lucene = \"\";\nconst query = context.grafana.replaceVariables(\"$search_message\").split(\" \");\nconsole.log(query);\n\nif (query == \"\") {\n  lucene = \"msg:**\";\n}\nelse {\n  for (let word of query) {\n    if ([\"AND\", \"OR\", \"NOT\", \"(\", \")\"].some(logicOperator => word == logicOperator)) {\n      lucene += word;\n    }\n    else {\n      lucene += `msg:*${word}*`\n    }\n    lucene += \" \";\n  }\n}\n\ncontext.grafana.locationService.partial({ \"var-lucene_query\": lucene }, true);\n\ndocument.addEventListener('keydown', (e) => {\n  if (e.key == \"Enter\") {\n    context.grafana.refresh();\n  }\n})\n\n",
+        "helpers": "const formatOptions = {\n  year: 'numeric',\n  month: 'numeric',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n  second: '2-digit',\n  fractionalSecondDigits: 3,\n  hourCycle: 'h23',\n  timeZone: context.panelData.request.timezone != 'browser' ? context.panelData.request.timezone : Intl.DateTimeFormat().resolvedOptions().timeZone\n};\n\ncontext.handlebars.registerHelper('changeTime', function (timestamp) {\n  const date = new Date(timestamp);\n  const formattedTime = date.toLocaleString('en-US', formatOptions);\n  const [datePart, timePart] = formattedTime.split(', ');\n  const [month, day, year] = datePart.split('/');\n  const [hours, minutes, seconds] = timePart.split(':');\n  const [second, fraction] = seconds.split('.');\n  return `${day}/${month}/${year} ${hours}:${minutes}:${second}.${fraction}`;\n});\n\n\n\nlet lucene = \"\";\nconst rawQuery = context.grafana.replaceVariables(\"$search_message\").trim();\n\nif (rawQuery === \"\") {\n  lucene = \"msg:**\";\n} else {\n  const query = rawQuery.split(/\\s+/);\n  for (let word of query) {\n    if (\n      word === \"AND\" ||\n      word === \"OR\" ||\n      word === \"NOT\" ||\n      word === \"(\" ||\n      word === \")\"\n    ) {\n      lucene += word + \" \";\n    } else {\n      lucene += `msg:*${word}* `;\n    }\n  }\n  lucene = lucene.trim();\n}\n\ncontext.grafana.locationService.partial({ \"var-lucene_query\": lucene }, true);\n\ndocument.addEventListener('keydown', (e) => {\n  if (e.key == \"Enter\") {\n    context.grafana.refresh();\n  }\n})\n\n",
         "renderMode": "allRows",
         "styles": ".dataTable {\n  width: 100%;\n}\n\n.ts {\n  min-width: 11vw;\n}\n\n.ss {\n  min-width: 5vw;\n}\n\n.msg {\n  min-width: 80vw;\n}\n\nth {\n  top: -1px;\n  margin: 0%;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 2;\n}",
         "wrap": true
@@ -452,7 +452,7 @@
           "text": "",
           "value": ""
         },
-        "description": "USE msg:** IN ADVANCED MODE TO RETRIEVE ALL DATA",
+        "description": "Remember to escape with a \"\\\" any of the following characters:\n+ - && || ! ( ) { } [ ] ^ \" ~ * ? : \\\nThis searching supports AND, OR and NOT operators\nI.E.: NOT word1 - word1 AND word2 - ( word1 AND word2 ) OR word3",
         "label": "Search message",
         "name": "search_message",
         "options": [
@@ -468,13 +468,13 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "1. Logs",
   "uid": "e5760f92-16d7-4175-8251-4b65f2413639",
-  "version": 40,
+  "version": 17,
   "weekStart": ""
 }
