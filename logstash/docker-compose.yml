@@ -7,7 +7,7 @@ services:
     cpus: 1.0
     mem_limit: 1g
     build:
-      context: "./logstash/${SITE}/ls-core"
+      context: "."
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -19,8 +19,7 @@ services:
       - ted_network
 
     environment:
-      HOST_IP: "${HOST01_IP}"
-      HOST_1: "${HOST01_IP}:${ES01_PORT}"
+      HOST_1: "es01:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -45,7 +44,7 @@ services:
     mem_limit: 1g
 
     build:
-      context: "./logstash/${SITE}/ls-guiders"
+      context: "."
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -57,8 +56,7 @@ services:
       - ted_network
 
     environment:
-      HOST_IP: "${HOST01_IP}"
-      HOST_1: "${HOST01_IP}:${ES01_PORT}"
+      HOST_1: "es01:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -97,8 +95,7 @@ services:
       - ted_network
 
     environment:
-      HOST_IP: "${HOST01_IP}"
-      HOST_1: "${HOST01_IP}:${ES01_PORT}"
+      HOST_1: "es01:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
