@@ -294,30 +294,6 @@ services:
           memory: 256M
 
 #################################################################################################################
-
-
-  mysql:
-    container_name: ${MYSQL_NAME}
-    hostname: ${MYSQL_NAME}
-    build:
-      context: ./mysql
-      dockerfile: Dockerfile
-      args:
-        - USER=${USER}
-        - UID=${U_ID}
-        - GROUP=${GROUP}
-        - GID=${G_ID}
-    image: gear-mysql:8.0.35-debian
-    volumes:
-      - ${MYSQL_DATA}:/var/lib/mysql
-    network_mode: "host"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 5s
-  
   archappl:
     container_name: "${APPLIANCE_NAME}"
     hostname: "${APPLIANCE_NAME}"
@@ -330,6 +306,8 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
     image: gear-appliance:1.1.0
+    ports:
+      - "${APPLIANCE_PORT}:17665"
     volumes:
       - ./archappl/conf:/etc/archappl/
       - ./archappl/webapps:/usr/local/tomcat/webapps
@@ -346,5 +324,34 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    network_mode: "host"
+    networks:
+      - gear_network
     command: sh -c "python3 /usr/local/tomcat/bin/addMysqlConnPool.py && /usr/local/tomcat/bin/catalina.sh run"
+
+  mysql:
+    container_name: ${MYSQL_NAME}
+    hostname: ${MYSQL_NAME}
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    image: gear-mysql:8.0.35-debian
+    volumes:
+      - ${MYSQL_DATA}:/var/lib/mysql
+    networks:
+      - gear_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+networks:
+  gear_network:
+    driver: bridge
+    external: true
