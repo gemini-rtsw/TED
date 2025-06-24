@@ -24,8 +24,8 @@ services:
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
-      - "./logstash/${SITE}/ls-core/config:/usr/share/logstash/config"
-      - "./logstash/${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline"
+      - "./${SITE}/ls-core/config:/usr/share/logstash/config"
+      - "./${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline"
       - ${LOGS_PATH}:/gemsoft/var/
       - ${DATA_PATH}/ls-core/db:/db
       - /etc/localtime:/etc/localtime
@@ -62,8 +62,8 @@ services:
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
-      - "./logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
-      - "./logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
+      - "./${SITE}/ls-guiders/config:/usr/share/logstash/config"
+      - "./${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
       - ${LOGS_PATH}:/gemsoft/var/
       - ${DATA_PATH}/ls-guiders/db:/db
       - /etc/localtime:/etc/localtime
@@ -102,8 +102,8 @@ services:
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
-      - "./logstash/${SITE}/ls-opstools/config:/usr/share/logstash/config"
-      - "./logstash/${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
+      - "./${SITE}/ls-opstools/config:/usr/share/logstash/config"
+      - "./${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
       - ${LOGS_PATH}:/gemsoft/var/
       - ${DATA_PATH}/ls-opstools/db:/db
       - /etc/localtime:/etc/localtime
@@ -113,7 +113,7 @@ services:
       options:
         max-size: 100m
         max-file: 1
-        
+
 networks:
   ted_network:
     driver: bridge
