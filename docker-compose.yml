@@ -31,7 +31,7 @@ services:
       - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://${HOST01_IP}:${ES01_PORT}/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://es01:${ES01_PORT}/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -63,7 +63,7 @@ services:
     environment:
       HOST_IP: "${HOST01_IP}"
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http://${HOST01_IP}:${ES01_PORT}"
+      ELASTICSEARCH_HOSTS: "http://es01:${ES01_PORT}"
       elasticsearch.ssl.verificationMode: "none"
       SERVER_PORT: "${KI01_PORT}"
 
