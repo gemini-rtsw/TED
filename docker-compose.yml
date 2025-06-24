@@ -16,8 +16,8 @@ services:
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
-
-   
+    networks:
+      - ted_network
     ports:
       - "${ES01_PORT}:9200"
       - "${ES01_TR_PORT}:9300"
