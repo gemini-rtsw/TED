@@ -1,0 +1,14 @@
+record(calcout, "softioc:heartbeat") {
+    field(DESC, "Heartbeat Pulse")
+    field(SCAN, "1 second")
+    field(INPA, "softioc:heartbeat")
+    field(CALC, "A=0?1:0")
+    field(OUT, "softioc:heartbeat_PP")
+}
+
+record(bo, "softioc:heartbeat_PP") {
+    field(DTYP, "Soft Channel")
+    field(VAL, "0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}

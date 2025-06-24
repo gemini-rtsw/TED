@@ -273,3 +273,22 @@ services:
       - ./gr01/render/config.json:/usr/src/app/config.json
 
 #################################################################################################################
+
+  softioc:
+    image: jeffersonlab/softioc:1.1.0
+    tty: true
+    environment:
+      - EPICS_CA_AUTO_ADDR_LIST=NO
+      - EPICS_CA_ADDR_LIST=127.0.0.1
+    stdin_open: true
+    hostname: softioc
+    container_name: softioc
+    volumes:
+      - ./softioc/data/softioc.db:/db/softioc.db
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
