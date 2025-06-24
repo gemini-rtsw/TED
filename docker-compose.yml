@@ -330,8 +330,6 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
     image: gear-appliance:1.1.0
-    ports:
-      - "${APPLIANCE_PORT}:17665"
     volumes:
       - ./archappl/conf:/etc/archappl/
       - ./archappl/webapps:/usr/local/tomcat/webapps
