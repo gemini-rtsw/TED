@@ -1,0 +1,334 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AASERVICE",
+      "label": "AAservice",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "marcusolsson-dynamictext-panel",
+      "name": "Business Text",
+      "version": "5.7.0"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.24"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "aepy5iqt7ke80c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "afterRender": "const container = document.getElementById('pvTree');\ncontainer.innerHTML = \"\"\n\nconst jsonString = context.data[0][0].pvTree;\nconst data = JSON.parse(jsonString);\n\n\nfunction buildTree(obj, container, path=[]) {\n  for (const key in obj) {\n    const currentPath = [...path, key];\n    if ('codes' in obj[key]) {\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree'\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'leaf';\n      keyDiv.textContent = key;\n      const codes = JSON.stringify(obj[key][\"codes\"]);\n      keyDiv.dataset.codes = codes;\n      keyDiv.dataset.path = currentPath.join(\" > \");\n      keyDiv.addEventListener(\"click\", () => {\n        arrCodes = JSON.parse(keyDiv.dataset.codes);\n        context.grafana.locationService.partial(\n          {\n            'var-pv': arrCodes,\n          },\n          true\n        )\n        context.grafana.locationService.partial(\n          {\n            'var-title': keyDiv.dataset.path,\n          },\n          true\n        )\n      })\n      wrapper.appendChild(keyDiv);\n      container.appendChild(wrapper);\n    }\n    else {\n      const value = obj[key];\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree'\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'key';\n      keyDiv.textContent = key;\n      const childrenContainer = document.createElement('div');\n      childrenContainer.className = 'children hidden';\n      if (typeof value === 'object' && value !== null) {\n        buildTree(value, childrenContainer, currentPath);\n        keyDiv.addEventListener(\"click\", () => {\n          childrenContainer.classList.toggle('hidden');\n        })\n      }\n      wrapper.appendChild(keyDiv);\n      wrapper.appendChild(childrenContainer);\n      container.appendChild(wrapper);\n    }\n  }\n}\nbuildTree(data, container);\n\n\n",
+        "content": "<div id=\"pvTree\"></div>",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "html"
+        },
+        "editors": [
+          "afterRender",
+          "styles"
+        ],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "data",
+        "styles": ".tree {\n  font-family: monospace;\n  margin-left: 10px;\n  background-color: white;\n}\n\n.key {\n  font-weight: bold;\n  color: black;\n  padding: 2px;\n  cursor: pointer;\n}\n\n.leaf {\n  color: darkred;\n  font-weight: bold;\n  cursor: pointer;\n}\n\n.children {\n  margin-left: 20px;\n}\n\n.hidden {\n  display: none;\n}",
+        "wrap": true
+      },
+      "pluginVersion": "5.7.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 600,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "aepy5iqt7ke80c"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.",
+              "name": "pvTree"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/getPvTree"
+        }
+      ],
+      "title": "New panel",
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "aepy5iqt7ke80c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Values",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 13,
+        "x": 4,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "aepy5iqt7ke80c"
+          },
+          "experimentalGroupByField": "Channel",
+          "fields": [
+            {
+              "jsonPath": "$.data.(secs*1000 + nanos/1000000000)",
+              "language": "jsonata",
+              "name": "DateTime",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.data.val",
+              "language": "jsonata",
+              "name": "Value",
+              "type": "number"
+            },
+            {
+              "jsonPath": "$.data.val.%.%.meta.name",
+              "language": "jsonata",
+              "name": "Channel",
+              "type": "string"
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "pv",
+              "${pv:csv}"
+            ],
+            [
+              "from",
+              "${__from:date}"
+            ],
+            [
+              "to",
+              "${__to:date}"
+            ],
+            [
+              "pp_type",
+              "mean"
+            ],
+            [
+              "pp_bin",
+              "1"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "Values",
+          "urlPath": "/getPV"
+        }
+      ],
+      "title": "${title}",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "aepy5iqt7ke80c"
+        },
+        "definition": "",
+        "multi": true,
+        "name": "pv",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": "$.*"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/getAllPVs"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "MCS > Azimuth > Velocity",
+          "value": "MCS > Azimuth > Velocity"
+        },
+        "hide": 1,
+        "name": "title",
+        "options": [
+          {
+            "selected": true,
+            "text": "MCS > Azimuth > Velocity",
+            "value": "MCS > Azimuth > Velocity"
+          }
+        ],
+        "query": "MCS > Azimuth > Velocity",
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "2025-06-24T20:37:36.380Z",
+    "to": "2025-06-24T20:41:55.490Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Archiver Appliance",
+  "uid": "86f3f26e-fae8-4761-8aed-b016dfee3d4f",
+  "version": 41,
+  "weekStart": ""
+}

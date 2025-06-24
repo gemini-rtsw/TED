@@ -1,0 +1,11 @@
+TEST:
+  HeartBeat-1:
+    codes:
+    - "softioc:heartbeat"
+  HeartBeat-2:
+    codes:
+    - "softioc:heartbeat2"  
+  HeartBeat-ALL:
+    codes:
+    - "softioc:heartbeat" 
+    - "softioc:heartbeat2"

@@ -1,0 +1,13 @@
+PCS: 
+  Hydraulics:
+    Sector1:
+      codes: 
+        - "m1:pss:ps:AxHydLoad.VALA"
+    Sector2:
+      codes: 
+        - "m1:pss:ps:AxHydLoad.VALB"
+        - "m1:pss:ps:AxHydLoad.VALC"
+  Passive Support:
+    Encoder:
+      codes: 
+        - "m1:MCB001:M1:Encoder"

@@ -1,0 +1,9 @@
+MCS: 
+  Azimuth:
+    Velocity:
+      codes: 
+        - "mc:azCurrentVel"
+  Elevation:
+    Velocity:
+      codes: 
+        - "mc:elCurrentVel"

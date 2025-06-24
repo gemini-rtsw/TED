@@ -252,6 +252,32 @@ services:
       retries: 10
       start_period: 5s
 
+  aaservice:
+    container_name: aaservice
+    hostname: "aaservice"
+    build:
+      context: ./aaservice
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    image: aaservice:0.1
+    command: python3 -u /aaservice/aaservice.py
+    restart: unless-stopped
+    networks:
+      - ted_network
+    ports:
+      - 8000:8000
+    volumes:
+      - ./aaservice:/aaservice/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"
+
 networks:
   ted_network:
     driver: bridge
