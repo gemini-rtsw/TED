@@ -292,3 +292,61 @@ services:
           memory: 512M
         reservations:
           memory: 256M
+
+#################################################################################################################
+
+
+  mysql:
+    container_name: ${MYSQL_NAME}
+    hostname: ${MYSQL_NAME}
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    image: gear-mysql:8.0.35-debian
+    volumes:
+      - ${MYSQL_DATA}:/var/lib/mysql
+    network_mode: "host"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+  
+  archappl:
+    container_name: "${APPLIANCE_NAME}"
+    hostname: "${APPLIANCE_NAME}"
+    build:
+      context: ./archappl
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    image: gear-appliance:1.1.0
+    ports:
+      - "${APPLIANCE_PORT}:17665"
+    volumes:
+      - ./archappl/conf:/etc/archappl/
+      - ./archappl/webapps:/usr/local/tomcat/webapps
+      - ${APPLIANCE_STS}:/storage/sts
+      - ${APPLIANCE_LTS}:/storage/lts
+      - ${APPLIANCE_LOGS}:/storage/logs
+    stdin_open: true
+    tty: true
+    environment:
+      MYSQL_CONNECTION_STRING: "--user=archappl --password=archappl --database=archappl --host=${MYSQL_NAME}"
+      ARCHAPPL_MYIDENTITY: ${APPLIANCE_NAME}
+      EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
+      EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    network_mode: "host"
+    command: sh -c "python3 /usr/local/tomcat/bin/addMysqlConnPool.py && /usr/local/tomcat/bin/catalina.sh run"
