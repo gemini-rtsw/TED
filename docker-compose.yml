@@ -17,7 +17,10 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    network_mode: "host"
+   
+    ports:
+      - "${ES01_PORT}:9200"
+      - "${ES01_TR_PORT}:9300"
 
     environment:
       HOST_IP: "${HOST01_IP}"
@@ -51,7 +54,11 @@ services:
     cpus: 1.0
     mem_limit: 1g
 
-    network_mode: "host"
+    networks:
+      - ted_network
+
+    ports:
+      - "${KI01_PORT}:5601"
 
     environment:
       HOST_IP: "${HOST01_IP}"
@@ -88,7 +95,8 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    network_mode: "host"
+    networks:
+      - ted_network
 
     environment:
       HOST_IP: "${HOST01_IP}"
@@ -127,7 +135,8 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    network_mode: "host"
+    networks:
+      - ted_network
 
     environment:
       HOST_IP: "${HOST01_IP}"
@@ -166,7 +175,8 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    network_mode: "host"
+    networks:
+      - ted_network
 
     environment:
       HOST_IP: "${HOST01_IP}"
@@ -205,7 +215,10 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    network_mode: "host"
+    networks:
+      - ted_network
+    ports:
+      - "${GS01_PORT}:8000"
 
     environment:
       HOST_IP: "${HOST01_IP}"
@@ -241,7 +254,10 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    network_mode: "host"
+    networks:
+      - ted_network
+    ports:
+      - "${GR01_PORT}:3000"
 
     environment:
       GR01_PORT: "${GR01_PORT}"
@@ -285,7 +301,13 @@ services:
     container_name: softioc
     volumes:
       - ./softioc/data/softioc.db:/db/softioc.db
-    network_mode: "host"
+    networks:
+      - ted_network
+    ports:
+      - "5065:5065/tcp"
+      - "5064:5064/tcp"
+      - "5065:5065/udp"
+      - "5064:5064/udp"
     deploy:
       resources:
         limits:
@@ -325,7 +347,7 @@ services:
       mysql:
         condition: service_healthy
     networks:
-      - gear_network
+      - ted_network
     command: sh -c "python3 /usr/local/tomcat/bin/addMysqlConnPool.py && /usr/local/tomcat/bin/catalina.sh run"
 
   mysql:
@@ -343,7 +365,7 @@ services:
     volumes:
       - ${MYSQL_DATA}:/var/lib/mysql
     networks:
-      - gear_network
+      - ted_network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -352,6 +374,6 @@ services:
       start_period: 5s
 
 networks:
-  gear_network:
+  ted_network:
     driver: bridge
     external: true
