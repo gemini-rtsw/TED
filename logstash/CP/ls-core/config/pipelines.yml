@@ -1,5 +1,17 @@
-- pipeline.id: serialcon-ag-tail
+- pipeline.id: cp-ag-tail
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/ag.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: cp-crcs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/crcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: cp-ecs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/ecs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
