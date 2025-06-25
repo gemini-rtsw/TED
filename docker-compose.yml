@@ -27,7 +27,7 @@ services:
 
     volumes:
       - ./elasticsearch/es01/config:/usr/share/elasticsearch/config
-      - ./elasticsearch/es01/logs:/usr/share/elasticsearch/logs
+      # - ./elasticsearch/es01/logs:/usr/share/elasticsearch/logs
       - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
 
     healthcheck:
@@ -63,9 +63,9 @@ services:
       elasticsearch.ssl.verificationMode: "none"
       SERVER_HOST: "0.0.0.0"
 
-    depends_on:
-          elasticsearch:
-            condition: service_healthy
+    # depends_on:
+    #       elasticsearch:
+    #         condition: service_healthy
 
     logging:
       driver: json-file
