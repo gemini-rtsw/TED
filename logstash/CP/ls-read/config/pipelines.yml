@@ -1,6 +1,6 @@
-- pipeline.id: cp-gcal-read
+- pipeline.id: cp-gis-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/core/gcal.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/gis.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
