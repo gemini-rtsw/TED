@@ -137,7 +137,7 @@ def checkPipelineCompletion(pipelineNames):
             if name in finished:
                 continue
 
-            cmd = f"docker exec ls-read curl -sS 'http://172.16.71.91:8999/_node/stats/pipelines/{name}'"
+            cmd = f"docker exec ls-read curl -sS 'http://localhost:9600/_node/stats/pipelines/{name}'"
             try:
                 result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 if result.returncode != 0:
