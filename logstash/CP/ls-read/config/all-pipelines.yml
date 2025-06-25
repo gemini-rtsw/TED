@@ -42,6 +42,6 @@
 
 - pipeline.id: cp-scs-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/core/pcs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/scs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
