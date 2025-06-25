@@ -1,6 +1,6 @@
-- pipeline.id: cp-ecs-read
+- pipeline.id: cp-gcal-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/core/ecs.cfg"
+  path.config: "/usr/share/logstash/pipeline/core/gcal.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 

@@ -15,3 +15,9 @@
   path.config: "/usr/share/logstash/pipeline/ecs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: cp-gcal-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gcal.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
