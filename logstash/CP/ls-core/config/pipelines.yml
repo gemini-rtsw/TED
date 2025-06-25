@@ -33,3 +33,9 @@
   path.config: "/usr/share/logstash/pipeline/mcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: cp-pcs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/pcs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
