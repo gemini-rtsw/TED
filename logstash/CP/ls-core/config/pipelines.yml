@@ -45,3 +45,9 @@
   path.config: "/usr/share/logstash/pipeline/scs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: cp-tcc-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/tcc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
