@@ -28,7 +28,10 @@ xpack.security.transport.ssl:
   truststore.path: certs/transport.p12
 # Create a new cluster with the current node only
 # Additional nodes can still join the cluster later
-cluster.initial_master_nodes: ["${HOST_IP}"]
-discovery.seed_hosts: ["${HOST_IP}"]
 
+# cluster.initial_master_nodes: ["${HOST_IP}"]
+# discovery.seed_hosts: ["${HOST_IP}"]
+
+discovery.type: single-node
+ 
 #----------------------- END SECURITY AUTO CONFIGURATION -------------------------
