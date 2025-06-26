@@ -1,0 +1,165 @@
+[
+  {
+    "ruleName": "Task called pure virtual function - Alarm",
+    "subsystem": "gmos",
+    "expression": "Task called pure virtual function",
+    "alertMessage":"Subsystem restart required",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "ENOBUFS - Alarm",
+    "subsystem": "",
+    "expression": "ENOBUFS",
+    "alertMessage":"Subsystem restart likely required, be on the watch for this system behaviour",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu","eduardo.toro@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Exception next instruction - Alarm",
+    "subsystem": "gmos",
+    "expression": "Exception next instruction",
+    "alertMessage":"Subsystem restart required",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+    {
+    "ruleName": "Pthread_create error No more processes - Alarm",
+    "subsystem": "",
+    "expression": "pthread_create error No more processes",
+    "alertMessage":"Subsystem restart required",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Found huge integral sum - Alarm ",
+    "subsystem": "scs",
+    "expression": "found huge integral sum",
+    "alertMessage":"Open SCS DM, right-click and hold on the 'CONFIG' button, move to 'pid config' and release the button, then click 'SUBMIT' in the new windows. Review GSFR-43946 for more details.",
+    "exclude": [],
+    "interval":[0,5],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["roberto.rojas@noirlab.edu","miguel.gomez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+ {
+    "ruleName": "Bad status from timeNowC - Alarm",
+    "subsystem": "",
+    "expression": "bad status from timeNowC",
+    "alertMessage":"This first appeared in GMOS-DC in GSFR-43617, review this FR for more details.",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Seqexec cannot connect - Alarm",
+    "subsystem": "seqexec-ng",
+    "expression": "Timeout while binding to epics channel(?!.*igrins2)",
+    "alertMessage":"Seqexec was restarted but couldn’t connect to at least one system, please ensure all systems are up and restart the seqexec.\nTo identify the system have a look at the end of the Message field.\nYou won’t receive a new notification about this in 2.5 hours, please check the seqexec logs in ted-grafana.cl.gemini.edu",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+   {
+    "ruleName": "TCS mbuf - Alarm",
+    "subsystem": "tcs",
+    "expression": "Still waiting for mbuf",
+    "alertMessage":"Check this system, it may need a reboot if it does not recover in 10 minutes.",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+   {
+    "ruleName": "Exception vector - Alarm",
+    "subsystem": "",
+    "expression": "exception vector",
+    "alertMessage":"System needs to be rebooted ASAP",
+    "exclude": [],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu","ariel.lopez@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+   {
+    "ruleName": "Low velocity in MCS - Alarm",
+    "subsystem": "mcs",
+    "expression": "Setting Velocity with: I222 = 2.812500",
+    "alertMessage":"The max speed of the MCS has been set below the normal operation of the telescope, check and reset the speed if the mount moves slowly.",
+    "exclude": [],
+    "interval":[1,0],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "Drama shared memory - Alarm",
+    "subsystem": "drama",
+    "expression": "unmap shared memory",
+    "alertMessage":"see GSFR-44109",
+    "exclude": [],
+    "interval":[0,5],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["swc-gs@gemini.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "DHS remote server failure - Alarm",
+    "subsystem": "",
+    "expression": "errno.*pToVxLib\.c.*detControlD",
+    "alertMessage":"It is necessary to restart the remote DHS server and monitor the Wavefront sensors and QLT. <a href='http://swg.wikis-internal.gemini.edu/index.php/Linux_DHS#Known_Issues_and_Workarounds'>Click here for more details</a>",
+    "exclude": [],
+    "interval":[0,5],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu","oscar.fuentes@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  },
+  {
+    "ruleName": "WFS SDSU failure - Alarm",
+    "subsystem": "",
+    "expression": "errno.*sdsuLib\.c",
+    "alertMessage":"It is necessary to restart the Wavefront sensor",
+    "exclude": [],
+    "interval":[0,5],
+    "triggerAlarm": [
+      { "service": "slack" },
+      { "service": "email", "to": ["miguel.gomez@noirlab.edu","oscar.fuentes@noirlab.edu"] }
+    ],
+    "source": "logstash"
+  }
+
+]
+

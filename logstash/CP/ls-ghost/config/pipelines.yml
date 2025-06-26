@@ -1,0 +1,137 @@
+- pipeline.id: cpo-ghost-cicada_archiver-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_archiver.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_cleanup-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_cleanup.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_data_ctl-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_data_ctl.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_data_svc-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_data_svc.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_displayer-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_displayer.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_gui-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_gui.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_giapi-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_giapi.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_inst_ctl-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_inst_ctl.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_master-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_master.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_messages-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_messages.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_request_svc-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_request_svc.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_root-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_root.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_slave-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_slave.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_site_svc-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_site_svc.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_status-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_status.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_status_svc-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_status_svc.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_watchdog-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_watchdog.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-cicada_rpc-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/cicada_rpc.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-ghost_cml-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/ghost_cml.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-GhostCANSimulator-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/GhostCANSimulator.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-giapi-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/giapi.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-nrc_enclosure-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/nrc_enclosure.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
+ 
+- pipeline.id: cpo-ghost-nrc_spectrograph-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/nrc_spectrograph.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
