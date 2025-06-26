@@ -1,6 +1,6 @@
-- pipeline.id: cp-dhs-read
+- pipeline.id: cp-qpt-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/opstools/dhs.cfg"
+  path.config: "/usr/share/logstash/pipeline/opstools/qpt.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
