@@ -1,6 +1,0 @@
-- pipeline.id: cp-drama-read
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/opstools/drama.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
