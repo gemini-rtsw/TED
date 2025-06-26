@@ -1,6 +1,6 @@
-- pipeline.id: cp-pwfs1-read
+- pipeline.id: cp-pwfs2-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/guiders/pwfs1.cfg"
+  path.config: "/usr/share/logstash/pipeline/guiders/pwfs2.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
