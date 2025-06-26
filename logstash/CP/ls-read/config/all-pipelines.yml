@@ -1,3 +1,5 @@
+#CORE-------------------------------------------------------------
+
 - pipeline.id: cp-ag-read
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/core/ag.cfg"
@@ -49,5 +51,13 @@
 - pipeline.id: cp-tcc-read
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/core/tcc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+#GUIDERS--------------------------------------------------------
+
+- pipeline.id: cp-pwfs1-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/guiders/pwfs1.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
