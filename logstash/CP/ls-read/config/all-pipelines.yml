@@ -87,3 +87,9 @@
   path.config: "/usr/share/logstash/pipeline/opstools/ot.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: cp-dhs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/opstools/dhs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
