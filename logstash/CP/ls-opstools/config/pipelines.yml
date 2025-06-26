@@ -3,3 +3,9 @@
   path.config: "/usr/share/logstash/pipeline/seqexec-ng.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: cp-ot-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/ot.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
