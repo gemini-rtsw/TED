@@ -9,3 +9,9 @@
   path.config: "/usr/share/logstash/pipeline/pwfs2.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: cp-hrwfs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/hrwfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
