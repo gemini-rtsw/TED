@@ -117,3 +117,22 @@
   path.config: "/usr/share/logstash/pipeline/opstools/vii.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
+
+#GMOS-------------------------------------------------------
+- pipeline.id: cp-gmoscc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/instruments/gmos/gmos-cc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: cp-gmosdc-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/instruments/gmos/gmos-dc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: cp-gmoswfs-read
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/instruments/gmos/gmos-wfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb

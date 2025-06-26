@@ -1,0 +1,17 @@
+- pipeline.id: cp-gmoscc-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gmos-cc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: cp-gmosdc-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gmos-dc.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: cp-gmoswfs-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/gmos-wfs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
