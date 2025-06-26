@@ -4,8 +4,14 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-f2opc-tail
+- pipeline.id: cp-f2perle-tail
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/f2-opc.cfg"
+  path.config: "/usr/share/logstash/pipeline/f2-perle.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: cp-f2sparc-tail
+  pipeline.workers: 1
+  path.config: "/usr/share/logstash/pipeline/f2-sparc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb

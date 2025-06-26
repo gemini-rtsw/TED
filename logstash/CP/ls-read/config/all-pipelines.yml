@@ -144,9 +144,9 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-f2opc-read
+- pipeline.id: cp-f2perle-read
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/instruments/f2/f2-opc.cfg"
+  path.config: "/usr/share/logstash/pipeline/instruments/f2/f2-perle.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
