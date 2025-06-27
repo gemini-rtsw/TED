@@ -16,6 +16,6 @@ RUN groupdel -f staff
 
 RUN groupadd -r -g ${GID} ${GROUP}
 RUN useradd -g ${GROUP} -u ${GID} ${GROUP}
-# RUN useradd -m -g ${GROUP} -s /bin/bash -u ${UID} ${USER}
+RUN useradd -m -g ${GROUP} -s /bin/bash -u ${UID} ${USER}
 
 USER ${USER}
