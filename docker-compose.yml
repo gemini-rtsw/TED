@@ -139,7 +139,6 @@ services:
       - "${GR01_PORT}:3000"
 
     environment:
-      GR01_PORT: "${GR01_PORT}"
       HOST_IP: "${HOST01_IP}"
         #      GF_RENDERING_SERVER_URL: "http://${HOST01_IP}:8081/render"
         #      GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
