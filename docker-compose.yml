@@ -179,13 +179,13 @@ services:
     container_name: softioc
     volumes:
       - ./softioc/data/softioc.db:/db/softioc.db
-    networks:
-      - ted_network
-    ports:
-      - "5065:5065/tcp"
-      - "5064:5064/tcp"
-      - "5065:5065/udp"
-      - "5064:5064/udp"
+    # networks:
+    #   - ted_network
+    # ports:
+    #   - "5065:5065/tcp"
+    #   - "5064:5064/tcp"
+    #   - "5065:5065/udp"
+    #   - "5064:5064/udp"
     deploy:
       resources:
         limits:
@@ -206,8 +206,14 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
     image: gear-appliance:1.1.0
+    networks:
+      - ted_network
     ports:
       - "${APPLIANCE_PORT}:17665"
+      - "5065:5065/tcp"
+      - "5064:5064/tcp"
+      - "5065:5065/udp"
+      - "5064:5064/udp"
     volumes:
       - ./archappl/conf:/etc/archappl/
       - ./archappl/webapps:/usr/local/tomcat/webapps
@@ -224,8 +230,6 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    networks:
-      - ted_network
     command: sh -c "python3 /usr/local/tomcat/bin/addMysqlConnPool.py && /usr/local/tomcat/bin/catalina.sh run"
 
   mysql:
