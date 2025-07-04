@@ -135,25 +135,12 @@
     "source": "logstash"
   },
   {
-    "ruleName": "DHS remote server failure - Alarm",
-    "subsystem": "",
-    "expression": "DHS_CS_ERROR",
-    "alertMessage":"It is necessary to restart the #{event.get('subsystem')} sensors and monitor DHS. <a href='http://swg.wikis-internal.gemini.edu/index.php/Linux_DHS#Known_Issues_and_Workarounds'>Click here for more details</a>",
-    "exclude": [],
-    "interval":[0,5],
-    "triggerAlarm": [
-      { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu","oscar.fuentes@noirlab.edu"] }
-    ],
-    "source": "logstash"
-  },
-  {
     "ruleName": "WFS SDSU failure - Alarm",
     "subsystem": "",
     "expression": "errno.*sdsuLib\.c",
     "alertMessage":"It is necessary to restart the Wavefront sensor",
     "exclude": [],
-    "interval":[0,5],
+    "interval":[1,0],
     "triggerAlarm": [
       { "service": "slack" },
       { "service": "email", "to": ["miguel.gomez@noirlab.edu","oscar.fuentes@noirlab.edu"] }
