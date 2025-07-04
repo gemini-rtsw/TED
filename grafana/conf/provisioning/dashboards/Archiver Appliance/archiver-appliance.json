@@ -31,6 +31,12 @@
     },
     {
       "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
       "id": "timeseries",
       "name": "Time series",
       "version": ""
@@ -81,15 +87,15 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 22,
+        "h": 23,
         "w": 4,
         "x": 0,
         "y": 0
       },
       "id": 1,
       "options": {
-        "afterRender": "const container = document.getElementById('pvTree');\ncontainer.innerHTML = \"\"\n\nconst jsonString = context.data[0][0].pvTree;\nconst data = JSON.parse(jsonString);\n\n\nfunction buildTree(obj, container, path=[]) {\n  for (const key in obj) {\n    const currentPath = [...path, key];\n    if ('codes' in obj[key]) {\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree'\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'leaf';\n      keyDiv.textContent = key;\n      const codes = JSON.stringify(obj[key][\"codes\"]);\n      keyDiv.dataset.codes = codes;\n      keyDiv.dataset.path = currentPath.join(\" > \");\n      keyDiv.addEventListener(\"click\", () => {\n        arrCodes = JSON.parse(keyDiv.dataset.codes);\n        context.grafana.locationService.partial(\n          {\n            'var-pv': arrCodes,\n          },\n          true\n        )\n        context.grafana.locationService.partial(\n          {\n            'var-title': keyDiv.dataset.path,\n          },\n          true\n        )\n      })\n      wrapper.appendChild(keyDiv);\n      container.appendChild(wrapper);\n    }\n    else {\n      const value = obj[key];\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree'\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'key';\n      keyDiv.textContent = key;\n      const childrenContainer = document.createElement('div');\n      childrenContainer.className = 'children hidden';\n      if (typeof value === 'object' && value !== null) {\n        buildTree(value, childrenContainer, currentPath);\n        keyDiv.addEventListener(\"click\", () => {\n          childrenContainer.classList.toggle('hidden');\n        })\n      }\n      wrapper.appendChild(keyDiv);\n      wrapper.appendChild(childrenContainer);\n      container.appendChild(wrapper);\n    }\n  }\n}\nbuildTree(data, container);\n\n\n",
-        "content": "<div id=\"pvTree\"></div>",
+        "afterRender": "const container = document.getElementById('pvTree');\nif (container) container.innerHTML = \"\";\n\nconst jsonString = context.data[0][0].pvTree;\nconst data = JSON.parse(jsonString);\n\nconst collBtn = document.getElementById('collBtn');\ncollBtn.addEventListener(\"click\", () => {\n  document.querySelectorAll('.children').forEach(el => {\n    el.classList.add('hidden');\n  });\n  document.querySelectorAll('.expand-icon').forEach(icon => {\n    icon.textContent = '▶';\n  });\n  Object.keys(localStorage)\n    .filter(k => k.startsWith(\"treeExpanded:\"))\n    .forEach(k => localStorage.setItem(k, \"false\"));\n});\n\n\nfunction buildTree(obj, container, path = []) {\n  for (const key in obj) {\n    const currentPath = [...path, key];\n\n    if ('codes' in obj[key]) {\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'leaf';\n\n      const nameText = document.createElement('div');\n      nameText.textContent = key;\n      nameText.className = 'nameText';\n      keyDiv.appendChild(nameText);\n\n      const appendBtn = document.createElement('button');\n      appendBtn.className = 'appendBtn';\n      appendBtn.textContent = '+';\n      appendBtn.addEventListener(\"click\", (e) => {\n        e.stopPropagation();\n        const arrCodes = JSON.parse(appendBtn.parentElement.dataset.codes);\n        let selectedPVs = context.grafana.replaceVariables(\"${pv:csv}\").split(\",\");\n        for (const code of arrCodes) {\n          if (!selectedPVs.includes(code)) {\n            selectedPVs.push(code);\n          }\n        }\n        context.grafana.locationService.partial({\n          'var-pv': selectedPVs\n        }, true);\n      });\n\n      keyDiv.appendChild(appendBtn);\n\n      keyDiv.dataset.codes = JSON.stringify(obj[key][\"codes\"]);\n      keyDiv.dataset.path = currentPath.join(\" > \");\n\n      keyDiv.addEventListener(\"click\", () => {\n        const arrCodes = JSON.parse(keyDiv.dataset.codes);\n        context.grafana.locationService.partial({\n          'var-pv': arrCodes,\n          'var-title': keyDiv.dataset.path\n        }, true);\n      });\n\n      wrapper.appendChild(keyDiv);\n      container.appendChild(wrapper);\n    } else {\n      const value = obj[key];\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'key';\n\n      const expandIcon = document.createElement('span');\n      const nodePath = currentPath.join(\" > \");\n      const isExpanded = localStorage.getItem(`treeExpanded:${nodePath}`) === \"true\";\n      expandIcon.textContent = isExpanded ? '▼' : '▶';\n      expandIcon.className = 'expand-icon';\n      keyDiv.appendChild(expandIcon);\n\n      const keyText = document.createElement('span');\n      keyText.textContent = ` ${key}`;\n      keyDiv.appendChild(keyText);\n\n      const childrenContainer = document.createElement('div');\n      childrenContainer.className = 'children';\n      if (!isExpanded) {\n        childrenContainer.classList.add('hidden');\n      }\n\n      if (typeof value === 'object' && value !== null) {\n        buildTree(value, childrenContainer, currentPath);\n\n        keyDiv.addEventListener(\"click\", () => {\n          const isHidden = childrenContainer.classList.toggle('hidden');\n          expandIcon.textContent = !isHidden ? '▼' : '▶';\n          localStorage.setItem(`treeExpanded:${nodePath}`, (!isHidden).toString());\n        });\n      }\n\n      wrapper.appendChild(keyDiv);\n      wrapper.appendChild(childrenContainer);\n      container.appendChild(wrapper);\n    }\n  }\n}\n\nbuildTree(data, container);\n\n",
+        "content": "<div id=\"collBtn\">Collapse</div>\n<div id=\"pvTree\"></div>",
         "contentPartials": [],
         "defaultContent": "The query didn't return any results.",
         "editor": {
@@ -103,7 +109,7 @@
         "externalStyles": [],
         "helpers": "",
         "renderMode": "data",
-        "styles": ".tree {\n  font-family: monospace;\n  margin-left: 10px;\n  background-color: white;\n}\n\n.key {\n  font-weight: bold;\n  color: black;\n  padding: 2px;\n  cursor: pointer;\n}\n\n.leaf {\n  color: darkred;\n  font-weight: bold;\n  cursor: pointer;\n}\n\n.children {\n  margin-left: 20px;\n}\n\n.hidden {\n  display: none;\n}",
+        "styles": "#collBtn{\n  width: fit-content;\n  background-color: rgb(17, 18, 23);\n  color: white;\n  padding: 5px;\n  text-align: center;\n  cursor: pointer;\n}\n#collBtn:hover{\n  background-color: rgb(207, 138, 8);\n}\n\n.tree {\n  width: 100%;\n  font-family: monospace;\n  background-color: ${theme.colors.background.primary};\n}\n\n.key {\n  font-weight: 600;\n  color: #FAFAFA;\n  padding: 4px 6px;\n  cursor: pointer;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n\n.expand-icon {\n  display: inline-block;\n  width: 14px;\n  text-align: center;\n}\n\n.leaf {\n  background-color: rgb(24, 27, 31);\n  border-radius: 2px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0px 20px 0px 20px;\n}\n\n.leaf:hover {\n  background-color: rgb(207, 138, 8);\n  cursor: pointer;\n}\n\n.leaf:hover .nameText {\n  color: #FAFAFA;\n}\n.leaf:hover .appendBtn {\n   display: inline-flex;\n}\n\n.nameText {\n  color: rgb(207, 138, 8);\n  font-weight: bold;\n  cursor: pointer;\n  padding: 1px;\n  transition: background-color 0.2s ease;\n}\n\n.appendBtn {\n  display: none;\n  width: 16px;\n  height: 16px;\n  border: none;\n  border-radius: 2px;\n  background-color: #FAFAFA;\n  color: #a77d0b;\n  font-size: 20px;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n\n.appendBtn:hover {\n  background-color:  rgb(17, 18, 23);\n}\n\n.children {\n  margin-left: 20px;\n  border-left: 1px dashed #ccc;\n  padding-left: 10px;\n}\n\n.hidden {\n  display: none;\n}\n",
         "wrap": true
       },
       "pluginVersion": "5.7.0",
@@ -122,8 +128,66 @@
           ],
           "method": "GET",
           "queryParams": "",
-          "refId": "A",
+          "refId": "PvTree",
           "urlPath": "/getPvTree"
+        },
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "aepy5iqt7ke80c"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.data.(secs*1000 + nanos/1000000000)",
+              "language": "jsonata",
+              "name": "DateTime"
+            },
+            {
+              "jsonPath": "$.data.val",
+              "language": "jsonata",
+              "name": "Value",
+              "type": "string"
+            },
+            {
+              "jsonPath": "$.data.val.%.%.meta.name",
+              "language": "jsonata",
+              "name": "Channel",
+              "type": "string"
+            },
+            {
+              "jsonPath": "$.data.val.%.%.meta.dbr_type",
+              "language": "jsonata",
+              "name": "Type"
+            }
+          ],
+          "hide": false,
+          "method": "GET",
+          "params": [
+            [
+              "pv",
+              "${pv:csv}"
+            ],
+            [
+              "from",
+              "${__from:date}"
+            ],
+            [
+              "to",
+              "${__to:date}"
+            ],
+            [
+              "pp_type",
+              "${pp_type:text}"
+            ],
+            [
+              "pp_bin",
+              "${pp_bin:text}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "Data",
+          "urlPath": "/getPV"
         }
       ],
       "title": "New panel",
@@ -131,8 +195,133 @@
     },
     {
       "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "aepy5iqt7ke80c"
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 20,
+        "x": 4,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "alignValue": "center",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 1,
+          "refId": "Data"
+        }
+      ],
+      "title": "${title}",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "DBR_SCALAR_STRING"
+                  }
+                },
+                "fieldName": "Data Type"
+              }
+            ],
+            "match": "any",
+            "type": "include"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "byVariable": false,
+            "include": {
+              "pattern": "^(?!.*(?:PvTree|Type)).*"
+            }
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel"
+            ],
+            "keepFields": false
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "string",
+                "targetField": "Value"
+              },
+              {
+                "destinationType": "time",
+                "targetField": "DateTime"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
       },
       "fieldConfig": {
         "defaults": {
@@ -143,7 +332,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Values",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -186,16 +375,15 @@
               }
             ]
           }
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
-        "h": 22,
-        "w": 13,
+        "h": 19,
+        "w": 20,
         "x": 4,
-        "y": 0
+        "y": 4
       },
-      "id": 2,
+      "id": 3,
       "options": {
         "legend": {
           "calcs": [
@@ -207,71 +395,99 @@
         },
         "tooltip": {
           "hideZeros": false,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
       "pluginVersion": "12.0.0",
       "targets": [
         {
-          "cacheDurationSeconds": 0,
           "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "aepy5iqt7ke80c"
+            "type": "datasource",
+            "uid": "-- Dashboard --"
           },
-          "experimentalGroupByField": "Channel",
-          "fields": [
-            {
-              "jsonPath": "$.data.(secs*1000 + nanos/1000000000)",
-              "language": "jsonata",
-              "name": "DateTime",
-              "type": "time"
-            },
-            {
-              "jsonPath": "$.data.val",
-              "language": "jsonata",
-              "name": "Value",
-              "type": "number"
-            },
-            {
-              "jsonPath": "$.data.val.%.%.meta.name",
-              "language": "jsonata",
-              "name": "Channel",
-              "type": "string"
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "pv",
-              "${pv:csv}"
-            ],
-            [
-              "from",
-              "${__from:date}"
-            ],
-            [
-              "to",
-              "${__to:date}"
-            ],
-            [
-              "pp_type",
-              "mean"
-            ],
-            [
-              "pp_bin",
-              "1"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "Values",
-          "urlPath": "/getPV"
+          "panelId": 1,
+          "refId": "Data"
         }
       ],
       "title": "${title}",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "DBR_SCALAR_DOUBLE"
+                  }
+                },
+                "fieldName": "Data Type"
+              },
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "DBR_SCALAR_INT"
+                  }
+                },
+                "fieldName": "Data Type"
+              }
+            ],
+            "match": "any",
+            "type": "include"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "byVariable": false,
+            "include": {
+              "pattern": "^(?!.*PvTree).*"
+            }
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel"
+            ],
+            "keepFields": false
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "Value"
+              },
+              {
+                "destinationType": "time",
+                "targetField": "DateTime"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "configFromData",
+          "options": {
+            "applyTo": {
+              "id": "byName"
+            },
+            "configRefId": "config",
+            "mappings": []
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
+  "refresh": "",
   "schemaVersion": 41,
   "tags": [],
   "templating": {
@@ -304,31 +520,79 @@
       },
       {
         "current": {
-          "text": "MCS > Azimuth > Velocity",
-          "value": "MCS > Azimuth > Velocity"
+          "text": "Mount > Elevation > PMAC Data > General > Demand Position",
+          "value": "Mount > Elevation > PMAC Data > General > Demand Position"
         },
         "hide": 1,
         "name": "title",
         "options": [
           {
             "selected": true,
-            "text": "MCS > Azimuth > Velocity",
-            "value": "MCS > Azimuth > Velocity"
+            "text": "Mount > Elevation > PMAC Data > General > Demand Position",
+            "value": "Mount > Elevation > PMAC Data > General > Demand Position"
           }
         ],
-        "query": "MCS > Azimuth > Velocity",
+        "query": "Mount > Elevation > PMAC Data > General > Demand Position",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "firstFill",
+          "value": "firstFill"
+        },
+        "name": "pp_type",
+        "options": [
+          {
+            "selected": true,
+            "text": "firstFill",
+            "value": "firstFill"
+          }
+        ],
+        "query": "firstFill",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "1",
+          "value": "1"
+        },
+        "name": "pp_bin",
+        "options": [
+          {
+            "selected": true,
+            "text": "1",
+            "value": "1"
+          }
+        ],
+        "query": "1",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "name": "r_axis",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
         "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "2025-06-24T20:37:36.380Z",
-    "to": "2025-06-24T20:41:55.490Z"
+    "from": "now-12h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Archiver Appliance",
   "uid": "86f3f26e-fae8-4761-8aed-b016dfee3d4f",
-  "version": 41,
+  "version": 62,
   "weekStart": ""
 }

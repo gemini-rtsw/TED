@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import requests
 import sys
 import json
@@ -19,12 +19,16 @@ def getPvTree():
     yaml_files = os.listdir("./channels/CP")
 
     for file_path in yaml_files:
-        with open(f"channels/CP/{file_path}") as f:
-            data = yaml.safe_load(f)
+        with open(f"./channels/CP/{file_path}") as f:
+            data = yaml.full_load(f)
             if data:
                 merged_data.update(data)
 
-    return jsonify(merged_data)
+    return Response(
+        json.dumps(merged_data, indent=2, sort_keys=False),  # 👈 disables key sorting
+        mimetype='application/json'
+    )
+
 
 
 @app.route("/getAllPVs", methods=['GET'])
