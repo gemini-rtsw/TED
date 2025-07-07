@@ -1,4 +1,4 @@
-Mount:
+MCS:
   Elevation:
     General:
       Position:
@@ -22,6 +22,9 @@ Mount:
       Command:
         codes:
           - mcv:elCommandS
+      Drive Condition:
+        codes:
+          - mcv:elDriveCondition          
     Virtual Encoders (degrees):
       FDE:
         codes:
@@ -102,6 +105,9 @@ Mount:
       Command:
         codes:
           - mcv:azCommandS
+      Drive Condition:
+        codes:
+          - mcv:azDriveCondition    
     Virtual Encoders (degrees):
       FDE:
         codes:
