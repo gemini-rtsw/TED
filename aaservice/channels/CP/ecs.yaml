@@ -1,0 +1,221 @@
+ECS:
+  Top Shutter:
+    Demand:
+      codes:
+        - ec:moveShtrs.VALB
+    Position:
+      codes:
+        - ec:topShtrPos
+    Error:
+      codes:
+        - ec:topShtrErr
+    Drive Currents:
+      codes:
+        - ec:sh:t1.
+    Current Sum:
+      codes:
+        - ec:sh:tsum
+    Left:
+      codes:
+        - ec:sh:tleft
+    Right:
+      codes:
+        - ec:sh:tright
+    Top:
+      codes:
+        - ec:sh:ttop
+    Bottom:
+      codes:
+        - ec:sh:tbottom
+  Bottom Shutter:
+    Demand:
+      codes:
+        - ec:moveShtrs.VALD
+    Position:
+      codes:
+        - ec:botShtrPos
+    Error:
+      codes:
+        - ec:botShtrErr
+    Skew:
+      codes:
+        - ec:botShtrSkew
+    Skew encoder:
+      codes:
+        - ec:botShtrSkewEnc
+    Brake Currents:
+      codes:
+        - ec:bsBrk2x
+        - ec:bsBrk2y
+        - ec:bsBrk2z
+        - ec:bsBrk2w
+    Drive Currents:
+      codes:
+        - ec:sh:b2.
+    Current Sum:
+      codes:
+        - ec:sh:bsum
+    Left:
+      codes:
+        - ec:sh:bleft
+    Right:
+      codes:
+        - ec:sh:bright
+    Top:
+      codes:
+        - ec:sh:btop
+    Bottom:
+      codes:
+        - ec:sh:bbottom
+  Dome:
+    Demand:
+      codes:
+        - ec:moveDome.VALB
+    Position:
+      codes:
+        - ec:domePos
+    Error:
+      codes:
+        - ec:domeErr
+  Vent Gates:
+    East:
+      Position:
+        codes:
+          - ec:eastVentGatePos
+      Right Position:
+        codes:
+          - ec:vg:evRPos
+      Left Position:
+        codes:
+          - ec:vg:evLPos
+      Skew:
+        codes:
+          - ec:vg:evSkew
+    West:
+      Position:
+        codes:
+          - ec:westVentGatePos
+      Right Position:
+        codes:
+          - ec:vg:wvRPos
+      Left Position:
+        codes:
+          - ec:vg:wvLPos
+      Skew:
+        codes:
+          - ec:vg:wvSkew
+  PLC:
+    Heartbeat:
+      codes:
+        - ec:fault:plcHeartbeat
+    Encoder faults:
+      codes:
+        - ec:fault:word17:bits.B4
+        - ec:fault:word17:bits.B5
+        - ec:fault:word17:bits.B6
+        - ec:fault:word17:bits.B7
+        - ec:fault:word17:bits.B8
+        - ec:fault:word17:bits.BC
+  Dome Drive Currents:
+    3X:
+      codes:
+        - ec:dc:d3x
+    3Y:
+      codes:  
+        - ec:dc:d3y
+    3Z:
+      codes:
+        - ec:dc:d3z
+    3W:
+      codes:
+        - ec:dc:d3w
+    3E:
+      codes:
+        - ec:dc:d3e
+    3F:
+      codes:
+        - ec:dc:d3f
+    3G:
+      codes:
+        - ec:dc:d3g
+    3H:
+      codes:
+        - ec:dc:d3h
+    All:
+      codes:
+        - ec:dc:d3x
+        - ec:dc:d3y
+        - ec:dc:d3z
+        - ec:dc:d3w
+        - ec:dc:d3e
+        - ec:dc:d3f
+        - ec:dc:d3g
+        - ec:dc:d3h
+  Drive Power Sequence Status:
+    Dome:
+      Power Sequence:
+        codes:
+          - ec:powSeq1proc.VALC
+      Power Command Sequence:
+        codes:
+          - ec:powSeq2proc.VALD
+      Auto Reset Sequence:
+        codes:
+          - ec:powSeq4proc.VALA
+    Top Shutter:
+      Power Sequence:
+        codes:
+          - ec:powSeq1proc.VALA
+      Power Command Sequence:
+        codes:
+          - ec:powSeq2proc.VALB
+      Auto Reset Sequence:
+        codes:
+          - ec:powSeq3proc.VALC
+    Bottom Shutter:
+      Power Sequence:
+        codes:
+          - ec:powSeq1proc.VALB
+      Power Command Sequence:
+        codes:
+          - ec:powSeq2proc.VALC
+      Auto Reset Sequence:
+        codes:
+          - ec:powSeq3proc.VALD
+    East Ventgate:
+      Power Sequence:
+        codes:
+          - ec:powSeq1proc.VALD
+      Power Command Sequence:
+        codes:
+          - ec:powSeq3proc.VALA
+      Auto Reset Sequence:
+        codes:
+          - ec:powSeq4proc.VALB
+    West Ventgate:
+      Power Sequence:
+        codes:
+          - ec:powSeq2proc.VALA
+      Power Command Sequence:
+        codes:
+          - ec:powSeq3proc.VALB
+      Auto Reset Sequence:
+        codes:
+          - ec:powSeq4proc.VALC
+  Auto Close Sequence:
+    Shutter:
+      codes:
+        - ec:powSeq4proc.VALD
+    Top Shutter:
+      codes:
+        - ec:powSeq5proc.VALA
+    Bottom Shutter:
+      codes:
+        - ec:powSeq5proc.VALB
+    East Vent Gate:
+      codes:
+        - ec:powSeq5proc.VALC
+    West Vent Gate:
+      codes:
+        - ec:powSeq5proc.VALD
+  
