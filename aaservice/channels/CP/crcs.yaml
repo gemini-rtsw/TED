@@ -1,0 +1,72 @@
+CRCS:
+  General:
+    Angles:
+      Angular Velocity:
+        codes:
+          - cr:crCurrentVel
+      Current Angle:
+        codes:
+          - cr:crCurrentPos
+      TCS Demand Position:
+        codes:
+          - cr:crDemandPos
+    States:
+      cr:crStateS:
+        codes:
+          - cr:crStateS
+      cr:crCommandS:
+        codes:
+          - cr:crCommandS
+      cr:health.OMSS:
+        codes:
+          - cr:health.OMSS
+  PMAC:
+    PMAC Demand Position:
+      codes:
+        - cr:crPmacDemandPos
+    PMAC Following Error:
+      codes:
+        - cr:crPmacPosError
+    WRAP Following Error:
+      codes:
+        - cr:crCWP:PmacPosError
+  IOC Stats:
+    Susp Tasks:
+      codes:
+        - cr:iocStats:SUSP_TASK_CNT
+    Free Memory:
+      codes:
+        - cr:iocStats:MEM_FREE
+    Global Load:
+      codes:
+        - cr:iocStats:LOAD
+    Uptime:
+      codes:
+        - cr:iocStats:UPTIME
+    Time Errors:
+      codes:
+        - cr:iocStats:GTIM_ERR_CNT
+    Free Sys MBUFs:
+      codes:
+        - cr:iocStats:SYS_MBUF_FREE
+    Cluster Available:
+      codes:
+        - cr:iocStats:SYS_CLUST_AVAIL_0
+        - cr:iocStats:SYS_CLUST_AVAIL_1
+    CA Connections:
+      codes:
+        - cr:iocStats:CA_CONN_CNT
+    IF Errors:
+      codes:
+        - cr:iocStats:IF_ERR_CNT
+        - cr:iocStats:IO_ERR_CNT
+    Free FDs:
+      codes:
+        - cr:iocStats:FD_FREE
+    Boot Version:
+      codes:
+        - cr:iocStats:APP_DIR1
+        - cr:iocStats:APP_DIR2
+    CA Clients:
+      codes:
+        - cr:iocStats:CA_CLNT_CNT
