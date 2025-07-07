@@ -25,12 +25,12 @@ lock = threading.Lock()
 # Load Site
 site = os.getenv("SITE")
 if site == "CP":
-    domLoc = "cl"
+    domLoc = "geasouth.cl"
 else:
-    domLoc = "hi"
+    domLoc = "geanorth.hi"
 
 # Initialize the XML-RPC client
-gea = XmlClient.ServerProxy(f'http://geanorth.{domLoc}.gemini.edu/run/ArchiveDataServer.cgi')
+gea = XmlClient.ServerProxy(f'http://{domLoc}.gemini.edu/run/ArchiveDataServer.cgi')
 
 archivesCache, channelsByArchiveCache = initializeCache(gea)
 
