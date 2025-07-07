@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from flask import Flask, request, jsonify, Response
 import requests
 import sys
@@ -24,11 +25,12 @@ def getPvTree():
             if data:
                 merged_data.update(data)
 
+    sorted_merged = OrderedDict(sorted(merged_data.items()))
+
     return Response(
-        json.dumps(merged_data, indent=2, sort_keys=False),  # 👈 disables key sorting
+        json.dumps(sorted_merged, indent=2),
         mimetype='application/json'
     )
-
 
 
 @app.route("/getAllPVs", methods=['GET'])
