@@ -197,6 +197,7 @@ services:
   archappl:
     container_name: "${APPLIANCE_NAME}"
     hostname: "${APPLIANCE_NAME}"
+    mem_limit: 5G
     build:
       context: ./archappl
       dockerfile: Dockerfile
