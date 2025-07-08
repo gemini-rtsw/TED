@@ -60,7 +60,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "id": null,
   "links": [],
   "panels": [
@@ -87,7 +87,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 23,
+        "h": 26,
         "w": 4,
         "x": 0,
         "y": 0
@@ -109,7 +109,7 @@
         "externalStyles": [],
         "helpers": "",
         "renderMode": "data",
-        "styles": "#collBtn{\n  width: fit-content;\n  background-color: rgb(17, 18, 23);\n  color: white;\n  padding: 5px;\n  text-align: center;\n  cursor: pointer;\n}\n#collBtn:hover{\n  background-color: rgb(207, 138, 8);\n}\n\n.tree {\n  width: 100%;\n  font-family: monospace;\n  background-color: ${theme.colors.background.primary};\n}\n\n.key {\n  font-weight: 600;\n  color: #FAFAFA;\n  padding: 4px 6px;\n  cursor: pointer;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n\n.expand-icon {\n  display: inline-block;\n  width: 14px;\n  text-align: center;\n}\n\n.leaf {\n  background-color: rgb(24, 27, 31);\n  border-radius: 2px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0px 20px 0px 20px;\n}\n\n.leaf:hover {\n  background-color: rgb(207, 138, 8);\n  cursor: pointer;\n}\n\n.leaf:hover .nameText {\n  color: #FAFAFA;\n}\n.leaf:hover .appendBtn {\n   display: inline-flex;\n}\n\n.nameText {\n  color: rgb(207, 138, 8);\n  font-weight: bold;\n  cursor: pointer;\n  padding: 1px;\n  transition: background-color 0.2s ease;\n}\n\n.appendBtn {\n  display: none;\n  width: 16px;\n  height: 16px;\n  border: none;\n  border-radius: 2px;\n  background-color: #FAFAFA;\n  color: #a77d0b;\n  font-size: 20px;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n\n.appendBtn:hover {\n  background-color:  rgb(17, 18, 23);\n}\n\n.children {\n  margin-left: 20px;\n  border-left: 1px dashed #ccc;\n  padding-left: 10px;\n}\n\n.hidden {\n  display: none;\n}\n",
+        "styles": "#collBtn{\n  width: fit-content;\n  background-color: rgb(17, 18, 23);\n  color: white;\n  padding: 5px;\n  text-align: center;\n  cursor: pointer;\n}\n#collBtn:hover{\n  background-color: rgb(207, 138, 8);\n}\n\n.tree {\n  width: 100%;\n  font-family: monospace;\n  background-color: ${theme.colors.background.primary};\n}\n\n.key {\n  font-weight: 600;\n  color: #FAFAFA;\n  padding: 4px 6px;\n  cursor: pointer;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n.key:hover{\n   color:rgb(207, 138, 8);\n}\n\n.expand-icon {\n  display: inline-block;\n  width: 14px;\n  text-align: center;\n}\n\n.leaf {\n  background-color: rgb(24, 27, 31);\n  border-radius: 2px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0px 20px 0px 20px;\n}\n\n.leaf:hover {\n  background-color: rgb(207, 138, 8);\n  cursor: pointer;\n}\n\n.leaf:hover .nameText {\n  color: #FAFAFA;\n}\n.leaf:hover .appendBtn {\n   display: inline-flex;\n}\n\n.nameText {\n  color: rgb(207, 138, 8);\n  font-weight: bold;\n  cursor: pointer;\n  padding: 1px;\n  transition: background-color 0.2s ease;\n}\n\n.appendBtn {\n  display: none;\n  width: 16px;\n  height: 16px;\n  border: none;\n  border-radius: 2px;\n  background-color: #FAFAFA;\n  color: #a77d0b;\n  font-size: 20px;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n\n.appendBtn:hover {\n  background-color:  rgb(17, 18, 23);\n}\n\n.children {\n  margin-left: 20px;\n  border-left: 1px dashed #ccc;\n  padding-left: 10px;\n}\n\n.hidden {\n  display: none;\n}\n",
         "wrap": true
       },
       "pluginVersion": "5.7.0",
@@ -201,20 +201,21 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic-by-name"
           },
           "custom": {
             "axisPlacement": "auto",
-            "fillOpacity": 70,
+            "fillOpacity": 49,
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
             "insertNulls": false,
-            "lineWidth": 0,
+            "lineWidth": 1,
             "spanNulls": false
           },
+          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -261,7 +262,7 @@
           "refId": "Data"
         }
       ],
-      "title": "${title}",
+      "title": "States Timeline",
       "transformations": [
         {
           "id": "filterByValue",
@@ -329,7 +330,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
+            "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -378,7 +379,7 @@
         }
       },
       "gridPos": {
-        "h": 19,
+        "h": 11,
         "w": 20,
         "x": 4,
         "y": 4
@@ -410,7 +411,201 @@
           "refId": "Data"
         }
       ],
-      "title": "${title}",
+      "title": "Time Series",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "DBR_SCALAR_DOUBLE"
+                  }
+                },
+                "fieldName": "Data Type"
+              },
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "DBR_SCALAR_INT"
+                  }
+                },
+                "fieldName": "Data Type"
+              }
+            ],
+            "match": "any",
+            "type": "include"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "byVariable": false,
+            "include": {
+              "pattern": "^(?!.*PvTree).*"
+            }
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Channel"
+            ],
+            "keepFields": false
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "Value"
+              },
+              {
+                "destinationType": "time",
+                "targetField": "DateTime"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "configFromData",
+          "options": {
+            "applyTo": {
+              "id": "byName"
+            },
+            "configRefId": "config",
+            "mappings": []
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "mc:elCurrentPos"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 20,
+        "x": 4,
+        "y": 15
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 1,
+          "refId": "Data"
+        }
+      ],
+      "title": "Time Series",
       "transformations": [
         {
           "id": "filterByValue",
@@ -504,7 +699,7 @@
         "name": "pv",
         "options": [],
         "query": {
-          "cacheDurationSeconds": 300,
+          "cacheDurationSeconds": 0,
           "fields": [
             {
               "jsonPath": "$.*"
@@ -517,23 +712,6 @@
         "refresh": 1,
         "regex": "",
         "type": "query"
-      },
-      {
-        "current": {
-          "text": "Mount > Elevation > PMAC Data > General > Demand Position",
-          "value": "Mount > Elevation > PMAC Data > General > Demand Position"
-        },
-        "hide": 1,
-        "name": "title",
-        "options": [
-          {
-            "selected": true,
-            "text": "Mount > Elevation > PMAC Data > General > Demand Position",
-            "value": "Mount > Elevation > PMAC Data > General > Demand Position"
-          }
-        ],
-        "query": "Mount > Elevation > PMAC Data > General > Demand Position",
-        "type": "textbox"
       },
       {
         "current": {
@@ -566,33 +744,31 @@
         ],
         "query": "1",
         "type": "textbox"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "name": "r_axis",
-        "options": [
-          {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        ],
-        "query": "",
-        "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-1h",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "refresh_intervals": [
+      "1s",
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
   "timezone": "browser",
   "title": "Archiver Appliance",
   "uid": "86f3f26e-fae8-4761-8aed-b016dfee3d4f",
-  "version": 62,
+  "version": 4,
   "weekStart": ""
 }
