@@ -1,0 +1,245 @@
+SCS:
+  Tilt & Focus:
+    Applied Guide:
+      X Tilt:
+        codes:
+          - m2v:displayScs.VALA
+      Y Tilt:
+        codes:
+          - m2v:displayScs.VALB
+      Z Focus:
+        codes:
+          - m2v:displayScs2.VALB
+    Demand:
+      X Tilt:
+        codes:
+          - m2v:displayScs2.VALF
+      Y Tilt:
+        codes:
+          - m2v:displayScs2.VALG
+      Z Focus:
+        codes:
+          - m2v:displayScs.VALC
+    Actual:
+      X Tilt:
+        codes:
+          - m2v:real.VALC
+      Y Tilt:
+        codes:
+          - m2v:real.VALD
+      Z Focus:
+        codes:
+          - m2v:real.VALE
+    Error:
+      X Tilt:
+        codes:
+          - m2v:xTiltErr.VAL
+      Y Tilt:
+        codes:
+          - m2v:yTiltErr.VAL
+      Z Focus:
+        codes:
+          - m2v:zErr.VAL
+  Guide:
+    Raw Guide:
+      X:
+        codes:
+          - m2v:displayScs2.VALC
+      Y:
+        codes:
+          - m2v:displayScs2.VALD
+      Z:
+        codes:
+          - m2v:displayScs2.VALE
+    Windup:
+      X:
+        codes:
+          - m2v:xWindup.VAL
+      Y:
+        codes:
+          - m2v:yWindup.VAL
+      Z:
+        codes:
+          - m2v:zWindup.VAL
+    Guide Status:
+      codes: 
+        - m2v:guideOn.VAL
+
+  Positions:
+    Demand:
+      X positioner:
+        codes:
+          - m2v:xPosDmd.VAL
+      Y positioner:
+        codes:
+          - m2v:yPosDmd.VAL
+    Actual:
+      X positioner:
+        codes:
+          - m2v:xPos.VAL
+      Y positioner:
+        codes:
+          - m2v:yPos.VAL   
+    Error:
+      X positioner:
+        codes:
+          - m2v:xPosErr.VAL
+      Y positioner:
+        codes:
+          - m2v:yPosErr.VAL 
+    Real:
+      X positioner:
+        codes:
+          - m2v:real.VALN
+      Y positioner:
+        codes:
+          - m2v:real.VALO
+    Display:
+      X positioner:
+        codes:
+          - m2v:displayScs.VALN
+      Y positioner:
+        codes:
+          - m2v:displayScs.VALO
+  Status:
+    Mirror control:
+      codes:
+        - m2v:byte3:b6
+    Vibration Loop:
+      codes:
+        - m2v:byte0:b6
+    Offloader:
+      codes:
+        - m2v:byte3:b7
+    Actuator Power:
+      codes:
+        - m2v:byte0:b2
+    CEM temperature:
+      codes:
+        - m2v:status.VALE
+    Chop Frequency:
+      codes:
+        - m2v:displayScs.VALS
+    Chop ON/OFF:
+      codes:
+        - m2v:chopon.VAL
+    Follow ON/OFF:
+      codes:
+        - m2v:followS.VAL
+  Position Sensors:
+    Kaman:
+      codes:
+        - m2v:act1Diag.VALD
+        - m2v:act2Diag.VALD
+        - m2v:act3Diag.VALD
+    uE:
+      codes:
+        - m2v:act1Diag.VALA
+        - m2v:act2Diag.VALA
+        - m2v:act3Diag.VALA
+    Kaman and uE:
+      codes:
+        - m2v:act1Diag.VALA
+        - m2v:act1Diag.VALD
+        - m2v:act2Diag.VALA
+        - m2v:act2Diag.VALD
+        - m2v:act3Diag.VALA
+        - m2v:act3Diag.VALD
+    Current:
+      codes:
+        - m2v:act1Diag.VALC
+        - m2v:act2Diag.VALC
+        - m2v:act3Diag.VALC
+    Position Drift:
+      codes:
+        - m2v:posDrift0
+        - m2v:posDrift1
+        - m2v:posDrift2
+    Follower positions:
+      codes:
+        - m2v:act1Diag.VALB
+        - m2v:act2Diag.VALB
+        - m2v:act3Diag.VALB
+
+  Baffle Status:
+    Deploy/Demand:
+      codes:
+        - m2v:showDeploy
+    Deploy/Actual:
+      codes:
+        - m2v:DeployBafflePos
+    Central/Demand:
+      codes:
+        - m2v:showCentral
+    Central/Actual:
+      codes:
+        - m2v:CentralBafflePos
+    Encoder A:
+      codes:
+        - m2v:real.VALR
+    Encoder B:
+      codes:
+        - m2v:real.VALS
+    Encoder C:
+      codes:
+        - m2v:real.VALT
+
+  StatusWords:
+    Byte 0 and 3:
+      codes:
+        - m2v:byte0:b2
+        - m2v:byte0:b6
+        - m2v:byte0:b7
+        - m2v:byte3:b1
+        - m2v:byte3:b2
+        - m2v:byte3:b6
+        - m2v:byte3:b7
+    B0:b2:
+      codes:
+        - m2v:byte0:b2
+    B0:b6:
+      codes:
+        - m2v:byte0:b6
+    B0:b7:
+      codes:
+        - m2v:byte0:b7
+    B2:b6:
+      codes:
+        - m2v:byte2:b6
+    B2:b7:
+      codes:
+        - m2v:byte2:b7
+    B3:b1:
+      codes:
+        - m2v:byte3:b1
+    B3:b2:
+      codes:
+        - m2v:byte3:b2
+    B3:b6:
+      codes:
+        - m2v:byte3:b6
+    B3:b7:
+      codes:
+        - m2v:byte3:b7
+
+  Other:
+    Last Frame Sent:
+      codes:
+        - m2v:real.VALU
+    Last Frame Acknowledged:
+      codes:
+        - m2v:real.VALB
+    SCS Heartbeat:
+      codes:
+        - m2v:displayScs.VALM
+    M2 Heartbeat:
+      codes:
+        - m2v:real.VALL
+    ring:
+      codes:
+        - m2v:refmem:ring.VAL
+    beam:
+      codes:
+        - m2v:beam
+
+

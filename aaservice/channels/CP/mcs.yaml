@@ -3,200 +3,200 @@ MCS:
     General:
       Position:
         codes:
-          - mcv:elCurrentPos
+          - mc:elCurrentPos
       Error:
         codes:
-          - mcv:elPosError
+          - mc:elPosError
       Velocity:
         codes:
-          - mcv:elCurrentVel
+          - mc:elCurrentVel
       TCS Demand:
         codes:
-          - mcv:elDemandPos
+          - mc:elDemandPos
       InPos Flag:
         codes:
-          - mcv:inPositionEl
+          - mc:inPositionEl
       State:
         codes:
-          - mcv:elStateS
+          - mc:elStateS
       Command:
         codes:
-          - mcv:elCommandS
+          - mc:elCommandS
       Drive Condition:
         codes:
-          - mcv:elDriveCondition          
+          - mc:elDriveCondition          
     Virtual Encoders (degrees):
       FDE:
         codes:
-          - mcv:elengToDeg.VALB
+          - mc:elengToDeg.VALB
       Tape Head 1:
         codes:
-          - mcv:elengToDeg.VALC
+          - mc:elengToDeg.VALC
       Tape Head 2:
         codes:
-          - mcv:elengToDeg.VALD
+          - mc:elengToDeg.VALD
       Virtual Encoder:
         codes:
-          - mcv:elengToDeg.VALA
+          - mc:elengToDeg.VALA
     PMAC Data:
       General:
         Demand Position:
           codes:
-            - mcv:elPmacDemandPos
+            - mc:elPmacDemandPos
         Error:
           codes:
-            - mcv:elPmacPosError
+            - mc:elPmacPosError
       Status Words:
         All:
           codes:
-            - "mcv:elmotstat1:2:"
-            - mcv:elmotstat1:2:OLM.MLST
-            - "mcv:elmotstat2:2:"
-            - mcv:elmotstat2:2:IP
+            - "mc:elmotstat1:2:"
+            - mc:elmotstat1:2:OLM.MLST
+            - "mc:elmotstat2:2:"
+            - mc:elmotstat2:2:IP
         Elevation (Open Loop Mode):
           codes:
-            - mcv:elmotstat1:2:OLM.MLST  
+            - mc:elmotstat1:2:OLM.MLST  
       Motors:
         Motor 1:
           codes:
-            - mcv:elMotor1
+            - mc:elMotor1
         Motor 2:
           codes:
-            - mcv:elMotor2
+            - mc:elMotor2
         Motor 3:
           codes:
-            - mcv:elMotor3
+            - mc:elMotor3
         Motor 4:
           codes:
-              - mcv:elMotor4
+              - mc:elMotor4
       Tachos:
         Tacho 1:
           codes:
-            - mcv:elTacho1
+            - mc:elTacho1
         Tacho 2:
           codes:
-            - mcv:elTacho2
+            - mc:elTacho2
         Tacho 3:
           codes:
-            - mcv:elTacho3
+            - mc:elTacho3
         Tacho 4:
           codes:
-            - mcv:elTacho4
+            - mc:elTacho4
   Azimuth:
     General:
       Position:
         codes:
-          - mcv:azCurrentPos
+          - mc:azCurrentPos
       Error:
         codes:
-          - mcv:azPosError
+          - mc:azPosError
       Velocity:
         codes:
-          - mcv:azCurrentVel
+          - mc:azCurrentVel
       TCS Demand:
         codes:
-          - mcv:azDemandPos
+          - mc:azDemandPos
       InPos Flag:
         codes:
-          - mcv:inPositionAz
+          - mc:inPositionAz
       State:
         codes:
-          - mcv:azStateS
+          - mc:azStateS
       Command:
         codes:
-          - mcv:azCommandS
+          - mc:azCommandS
       Drive Condition:
         codes:
-          - mcv:azDriveCondition    
+          - mc:azDriveCondition    
     Virtual Encoders (degrees):
       FDE:
         codes:
-          - mcv:azengToDeg.VALB
+          - mc:azengToDeg.VALB
       Tape Head 1:
         codes:
-          - mcv:azengToDeg.VALC
+          - mc:azengToDeg.VALC
       Tape Head 2:
         codes:
-          - mcv:azengToDeg.VALD
+          - mc:azengToDeg.VALD
       Tape Head 3:
         codes:
-          - mcv:azengToDeg.VALE
+          - mc:azengToDeg.VALE
       Tape Head 4:
         codes:
-          - mcv:azengToDeg.VALF
+          - mc:azengToDeg.VALF
       Virtual Encoder:
         codes:
-          - mcv:azengToDeg.VALA
+          - mc:azengToDeg.VALA
     PMAC Data:
       General:
         Demand Position:
           codes:
-            - mcv:azPmacDemandPos
+            - mc:azPmacDemandPos
         Error:
           codes:
-            - mcv:azPmacPosError
+            - mc:azPmacPosError
       Status Words:
         All:       
           codes:
-            - "mcv:azmotstat1:2:"
-            - mcv:azmotstat1:2:DVZ
-            - "mcv:azmotstat2:2:"
-            - mcv:azmotstat1:2:OLM.MLST
+            - "mc:azmotstat1:2:"
+            - mc:azmotstat1:2:DVZ
+            - "mc:azmotstat2:2:"
+            - mc:azmotstat1:2:OLM.MLST
         Open Loop Mode:
           codes:
-            - mcv:azmotstat1:2:OLM.MLST
+            - mc:azmotstat1:2:OLM.MLST
       Motors:
         Motor 1:
           codes:
-            - mcv:azMotor1
+            - mc:azMotor1
         Motor 2:
           codes:
-            - mcv:azMotor2
+            - mc:azMotor2
         Motor 3:
           codes:
-            - mcv:azMotor3
+            - mc:azMotor3
         Motor 4:
           codes:
-            - mcv:azMotor4
+            - mc:azMotor4
         Motor 5:
           codes:
-            - mcv:azMotor5
+            - mc:azMotor5
         Motor 6:
           codes:
-            - mcv:azMotor6
+            - mc:azMotor6
         Motor 7:
           codes:
-            - mcv:azMotor7
+            - mc:azMotor7
         Motor 8:
           codes:
-            - mcv:azMotor8
+            - mc:azMotor8
       Tachos:
         Tacho 1:
           codes:
-            - mcv:azTacho1
+            - mc:azTacho1
         Tacho 2:
           codes:
-            - mcv:azTacho2
+            - mc:azTacho2
         Tacho 3:
           codes:
-            - mcv:azTacho3
+            - mc:azTacho3
         Tacho 4:
           codes:
-            - mcv:azTacho4
+            - mc:azTacho4
         Tacho 5:
           codes:
-            - mcv:azTacho5
+            - mc:azTacho5
         Tacho 6:
           codes:
-            - mcv:azTacho6
+            - mc:azTacho6
         Tacho 7:
           codes:
-            - mcv:azTacho7
+            - mc:azTacho7
         Tacho 8:
           codes:
-            - mcv:azTacho8
+            - mc:azTacho8
   Network:
     TCS-MCS Network Delay:
       codes:
-        - mcv:Tracking.VALH
+        - mc:Tracking.VALH
   

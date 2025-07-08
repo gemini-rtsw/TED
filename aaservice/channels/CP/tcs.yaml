@@ -1,0 +1,577 @@
+TCS:
+  Pointing Model:
+    IA:
+      codes:
+        - tcs:ak:pm:par0:name
+    IE:
+      codes:
+        - tcs:ak:pm:par1:name
+    CA:
+      codes:
+        - tcs:ak:pm:par12:name
+  Session Pointing Adjustments:
+    Local:
+      CA:
+        codes:
+          - tcs:ak:pm:ca:local
+      CE:
+        codes:
+          - tcs:ak:pm:ce:local
+      CA/CE:
+        codes:
+          - tcs:ak:pm:ce:local
+          - tcs:ak:pm:ca:local
+    Net:
+      CA:
+        codes:
+          - tcs:ak:pm:ca:net
+      CE:
+        codes:
+          - tcs:ak:pm:ce:net
+      CA/CE:
+        codes:
+          - tcs:ak:pm:ce:net
+          - tcs:ak:pm:ca:net
+    Guide:
+      CA:
+        codes:
+          - tcs:ak:guide:ca
+      CE:
+        codes:
+          - tcs:ak:guide:ce
+      CA/CE:
+        codes:
+          - tcs:ak:guide:ce
+          - tcs:ak:guide:ca
+    Local/Net/Guide:
+      CA:
+        codes:
+          - tcs:ak:pm:ca:local
+          - tcs:ak:pm:ca:net
+          - tcs:ak:guide:ca
+      CE:
+        codes:
+          - tcs:ak:pm:ce:local
+          - tcs:ak:pm:ce:net
+          - tcs:ak:guide:ce
+      CA/CE:
+        codes:
+          - tcs:ak:pm:ca:local
+          - tcs:ak:pm:ca:net
+          - tcs:ak:guide:ca
+          - tcs:ak:pm:ce:local
+          - tcs:ak:pm:ce:net
+          - tcs:ak:guide:ce
+  Session Pointing Update:
+    CA:
+      codes:
+        - tcs:ak:pm:ca:session
+    CE:
+      codes:
+        - tcs:ak:pm:ce:session
+    IA:
+      codes:
+        - tcs:ak:pm:ia:session
+  Telescope Mount:
+    Azimuth:
+      Demand:
+        codes:
+          - tcs:demandAz
+      Current:
+        codes:
+          - tcs:currentAz
+      Demand and Current:
+        codes:
+          - tcs:demandAz
+          - tcs:currentAz
+      Error:
+        codes:
+          - tcs:azError
+
+    Elevation:
+      Demand:
+        codes:
+          - tcs:demandEl
+      Current:
+        codes:
+          - tcs:currentEl
+      Demand and Current:
+        codes:
+          - tcs:demandEl
+          - tcs:currentEl
+      Error:
+        codes:
+          - tcs:elError
+  TCS M2 adjustment:
+    Absorb Focus Flag:
+      codes:
+        - tcs:im:m2gm:absorbFocusFlag.VAL
+    Coma Correction Flag:
+      codes:
+        - tcs:im:m2gm:comaCorrectFlag.VAL
+    Dome air temperature:
+      codes:
+        - tcs:om:tt:temp
+  Nod/Chop states:
+    Chop Direction:
+      codes:
+        - tcs:chop.DIR
+    Chop A state:
+      codes:
+        - tcs:chop.A
+    Chopping flag:
+      codes:
+        - tcs:om:chopping
+  Wavefront sensors states (Spreadsheet):
+    All Oi:
+      codes:
+        - tcs:configOiwfs.A
+        - tcs:configOiwfs.B
+        - tcs:configOiwfs.D
+        - tcs:configOiwfs.E
+    Oi A:
+      codes:
+        - tcs:configOiwfs.A
+    Oi B:
+      codes:
+        - tcs:configOiwfs.B
+    Oi D:
+      codes:
+        - tcs:configOiwfs.D
+    Oi E:
+      codes:
+        - tcs:configOiwfs.E
+    All P1:
+      codes:
+        - tcs:configPwfs1.A
+        - tcs:configPwfs1.B
+        - tcs:configPwfs1.D
+        - tcs:configPwfs1.E
+    P1 A:
+      codes:
+        - tcs:configPwfs1.A
+    P1 B:
+      codes:
+        - tcs:configPwfs1.B
+    P1 D:
+      codes:
+        - tcs:configPwfs1.D
+    P1 E:
+      codes:
+        - tcs:configPwfs1.E
+    All P2:
+      codes:
+        - tcs:configPwfs2.A
+        - tcs:configPwfs2.B
+        - tcs:configPwfs2.D
+        - tcs:configPwfs2.E
+    P2 A:
+      codes:
+        - tcs:configPwfs2.A
+    P2 B:
+      codes:
+        - tcs:configPwfs2.B
+    P2 D:
+      codes:
+        - tcs:configPwfs2.D
+    P2 E:
+      codes:
+        - tcs:configPwfs2.E
+  Other (Demand related):
+    m2XDemand:
+      codes:
+        - tcs:sad:m2XDemand
+    m2YDemand:
+      codes:
+        - tcs:sad:m2YDemand
+    m2ZDemand:
+      codes:
+        - tcs:sad:m2ZDemand
+    m2XErrorCorr:
+      codes:
+        - tcs:m2XErrorCorr
+    m2YErrorCorr:
+      codes:
+        - tcs:m2YErrorCorr
+    m2GuideMode_B:
+      codes:
+        - tcs:m2GuideMode.B
+  M1 Temperatures:
+    M1 Temperature Sensors:
+      codes:
+        - tcs:om:tt:sensor1.B
+        - tcs:om:tt:sensor1.VALA
+        - tcs:om:tt:sensor2.B
+        - tcs:om:tt:sensor2.VALA
+  Flags:
+    InPosition Flag:
+      codes:
+        - tcs:sad:inPosition
+  In Position Calcs:
+    inPosCombine:
+      codes:
+        - tcs:inPosCombine
+    mcInPosCalc:
+      codes:
+        - tcs:mcInPosCalc
+    crInPosCalc:
+      codes:
+        - tcs:crInPosCalc
+    ecInPosCalc:
+      codes:
+        - tcs:ecInPosCalc
+    agInPosCalc:
+      codes:
+        - tcs:agInPosCalc
+    aoInPosCalc:
+      codes:
+        - tcs:aoInPosCalc
+    gsaoiInPosCalc:
+      codes:
+        - tcs:gsaoiInPosCalc
+    gpInPosCalc:
+      codes:
+        - tcs:gpInPosCalc
+  Guide Setup and Status:
+    P1 Integrating:
+      codes:
+        - tcs:drives:p1Integrating.VAL
+    P2 Integrating:
+      codes:
+        - tcs:drives:p2Integrating.VAL
+    OI Integrating:
+      codes:
+        - tcs:drives:oiIntegrating.VAL
+    M2 GuideState:
+      codes:
+        - tcs:om:m2GuideState.VAL
+    P1 weight:
+      codes:
+        - tcs:ak:wfsguide:p1weight.VAL
+    P2 weight:
+      codes:
+        - tcs:ak:wfsguide:p2weight.VAL
+    OI weight:
+      codes:
+        - tcs:ak:wfsguide:oiweight.VAL
+    Absorb Tip Tilt Flag:
+      codes:
+        - tcs:absorbTipTiltFlag.VAL
+    Absorb Focus Flag:
+      codes:
+        - tcs:im:m2gm:absorbFocusFlag.VAL
+    Coma Correct Flag:
+      codes:
+        - tcs:im:m2gm:comaCorrectFlag.VAL
+    M2 Guide Control:
+      codes:
+        - tcs:m2GuideControl.DIR
+    WFS Guide Mode:
+      codes:
+        - tcs:wfsGuideMode.DIR
+  Cass Rotator:
+    Wrap Logic Flag TCS:
+      codes:
+        - tcs:rotwrap.A
+    Rotator Demand TCS:
+      codes:
+        - tcs:demandRma
+    TCS Dem & Act Pos:
+      codes:
+        - tcs:tcsCurrentPos
+        - tcs:demandRma
+  Other:
+    Chop Frequency:
+      codes:
+        - tcs:sad:chopFreq
+    Time Health Message:
+      codes:
+        - tcs:TIME:health.OMSS
+    Error Message:
+      codes:
+        - tcs:ErrorMess
+    Dome Vignette:
+      codes:
+        - tcs:domeVignette
+    AG comms timeout:
+      codes:
+        - tcs:agTimedOut
+    AO comms timeout:
+      codes:
+        - tcs:aoTimedOut
+    CRCS comms timeout:
+      codes:
+        - tcs:crTimedOut
+    ECS comms timeout:
+      codes:
+        - tcs:ecTimedOut
+    GPI comms timeout:
+      codes:
+        - tcs:gpTimedOut
+    PCS comms timeout:
+      codes:
+        - tcs:m1TimedOut
+    SCS comms timeout:
+      codes:
+        - tcs:m2TimedOut
+    MCS comms timeout:
+      codes:
+        - tcs:mcTimedOut
+    GWS comms timeout:
+      codes:
+        - tcs:wsTimedOut
+    AOM comms timeout:
+      codes:
+        - tcs:aomTimedOut
+    GSAOI comms timeout:
+      codes:
+        - tcs:gsaoiTimedOut
+    offsetPoA1.A:
+      codes:
+        - tcs:offsetPoA1.A
+    offsetPoA1.B:
+      codes:
+        - tcs:offsetPoA1.B
+    poAdjust.A:
+      codes:
+        - tcs:poAdjust.A
+    poAdjust.B:
+      codes:
+        - tcs:poAdjust.B
+    poAdjust.C:
+      codes:
+        - tcs:poAdjust.C
+    poAdjust.D:
+      codes:
+        - tcs:poAdjust.D
+  WFS Guide Rates:
+    PWFS1 Guide Rate:
+      codes:
+        - tcs:pwfs1Observe.B
+    PWFS2 Guide Rate:
+      codes:
+        - tcs:pwfs2Observe.B
+    OIWFS Guide Rate:
+      codes:
+        - tcs:oiwfsObserve.B
+  WFS Demands:
+    PWFS2 X Demand:
+      codes:
+        - tcs:drives:pwfs2Xdemand
+    PWFS2 Y Demand:
+      codes:
+        - tcs:drives:pwfs2Ydemand
+    PWFS2 Z Demand:
+      codes:
+        - tcs:drives:pwfs2Zdemand
+    OIWFS X Demand:
+      codes:
+        - tcs:drives:oiwfsXdemand
+    OIWFS Y Demand:
+      codes:
+        - tcs:drives:oiwfsYdemand
+    OIWFS Z Demand:
+      codes:
+        - tcs:drives:oiwfsZdemand
+  M1 Optics Status:
+    Open Loop figure corrections:
+      codes:
+        - tcs:im:m1FigUpdatesFlag
+  M1 Optics:
+    Z4 Manual:
+      codes:
+        - tcs:m1Figure.A
+    Model A:
+      codes:
+        - tcs:drives:m1CalcModel.VALA
+    WFS A:
+      codes:
+        - tcs:drives:displayAo.VALA
+    Total A:
+      codes:
+        - tcs:drives:figureTotals.VALA
+
+    Z5 Manual:
+      codes:
+        - tcs:m1Figure.B
+    Model B:
+      codes:
+        - tcs:drives:m1CalcModel.VALB
+    WFS B:
+      codes:
+        - tcs:drives:displayAo.VALB
+    Total B:
+      codes:
+        - tcs:drives:figureTotals.VALB
+
+    Z8 Manual:
+      codes:
+        - tcs:m1Figure.C
+    Model C:
+      codes:
+        - tcs:drives:m1CalcModel.VALC
+    WFS C:
+      codes:
+        - tcs:drives:displayAo.VALC
+    Total C:
+      codes:
+        - tcs:drives:figureTotals.VALC
+
+    Z9 Manual:
+      codes:
+        - tcs:m1Figure.D
+    Model D:
+      codes:
+        - tcs:drives:m1CalcModel.VALD
+    WFS D:
+      codes:
+        - tcs:drives:displayAo.VALD
+    Total D:
+      codes:
+        - tcs:drives:figureTotals.VALD
+
+    Z10 Manual:
+      codes:
+        - tcs:m1Figure.E
+    Model E:
+      codes:
+        - tcs:drives:m1CalcModel.VALE
+    WFS E:
+      codes:
+        - tcs:drives:displayAo.VALE
+    Total E:
+      codes:
+        - tcs:drives:figureTotals.VALE
+
+    Z11 Manual:
+      codes:
+        - tcs:m1Figure.F
+    Model F:
+      codes:
+        - tcs:drives:m1CalcModel.VALF
+    WFS F:
+      codes:
+        - tcs:drives:displayAo.VALF
+    Total F:
+      codes:
+        - tcs:drives:figureTotals.VALF
+
+    Z12 Manual:
+      codes:
+        - tcs:m1Figure.G
+    Model G:
+      codes:
+        - tcs:drives:m1CalcModel.VALG
+    WFS G:
+      codes:
+        - tcs:drives:displayAo.VALG
+    Total G:
+      codes:
+        - tcs:drives:figureTotals.VALG
+
+    Z13 Manual:
+      codes:
+        - tcs:m1Figure.H
+    Model H:
+      codes:
+        - tcs:drives:m1CalcModel.VALH
+    WFS H:
+      codes:
+        - tcs:drives:displayAo.VALH
+    Total H:
+      codes:
+        - tcs:drives:figureTotals.VALH
+
+    Z14 Manual:
+      codes:
+        - tcs:m1Figure.I
+    Model I:
+      codes:
+        - tcs:drives:m1CalcModel.VALI
+    WFS I:
+      codes:
+        - tcs:drives:displayAo.VALI
+    Total I:
+      codes:
+        - tcs:drives:figureTotals.VALI
+
+    Z15 Manual:
+      codes:
+        - tcs:m1Figure.J
+    Model J:
+      codes:
+        - tcs:drives:m1CalcModel.VALJ
+    WFS J:
+      codes:
+        - tcs:drives:displayAo.VALJ
+    Total J:
+      codes:
+        - tcs:drives:figureTotals.VALJ
+
+    Z16 Manual:
+      codes:
+        - tcs:m1Figure.K
+    Model K:
+      codes:
+        - tcs:drives:m1CalcModel.VALK
+    WFS K:
+      codes:
+        - tcs:drives:displayAo.VALK
+    Total K:
+      codes:
+        - tcs:drives:figureTotals.VALK
+
+    Z17 Manual:
+      codes:
+        - tcs:m1Figure.L
+    Model L:
+      codes:
+        - tcs:drives:m1CalcModel.VALL
+    WFS L:
+      codes:
+        - tcs:drives:displayAo.VALL
+    Total L:
+      codes:
+        - tcs:drives:figureTotals.VALL
+
+    Z18 Manual:
+      codes:
+        - tcs:m1Figure.M
+    Model M:
+      codes:
+        - tcs:drives:m1CalcModel.VALM
+    WFS M:
+      codes:
+        - tcs:drives:displayAo.VALM
+    Total M:
+      codes:
+        - tcs:drives:figureTotals.VALM
+
+    Z19 Manual:
+      codes:
+        - tcs:m1Figure.N
+    Model N:
+      codes:
+        - tcs:drives:m1CalcModel.VALN
+    WFS N:
+      codes:
+        - tcs:drives:displayAo.VALN
+    Total N:
+      codes:
+        - tcs:drives:figureTotals.VALN
+  GACQ offsets:
+    GACQ offset IAA:
+      codes:
+        - tcs:hs:gacqIAA
+    GACQ offset IPA:
+      codes:
+        - tcs:hs:gacqIPA
+    GACQ offset P:
+      codes:
+        - tcs:hs:gacqP
+    GACQ offset Q:
+      codes:
+        - tcs:hs:gacqQ
+    gacq offset Id:
+      codes:
+        - tcs:hs:gacqId

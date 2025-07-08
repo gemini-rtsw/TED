@@ -1,0 +1,167 @@
+PR:
+  Plant Room Chillers:
+    Chiller 1:
+      codes:
+        - pr:ch:c1to
+        - pr:ch:c1ti
+    Chiller 2:
+      codes:
+        - pr:ch:c2to
+        - pr:ch:c2ti
+    Tunnel Temps:
+      codes:
+        - pr:ef:tut
+        - pr:ef:out
+    Current:
+      codes:
+        - pr:ef:ef2v
+    Voltage:
+      codes:
+        - pr:ef:ef2c
+
+  Hydrostatic Bearing System:
+    Oil Tank Temperature [deg C]:
+      codes:
+        - hbs:oilTemp
+        - hbs:oilTankTemp
+    Outgoing Oil Temperature [dec C]:
+      codes:
+        - hbs:oilOutTemp
+    Dome Temperature [deg C]:
+      codes:
+        - hbs:domeAirTemp
+    Oil Level:
+      codes:
+        - hbs:oilLevel
+    HBS Pressure Out [bar]:
+      codes:
+        - hbs:outPressure
+    Flow Rate [LPM]:
+      codes:
+        - hbs:flow
+    Top Accumulator Pressure [bar]:
+      codes:
+        - hbs:accPressure
+    Bottom Accumulator Pressure [bar]:
+      codes:
+        - hbs:botPressure
+    Combined  Pressures [bar]:
+      codes:
+        - hbs:botPressure
+        - hbs:accPressure
+        - hbs:outPressure
+    No Faults:
+      codes:
+        - hbs:noFaults
+    E-Stop (1 is clear):
+      codes:
+        - hbs:estop
+    Auto Mode:
+      codes:
+        - hbs:autoMode
+    Manual Mode:
+      codes:
+        - hbs:manualMode
+    Heartbeat:
+      codes:
+        - hbs:heartbeat
+    HBS Sequence Step:
+      codes:
+        - hbs:seqStep
+    Armed Status:
+      codes:
+        - hbs:armed
+    EPICS Commands:
+      codes:
+        - hbs:armOut
+        - hbs:startOut
+        - hbs:stopOut
+    faults1word:
+      codes:
+        - hbs:faults1word
+    faults2word:
+      codes:
+        - hbs:faults2word
+    faults3word:
+      codes:
+        - hbs:faults3word
+    faults4word:
+      codes:
+        - hbs:faults4word
+    time of P60_A top accumulator pressure below 80 bars in secs:
+      codes:
+        - hbs:timeP60A
+    val of P60_A top accumulator pressure at time of fault 53 in bars:
+      codes:
+        - hbs:valP60A
+
+  Telescope Systems Remote Switch:
+    Observatory Mode:
+      codes:
+        - bfo:summitMode
+        - bfo:standbyMode
+        - bfo:baseMode
+    Conditions for Transfer to Standby:
+      codes:
+        - bfo:mcsStatus
+        - bfo:crcsStatus
+        - bfo:ecsStatus
+        - bfo:hbsStatus
+        - bfo:pinStatus
+        - bfo:icStatus
+        - bfo:mcStatus
+        - bfo:azStatus
+        - bfo:elStatus
+        - bfo:lotoStatus
+        - bfo:emoStatus
+
+  AHU Temperatures:
+    AHU1:
+      codes:
+        - pr:ahu:ah2t
+    AHU2:
+      codes:
+        - pr:ahu:ah3t
+    AHU3:
+      codes:
+        - pr:ahu:ah4t
+    AHU4:
+      codes:
+        - pr:ahu:ah5t
+    Outside Temperature:
+      codes:
+        - pr:ef:out
+
+  Troubleshooting monitoring:
+    Compressor 3 Psi:
+      codes:
+        - pr:elec:gwhRaw
+    AHU Power Control Calc:
+      codes:
+        - pr:ahuPwrCtrlCalc
+    AHU Power Control Fan:
+      codes:
+        - pr:ahuPwrCtrlFan
+    AHU Power Control ON:
+      codes:
+        - pr:ahuPwrCtrlON
+    AHU Power Control OFF:
+      codes:
+        - pr:ahuPwrCtrlOFF
+    AHU Power Control ON State:
+      codes:
+        - pr:ahuPwrCtrlONState
+    AHU Power Control OFF State:
+      codes:
+        - pr:ahuPwrCtrlOFFState
+    Combined AHU graph:
+      codes:
+        - pr:ahuPwrCtrlCalc
+        - pr:ahuPwrCtrlFan
+        - pr:ahuPwrCtrlON
+        - pr:ahuPwrCtrlOFF
+        - pr:ahuPwrCtrlONState
+        - pr:ahuPwrCtrlOFFState
+    AHU Power State:
+      codes:
+        - pr:ahuPwrState
