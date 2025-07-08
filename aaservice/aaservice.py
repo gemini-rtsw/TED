@@ -35,7 +35,7 @@ def getPvTree():
 
 @app.route("/getAllPVs", methods=['GET'])
 def getAllPVs():
-    url = 'http://archappl:17665/mgmt/bpl/getAllPVs'
+    url = 'http://archappl:17665/mgmt/bpl/getAllPVs?limit=-1'
     res = requests.get(url)
     return(res.text)
 
@@ -47,9 +47,22 @@ def getPVInfo(channel, field):
         res = requests.get(url)
         pvInfoObj = json.loads(res.text)
         res = pvInfoObj[field]
-    except e:
+    except Exception as e:
         res = "NONE"
     return(res)
+
+
+@app.route("/getPVsByPattern", methods=['GET'])
+def getPVsByPattern():
+    pattern = request.args.get('pattern')
+    url = f'http://archappl:17665/retrieval/bpl/getMatchingPVs?pv={pattern}'
+    print("URL:", url)
+    try:
+        res = requests.get(url)
+    except Exception as e:
+        res = "NONE"
+    resObj = json.loads(res.text)
+    return(resObj)
 
 @app.route("/getPV", methods=['GET'])
 def getPVs():
