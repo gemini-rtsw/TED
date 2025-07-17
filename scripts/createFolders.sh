@@ -25,7 +25,10 @@ directories=(
     "${DATA_PATH}/ls-read/db"
     "${DATA_PATH}/ls-read/db/sincedb"
     "${DATA_PATH}/ls-read/db/completed"
-    "../elasticsearch/es01/logs"
+    "${DATA_PATH}/archappl/db"
+    "${DATA_PATH}/archappl/logs"
+    "${DATA_PATH}/archappl/lts"
+    "${DATA_PATH}/archappl/sts"
 )
 
 # Iterate over each directory and check/create
