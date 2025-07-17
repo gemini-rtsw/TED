@@ -14,3 +14,7 @@ grafana/grafana-data/plugins/grafana-lokiexplore-app
 grafana/grafana-data/plugins/grafana-exploretraces-app
 logstash/CP/ls-read/utils/InsertByDataRange.log
 logstash/CP/ls-read/config/pipelines.yml
+archappl/webapps/engine
+archappl/webapps/etl
+archappl/webapps/mgmt
+archappl/webapps/retrieval
