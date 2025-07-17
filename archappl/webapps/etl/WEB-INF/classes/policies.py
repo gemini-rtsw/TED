@@ -41,7 +41,7 @@ def getPolicyList():
 # The data for these fields will included in the stream for the PV.
 # We also make an assumption that the data type for these fields is the same as that of the .VAL field
 def getFieldsArchivedAsPartOfStream():
-	 return ['HIHI','HIGH','LOW','LOLO','LOPR','HOPR','DRVH','DRVL'];
+	 return ['HIHI','HIGH','LOW','LOLO','LOPR','HOPR','DRVH','DRVL']
 
 
 # We use the environment variables ARCHAPPL_SHORT_TERM_FOLDER and ARCHAPPL_MEDIUM_TERM_FOLDER to determine the location of the STS and the MTS in the appliance
@@ -65,7 +65,7 @@ def determinePolicy(pvInfoDict):
 			mediumtermstore_plugin_url, 
 			longtermstore_plugin_url
 			]
-		pvPolicyDict['policyName'] = '2HzPVs';
+		pvPolicyDict['policyName'] = '2HzPVs'
 	elif userPolicyOverride == 'Default' or (userPolicyOverride == '' and pvInfoDict['pvName'] == 'mshankar:arch:sine'):
 		pvPolicyDict['samplingPeriod'] = 1.0
 		pvPolicyDict['samplingMethod'] = 'MONITOR'
@@ -74,7 +74,7 @@ def determinePolicy(pvInfoDict):
 			mediumtermstore_plugin_url, 
 			longtermstore_plugin_url + "&pp=firstSample&pp=firstSample_3600"
 			]
-		pvPolicyDict['policyName'] = 'Default';
+		pvPolicyDict['policyName'] = 'Default'
 	elif userPolicyOverride == 'BPMS' or (userPolicyOverride == '' and pvInfoDict['pvName'].startswith('BPMS') and pvInfoDict['storageRate'] > 35):
 		# We limit BPM PVs to 1GB/year (34 bytes/sec)
 		# We reduce the sampling rate (and hence increase the sampling period) to cater to this. 
@@ -85,7 +85,7 @@ def determinePolicy(pvInfoDict):
 			mediumtermstore_plugin_url, 
 			longtermstore_plugin_url
 			]
-		pvPolicyDict['policyName'] = 'BPMS';
+		pvPolicyDict['policyName'] = 'BPMS'
 	elif userPolicyOverride == '3DaysMTSOnly':
 		pvPolicyDict['samplingPeriod'] = 1.0
 		pvPolicyDict['samplingMethod'] = 'MONITOR'
@@ -95,7 +95,7 @@ def determinePolicy(pvInfoDict):
 			'pb://localhost?name=MTS&rootFolder=${ARCHAPPL_MEDIUM_TERM_FOLDER}&partitionGranularity=PARTITION_DAY&hold=4&gather=1', 
 			'blackhole://localhost?name=LTS'
 			]
-		pvPolicyDict['policyName'] = '2HzPVs';
+		pvPolicyDict['policyName'] = '2HzPVs'
 	else:
 		pvPolicyDict['samplingPeriod'] = 1.0
 		pvPolicyDict['samplingMethod'] = 'MONITOR'
@@ -104,7 +104,7 @@ def determinePolicy(pvInfoDict):
 			mediumtermstore_plugin_url, 
 			longtermstore_plugin_url
 			]
-		pvPolicyDict['policyName'] = 'Default';
+		pvPolicyDict['policyName'] = 'Default'
 	 
 	archiveFields=[]
 	

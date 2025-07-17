@@ -1,81 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html class="writer-html5" lang="en" >
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="js/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<link type="text/css" href="docs.css" rel="Stylesheet" />	
-<title>EPICS Archiver Appliance</title>
-<style type="text/css">
-small { 
-   font-style: italic;
-   margin-top: 20.0em;
-   float: right;
-   margin-right: 1.0em;	
-}
-</style>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPICS Archiver Appliance &mdash; archiverdocs 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FAQ" href="faq.html" /> 
 </head>
-<body>
-<!-- Header starts here -->
- <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">The EPICS Archiver Appliance</a>
-    </div>
-    <div>
-      <ul id="mainNavBar" class="nav navbar-nav">
-		<li><a href="https://github.com/slacmshankar/epicsarchiverap/wiki">News</a></li>
-		<li><a href="details.html">Details</a></li>
-		<li><a href="https://github.com/slacmshankar/epicsarchiverap/releases/">Download</a></li>
-		<li><a href="quickstart.html">Quickstart</a></li>
-		<li><a href="installguide.html">Installation</a></li>
-		<li><a href="userguide.html">User Guide</a></li>
-		<li><a href="customization.html">Customize</a></li>
-		<li><a href="developersguide.html">Developers</a></li>
-		<li><a href="admin.html">Admin</a></li>
-		<li><a href="api/index.html">Javadoc</a></li>
-		<li><a href="https://github.com/slacmshankar/epicsarchiverap/issues">Issues</a></li>
-		<li><a href="faq.html">FAQ</a></li>
-		<li><a href="license.html">License</a></li>
-	  </ul>
-	  <ul class="nav navbar-nav navbar-right">
-   	    <li><img style="margin-top: -45px" src="images/Icon_Mathematical_Plot.png"/></li>
-	  </ul>
-    </div>
-  </div>
-</nav>
-<!-- Header ends here -->
 
-<div class="container">
-<p id="intro">
-The EPICS Archiver Appliance is an implementation of an archiver for <a href="http://www.aps.anl.gov/epics/index.php">EPICS</a> control systems that aims to archive millions of PVs.
-</p> 
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-<div>
-At a high level, some features are
-<ul>
-<li>Ability to cluster appliances and to scale by adding appliances to the cluster.</li>
-<li>Multiple stages and an inbuilt process to move data between the stages.</li>
-<li>Focus on data retrieval performance.</li>
-<li>Focus on zero oversight.</li>
+          
+          
+          <a href="#" class="icon icon-home">
+            archiverdocs
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
-</div>
-<p>
-For a more detailed description, please see the <a href="details.html">Details</a> page.
-</p>
-<p>
-To get started, please see the <a href="quickstart.html">Quickstart</a> guide.
-</p>
+<p class="caption" role="heading"><span class="caption-text">User</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user/cstudio.html">CS Studio Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/matlab.html">Retrieving data using Matlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/userguide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/archiveviewer.html">Retrieving data using the ArchiveViewer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sysadmin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin/admin.html">Administration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin/customization.html">Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin/installguide.html">Install Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin/quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin/redundancy.html">Redundancy in the EPICS Archiver Appliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin/site_specific.html">Making simple site-specific content changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin/sqlite.html">Using SQLite as a configuration database</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer/details.html">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/developersguide.html">Developers Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/pb_pbraw.html">The .pb file format and the .pbraw binary protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/mgmt_scriptables.html">Management Scriptables</a></li>
+</ul>
 
-<small>
-Last published on {publish_date}.
-This project is part of the <a href="http://accelutils.sourceforge.net/">AccelUtils</a> collaboration.
-</small>
-</div>
+        </div>
+      </div>
+    </nav>
 
-<script src="js/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="js/arch/docs.js"></script>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">archiverdocs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EPICS Archiver Appliance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="epics-archiver-appliance">
+<h1>EPICS Archiver Appliance<a class="headerlink" href="#epics-archiver-appliance" title="Permalink to this heading"></a></h1>
+<p>The EPICS Archiver Appliance is an implementation of an archiver for
+<a class="reference external" href="http://www.aps.anl.gov/epics/index.php">EPICS</a> control systems that
+aims to archive millions of PVs.</p>
+<p>At a high level, some features are</p>
+<ul class="simple">
+<li><p>Ability to cluster appliances and to scale by adding appliances to
+the cluster.</p></li>
+<li><p>Multiple stages and an inbuilt process to move data between the
+stages.</p></li>
+<li><p>Focus on data retrieval performance.</p></li>
+<li><p>Focus on zero oversight.</p></li>
+</ul>
+<p>For a more detailed description, please see the <a class="reference internal" href="developer/details.html"><span class="doc std std-doc">Details</span></a>
+page.</p>
+<p>To get started, please see the <a class="reference internal" href="sysadmin/quickstart.html"><span class="doc std std-doc">Quickstart</span></a> guide.</p>
+<p>Last published on May 26, 2025. This project is part of the
+<a class="reference external" href="http://accelutils.sourceforge.net/">AccelUtils</a> collaboration.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sky Brewer, Murali Shankar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
 </html>
