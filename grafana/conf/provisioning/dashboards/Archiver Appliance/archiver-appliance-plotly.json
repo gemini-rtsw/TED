@@ -1,0 +1,378 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AASERVICE",
+      "label": "AAservice",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "marcusolsson-dynamictext-panel",
+      "name": "Business Text",
+      "version": "5.7.0"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.24"
+    },
+    {
+      "type": "panel",
+      "id": "nline-plotlyjs-panel",
+      "name": "Plotly",
+      "version": "1.8.1"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 2,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "aepy5iqt7ke80c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 26,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "afterRender": "const container = document.getElementById('pvTree');\nif (container) container.innerHTML = \"\";\n\nconst jsonString = context.data[0][0].pvTree;\nconst data = JSON.parse(jsonString);\n\nconst collBtn = document.getElementById('collBtn');\ncollBtn.addEventListener(\"click\", () => {\n  document.querySelectorAll('.children').forEach(el => {\n    el.classList.add('hidden');\n  });\n  document.querySelectorAll('.expand-icon').forEach(icon => {\n    icon.textContent = '▶';\n  });\n  Object.keys(localStorage)\n    .filter(k => k.startsWith(\"treeExpanded:\"))\n    .forEach(k => localStorage.setItem(k, \"false\"));\n});\n\nfunction createButton(parent, className, textContent, eventFunct) {\n  const btn = document.createElement('button');\n  btn.className = className;\n  btn.textContent = textContent;\n  btn.addEventListener(\"click\", (e) => eventFunct(e, parent));\n  parent.appendChild(btn);\n}\n\n\nfunction buildTree(obj, container, path = []) {\n  for (const key in obj) {\n    const currentPath = [...path, key];\n\n    // If have codes, is clickeable leaf\n    if ('codes' in obj[key]) {\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'leaf';\n      const nameText = document.createElement('div');\n      nameText.textContent = key;\n      nameText.className = 'nameText';\n      keyDiv.appendChild(nameText);\n\n      // Button holder\n      const btnHolder = document.createElement('div');\n      btnHolder.className = 'btnHolder';\n      keyDiv.appendChild(btnHolder);\n\n      //BUTTONS\n      //Append Button\n      createButton(btnHolder, 'leafBtn', '+', (e, parent) => {\n        e.stopPropagation();\n        const arrCodes = JSON.parse(parent.parentElement.dataset.codes);\n        let selectedPVs = context.grafana.replaceVariables(\"${pv:csv}\").split(\",\");\n        for (const code of arrCodes) {\n          if (!selectedPVs.includes(code)) {\n            selectedPVs.push(code);\n          }\n        }\n        context.grafana.locationService.partial({\n          'var-pv': selectedPVs\n        }, true);\n      })\n\n      //Append (w extra axis) Button\n      createButton(btnHolder, 'leafBtn', 'A+', (e, parent) => {\n        e.stopPropagation();\n        const arrCodes = JSON.parse(parent.parentElement.dataset.codes);\n        let selectedPVs = context.grafana.replaceVariables(\"${pv:csv}\").split(\",\");\n        for (const code of arrCodes) {\n          if (!selectedPVs.includes(code)) {\n            selectedPVs.push(code);\n          }\n        }\n        context.grafana.locationService.partial({\n          'var-pv': selectedPVs\n        }, true);\n        context.grafana.locationService.partial({\n          'var-pvExtraAxis': arrCodes.join(',')\n        }, true);\n        console.log(arrCodes);\n      })\n\n      // Div Channel Name\n      keyDiv.dataset.codes = JSON.stringify(obj[key][\"codes\"]);\n      keyDiv.dataset.path = currentPath.join(\" > \");\n      keyDiv.addEventListener(\"click\", () => {\n        const arrCodes = JSON.parse(keyDiv.dataset.codes);\n        context.grafana.locationService.partial({\n          'var-pv': arrCodes,\n          'var-title': keyDiv.dataset.path\n        }, true);\n        context.grafana.locationService.partial({\n          'var-pvExtraAxis': ''\n        }, true);\n      });\n\n      wrapper.appendChild(keyDiv);\n      container.appendChild(wrapper);\n\n    } else {\n      // Create Section\n      const value = obj[key];\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'key';\n      const expandIcon = document.createElement('span');\n      const nodePath = currentPath.join(\" > \");\n      const isExpanded = localStorage.getItem(`treeExpanded:${nodePath}`) === \"true\";\n      expandIcon.textContent = isExpanded ? '▼' : '▶';\n      expandIcon.className = 'expand-icon';\n      keyDiv.appendChild(expandIcon);\n      const keyText = document.createElement('span');\n      keyText.textContent = ` ${key}`;\n      keyDiv.appendChild(keyText);\n      const childrenContainer = document.createElement('div');\n      childrenContainer.className = 'children';\n      if (!isExpanded) {\n        childrenContainer.classList.add('hidden');\n      }\n\n      if (typeof value === 'object' && value !== null) {\n        buildTree(value, childrenContainer, currentPath);\n\n        keyDiv.addEventListener(\"click\", () => {\n          const isHidden = childrenContainer.classList.toggle('hidden');\n          expandIcon.textContent = !isHidden ? '▼' : '▶';\n          localStorage.setItem(`treeExpanded:${nodePath}`, (!isHidden).toString());\n        });\n      }\n\n      wrapper.appendChild(keyDiv);\n      wrapper.appendChild(childrenContainer);\n      container.appendChild(wrapper);\n    }\n  }\n}\n\nbuildTree(data, container);\n\n",
+        "content": "<div id=\"collBtn\">Collapse</div>\n<div id=\"pvTree\"></div>",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "html"
+        },
+        "editors": [
+          "afterRender",
+          "styles"
+        ],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "data",
+        "styles": "//Top Action Buttons\n#collBtn{\n  width: fit-content;\n  background-color: rgb(17, 18, 23);\n  color: white;\n  padding: 5px;\n  text-align: center;\n  cursor: pointer;\n}\n#collBtn:hover{\n  background-color: rgb(207, 138, 8);\n}\n\n//Base Tree\n.tree {\n  width: 100%;\n  font-family: monospace;\n  background-color: ${theme.colors.background.primary};\n}\n.children {\n  margin-left: 20px;\n  border-left: 1px dashed #ccc;\n  padding-left: 10px;\n}\n.hidden {\n  display: none;\n}\n\n//Sections\n.key {\n  font-weight: 600;\n  color: #FAFAFA;\n  padding: 4px 6px;\n  cursor: pointer;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n.key:hover{\n   color:rgb(207, 138, 8);\n}\n.expand-icon {\n  display: inline-block;\n  width: 14px;\n  text-align: center;\n}\n\n//Leafs\n.leaf {\n  background-color: rgb(24, 27, 31);\n  border-radius: 2px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0px 20px 0px 20px;\n}\n.leaf:hover {\n  background-color: rgb(207, 138, 8);\n  cursor: pointer;\n}\n.leaf:hover .nameText {\n  color: #FAFAFA;\n}\n.leaf:hover .btnHolder{\n  display: inline-flex;\n}\n.nameText {\n  color: rgb(207, 138, 8);\n  font-weight: bold;\n  cursor: pointer;\n  padding: 1px;\n  transition: background-color 0.2s ease;\n}\n.btnHolder{\n  display: flex;\n  width: 100px;\n  height: 20px;\n  justify-content: center;\n  align-items: center;\n  \n}\n.leafBtn{\n  display: flex;\n  padding: 0;\n  width: 20px;\n  height: 20px;\n  margin-right: 5px;\n  border-radius: 2px;\n  background-color: #fafafa;\n  color: #a77d0b;\n  font-size: 15px;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n.leafBtn:hover {\n background-color:  rgb(17, 18, 23);\n}\n\n\n\n",
+        "wrap": true
+      },
+      "pluginVersion": "5.7.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 5,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "aepy5iqt7ke80c"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.",
+              "name": "pvTree"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "PvTree",
+          "urlPath": "/getPvTree"
+        }
+      ],
+      "title": "PV selector",
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "aepy5iqt7ke80c"
+      },
+      "gridPos": {
+        "h": 26,
+        "w": 20,
+        "x": 4,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "allData": {},
+        "config": {},
+        "data": [],
+        "imgFormat": "png",
+        "layout": {
+          "font": {
+            "family": "Inter, Helvetica, Arial, sans-serif"
+          },
+          "margin": {
+            "b": 0,
+            "l": 0,
+            "r": 0,
+            "t": 30
+          },
+          "title": {
+            "automargin": true
+          },
+          "xaxis": {
+            "automargin": true,
+            "autorange": true,
+            "type": "date"
+          },
+          "yaxis": {
+            "automargin": true,
+            "autorange": true
+          }
+        },
+        "onclick": "// Event handling\n/*\n// 'data', 'variables', 'options', 'utils', and 'event' are passed as arguments\n\ntry {\n  const { type: eventType, data: eventData } = event;\n  const { timeZone, dayjs, locationService, getTemplateSrv } = utils;\n\n  switch (eventType) {\n    case 'click':\n      console.log('Click event:', eventData.points);\n      break;\n    case 'select':\n      console.log('Selection event:', eventData.range);\n      break;\n    case 'zoom':\n      console.log('Zoom event:', eventData);\n      break;\n    default:\n      console.log('Unhandled event type:', eventType, eventData);\n  }\n\n  console.log('Current time zone:', timeZone);\n  console.log('From time:', dayjs(variables.__from).format());\n  console.log('To time:', dayjs(variables.__to).format());\n\n  // Example of using locationService\n  // locationService.partial({ 'var-example': 'test' }, true);\n\n} catch (error) {\n  console.error('Error in onclick handler:', error);\n}\n*/\n  ",
+        "resScale": 2,
+        "script": "// console.log(data);\n// console.log(variables);\n// console.log(options);\n\n\nlet series = data.series[0].fields[0].values;\nconsole.log(series);\n\nfunction toDate(secs,nanos) {\n  return new Date(secs*1000 + nanos/1e6);\n}\n\nif (series[0] != \"no data\"){\n  let layout = {\n    title: variables.title.current.text,\n    hovermode: 'x unified',\n    hoverlabel: {\n      font: { color: '#333', size: 12 }\n    },\n    xaxis: { title: 'Time' },\n    yaxis: {\n      showline: true,\n      autorange:  variables.min.current.value  == \"\" ? true : false,\n      range: [variables.min.current.value, variables.max.current.value]\n    },\n    yaxis2:{\n      overlaying: 'y',\n      side: 'right'\n    }\n  };\n\n  let traces = [];\n\n\n  const pvExtraAxis = variables.pvExtraAxis.current.text.split(\",\");\n  console.log(pvExtraAxis);\n  layout.yaxis.title = \"\"\n  series.forEach((s, i) => {\n    let x = s.data.map(d => toDate(d.secs, d.nanos));\n    let y = s.data.map(d => d.val);\n    let name = s.meta.name;\n\n    \n    // let yaxisName = i === 0 ? 'y' : `y${i + 1}`;\n    \n\n    traces.push({\n      x: x,\n      y: y,\n      type: 'scatter',\n      mode: 'lines',\n      name: name,\n      yaxis: pvExtraAxis.includes(name) ? 'y2' : 'y1',\n    });\n \n    if(pvExtraAxis.includes(name)){\n     layout.yaxis2.title = name;\n    }\n    else{\n     layout.yaxis.title = `${name} (${s.meta.EGU}) , ${layout.yaxis.title} `;\n    }\n\n    // if (i > 0) {\n    //   layout[`yaxis${i + 1}`] = {\n    //     title: name,\n    //     overlaying: 'y',\n    //     side: 'right',\n    //     position: 1 - 0.003 * i,  // You can tweak spacing here\n    //     showline: true,\n    //   };\n    // }\n  });\n\n\n  return {\n    data: traces,\n    layout: layout\n  };\n}",
+        "syncTimeRange": false,
+        "timeCol": ""
+      },
+      "pluginVersion": "1.8.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "aepy5iqt7ke80c"
+          },
+          "fields": [
+            {
+              "jsonPath": "$",
+              "language": "jsonata",
+              "name": "data"
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "pv",
+              "${pv:csv}"
+            ],
+            [
+              "from",
+              "${__from:date}"
+            ],
+            [
+              "to",
+              "${__to:date}"
+            ],
+            [
+              "pp_type",
+              "${pp_type:text}"
+            ],
+            [
+              "pp_bin",
+              "${pp_bin:text}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "Data",
+          "urlPath": "/getPV"
+        }
+      ],
+      "title": "New panel",
+      "type": "nline-plotlyjs-panel"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "aepy5iqt7ke80c"
+        },
+        "definition": "",
+        "multi": true,
+        "name": "pv",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 0,
+          "fields": [
+            {
+              "jsonPath": "$.*"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/getAllPVs"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "firstFill",
+          "value": "firstFill"
+        },
+        "name": "pp_type",
+        "options": [
+          {
+            "selected": true,
+            "text": "firstFill",
+            "value": "firstFill"
+          }
+        ],
+        "query": "firstFill",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "1",
+          "value": "1"
+        },
+        "name": "pp_bin",
+        "options": [
+          {
+            "selected": true,
+            "text": "1",
+            "value": "1"
+          }
+        ],
+        "query": "1",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "MCS > Elevation > General > TCS Demand",
+          "value": "MCS > Elevation > General > TCS Demand"
+        },
+        "name": "title",
+        "options": [
+          {
+            "selected": true,
+            "text": "MCS > Elevation > General > TCS Demand",
+            "value": "MCS > Elevation > General > TCS Demand"
+          }
+        ],
+        "query": "MCS > Elevation > General > TCS Demand",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "0",
+          "value": "0"
+        },
+        "name": "min",
+        "options": [
+          {
+            "selected": true,
+            "text": "0",
+            "value": "0"
+          }
+        ],
+        "query": "0",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "360",
+          "value": "360"
+        },
+        "name": "max",
+        "options": [
+          {
+            "selected": true,
+            "text": "360",
+            "value": "360"
+          }
+        ],
+        "query": "360",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "name": "pvExtraAxis",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "1s",
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Archiver Appliance Plotly",
+  "uid": "d2468439-a726-4485-a809-41f28cd1f821",
+  "version": 98,
+  "weekStart": ""
+}
