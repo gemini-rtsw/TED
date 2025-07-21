@@ -179,8 +179,8 @@ services:
     container_name: softioc
     volumes:
       - ./softioc/data/softioc.db:/db/softioc.db
-    # networks:
-    #   - ted_network
+    networks:
+      - ted_network
     # ports:
     #   - "5065:5065/tcp"
     #   - "5064:5064/tcp"
