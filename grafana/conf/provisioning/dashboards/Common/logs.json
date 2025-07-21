@@ -397,9 +397,7 @@
   ],
   "refresh": "",
   "schemaVersion": 41,
-  "tags": [
-    "Template"
-  ],
+  "tags": [ ],
   "templating": {
     "list": [
       {
@@ -473,7 +471,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "1. Logs",
+  "title": "Logs",
   "uid": "e5760f92-16d7-4175-8251-4b65f2413639",
   "version": 17,
   "weekStart": ""
