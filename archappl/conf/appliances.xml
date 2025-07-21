@@ -8,13 +8,4 @@
         <retrieval_url>http://appliance-0:17665/retrieval/bpl</retrieval_url>
         <data_retrieval_url>http://appliance-0:17665/retrieval</data_retrieval_url>
     </appliance>
-     <appliance>
-        <identity>appliance-1</identity>
-        <cluster_inetport>appliance-1:16670</cluster_inetport>
-        <mgmt_url>http://appliance-1:17665/mgmt/bpl</mgmt_url>
-        <engine_url>http://appliance-1:17665/engine/bpl</engine_url>
-        <etl_url>http://appliance-1:17665/etl/bpl</etl_url>
-        <retrieval_url>http://appliance-1:17665/retrieval/bpl</retrieval_url>
-        <data_retrieval_url>http://appliance-1:17665/retrieval</data_retrieval_url>
-    </appliance>
 </appliances>
