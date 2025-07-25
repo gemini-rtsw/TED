@@ -97,7 +97,7 @@ datasources:
     basicAuth: false
     isDefault: false
     jsonData:
-      hideInvalid: true
-      useBackend: true
+      hideInvalid: false
+      useBackend: false
       useLiveUpdate: true
     readOnly: false
