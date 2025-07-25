@@ -140,6 +140,9 @@ services:
 
     environment:
       HOST_IP: "${HOST01_IP}"
+      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GF_AUTH_API_KEY_ENABLED: true
         #      GF_RENDERING_SERVER_URL: "http://${HOST01_IP}:8081/render"
         #      GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
         #GF_LOG_FILTERS: "rendering:debug"
