@@ -1,0 +1,118 @@
+apiVersion: 1
+
+contactPoints:
+    - orgId: 1
+      name: grafana-default-email
+      receivers:
+        - uid: fesr7afzpjgn4c
+          type: email
+          settings:
+            addresses: oscar.fuentes@noirlab.edu
+            message: 'value: {{ $$values.A.Value }}'
+            singleEmail: false
+          disableResolveMessage: false
+policies:
+    - orgId: 1
+      receiver: grafana-default-email
+      group_by:
+        - grafana_folder
+      group_wait: 30s
+      group_interval: 10s
+      repeat_interval: 10s
+
+# groups:
+#     - orgId: 1
+#       name: CRITICAL
+#       folder: Templates
+#       interval: 10s
+#       rules:
+#         - uid: fesrdeyhri6f4f
+#           title: Elevation Velocity
+#           condition: Maximum
+#           data:
+#             - refId: Elevation Velocity
+#               relativeTimeRange:
+#                 from: 900
+#                 to: 0
+#               datasourceUid: cesb7dv10h3i8b
+#               model:
+#                 alias: Velocity
+#                 aliasPattern: ""
+#                 datasource:
+#                     type: sasaki77-archiverappliance-datasource
+#                     uid: cesb7dv10h3i8b
+#                 functions: []
+#                 instant: false
+#                 intervalMs: 1000
+#                 live: false
+#                 maxDataPoints: 43200
+#                 operator: mean
+#                 range: true
+#                 refId: Elevation Velocity
+#                 regex: false
+#                 stream: false
+#                 strmCap: ""
+#                 strmInt: "1"
+#                 target: mc:elCurrentVel
+#             - refId: Value
+#               datasourceUid: __expr__
+#               model:
+#                 conditions:
+#                     - evaluator:
+#                         params: []
+#                         type: gt
+#                       operator:
+#                         type: and
+#                       query:
+#                         params:
+#                             - A
+#                       reducer:
+#                         params: []
+#                         type: last
+#                       type: query
+#                 datasource:
+#                     type: __expr__
+#                     uid: __expr__
+#                 expression: Elevation Velocity
+#                 intervalMs: 1000
+#                 maxDataPoints: 43200
+#                 reducer: last
+#                 refId: Value
+#                 type: reduce
+#             - refId: Maximum
+#               datasourceUid: __expr__
+#               model:
+#                 conditions:
+#                     - evaluator:
+#                         params:
+#                             - 0
+#                         type: gt
+#                       operator:
+#                         type: and
+#                       query:
+#                         params:
+#                             - B
+#                       reducer:
+#                         params: []
+#                         type: last
+#                       type: query
+#                 datasource:
+#                     type: __expr__
+#                     uid: __expr__
+#                 expression: Value
+#                 intervalMs: 1000
+#                 maxDataPoints: 43200
+#                 refId: Maximum
+#                 type: threshold
+#           dashboardUid: 407090ce-4bc4-42bb-9c03-3d40fc3d5dda
+#           panelId: 11
+#           noDataState: NoData
+#           execErrState: Error
+#           keepFiringFor: 1m
+#           annotations:
+#             __dashboardUid__: 407090ce-4bc4-42bb-9c03-3d40fc3d5dda
+#             __panelId__: "11"
+#           labels: {}
+#           isPaused: false
+#           notification_settings:
+#             receiver: grafana-default-email
