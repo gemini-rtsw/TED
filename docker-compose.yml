@@ -133,10 +133,12 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
 
-    networks:
-      - ted_network
-    ports:
-      - "${GR01_PORT}:3000"
+    network_mode: "host"
+
+    # networks:
+    #   - ted_network
+    # ports:
+    #   - "${GR01_PORT}:3000"
 
     environment:
       HOST_IP: "${HOST01_IP}"
@@ -210,14 +212,13 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
     image: gear-appliance:1.1.0
-    networks:
-      - ted_network
-    ports:
-      - "${APPLIANCE_PORT}:17665"
-      - "5065:5065/tcp"
-      - "5064:5064/tcp"
-      - "5065:5065/udp"
-      - "5064:5064/udp"
+    network_mode: "host"
+    # networks:
+    #   - ted_network
+    # ports:
+    #   - "${APPLIANCE_PORT}:17665"
+    #   - "5065:5065/tcp"
+    #   - "5064:5064/udp"
     volumes:
       - ./archappl/conf:/etc/archappl/
       - ./archappl/webapps:/usr/local/tomcat/webapps
@@ -227,7 +228,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      MYSQL_CONNECTION_STRING: "--user=archappl --password=archappl --database=archappl --host=${MYSQL_NAME}"
+      MYSQL_CONNECTION_STRING: "--user=archappl --password=archappl --database=archappl --host=127.0.0.1"
       ARCHAPPL_MYIDENTITY: ${APPLIANCE_NAME}
       EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
       EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
@@ -250,8 +251,9 @@ services:
     image: gear-mysql:8.0.35-debian
     volumes:
       - ${MYSQL_DATA}:/var/lib/mysql
-    networks:
-      - ted_network
+    network_mode: "host"
+    # networks:
+    #   - ted_network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -273,10 +275,11 @@ services:
     image: aaservice:0.1
     command: python3 -u /aaservice/aaservice.py
     restart: unless-stopped
-    networks:
-      - ted_network
-    ports:
-      - 8000:8000
+    network_mode: "host"
+    # networks:
+    #   - ted_network
+    # ports:
+    #   - 8000:8000
     volumes:
       - ./aaservice:/aaservice/
     logging:

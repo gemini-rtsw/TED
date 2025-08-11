@@ -3,70 +3,70 @@ GIS:
     G1 (+X-Y):
       Vertical:
         codes:
-          - gis:mon:azmon2:vrbpG1c.VAL
+          - gis:mon:azmon2:vrbpG1c
       Radial:
         codes:
-          - gis:mon:azmon2:rabpG1c.VAL
+          - gis:mon:azmon2:rabpG1c
     G2 (-X-Y):
       Vertical:
         codes:
-          - gis:mon:azmon2:vrbpG2c.VAL
+          - gis:mon:azmon2:vrbpG2c
       Radial:
         codes:
-          - gis:mon:azmon2:rabpG2c.VAL
+          - gis:mon:azmon2:rabpG2c
     G3 (+X+Y):
       Vertical:
         codes:
-          - gis:mon:azmon2:vrbpG3c.VAL
+          - gis:mon:azmon2:vrbpG3c
       Radial:
         codes:
-          - gis:mon:azmon2:rabpG3c.VAL
+          - gis:mon:azmon2:rabpG3c
     G4 (-X+Y):
       Vertical:
         codes:
-          - gis:mon:azmon2:vrbpG4c.VAL
+          - gis:mon:azmon2:vrbpG4c
       Radial:
         codes:
-          - gis:mon:azmon2:rabpG4c.VAL
+          - gis:mon:azmon2:rabpG4c
     G5 (+X):
       Vertical:
         codes:
-          - gis:mon:azmon2:vrbpG5c.VAL
+          - gis:mon:azmon2:vrbpG5c
       Radial:
         codes:
-          - gis:mon:azmon2:rabpG5c.VAL
+          - gis:mon:azmon2:rabpG5c
     G6 (-X):
       Vertical:
         codes:
-          - gis:mon:azmon2:vrbpG6c.VAL
+          - gis:mon:azmon2:vrbpG6c
       Radial:
         codes:
-          - gis:mon:azmon2:rabpG6c.VAL
+          - gis:mon:azmon2:rabpG6c
   ALT Bearings Pressure (bars):
     H1 (-X):
       Axial(861):
         codes:
-          - gis:mon:altmon2:bpH1861c.VAL
+          - gis:mon:altmon2:bpH1861c
       Radial(862):
         codes:
-          - gis:mon:altmon2:bpH1862c.VAL
+          - gis:mon:altmon2:bpH1862c
       Radial(863):
         codes:
-          - gis:mon:altmon2:bpH1863c.VAL
+          - gis:mon:altmon2:bpH1863c
     H2 (+X):
       Axial(861):
         codes:
-          - gis:mon:altmon2:bpH2861c.VAL
+          - gis:mon:altmon2:bpH2861c
       Radial(862):
         codes:
-          - gis:mon:altmon2:bpH2862c.VAL
+          - gis:mon:altmon2:bpH2862c
       Radial(863):
         codes:
-          - gis:mon:altmon2:bpH2863c.VAL
+          - gis:mon:altmon2:bpH2863c
   Position encoder:
     GIS Azimuth:
       codes:
-        - gis:mon:azmon3:azposenc.VAL
+        - gis:mon:azmon3:azposenc
     MCS Elevation:
       codes:
         - mc:elCurrentPos
@@ -127,56 +127,57 @@ GIS:
         - gis:mon:azkam:g6zb
         - gis:mon:azkam:g6zc
         - gis:mon:azkam:g6zd
-  Alt Bearings:
-    H1A:
-      codes:
-        - gis:mon:altkam:h1a.*
-    H2A:
-      codes:
-        - gis:mon:altkam:h2a.*
-    H1B:
-      codes:
-        - gis:mon:altkam:h1b.*
-    H2B:
-      codes:
-        - gis:mon:altkam:h2b.*
+  # Alt Bearings:
+  #   H1A:
+  #     codes:
+  #       - gis:mon:altkam:h1a.*
+  #   H2A:
+  #     codes:
+  #       - gis:mon:altkam:h2a.*
+  #   H1B:
+  #     codes:
+  #       - gis:mon:altkam:h1b.*
+  #   H2B:
+  #     codes:
+  #       - gis:mon:altkam:h2b.*
   Thermal Enclosure Temperatures:
     PCS:
       codes:
-        - gis:mon:temp:pcs.VAL
+        - gis:mon:temp:pcs
     CRCS:
       codes:
-        - gis:mon:temp:crcs.VAL
+        - gis:mon:temp:crcs
     SCS:
       codes:
-        - gis:mon:temp:scs.VAL
+        - gis:mon:temp:scs
     CEM:
       codes:
-        - gis:mon:temp:cem.VAL
+        - gis:mon:temp:cem
   PMAC output voltage (ALT, Az):
     ALT:
       codes:
-        - gis:mon:altmon3:altdspdspc.VAL
+        - gis:mon:altmon3:altdspdspc
     Az:
       codes:
-        - gis:mon:azmon3:azdspdspc.VAL
+        - gis:mon:azmon3:azdspdspc
   Automount Step Numbers:
     Azimuth auto mode:
       codes:
-        - gis:az:azmd:azmdautoss.VAL
+        - gis:az:azmd:azmdautoss
     Elevation auto mode:
       codes:
-        - gis:alt:altmd:altmdautoss.VAL
+        - gis:alt:altmd:altmdautoss
   M1 Screw Count:
     +X:
       codes:
-        - gis:mon:other:m1posxscrewi.VAL
+        - gis:mon:other:m1posxscrewi
     -X:
       codes:
-        - gis:mon:other:m1negxscrewi.VAL
+        - gis:mon:other:m1negxscrewi
     Both:
       codes:
-        - gis:mon:other:m1(pos|neg)xscrewi.VAL
+        - gis:mon:other:m1posxscrewi
+        - gis:mon:other:m1negxscrewi
   Precipitation sensors:
     Optical (most sensitive):
       codes:
@@ -318,6 +319,10 @@ GIS:
         - gis:mon:cwsupply:PsiNX
     Both:
       codes:
-        - gis:mon:cwsupply:Flow(N|P)X
-        - gis:mon:cwsupply:Temp(N|P)X
-        - gis:mon:cwsupply:Psi(N|P)X
+        - gis:mon:cwsupply:FlowNX
+        - gis:mon:cwsupply:TempNX
+        - gis:mon:cwsupply:PsiNX
+        - gis:mon:cwsupply:FlowPX
+        - gis:mon:cwsupply:TempPX
+        - gis:mon:cwsupply:PsiPX
+

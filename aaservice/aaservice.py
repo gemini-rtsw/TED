@@ -35,14 +35,14 @@ def getPvTree():
 
 @app.route("/getAllPVs", methods=['GET'])
 def getAllPVs():
-    url = 'http://archappl:17665/mgmt/bpl/getAllPVs?limit=-1'
+    url = 'http://127.0.0.1:17665/mgmt/bpl/getAllPVs?limit=-1'
     res = requests.get(url)
     return(res.text)
 
 @app.route("/getPVInfo", methods=['GET'])
 def getPVInfo(channel, field):
     #channel = request.args.get('channel')
-    url = f'http://archappl:17665/mgmt/bpl/getPVTypeInfo?pv={channel}'
+    url = f'http://127.0.0.1:17665/mgmt/bpl/getPVTypeInfo?pv={channel}'
     try:
         res = requests.get(url)
         pvInfoObj = json.loads(res.text)
@@ -55,7 +55,7 @@ def getPVInfo(channel, field):
 @app.route("/getPVsByPattern", methods=['GET'])
 def getPVsByPattern():
     pattern = request.args.get('pattern')
-    url = f'http://archappl:17665/retrieval/bpl/getMatchingPVs?pv={pattern}'
+    url = f'http://127.0.0.1:17665/retrieval/bpl/getMatchingPVs?pv={pattern}'
     print("URL:", url)
     try:
         res = requests.get(url)
@@ -77,7 +77,7 @@ def getPVs():
         pvParam = ''
         for chan in chan_list:
             if(chan!=""):
-                url_status = f'http://archappl:17665/mgmt/bpl/getPVStatus?pv={chan}'
+                url_status = f'http://127.0.0.1:17665/mgmt/bpl/getPVStatus?pv={chan}'
                 res_status = requests.get(url_status)
                 status = json.loads(res_status.text)
                 if "Being archived" in status[0]['status']:
@@ -86,14 +86,14 @@ def getPVs():
     else:
         chan = chan_list[0]
         if(chan!=""):
-            url_status = f'http://archappl:17665/mgmt/bpl/getPVStatus?pv={chan}'
+            url_status = f'http://127.0.0.1:17665/mgmt/bpl/getPVStatus?pv={chan}'
             res_status = requests.get(url_status)
             status = json.loads(res_status.text)
             print(status[0]['status'])
             if "Being archived" in status[0]['status']:
                 pvParam = f'pv={pp_type}_{pp_bin}({chan_list[0]})&'
     try:
-        url = f'http://archappl:17665/retrieval/data/getDataForPVs.json?{pvParam}from={date_from}&to={date_to}&fetchLatestMetadata=true'
+        url = f'http://127.0.0.1:17665/retrieval/data/getDataForPVs.json?{pvParam}from={date_from}&to={date_to}&fetchLatestMetadata=true'
         print("url:", url)
         res = requests.get(url)
         resObj = json.loads(res.text)
@@ -110,7 +110,7 @@ def getPVs():
 @app.route("/getPVDetails", methods=['GET'])
 def getPVDetails():
     channel = request.args.get('channel')
-    url = f'http://archappl:17665/mgmt/bpl/getPVDetails?pv={channel}'
+    url = f'http://127.0.0.1:17665/mgmt/bpl/getPVDetails?pv={channel}'
     print(url)
     res = requests.get(url)
     return(res.text)
