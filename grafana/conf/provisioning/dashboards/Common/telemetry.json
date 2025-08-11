@@ -187,7 +187,7 @@
         },
         "onclick": "// Event handling\n/*\n// 'data', 'variables', 'options', 'utils', and 'event' are passed as arguments\n\ntry {\n  const { type: eventType, data: eventData } = event;\n  const { timeZone, dayjs, locationService, getTemplateSrv } = utils;\n\n  switch (eventType) {\n    case 'click':\n      console.log('Click event:', eventData.points);\n      break;\n    case 'select':\n      console.log('Selection event:', eventData.range);\n      break;\n    case 'zoom':\n      console.log('Zoom event:', eventData);\n      break;\n    default:\n      console.log('Unhandled event type:', eventType, eventData);\n  }\n\n  console.log('Current time zone:', timeZone);\n  console.log('From time:', dayjs(variables.__from).format());\n  console.log('To time:', dayjs(variables.__to).format());\n\n  // Example of using locationService\n  // locationService.partial({ 'var-example': 'test' }, true);\n\n} catch (error) {\n  console.error('Error in onclick handler:', error);\n}\n*/\n  ",
         "resScale": 2,
-        "script": "// console.log(data);\n// console.log(variables);\n// console.log(options);\n\n\nlet series = data.series;\n\n\nfunction toDate(secs,nanos) {\n  return new Date(secs*1000 + nanos/1e6);\n}\nlet layout = {\n  title: variables.title.current.text,\n  hovermode: 'x unified',\n  hoverlabel: {\n    font: { color: '#333', size: 12 }\n  },\n  xaxis: { title: 'Time' },\n  yaxis: {\n    showline: true,\n    title: \"\"\n  },\n  yaxis2: {\n    title: \"\",\n    overlaying: 'y',\n    side: 'right',\n  }\n};\n\nif (series[0] != \"no data\"){\n\n\n  let traces = [];\n\n\n  const pvExtraAxis = variables.pvExtraAxis.current.text.split(\",\");\n  series.forEach((s, i) => {\n\n  let isStreaming = data.state == 'Streaming';\n  let name, x, y;\n  if (isStreaming){\n    name = s.fields[1].config.displayName;\n    x = s.fields[0].values.toArray();\n    y = s.fields[1].values.toArray(); \n    // console.log(y);\n    // let filtered = x.map((xi, idx) => [xi, y[idx]])\n    //                 .filter(([xi, yi]) => !isNaN(yi));\n\n    // x = filtered.map(([xi]) => xi);\n    // y = filtered.map(([_, yi]) => yi);\n    // console.log(\"Streming\");\n  }\n  else{\n    name = s.fields[1].name;\n    x = Array.from(s.fields[0].values);\n    y = Array.from(s.fields[1].values);\n    // console.log(\"No Streming\");\n  }\n  \n  let pvInExtraAxis = pvExtraAxis.some(pv => pv.includes(name));\n  let targetAxis =  pvInExtraAxis ? 'y2' : 'y1';\n\n  \n  traces.push({\n    x: x,\n    y: y,\n    type: 'scatter',\n    mode: 'lines',\n    name: name,\n    yaxis: targetAxis,\n  });\n\n   if(pvInExtraAxis){\n    if(layout.yaxis2.title == \"\"){\n      layout.yaxis2.title = name;\n    }\n    else{\n      layout.yaxis2.title = `${name}, ${layout.yaxis2.title} `;\n    }\n   }\n   else{\n    if(layout.yaxis.title == \"\"){\n      layout.yaxis.title = name;\n    }\n    else{\n      layout.yaxis.title = `${name}, ${layout.yaxis.title} `;\n    }\n   }\n  });\n\n\n  return {\n    data: traces,\n    layout: layout\n  };\n}",
+        "script": "// console.log(data);\n// console.log(variables);\n// console.log(options);\n\n\nlet series = data.series;\n\n\nfunction toDate(secs,nanos) {\n  return new Date(secs*1000 + nanos/1e6);\n}\nlet layout = {\n  title: variables.title.current.text,\n  hovermode: 'x unified',\n  hoverlabel: {\n    font: { color: '#333', size: 12 }\n  },\n  xaxis: { title: 'Time' },\n  yaxis: {\n    showline: true,\n    title: \"\"\n  },\n  yaxis2: {\n    title: \"\",\n    overlaying: 'y',\n    side: 'right',\n  }\n};\n\nif (series[0] != \"no data\"){\n\n\n  let traces = [];\n\n\n  const pvExtraAxis = variables.pvExtraAxis.current.text.split(\",\");\n  series.forEach((s, i) => {\n\n  let isStreaming = data.state == 'Streaming';\n  let name, x, y;\n  if (isStreaming){\n    name = s.fields[1].config.displayName;\n    x = s.fields[0].values.toArray();\n    y = s.fields[1].values.toArray(); \n    // console.log(y);\n    // let filtered = x.map((xi, idx) => [xi, y[idx]])\n    //                 .filter(([xi, yi]) => !isNaN(yi));\n\n    // x = filtered.map(([xi]) => xi);\n    // y = filtered.map(([_, yi]) => yi);\n    // console.log(\"Streming\");\n  }\n  else{\n    name = s.fields[1].config.displayName;\n    console.log(s.fields[1])\n    console.log(`name: ${name}`)\n    x = Array.from(s.fields[0].values);\n    y = Array.from(s.fields[1].values);\n    // console.log(\"No Streming\");\n  }\n  \n  let pvInExtraAxis = pvExtraAxis.some(pv => pv.includes(name));\n  let targetAxis =  pvInExtraAxis ? 'y2' : 'y1';\n\n  \n  traces.push({\n    x: x,\n    y: y,\n    type: 'scatter',\n    mode: 'lines+markers',\n    name: name,\n    yaxis: targetAxis,\n  });\n\n   if(pvInExtraAxis){\n    if(layout.yaxis2.title == \"\"){\n      layout.yaxis2.title = name;\n    }\n    else{\n      layout.yaxis2.title = `${name}, ${layout.yaxis2.title} `;\n    }\n   }\n   else{\n    if(layout.yaxis.title == \"\"){\n      layout.yaxis.title = name;\n    }\n    else{\n      layout.yaxis.title = `${name}, ${layout.yaxis.title} `;\n    }\n   }\n  });\n\n\n  return {\n    data: traces,\n    layout: layout\n  };\n}",
         "syncTimeRange": false,
         "timeCol": ""
       },
@@ -217,6 +217,28 @@
               },
               "params": [
                 "$pp_bin"
+              ]
+            },
+            {
+              "def": {
+                "category": "Options",
+                "defaultParams": [
+                  "true"
+                ],
+                "name": "disableExtrapol",
+                "params": [
+                  {
+                    "name": "boolean",
+                    "options": [
+                      "true",
+                      "false"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "true"
               ]
             }
           ],
@@ -287,19 +309,19 @@
       },
       {
         "current": {
-          "text": "firstFill",
-          "value": "firstFill"
+          "text": "raw",
+          "value": "raw"
         },
         "label": "Mode",
         "name": "pp_type",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "RAW",
             "value": "raw"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "First Fill",
             "value": "firstFill"
           },
@@ -314,36 +336,36 @@
       },
       {
         "current": {
-          "text": "1",
-          "value": "1"
+          "text": "60",
+          "value": "60"
         },
         "label": "Bin (s)",
         "name": "pp_bin",
         "options": [
           {
             "selected": true,
-            "text": "1",
-            "value": "1"
+            "text": "60",
+            "value": "60"
           }
         ],
-        "query": "1",
+        "query": "60",
         "type": "textbox"
       },
       {
         "current": {
-          "text": "MCS>Elevation>General>Position",
-          "value": "MCS>Elevation>General>Position"
+          "text": "SCS>Status>CEM temperature",
+          "value": "SCS>Status>CEM temperature"
         },
         "hide": 2,
         "name": "title",
         "options": [
           {
             "selected": true,
-            "text": "MCS>Elevation>General>Position",
-            "value": "MCS>Elevation>General>Position"
+            "text": "SCS>Status>CEM temperature",
+            "value": "SCS>Status>CEM temperature"
           }
         ],
-        "query": "MCS>Elevation>General>Position",
+        "query": "SCS>Status>CEM temperature",
         "type": "textbox"
       },
       {
@@ -387,6 +409,6 @@
   "timezone": "browser",
   "title": "Telemetry",
   "uid": "063032a1-9bfd-4aa0-a7fc-1e79dc1c46ca",
-  "version": 91,
+  "version": 4,
   "weekStart": ""
 }
