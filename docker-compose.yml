@@ -22,7 +22,7 @@ services:
     environment:
       HOST_IP: "${HOST01_IP}"
       HTTP_PORT: "${ES01_PORT}"
-      TRASPORT_PORT: "${ES01_TR_PORT}"
+      TRANSPORT_PORT: "${ES01_TR_PORT}"
 
     volumes:
       - ./elasticsearch/es01/config:/usr/share/elasticsearch/config
