@@ -56,7 +56,7 @@ services:
         max-size: 100m
         max-file: 1
 
-  elasticsearch-2:
+  es02:
     image: ted-elasticsearch:8.15.0
     hostname: elasticsearch-2
     container_name: es02
