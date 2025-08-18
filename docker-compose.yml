@@ -142,6 +142,7 @@ services:
 
     environment:
       HOST_IP: "${HOST01_IP}"
+      SITE: "${SITE}"
       GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       GF_AUTH_API_KEY_ENABLED: true

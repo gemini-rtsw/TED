@@ -1608,7 +1608,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Alerting PCS",
+  "title": "Alerting CP",
   "uid": "407090ce-4bc4-42bb-9c03-3d40fc3d5dda",
   "version": 16,
   "weekStart": ""

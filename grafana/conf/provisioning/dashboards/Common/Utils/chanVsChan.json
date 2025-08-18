@@ -130,7 +130,14 @@
         },
         "mapping": "auto",
         "series": [
-          {}
+          {
+            "frame": {
+              "matcher": {
+                "id": "byIndex",
+                "options": 0
+              }
+            }
+          }
         ],
         "tooltip": {
           "hideZeros": false,
@@ -163,7 +170,29 @@
                 ]
               },
               "params": [
-                "1"
+                "${pp_bin}"
+              ]
+            },
+            {
+              "def": {
+                "category": "Options",
+                "defaultParams": [
+                  "true"
+                ],
+                "name": "disableExtrapol",
+                "params": [
+                  {
+                    "name": "boolean",
+                    "options": [
+                      "true",
+                      "false"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "true"
               ]
             }
           ],
@@ -180,8 +209,11 @@
       "title": "$pv1 v/s $pv2",
       "transformations": [
         {
-          "id": "merge",
-          "options": {}
+          "id": "joinByField",
+          "options": {
+            "byField": "time",
+            "mode": "outer"
+          }
         }
       ],
       "type": "xychart"
@@ -203,7 +235,7 @@
         "name": "pv1",
         "options": [],
         "query": {
-          "cacheDurationSeconds": 300,
+          "cacheDurationSeconds": 0,
           "fields": [
             {
               "jsonPath": "$.*"
@@ -273,13 +305,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Channel v/s Channel",
   "uid": "a3f440e7-a162-4155-9fc7-1ac937fc407a",
-  "version": 11,
+  "version": 4,
   "weekStart": ""
 }
