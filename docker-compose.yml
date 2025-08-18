@@ -1,7 +1,7 @@
 services:
 #######################################################################################################
 
-  elasticsearch-1:
+  es01:
     image: ted-elasticsearch:8.15.0
     hostname: elasticsearch
     container_name: es01
@@ -20,12 +20,25 @@ services:
     network_mode: "host"
 
     environment:
-      HOST01_IP: "${HOST01_IP}"
-      HOST02_IP: "${HOST02_IP}"
-      HTTP_PORT: "${ES01_PORT}"
-      TRANSPORT_PORT: "${ES01_TR_PORT}"
-      ES01_TR_PORT: "${ES01_TR_PORT}"
-      ES02_TR_PORT: "${ES02_TR_PORT}"
+      cluster.name: "elastic"
+      node.name: "es01"
+      network.host: "${HOST01_IP}"
+      transport.host: "${HOST01_IP}"
+      http.port: "${ES01_PORT}"
+      transport.port: "ES01_TR_PORT"
+      node.roles: master,data,ingest,voting_only,remote_cluster_client
+      discovery.seeds_hosts: ${HOST01_IP}:${ES01_TR_PORT},${HOST02_IP}:${ES02_TR_PORT}
+      cluster.initial_master_nodes: es01,es02
+      xpack.security.enabled: false
+      xpack.security.enrollment.enabled: false
+      xpack.security.http.ssl.enabled: false
+      xpack.security.transport.ssl.enabled: false
+      # HOST01_IP: "${HOST01_IP}"
+      # HOST02_IP: "${HOST02_IP}"
+      # HTTP_PORT: "${ES01_PORT}"
+      # TRANSPORT_PORT: "${ES01_TR_PORT}"
+      # ES01_TR_PORT: "${ES01_TR_PORT}"
+      # ES02_TR_PORT: "${ES02_TR_PORT}"
     volumes:
       - ./elasticsearch/es01/config:/usr/share/elasticsearch/config
       # - ./elasticsearch/es01/logs:/usr/share/elasticsearch/logs
