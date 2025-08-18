@@ -4,8 +4,8 @@ services:
     hostname: elasticsearch-1
     container_name: elasticsearch-1
     restart: unless-stopped
-    # cpus: 2.0
-    # mem_limit: 4g
+    cpus: 2.0
+    mem_limit: 4g
     build:
       context: ./elasticsearch
       args:
@@ -41,8 +41,8 @@ services:
     hostname: elasticsearch-2
     container_name: elasticsearch-2
     restart: unless-stopped
-    # cpus: 2.0
-    # mem_limit: 4g
+    cpus: 2.0
+    mem_limit: 4g
     build:
       context: ./elasticsearch
       args:
@@ -66,7 +66,7 @@ services:
       xpack.security.http.ssl.enabled: false
       xpack.security.transport.ssl.enabled: false
     volumes:
-      - ${DATA_PATH}/es02:/usr/share/elasticsearch/data
+      - ${DATA_PATH}/elasticsearch-2:/usr/share/elasticsearch/data
     logging:
       driver: json-file
       options:
@@ -80,11 +80,11 @@ services:
     restart: unless-stopped
     network_mode: "host"
     environment:
-      interactiveSetup.enabled: false
-      elasticsearch.hosts: "http://${HOST1_IP}:${ES1_HTTP_PORT}"
-      elasticsearch.ssl.verificationMode: "none"
-      server.host: "0.0.0.0"
-      server.port: "${KI_HTTP_PORT}"
+      SERVER_HOST: ${HOST1_IP}
+      SERVER_PORT: ${KI_HTTP_PORT}
+      INTERACTIVE_SETUP_ENABLED: false
+      ELASTICSEARCH_HOSTS: "http://${HOST1_IP}:${ES1_HTTP_PORT}"
+      ELASTICSEARCH_SSL_VERIFICATIONMODE: none
     logging:
       driver: json-file
       options:
