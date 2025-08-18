@@ -28,6 +28,7 @@ services:
       transport.port: "${ES01_TR_PORT}"
       node.roles: master,data,ingest,voting_only,remote_cluster_client
       discovery.seed_hosts: ${HOST01_IP}:${ES01_TR_PORT},${HOST02_IP}:${ES02_TR_PORT}
+      cluster.initial_master_nodes: es01,es02
       xpack.security.enabled: false
       xpack.security.enrollment.enabled: false
       xpack.security.http.ssl.enabled: false
@@ -83,6 +84,7 @@ services:
       transport.port: "${ES02_TR_PORT}"
       node.roles: master,data,ingest,voting_only,remote_cluster_client
       discovery.seed_hosts: ${HOST01_IP}:${ES01_TR_PORT},${HOST02_IP}:${ES02_TR_PORT}
+      cluster.initial_master_nodes: es01,es02
       xpack.security.enabled: false
       xpack.security.enrollment.enabled: false
       xpack.security.http.ssl.enabled: false
