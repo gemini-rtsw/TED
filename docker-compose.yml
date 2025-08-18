@@ -1,16 +1,13 @@
 services:
-#######################################################################################################
-
-  es01:
+  elasticsearch-1:
     image: ted-elasticsearch:8.15.0
-    hostname: elasticsearch
-    container_name: es01
+    hostname: elasticsearch-1
+    container_name: elasticsearch-1
     restart: unless-stopped
     # cpus: 2.0
     # mem_limit: 4g
     build:
-      context: ./elasticsearch/es01
-      dockerfile: ../Dockerfile
+      context: ./elasticsearch
       args:
         - USER=${USER}
         - UID=${U_ID}
@@ -18,142 +15,88 @@ services:
         - GID=${G_ID}
 
     network_mode: "host"
-
     environment:
       cluster.name: "elastic"
-      node.name: "es01"
-      network.host: "${HOST01_IP}"
-      transport.host: "${HOST01_IP}"
-      http.port: "${ES01_PORT}"
-      transport.port: "${ES01_TR_PORT}"
+      node.name: "elasticsearch-1"
+      network.host: "${HOST1_IP}"
+      transport.host: "${HOST1_IP}"
+      http.port: "${ES1_HTTP_PORT}"
+      transport.port: "${ES1_TR_PORT}"
       node.roles: master,data,ingest,remote_cluster_client
-      discovery.seed_hosts: ${HOST01_IP}:${ES01_TR_PORT},${HOST02_IP}:${ES02_TR_PORT}
-      cluster.initial_master_nodes: es01,es02
+      discovery.seed_hosts: ${HOST1_IP}:${ES1_TR_PORT},${HOST2_IP}:${ES2_TR_PORT}
+      cluster.initial_master_nodes: elasticsearch-1,elasticsearch-2
       xpack.security.enabled: false
       xpack.security.enrollment.enabled: false
       xpack.security.http.ssl.enabled: false
       xpack.security.transport.ssl.enabled: false
-      # HOST01_IP: "${HOST01_IP}"
-      # HOST02_IP: "${HOST02_IP}"
-      # HTTP_PORT: "${ES01_PORT}"
-      # TRANSPORT_PORT: "${ES01_TR_PORT}"
-      # ES01_TR_PORT: "${ES01_TR_PORT}"
-      # ES02_TR_PORT: "${ES02_TR_PORT}"
     volumes:
-      #- ./elasticsearch/es01/config:/usr/share/elasticsearch/config
-      # - ./elasticsearch/es01/logs:/usr/share/elasticsearch/logs
-      - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
-
-    # healthcheck:
-    #   test: ["CMD-SHELL", "curl -f http://es01:${ES01_PORT}/_cluster/health || exit 1"]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 5
-    #   start_period: 5s
-
+      - ${DATA_PATH}/elasticsearch-1:/usr/share/elasticsearch/data
     logging:
       driver: json-file
       options:
         max-size: 100m
         max-file: 1
-
-  es02:
+  elasticsearch-1:
     image: ted-elasticsearch:8.15.0
     hostname: elasticsearch-2
-    container_name: es02
+    container_name: elasticsearch-2
     restart: unless-stopped
-    cpus: 2.0
-    mem_limit: 4g
+    # cpus: 2.0
+    # mem_limit: 4g
     build:
-      context: ./elasticsearch/es02
-      dockerfile: ../Dockerfile
+      context: ./elasticsearch
       args:
         - USER=${USER}
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
-
     network_mode: "host"
-
     environment:
       cluster.name: "elastic"
-      node.name: "es02"
-      network.host: "${HOST02_IP}"
-      transport.host: "${HOST02_IP}"
-      http.port: "${ES02_PORT}"
+      node.name: "elasticsearch-2"
+      network.host: "${HOST2_IP}"
+      transport.host: "${HOST2_IP}"
+      http.port: "${ES2_HTTP_PORT}"
       transport.port: "${ES02_TR_PORT}"
       node.roles: master,data,ingest,remote_cluster_client
-      discovery.seed_hosts: ${HOST01_IP}:${ES01_TR_PORT},${HOST02_IP}:${ES02_TR_PORT}
-      cluster.initial_master_nodes: es01,es02
+      discovery.seed_hosts: ${HOST1_IP}:${ES1_TR_PORT},${HOST2_IP}:${ES2_TR_PORT}
+      cluster.initial_master_nodes: elasticsearch-1,elasticsearch-2
       xpack.security.enabled: false
       xpack.security.enrollment.enabled: false
       xpack.security.http.ssl.enabled: false
       xpack.security.transport.ssl.enabled: false
-      # HOST01_IP: "${HOST01_IP}"
-      # HOST02_IP: "${HOST02_IP}"
-      # HTTP_PORT: "${ES02_PORT}"
-      # TRANSPORT_PORT: "${ES02_TR_PORT}"
-      # ES01_TR_PORT: "${ES01_TR_PORT}"
-      # ES02_TR_PORT: "${ES02_TR_PORT}"
     volumes:
-    #  - ./elasticsearch/es02/config:/usr/share/elasticsearch/config
       - ${DATA_PATH}/es02:/usr/share/elasticsearch/data
-
-    # healthcheck:
-    #   test: ["CMD-SHELL", "curl -f http://172.17.71.27:9200/_cluster/health || exit 1"]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 5
-    #   start_period: 5s
-
     logging:
       driver: json-file
       options:
         max-size: 100m
         max-file: 1
 ############################################################################################################
-
   kibana:
     image: kibana:8.15.0
     hostname: kibana
-    container_name: ki01
+    container_name: kibana
     restart: unless-stopped
-
     network_mode: "host"
-    # networks:
-    #  - ted_network
-
-    ports:
-      - "${KI01_PORT}:5601"
-
     environment:
-      INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http://${HOST01_IP}:${ES01_PORT}"
+      interactiveSetup.enabled: false
+      elasticsearch.hosts: "http://${HOST1_IP}:${ES1_HTTP_PORT}"
       elasticsearch.ssl.verificationMode: "none"
-      SERVER_HOST: "0.0.0.0"
-      SERVER_PORT: "8080"
-    # depends_on:
-    #       elasticsearch:
-    #         condition: service_healthy
-
+      server.host: "0.0.0.0"
+      server.port: "${KI_HTTP_PORT}"
     logging:
       driver: json-file
       options:
         max-size: 100m
         max-file: 1
-
 #################################################################################################################
-
-
-#################################################################################################################
-
   geaservice:
     image: ted-geaservice:1.0.0
     hostname: geaservice
     container_name: geaservice
     command: app/geaservice
     restart: unless-stopped
-
     build:
       context: ./geaservice
       dockerfile: Dockerfile
@@ -162,37 +105,25 @@ services:
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
-
-    networks:
-      - ted_network
-    ports:
-      - "${GS01_PORT}:8000"
-
+    network_mode: "host"
     environment:
-      HOST_IP: "${HOST01_IP}"
-      GS01_PORT: "${GS01_PORT}"
+      HOST_IP: "${HOST1_IP}"
+      GS01_PORT: "${GS_HTTP_PORT}"
       SITE: "${SITE}"
-
     volumes:
       - ./geaservice/:/geaservice/
       - /etc/localtime:/etc/localtime
-
-
     logging:
       driver: json-file
       options:
         max-size: 100m
         max-file: 1
-
-
 #################################################################################################################
-
   grafana:
     image: ted-grafana:12.0.0
     hostname: grafana
     container_name: grafana
     restart: unless-stopped
-
     build:
       context: ./grafana
       dockerfile: Dockerfile
@@ -201,37 +132,25 @@ services:
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
-
     network_mode: "host"
-
-    # networks:
-    #   - ted_network
-    # ports:
-    #   - "${GR01_PORT}:3000"
-
     environment:
-      HOST_IP: "${HOST01_IP}"
+      HOST_IP: "${HOST1_IP}"
       SITE: "${SITE}"
-      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
-      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
-      GF_AUTH_API_KEY_ENABLED: true
-        #      GF_RENDERING_SERVER_URL: "http://${HOST01_IP}:8081/render"
-        #      GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
-        #GF_LOG_FILTERS: "rendering:debug"
-
+      # GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
+      # GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      # GF_AUTH_API_KEY_ENABLED: true
+      # GF_RENDERING_SERVER_URL: "http://${HOST01_IP}:8081/render"
+      # GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
+      # GF_LOG_FILTERS: "rendering:debug"
     volumes:
       - ./grafana/grafana-data/plugins:/var/lib/grafana/plugins
       - ./grafana/conf/:/etc/grafana/
-
     logging:
       driver: json-file
       options:
         max-size: 100m
         max-file: 1
-
-
 #################################################################################################################
-
   renderer:
     image: grafana/grafana-image-renderer:3.11.3
     hostname: renderer
@@ -240,9 +159,7 @@ services:
     network_mode: "host" 
     volumes:
       - ./gr01/render/config.json:/usr/src/app/config.json
-
 #################################################################################################################
-
   softioc:
     image: jeffersonlab/softioc:1.1.0
     tty: true
@@ -254,20 +171,13 @@ services:
     container_name: softioc
     volumes:
       - ./softioc/data/softioc.db:/db/softioc.db
-    networks:
-      - ted_network
-    # ports:
-    #   - "5065:5065/tcp"
-    #   - "5064:5064/tcp"
-    #   - "5065:5065/udp"
-    #   - "5064:5064/udp"
+    network_mode: "host"
     deploy:
       resources:
         limits:
           memory: 512M
         reservations:
           memory: 256M
-
 #################################################################################################################
   archappl:
     container_name: "${APPLIANCE_NAME}"
@@ -283,12 +193,6 @@ services:
         - GID=${G_ID}
     image: gear-appliance:1.1.0
     network_mode: "host"
-    # networks:
-    #   - ted_network
-    # ports:
-    #   - "${APPLIANCE_PORT}:17665"
-    #   - "5065:5065/tcp"
-    #   - "5064:5064/udp"
     volumes:
       - ./archappl/conf:/etc/archappl/
       - ./archappl/webapps:/usr/local/tomcat/webapps
@@ -306,7 +210,6 @@ services:
       mysql:
         condition: service_healthy
     command: sh -c "python3 /usr/local/tomcat/bin/addMysqlConnPool.py && /usr/local/tomcat/bin/catalina.sh run"
-
   mysql:
     container_name: ${MYSQL_NAME}
     hostname: ${MYSQL_NAME}
@@ -322,15 +225,12 @@ services:
     volumes:
       - ${MYSQL_DATA}:/var/lib/mysql
     network_mode: "host"
-    # networks:
-    #   - ted_network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 10
       start_period: 5s
-
   aaservice:
     container_name: aaservice
     hostname: "aaservice"
@@ -346,10 +246,6 @@ services:
     command: python3 -u /aaservice/aaservice.py
     restart: unless-stopped
     network_mode: "host"
-    # networks:
-    #   - ted_network
-    # ports:
-    #   - 8000:8000
     volumes:
       - ./aaservice:/aaservice/
     logging:
@@ -357,7 +253,6 @@ services:
       options:
         max-size: "100m"
         max-file: "1"
-
 networks:
   ted_network:
     driver: bridge
