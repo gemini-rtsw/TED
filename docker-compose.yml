@@ -57,7 +57,7 @@ services:
       network.host: "${HOST2_IP}"
       transport.host: "${HOST2_IP}"
       http.port: "${ES2_HTTP_PORT}"
-      transport.port: "${ES02_TR_PORT}"
+      transport.port: "${ES2_TR_PORT}"
       node.roles: master,data,ingest,remote_cluster_client
       discovery.seed_hosts: ${HOST1_IP}:${ES1_TR_PORT},${HOST2_IP}:${ES2_TR_PORT}
       cluster.initial_master_nodes: elasticsearch-1,elasticsearch-2
