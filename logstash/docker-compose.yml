@@ -19,7 +19,7 @@ services:
       - ted_network
 
     environment:
-      HOST_1: "es01:${ES01_PORT}"
+      HOST_1: "${HOST01_IP}:${ES01_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:

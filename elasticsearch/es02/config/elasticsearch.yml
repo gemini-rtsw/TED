@@ -1,9 +1,9 @@
 cluster.name: "elastic"
 node.name: es02
-network.host: ${HOST_IP}
-transport.host: ${HOST_IP}
+network.host: ${HOST02_IP}
+transport.host: ${HOST02_IP}
 http.port: ${HTTP_PORT}
-transport.host: ${TRANSPORT_PORT}
+transport.port: ${TRANSPORT_PORT}
 node.roles: [ "master","data","remote_cluster_client"]
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
@@ -30,5 +30,6 @@ xpack.security.transport.ssl:
   truststore.path: certs/transport.p12
 # Create a new cluster with the current node only
 # Additional nodes can still join the cluster later
-discovery.seed_hosts: ["cpotelobserv-lv2"]
+discovery.seed_hosts: ["${HOST01_IP}:${ES01_TR_PORT}","${HOST02_IP}:${ES02_TR_PORT}"] 
+cluster.initial_master_nodes: ["es01","es02"]
 #----------------------- END SECURITY AUTO CONFIGURATION -------------------------

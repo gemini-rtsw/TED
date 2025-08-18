@@ -1,8 +1,9 @@
 cluster.name: "elastic"
 node.name: es01
-network.host: ${HOST_IP}
+network.host: ${HOST01_IP}
+transport.host: ${HOST01_IP}
 http.port: ${HTTP_PORT}
-transport.host: ${TRANSPORT_PORT}
+transport.port: ${TRANSPORT_PORT}
 node.roles: [ "master","data", "ingest","voting_only","remote_cluster_client"]
 
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
@@ -31,9 +32,8 @@ xpack.security.transport.ssl:
 # Create a new cluster with the current node only
 # Additional nodes can still join the cluster later
 
-# cluster.initial_master_nodes: ["${HOST_IP}"]
-# discovery.seed_hosts: ["${HOST_IP}"]
 
-discovery.type: single-node
+discovery.seed_hosts: ["${HOST01_IP}:${ES01_TR_PORT}","${HOST02_IP}:${ES02_TR_PORT}"]
+cluster.initial_master_nodes: ["es01","es02"]
  
 #----------------------- END SECURITY AUTO CONFIGURATION -------------------------
