@@ -25,10 +25,9 @@ services:
       network.host: "${HOST01_IP}"
       transport.host: "${HOST01_IP}"
       http.port: "${ES01_PORT}"
-      transport.port: "ES01_TR_PORT"
+      transport.port: "${ES01_TR_PORT}"
       node.roles: master,data,ingest,voting_only,remote_cluster_client
-      discovery.seeds_hosts: ${HOST01_IP}:${ES01_TR_PORT},${HOST02_IP}:${ES02_TR_PORT}
-      cluster.initial_master_nodes: es01,es02
+      discovery.seed_hosts: ${HOST01_IP}:${ES01_TR_PORT},${HOST02_IP}:${ES02_TR_PORT}
       xpack.security.enabled: false
       xpack.security.enrollment.enabled: false
       xpack.security.http.ssl.enabled: false
@@ -40,7 +39,7 @@ services:
       # ES01_TR_PORT: "${ES01_TR_PORT}"
       # ES02_TR_PORT: "${ES02_TR_PORT}"
     volumes:
-      - ./elasticsearch/es01/config:/usr/share/elasticsearch/config
+      #- ./elasticsearch/es01/config:/usr/share/elasticsearch/config
       # - ./elasticsearch/es01/logs:/usr/share/elasticsearch/logs
       - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
 
