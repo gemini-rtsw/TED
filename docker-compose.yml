@@ -119,6 +119,15 @@ services:
         max-size: 100m
         max-file: 1
 #################################################################################################################
+  ngrok:
+    image: ngrok/ngrok
+    container_name: ngrok
+    network_mode: "host"
+    command: http 3000 --url=ted.ngrok.dev
+    environment:
+      NGROK_AUTHTOKEN: "${NGROK_AUTHTOKEN}"
+    restart: unless-stopped
+
   grafana:
     image: ted-grafana:12.0.0
     hostname: grafana
