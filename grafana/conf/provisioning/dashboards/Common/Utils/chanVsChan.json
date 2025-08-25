@@ -281,7 +281,8 @@
           "text": "60",
           "value": "60"
         },
-        "name": "pp_bin",
+        "label": "Bin Size",
+        "name": "ppBin",
         "options": [
           {
             "selected": false,
@@ -305,7 +306,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},

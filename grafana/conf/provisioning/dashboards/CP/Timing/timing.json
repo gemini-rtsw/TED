@@ -1,0 +1,1026 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ARCHIVERAPPLIANCE",
+      "label": "ArchiverAppliance",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "sasaki77-archiverappliance-datasource",
+      "pluginName": "ArchiverAppliance"
+    },
+    {
+      "name": "DS_AASERVICE",
+      "label": "AAservice",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "marcusolsson-json-datasource",
+      "pluginName": "JSON API"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "marcusolsson-json-datasource",
+      "name": "JSON API",
+      "version": "1.3.24"
+    },
+    {
+      "type": "datasource",
+      "id": "sasaki77-archiverappliance-datasource",
+      "name": "ArchiverAppliance",
+      "version": "2.0.2"
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 2,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Row title",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "sasaki77-archiverappliance-datasource",
+        "uid": "cesb7dv10h3i8b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "series",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 3,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "max": 0.01,
+          "min": -0.01,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": -0.003
+              },
+              {
+                "color": "red",
+                "value": 0.003
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ta:cr:diff"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [
+            "count",
+            "min",
+            "max",
+            "mean",
+            "median",
+            "stdDev"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "StdDev",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "alias": "",
+          "aliasPattern": "",
+          "datasource": {
+            "type": "sasaki77-archiverappliance-datasource",
+            "uid": "cesb7dv10h3i8b"
+          },
+          "functions": [
+            {
+              "def": {
+                "category": "Options",
+                "defaultParams": [
+                  "900"
+                ],
+                "name": "binInterval",
+                "params": [
+                  {
+                    "name": "interval",
+                    "type": "int"
+                  }
+                ]
+              },
+              "params": [
+                "${pp_bin}"
+              ]
+            }
+          ],
+          "hide": false,
+          "live": false,
+          "operator": "${pp_type}",
+          "refId": "A",
+          "regex": true,
+          "stream": false,
+          "strmCap": "",
+          "strmInt": "",
+          "target": "ta:cr:diff"
+        }
+      ],
+      "title": "Times Series",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "lower",
+                  "options": {
+                    "value": "-1000"
+                  }
+                },
+                "fieldName": "ta:tcs:diff"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 9,
+      "panels": [
+        {
+          "datasource": {
+            "type": "sasaki77-archiverappliance-datasource",
+            "uid": "cesb7dv10h3i8b"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisPlacement": "auto",
+                "fillOpacity": 20,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineWidth": 1,
+                "spanNulls": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "BRAKED": {
+                      "color": "super-light-blue",
+                      "index": 5
+                    },
+                    "INTERLOCK": {
+                      "color": "red",
+                      "index": 2
+                    },
+                    "RELEASE BREAKES": {
+                      "color": "orange",
+                      "index": 1
+                    },
+                    "SLEWING": {
+                      "color": "purple",
+                      "index": 4
+                    },
+                    "STATIONARY": {
+                      "color": "green",
+                      "index": 3
+                    },
+                    "TRACKING": {
+                      "color": "blue",
+                      "index": 0
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 2
+          },
+          "id": 7,
+          "options": {
+            "alignValue": "left",
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "mergeValues": true,
+            "rowHeight": 0.9,
+            "showValue": "auto",
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.0.0",
+          "targets": [
+            {
+              "alias": "           ",
+              "aliasPattern": "",
+              "datasource": {
+                "type": "sasaki77-archiverappliance-datasource",
+                "uid": "cesb7dv10h3i8b"
+              },
+              "functions": [],
+              "hide": false,
+              "live": false,
+              "operator": "firstFill",
+              "refId": "A",
+              "regex": true,
+              "stream": false,
+              "strmCap": "",
+              "strmInt": "",
+              "target": "tcs:drives:agSfName"
+            }
+          ],
+          "title": "Times Series",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "lower",
+                      "options": {
+                        "value": "-1000"
+                      }
+                    },
+                    "fieldName": "ta:tcs:diff"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "state-timeline"
+        },
+        {
+          "datasource": {
+            "type": "sasaki77-archiverappliance-datasource",
+            "uid": "cesb7dv10h3i8b"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisPlacement": "auto",
+                "fillOpacity": 20,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineWidth": 1,
+                "spanNulls": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "BRAKED": {
+                      "color": "super-light-blue",
+                      "index": 5
+                    },
+                    "INTERLOCK": {
+                      "color": "red",
+                      "index": 2
+                    },
+                    "RELEASE BREAKES": {
+                      "color": "orange",
+                      "index": 1
+                    },
+                    "SLEWING": {
+                      "color": "purple",
+                      "index": 4
+                    },
+                    "STATIONARY": {
+                      "color": "green",
+                      "index": 3
+                    },
+                    "TRACKING": {
+                      "color": "blue",
+                      "index": 0
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 6
+          },
+          "id": 11,
+          "options": {
+            "alignValue": "left",
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "mergeValues": true,
+            "rowHeight": 0.9,
+            "showValue": "auto",
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.0.0",
+          "targets": [
+            {
+              "alias": "           ",
+              "aliasPattern": "",
+              "datasource": {
+                "type": "sasaki77-archiverappliance-datasource",
+                "uid": "cesb7dv10h3i8b"
+              },
+              "functions": [],
+              "hide": false,
+              "live": false,
+              "operator": "raw",
+              "refId": "A",
+              "regex": true,
+              "stream": false,
+              "strmCap": "",
+              "strmInt": "",
+              "target": "mc:elStateS"
+            }
+          ],
+          "title": "Times Series",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "lower",
+                      "options": {
+                        "value": "-1000"
+                      }
+                    },
+                    "fieldName": "ta:tcs:diff"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "state-timeline"
+        },
+        {
+          "datasource": {
+            "type": "sasaki77-archiverappliance-datasource",
+            "uid": "cesb7dv10h3i8b"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "series",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "stepAfter",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 2,
+                "pointSize": 3,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 10
+          },
+          "id": 8,
+          "options": {
+            "legend": {
+              "calcs": [
+                "count",
+                "min",
+                "max",
+                "mean",
+                "median",
+                "stdDev"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "StdDev",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.0.0",
+          "targets": [
+            {
+              "alias": "",
+              "aliasPattern": "",
+              "datasource": {
+                "type": "sasaki77-archiverappliance-datasource",
+                "uid": "cesb7dv10h3i8b"
+              },
+              "functions": [
+                {
+                  "def": {
+                    "category": "Options",
+                    "defaultParams": [
+                      "900"
+                    ],
+                    "name": "binInterval",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "type": "int"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "60"
+                  ]
+                }
+              ],
+              "hide": false,
+              "live": false,
+              "operator": "firstFill",
+              "refId": "A",
+              "regex": true,
+              "stream": false,
+              "strmCap": "",
+              "strmInt": "",
+              "target": "mc:.*CurrentPos"
+            }
+          ],
+          "title": "Times Series",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "lower",
+                      "options": {
+                        "value": "-1000"
+                      }
+                    },
+                    "fieldName": "ta:tcs:diff"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "sasaki77-archiverappliance-datasource",
+            "uid": "cesb7dv10h3i8b"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "series",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "stepAfter",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 2,
+                "pointSize": 3,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "dashed"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": -0.003
+                  },
+                  {
+                    "color": "red",
+                    "value": 0.003
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ta:cr:diff"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ta:mc:diff"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ta:tcs:diff"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "blue",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "ta:mc:diff"
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 18
+          },
+          "id": 10,
+          "options": {
+            "legend": {
+              "calcs": [
+                "count",
+                "min",
+                "max",
+                "mean",
+                "median",
+                "stdDev"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true,
+              "sortBy": "StdDev",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.0.0",
+          "targets": [
+            {
+              "alias": "",
+              "aliasPattern": "",
+              "datasource": {
+                "type": "sasaki77-archiverappliance-datasource",
+                "uid": "cesb7dv10h3i8b"
+              },
+              "functions": [
+                {
+                  "def": {
+                    "category": "Options",
+                    "defaultParams": [
+                      "900"
+                    ],
+                    "name": "binInterval",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "type": "int"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "${pp_bin}"
+                  ]
+                }
+              ],
+              "hide": false,
+              "live": false,
+              "operator": "${pp_type}",
+              "refId": "A",
+              "regex": true,
+              "stream": false,
+              "strmCap": "",
+              "strmInt": "",
+              "target": "ta:mc:diff"
+            }
+          ],
+          "title": "Times Series",
+          "transformations": [
+            {
+              "id": "filterByValue",
+              "options": {
+                "filters": [
+                  {
+                    "config": {
+                      "id": "lower",
+                      "options": {
+                        "value": "-1000"
+                      }
+                    },
+                    "fieldName": "ta:tcs:diff"
+                  }
+                ],
+                "match": "any",
+                "type": "exclude"
+              }
+            }
+          ],
+          "type": "timeseries"
+        }
+      ],
+      "title": "MC",
+      "type": "row"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "aepy5iqt7ke80c"
+        },
+        "definition": "",
+        "multi": true,
+        "name": "pv",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 0,
+          "fields": [
+            {
+              "jsonPath": "$.*"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/getAllPVs"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "60",
+          "value": "60"
+        },
+        "description": "",
+        "name": "pp_bin",
+        "options": [
+          {
+            "selected": false,
+            "text": "SECONDS",
+            "value": "1"
+          },
+          {
+            "selected": true,
+            "text": "MINUTES",
+            "value": "60"
+          },
+          {
+            "selected": false,
+            "text": "HOUR",
+            "value": "3600"
+          }
+        ],
+        "query": "SECONDS : 1, MINUTES : 60, HOUR : 3600",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "mean",
+          "value": "mean"
+        },
+        "name": "pp_type",
+        "options": [
+          {
+            "selected": false,
+            "text": "RAW",
+            "value": "raw"
+          },
+          {
+            "selected": true,
+            "text": "MEAN",
+            "value": "mean"
+          }
+        ],
+        "query": "RAW : raw , MEAN : mean",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "2025-08-11T04:00:00.000Z",
+    "to": "2025-08-19T03:59:59.000Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "1s",
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Timing review",
+  "uid": "b9f8f9d7-25f8-44d0-b5c1-c394cf2f517a",
+  "version": 27,
+  "weekStart": ""
+}
