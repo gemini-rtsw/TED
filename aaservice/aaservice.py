@@ -16,11 +16,12 @@ def home():
 
 @app.route("/getPvTree", methods=['GET'])
 def getPvTree():
+    category = request.args.get('category')
     merged_data = {}
-    yaml_files = os.listdir("./channels/CP")
+    yaml_files = os.listdir(f"./channels/CP/{category}")
 
     for file_path in yaml_files:
-        with open(f"./channels/CP/{file_path}") as f:
+        with open(f"./channels/CP/{category}/{file_path}") as f:
             data = yaml.full_load(f)
             if data:
                 merged_data.update(data)
