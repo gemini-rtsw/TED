@@ -170,7 +170,7 @@
                 ]
               },
               "params": [
-                "${pp_bin}"
+                "${ppBin}"
               ]
             },
             {
@@ -313,6 +313,6 @@
   "timezone": "browser",
   "title": "Channel v/s Channel",
   "uid": "a3f440e7-a162-4155-9fc7-1ac937fc407a",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }
