@@ -145,6 +145,7 @@ services:
     environment:
       HOST_IP: "${HOST1_IP}"
       SITE: "${SITE}"
+      GR_HTTP_PORT: "${GR_HTTP_PORT}"
       # GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
       # GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       # GF_AUTH_API_KEY_ENABLED: true
