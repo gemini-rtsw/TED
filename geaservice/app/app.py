@@ -64,6 +64,7 @@ def getChannels():
         channelsTmp = channelsByArchiveCache.get(archiveName, "Not Found")
         if channelsTmp == "Not Found":
             logging.warning(f"Channels for archive '{archiveName}' not found.")
+            channelsTmp = [["None","None","None"]]
         channels = list(map(lambda x: x[0], channelsTmp))
         return jsonify({"channels": channels})
 

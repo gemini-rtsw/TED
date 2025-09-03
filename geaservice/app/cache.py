@@ -53,7 +53,7 @@ def readChannels(gea, archivesCache):
         logging.info("Retrieving channels by archive.")
         for name, key in archivesCache.items():
             logging.debug(f"Processing archive '{name}' (Key: {key})")
-            channelNames = ["None"]
+            channelNames = [["None","None","None"]]
 
             try:
                 channels = gea.archiver.names(int(key), "")
