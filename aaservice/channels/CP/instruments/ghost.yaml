@@ -1,0 +1,709 @@
+GHOST:
+  Cryogenics:
+    Blue detector temperature:
+      codes:
+        - ghost:sad:cc:spe:blueCryoTemp2.value
+    Blue detector platen temperature:
+      codes:
+        - ghost:sad:cc:spe:blueCryoTemp1.value
+    Blue detector cryocooler temperature:
+      codes:
+        - ghost:sad:cc:spe:blueCryoTemp3.value
+    Red detector temperature:
+      codes:
+        - ghost:sad:cc:spe:redCryoTemp2.value
+    Red detector platen temperature:
+      codes:
+        - ghost:sad:cc:spe:redCryoTemp1.value
+    Red detector cryocooler temperature:
+      codes:
+        - ghost:sad:cc:spe:redCryoTemp3.value
+    Blue detector resistor (%):
+      codes:
+        - ghost:sad:cc:spe:bLakeshore336.heater
+    Red detector resistor (%):
+      codes:
+        - ghost:sad:cc:spe:rLakeshore336.heater
+  Spectrograph mechanisms:
+    Red camera focus stage:
+      codes:
+        - ghost:sad:cc:spe:rFocusAmp.pos_user
+    Blue camera focus stage:
+      codes:
+        - ghost:sad:cc:spe:bFocusAmp.pos_user
+  Shutter Status:
+    Bonn shutter status (red) bladeAclosed:
+      codes:
+        - ghost:sad:cc:spe:rShutter.bladeAclosed
+    Bonn shutter status (red) bladeAopen:
+      codes:
+        - ghost:sad:cc:spe:rShutter.bladeAopen
+    Bonn shutter status (red) bladeBclosed:
+      codes:
+        - ghost:sad:cc:spe:rShutter.bladeBclosed
+    Bonn shutter status (red) bladeBopen:
+      codes:
+        - ghost:sad:cc:spe:rShutter.bladeBopen
+    Bonn shutter status (blue) bladeAclosed:
+      codes:
+        - ghost:sad:cc:spe:bShutter.bladeAclosed
+    Bonn shutter status (blue) bladeAopen:
+      codes:
+        - ghost:sad:cc:spe:bShutter.bladeAopen
+    Bonn shutter status (blue) bladeBclosed:
+      codes:
+        - ghost:sad:cc:spe:bShutter.bladeBclosed
+    Bonn shutter status (blue) bladeBopen:
+      codes:
+        - ghost:sad:cc:spe:bShutter.bladeBopen
+  Spectrograph sensors:
+    SV camera case temperature:
+      codes:
+        - ghost:sad:cc:spe:svCameraCCDCaseTemp.value
+    Red Cryo housing emperature:
+      codes:
+        - ghost:sad:cc:spe:redCryoTemp1.value
+    Blue Cryo housing emperature:
+      codes:
+        - ghost:sad:cc:spe:blueCryoTemp1.value
+    Pier Lab temperature 1:
+      codes:
+        - ghost:sad:cc:spe:pierLabTemp1.value
+    Pier Lab temperature 2:
+      codes:
+        - ghost:sad:cc:spe:pierLabTemp2.value
+    Rack 1 temperarute:
+      codes:
+        - ghost:sad:cc:spe:rack1Temp.value
+    Rack 2 temperarute:
+      codes:
+        - ghost:sad:cc:spe:rack2Temp.value
+    Rack 2 chiller air temperature:
+      codes:
+        - ghost:sad:cc:spe:rack2ChillerAirTemp.value
+    Rack 3 temperature:
+      codes:
+        - ghost:sad:cc:spe:rack3Temp.value
+    Rack 3 chiller air temperature:
+      codes:
+        - ghost:sad:cc:spe:rack3ChillerAirTemp.value
+    Outer enclosure pressure 1:
+      codes:
+        - ghost:sad:cc:spe:outerEnclosurePressure1.value
+    Outer enclosure pressure 2:
+      codes:
+        - ghost:sad:cc:spe:outerEnclosurePressure2.value
+    Pier Lab pressure:
+      codes:
+        - ghost:sad:cc:spe:pierLabPressure.value
+    Outer enclosure humidity 1:
+      codes:
+        - ghost:sad:cc:spe:outerEnclosureHumidity1.value
+    Outer enclosure humidity 2:
+      codes:
+        - ghost:sad:cc:spe:outerEnclosureHumidity2.value
+    Pier Lab humidity:
+      codes:
+        - ghost:sad:cc:spe:pierLabHumidity.value
+    Inner enclosure temperature 1:
+      codes:
+        - ghost:sad:cc:spe:innerEnclosureTemp1.value
+    Inner enclosure temperature 2:
+      codes:
+        - ghost:sad:cc:spe:innerEnclosureTemp2.value
+    Outer enclosure temperature 1:
+      codes:
+        - ghost:sad:cc:spe:outerEnclosureTemp1.value
+    Outer enclosure temperature 2:
+      codes:
+        - ghost:sad:cc:spe:outerEnclosureTemp2.value
+    Pier Lab air temperature:
+      codes:
+        - ghost:sad:cc:spe:pierLabAirTemp.value
+    Dry inj air temperature:
+      codes:
+        - ghost:sad:cc:spe:dryInjectionAirTemp.value
+    Optical bench temperature:
+      codes:
+        - ghost:sad:cc:spe:opticalBenchTemp.value
+    Grating mount temperature:
+      codes:
+        - ghost:sad:cc:spe:gratingMountTemp.value
+    RTD temperature:
+      codes:
+        - ghost:sad:cc:spe:thermoRack401.rtdTemp
+    Pump temperature:
+      codes:
+        - ghost:sad:cc:spe:thermoRack401.pumpTemp
+    Raspberry Pi pressure:
+      codes:
+        - ghost:sad:cc:spe:rPiPressure.value
+    Raspberry Pi temperature:
+      codes:
+        - ghost:sad:cc:spe:rPiTemp.value
+    Raspberry Pi humidity:
+      codes:
+        - ghost:sad:cc:spe:rPiHumidity.value
+    Rasberry Pi X accelerometer:
+      codes:
+        - ghost:sad:cc:spe:rPiAccelx.value
+    Rasberry Pi Y accelerometer:
+      codes:
+        - ghost:sad:cc:spe:rPiAccely.value
+    Rasberry Pi Z accelerometer:
+      codes:
+        - ghost:sad:cc:spe:rPiAccelz.value
+    Water leak detector:
+      codes:
+        - ghost:sad:cc:spe:waterLeakDetector.state
+    Electronics rack temperature 1:
+      codes:
+        - ghost:sad:cc:cu:electronicsRackTemp1.scaledValue
+    Electronics rack temperature 2:
+      codes:
+        - ghost:sad:cc:cu:electronicsRackTemp2.scaledValue
+  Spectrograph Merstetter:
+    meerstetter1:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter1.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter1:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter1.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter1.outputVoltage
+
+    meerstetter2:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter2.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter2:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter2.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter2.outputVoltage
+
+    meerstetter3:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter3.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter3:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter3.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter3.outputVoltage
+
+    meerstetter4:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter4.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter4:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter4.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter4.outputVoltage
+
+    meerstetter5:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter5.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter5:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter5.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter5.outputVoltage
+
+    meerstetter6:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter6.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter6:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter6.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter6.outputVoltage
+
+    meerstetter7:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter7.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter7:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter7.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter7.outputVoltage
+
+    meerstetter8:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter8.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter8:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter8.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter8.outputVoltage
+
+    meerstetter9:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter9.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter9:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter9.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter9.outputVoltage
+
+    meerstetter10:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter10.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter10:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter10.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter10.outputVoltage
+
+    meerstetter11:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter11.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter11:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter11.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter11.outputVoltage
+
+    meerstetter12:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter12.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter12:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter12.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter12.outputVoltage
+
+    meerstetter13:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter13.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter13:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter13.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter13.outputVoltage
+
+    meerstetter14:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter14.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter14:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter14.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter14.outputVoltage
+
+    meerstetter15:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter15.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter15:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter15.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter15.outputVoltage
+
+    meerstetter16:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter16.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter16:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter16.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter16.outputVoltage
+
+    meerstetter17:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter17.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter17:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter17.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter17.outputVoltage
+
+    meerstetter18:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter18.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter18:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter18.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter18.outputVoltage
+
+    meerstetter19:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter19.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter19:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter19.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter19.outputVoltage
+
+    meerstetter20:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter20.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter20:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter20.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter20.outputVoltage
+
+    meerstetter21:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter21.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter21:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter21.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter21.outputVoltage
+
+    meerstetter22:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter22.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter22:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter22.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter22.outputVoltage
+
+    meerstetter23:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter23.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter23:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter23.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter23.outputVoltage
+
+    meerstetter24:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter24.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter24:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter24.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter24.outputVoltage
+
+    meerstetter25:
+      sinkTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter25.sinkTemp
+      objectTemp:
+        codes:
+          - ghost:sad:cc:spe:meerstetter25:objectTemp.value
+      outputCurrent:
+        codes:
+          - ghost:sad:cc:spe:meerstetter25.outputCurrent
+      outputVoltage:
+        codes:
+          - ghost:sad:cc:spe:meerstetter25.outputVoltage
+  Cassegrain Unit mechanisms:
+    IFU-1:
+      stdResolution:
+        ra:
+          codes:
+            - ghost:sad:cc:cu:ifu1.ra
+        dec:
+          codes:
+            - ghost:sad:cc:cu:ifu1.dec
+        fpx:
+          codes:
+            - ghost:sad:cc:cu:ifu1.fpx
+        fpy:
+          codes:
+            - ghost:sad:cc:cu:ifu1.fpy
+      hiResolution:
+        ra:
+          codes:
+            - ghost:sad:cc:cu:ifu1.hi_ra
+        dec:
+          codes:
+            - ghost:sad:cc:cu:ifu1.hi_dec
+        fpx:
+          codes:
+            - ghost:sad:cc:cu:ifu1.hi_fpx
+        fpy:
+          codes:
+            - ghost:sad:cc:cu:ifu1.hi_fpy
+      sky:
+        ra:
+          codes:
+            - ghost:sad:cc:cu:ifu1.sky_ra
+        dec:
+          codes:
+            - ghost:sad:cc:cu:ifu1.sky_dec
+        fpx:
+          codes:
+            - ghost:sad:cc:cu:ifu1.sky_fpx
+        fpy:
+          codes:
+            - ghost:sad:cc:cu:ifu1.sky_fpy
+    IFU-2:
+      stdResolution:
+        ra:
+          codes:
+            - ghost:sad:cc:cu:ifu2.ra
+        dec:
+          codes:
+            - ghost:sad:cc:cu:ifu2.dec
+        fpx:
+          codes:
+            - ghost:sad:cc:cu:ifu2.fpx
+        fpy:
+          codes:
+            - ghost:sad:cc:cu:ifu2.fpy
+      hiResolution:
+        ra:
+          codes:
+            - ghost:sad:cc:cu:ifu2.hi_ra
+        dec:
+          codes:
+            - ghost:sad:cc:cu:ifu2.hi_dec
+        fpx:
+          codes:
+            - ghost:sad:cc:cu:ifu2.hi_fpx
+        fpy:
+          codes:
+            - ghost:sad:cc:cu:ifu2.hi_fpy
+      sky:
+        ra:
+          codes:
+            - ghost:sad:cc:cu:ifu2.sky_ra
+        dec:
+          codes:
+            - ghost:sad:cc:cu:ifu2.sky_dec
+        fpx:
+          codes:
+            - ghost:sad:cc:cu:ifu2.sky_fpx
+        fpy:
+          codes:
+            - ghost:sad:cc:cu:ifu2.sky_fpy
+    ADC-1:
+      prismA:
+        calc_angle:
+          codes:
+            - ghost:sad:cc:cu:adc1.calc_anglea
+        effective_angle:
+          codes:
+            - ghost:sad:cc:cu:adc1.anglea
+      prismB:
+        calc_angle:
+          codes:
+            - ghost:sad:cc:cu:adc1.calc_angleb
+        effective_angle:
+          codes:
+            - ghost:sad:cc:cu:adc1.angleb
+    ADC-2:
+      prismA:
+        calc_angle:
+          codes:
+            - ghost:sad:cc:cu:adc2.calc_anglea
+        effective_angle:
+          codes:
+            - ghost:sad:cc:cu:adc2.anglea
+      prismB:
+        calc_angle:
+          codes:
+            - ghost:sad:cc:cu:adc2.calc_angleb
+        effective_angle:
+          codes:
+            - ghost:sad:cc:cu:adc2.angleb
+  Cassegrain Unit:
+    Temperatures:
+      Electronics Rack 1:
+        codes:
+          - ghost:sad:cc:cu:electronicsRackTemp1.scaledValue
+      Electronics Rack 2:
+        codes:
+          - ghost:sad:cc:cu:electronicsRackTemp2.scaledValue
+      Air Temperature:
+        codes:
+          - ghost:sad:cc:cu:cassUnitAirTemp.scaledValue
+      Temperature 1:
+        codes:
+          - ghost:sad:cc:cu:cassUnitTemp1.scaledValue
+      Temperature 2:
+        codes:
+          - ghost:sad:cc:cu:cassUnitTemp2.scaledValue
+    Humidity:
+      codes:
+        - ghost:sad:cc:cu:cassUnitHumidity.scaledValue
+
+  Slit Unit:
+    Filter Wheel:
+      Position:
+        codes:
+          - ghost:sad:cc:slu:cfw.pos_name
+    Calibration Lamp:
+      HCL Power:
+        codes:
+          - ghost:sad:cc:slu:hclPower.value
+    Slit Mask:
+      Positioner:
+        codes:
+          - ghost:sad:cc:slu:smp.pos_name
+    Fiber Agitators:
+      FA1:
+        Active:
+          codes:
+            - ghost:sad:cc:slu:fa1.active
+        Amplitude:
+          codes:
+            - ghost:sad:cc:slu:fa1.amplitude
+        Frequency:
+          codes:
+            - ghost:sad:cc:slu:fa1.frequency
+      FA2:
+        Active:
+          codes:
+            - ghost:sad:cc:slu:fa2.active
+        Amplitude:
+          codes:
+            - ghost:sad:cc:slu:fa2.amplitude
+        Frequency:
+          codes:
+            - ghost:sad:cc:slu:fa2.frequency
+    Temperatures:
+      Electronics Rack 1:
+        codes:
+          - ghost:sad:cc:slu:electronicsRackTemp1.scaledValue
+      Electronics Rack 2:
+        codes:
+          - ghost:sad:cc:slu:electronicsRackTemp2.scaledValue
+      SV Camera:
+        codes:
+          - ghost:sad:cc:slu:svCameraTemp.scaledValue
+      A&G Camera:
+        codes:
+          - ghost:sad:cc:slu:agCameraTemp.scaledValue
+  Re-connect counters for AVT cameras and CAN interfaces:
+    A&G camera:
+      codes:
+        - ghost:sad:dc:ag.try_again
+    SV camera:
+      codes:
+        - ghost:sad:dc:sv.try_again
+    Cassegrain Unit:
+      codes:
+        - ghost:sad:cc:cu.try_again
+    Spectrograph CC:
+      codes:
+        - ghost:sad:cc:spe.try_again
+    Slit Unit CC:
+      codes:
+        - ghost:sad:cc:slu.try_again

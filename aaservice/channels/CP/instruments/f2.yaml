@@ -1,0 +1,187 @@
+F2:
+  Camera Cryostat Temperatures:
+    Bench Near Detector (Lakeshore Diode):
+      codes:
+        - f2:sad:DTEMPCHA
+    Detector Fanout Copper Block:
+      codes:
+        - f2:sad:DTEMPCHB
+    Detector Copper Frame:
+      codes:
+        - f2:sad:DTEMPCH8
+    Cold Finger by Detector:
+      codes:
+        - f2:sad:DTEMPCH6
+    Cold Head stage 1:
+      codes:
+        - f2:sad:DTEMPCH5
+    Bench Between Field Mirrors:
+      codes:
+        - f2:sad:DTEMPCH7
+
+  MOS Cryostat Temperatures:
+    Coldhead stage 1:
+      codes:
+        - f2:sad:DTEMPCH1
+    Coldhead stage 2:
+      codes:
+        - f2:sad:DTEMPCH2
+    Bench (Non Calib. Diode):
+      codes:
+        - f2:sad:DTEMPCH3
+    Bench (Lakeshore Diode):
+      codes:
+        - f2:sad:DTEMPCH4
+
+  Pressures:
+    Camera Pressure:
+      codes:
+        - f2:sad:DCAMVAC
+    MOS Pressure:
+      codes:
+        - f2:sad:DMOSVAC
+
+  Detector Heater Status:
+    Heater Power (%):
+      codes:
+        - f2:sad:DCHBAPWR
+
+  Focus stage:
+    Focus stage motor (counts):
+      codes:
+        - f2:sad:FOCUSTEP
+    Focus stage LVDT (volts):
+      codes:
+        - f2:sad:LVDTVLTS
+
+  F2 OIWFS Assembly:
+    Target Position X:
+      codes:
+        - f2:wfs:probeAssembly.A
+    Target Position Y:
+      codes:
+        - f2:wfs:probeAssembly.B
+    Actual Position X:
+      codes:
+        - f2:wfs:probeCalcPositionA
+    Actual Position Y:
+      codes:
+        - f2:wfs:probeCalcPositionB
+    Assembly Error Message:
+      codes:
+        - f2:wfs:probeAssembly.MESS
+    Follow flag:
+      codes:
+        - f2:wfs:followS
+
+  F2 OIWFS Base:
+    Base Target Angle:
+      codes:
+        - f2:wfs:probeBasDevice
+    Base Actual Angle:
+      codes:
+        - f2:wfs:probeAssembly.SIJ
+    Base Raw Motor:
+      codes:
+        - f2:wfs:probeBasDevice.RRBV
+    Base Raw Encoder:
+      codes:
+        - f2:wfs:probeBasDevice.RENC
+    Base Error Message:
+      codes:
+        - f2:wfs:probeBasDevice.MESS
+    Base Brake Status:
+      codes:
+        - f2:wfs:probeBasDevice.BRK
+
+  F2 OIWFS PickOff:
+    PickOff Target Angle:
+      codes:
+        - f2:wfs:probePkoDevice
+    PickOff Actual Angle:
+      codes:
+        - f2:wfs:probeAssembly.SIK
+    PickOff Raw Motor:
+      codes:
+        - f2:wfs:probePkoDevice.RRBV
+    PickOff Raw Encoder:
+      codes:
+        - f2:wfs:probePkoDevice.RENC
+    PickOff Error Message:
+      codes:
+        - f2:wfs:probePkoDevice.MESS
+    PickOff Brake Status:
+      codes:
+        - f2:wfs:probePkoDevice.BRK
+
+  L1 Temperatures:
+    L1 lens near mounting pad -6 degrees:
+      codes:
+        - f2:sad:DLTMPCH1
+    L1 lens midway between mounting pads -60 degrees:
+      codes:
+        - f2:sad:DLTMPCH2
+    L1 lens near mounting pad +6 degrees:
+      codes:
+        - f2:sad:DLTMPCH3
+    L1 cell in line with mounting pad - back:
+      codes:
+        - f2:sad:DLTMPCH4
+    L1 lens midway between mounting pads +60 degrees:
+      codes:
+        - f2:sad:DLTMPCH5
+    L1 mounting pad - front:
+      codes:
+        - f2:sad:DLTMPCH6
+    L1 cell in line with mounting pad - front:
+      codes:
+        - f2:sad:DLTMPCH7
+    L1 baffle end in line with mounting pad:
+      codes:
+        - f2:sad:DLTMPCH8
+
+  F2 OIWFS Temperatures:
+    Head Temperature:
+      codes:
+        - f2oi:dc:headTemp
+    Arm Temperature:
+      codes:
+        - f2oi:dc:armTemp
+    SDSU Temperature:
+      codes:
+        - f2oi:dc:sdsuTemp
+    F2 Wheels positions:
+      Window:
+        codes:
+          - f2:sad:WINSTEP
+      MOS:
+        codes:
+          - f2:sad:MOSSTEP
+      Decker:
+        codes:
+          - f2:sad:DCKRSTEP
+      Filter 1:
+        codes:
+          - f2:sad:FIL1STEP
+      Lyot:
+        codes:
+          - f2:sad:LYOTSTEP
+      Filter 2:
+        codes:
+          - f2:sad:FIL2STEP
+      Grism:
+        codes:
+          - f2:sad:GRSMSTEP
+      Focus:
+        codes:
+          - f2:sad:FOCUSTEP
+      ALL:
+        codes:
+          - f2:sad:WINSTEP
+          - f2:sad:MOSSTEP
+          - f2:sad:DCKRSTEP
+          - f2:sad:FIL1STEP
+          - f2:sad:LYOTSTEP
+          - f2:sad:FIL2STEP
+          - f2:sad:GRSMSTEP
+          - f2:sad:FOCUSTEP
