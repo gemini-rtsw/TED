@@ -10,7 +10,7 @@ from waitress import serve
 import xmlrpc.client as XmlClient
 from flask_cors import CORS
 from cache import initializeCache, updateArchivesCache, updateChannelsCache
-from utils import setNPoints, processChannels, identifyArchive
+from utils import setNPoints, processChannels, identifyArchive, checkType
 from fetchValues import fetchValues
 
 # Initialize Flask application
@@ -141,6 +141,7 @@ def getValues():
                 logging.info(f"Retrieval mode is {valueMode}.")
                 logging.info(f"Retrieving values for channels: {channelsList}.")
                 output = fetchValues(gea, channelsListByArchiveDict, dateFrom, dateTo, nPoints, valueMode,archivesCache)
+                checkType(output)
                 logging.info("Successfully retrieved values.")
         except Exception as e:
             logging.error(f"Failed to retrieve values: {e}")
