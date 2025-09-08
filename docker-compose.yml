@@ -253,7 +253,7 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
     image: aaservice:0.1
-    command: python3 -u /aaservice/aaservice.py
+    command: uvicorn aaservice:app --host 0.0.0.0 --port 8000
     restart: unless-stopped
     network_mode: "host"
     volumes:

@@ -1,5 +1,4 @@
-flask
-waitress
-requests
-simplejson
+fastapi
+uvicorn
+httpx
 PyYAML
