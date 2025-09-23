@@ -63,10 +63,10 @@ F2:
         - f2:wfs:probeAssembly.B
     Actual Position X:
       codes:
-        - f2:wfs:probeCalcPositionA
+        - f2:wfs:probeCalcPosition.VALA
     Actual Position Y:
       codes:
-        - f2:wfs:probeCalcPositionB
+        - f2:wfs:probeCalcPosition.VALB
     Assembly Error Message:
       codes:
         - f2:wfs:probeAssembly.MESS

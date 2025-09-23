@@ -11,7 +11,10 @@ ECS:
         - ec:topShtrErr
     Drive Currents:
       codes:
-        - ec:sh:t1.
+        - ec:sh:b2w
+        - ec:sh:b2x
+        - ec:sh:b2y
+        - ec:sh:b2z
     Current Sum:
       codes:
         - ec:sh:tsum
