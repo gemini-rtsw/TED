@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   logstash02:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:8.19.0
     hostname: logstash02
     container_name: ls02
 

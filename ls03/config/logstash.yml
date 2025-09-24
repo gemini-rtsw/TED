@@ -1,5 +1,5 @@
 node.name: ls03
-http.host: ${HOST}
-xpack.monitoring.elasticsearch.hosts: [ "${HOST}:9200" ]
+http.host: ${HOST_IP}
+xpack.monitoring.elasticsearch.hosts: [ "${HOST_IP}:9200" ]
 xpack.monitoring.enabled: true
 config.reload.automatic: true
