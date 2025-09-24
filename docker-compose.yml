@@ -68,7 +68,7 @@ services:
       - ${DATA_PATH}/es02:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://{HOST}:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://${HOST}:9200/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -92,7 +92,7 @@ services:
 
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http://{HOST}:9200"
+      ELASTICSEARCH_HOSTS: "http://${HOST}:9200"
       elasticsearch.ssl.verificationMode: "none"
 
     depends_on:
