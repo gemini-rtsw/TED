@@ -204,7 +204,7 @@ services:
     volumes:
       - ./ls04/config:/usr/share/logstash/config
       - ./ls04/pipeline:/usr/share/logstash/pipeline
-      - ${LOGS_PATH}:/usr/logs/log
+      - ${LOGS_PATH}/ghost/cicada:/usr/logs/log/ghost/cicada
       - ${DATA_PATH}/ls04/db:/db
       - /etc/localtime:/etc/localtime
 
