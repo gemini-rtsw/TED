@@ -18,6 +18,9 @@ services:
         - GID=${G_ID}
 
     network_mode: "host"
+    
+    environment:
+      HOST: "${HOST}"
 
     volumes:
       - ./es01/config:/usr/share/elasticsearch/config
@@ -25,7 +28,7 @@ services:
       - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://172.17.71.25:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http:/${HOST}:9200/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -56,13 +59,16 @@ services:
 
     network_mode: "host"
 
+    environment:
+      HOST: "${HOST}"
+
     volumes:
       - ./es02/config:/usr/share/elasticsearch/config
       - ./es02/logs:/usr/share/elasticsearch/logs
       - ${DATA_PATH}/es02:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://172.17.71.27:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://{HOST}:9200/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -86,7 +92,7 @@ services:
 
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http://172.17.71.27:${ES01_PORT}"
+      ELASTICSEARCH_HOSTS: "http://{HOST}:9200"
       elasticsearch.ssl.verificationMode: "none"
 
     depends_on:
@@ -120,7 +126,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.27:${ES01_PORT}"
+      HOST: "${HOST}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -157,7 +163,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.27:${ES01_PORT}"
+      HOST: "${HOST}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -194,7 +200,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.25:${ES01_PORT}"
+      HOST: "${HOST}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -230,7 +236,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.25:${ES01_PORT}"
+      HOST: "${HOST}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -297,11 +303,6 @@ services:
 
     network_mode: "host"
 
-    environment:
-      GF_RENDERING_SERVER_URL: "http://172.17.71.25:8081/render"
-      GF_RENDERING_CALLBACK_URL: "http://172.17.71.25:3000/"
-      GF_LOG_FILTERS: "rendering:debug"
-
     volumes:
       - ./gr01/grafana-data:/var/lib/grafana
       - ./gr01/conf/grafana.ini:/etc/grafana/grafana.ini
@@ -311,17 +312,3 @@ services:
       options:
         max-size: 100m
         max-file: 1
-
-
-#################################################################################################################
-
-  renderer:
-    image: grafana/grafana-image-renderer:3.11.3
-    hostname: renderer
-    container_name: gr01-render
-    restart: unless-stopped
-    network_mode: "host" 
-    volumes:
-      - ./gr01/render/config.json:/usr/src/app/config.json
-
-#################################################################################################################

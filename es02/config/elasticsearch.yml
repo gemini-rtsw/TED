@@ -1,7 +1,7 @@
 cluster.name: "elastic"
 node.name: es02
-network.host: 172.17.71.27
-transport.host: 172.17.71.27
+network.host: "${HOST}"
+transport.host: "${HOST}"
 node.roles: [ "master","data","remote_cluster_client"]
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
