@@ -163,7 +163,7 @@ services:
     volumes:
       - ./ls03/config:/usr/share/logstash/config
       - ./ls03/pipeline:/usr/share/logstash/pipeline
-      - ${LOGS_PATH}:/usr/logs/log
+      - ${LOGS_PATH}/serialcon:/usr/logs/log/serialcon
       - ${DATA_PATH}/ls03/db:/db
       - /etc/localtime:/etc/localtime
 
