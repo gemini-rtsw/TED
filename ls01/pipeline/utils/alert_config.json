@@ -133,20 +133,6 @@
       { "service": "email", "to": ["swc-gs@gemini.edu"] }
     ],
     "source": "logstash"
-  },
-  {
-    "ruleName": "WFS SDSU failure - Alarm",
-    "subsystem": "",
-    "expression": "errno.*sdsuLib\.c",
-    "alertMessage":"It is necessary to restart the Wavefront sensor",
-    "exclude": [],
-    "interval":[1,0],
-    "triggerAlarm": [
-      { "service": "slack" },
-      { "service": "email", "to": ["miguel.gomez@noirlab.edu","oscar.fuentes@noirlab.edu"] }
-    ],
-    "source": "logstash"
   }
-
 ]
 
