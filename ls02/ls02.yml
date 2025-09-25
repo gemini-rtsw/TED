@@ -9,7 +9,7 @@ services:
 
     environment:
       LOGSTASH_MODE: read
-      HOST: "http://{HOST}:9200"
+      HOST_IP: "${HOST_IP}"
       TIMEZONE: "${LS_TIMEZONE}"
       DAY: "${DAY}"
       MONTH: "${MONTH}"
