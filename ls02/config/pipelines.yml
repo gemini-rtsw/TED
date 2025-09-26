@@ -1,6 +1,5 @@
-- pipeline.id: serialcon-flamingos-2-${LOGSTASH_MODE}
+- pipeline.id: cpo-ghost-gmp-server-${LOGSTASH_MODE}
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/serialcon/flamperle/flamperle.cfg"
+  path.config: /usr/share/logstash/pipeline/cpo/ghost/gmp-server.cfg
   queue.type: persisted
   queue.max_bytes: 100mb
-
