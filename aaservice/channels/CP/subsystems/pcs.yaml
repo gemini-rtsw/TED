@@ -3,125 +3,125 @@ PCS:
     X-Def:
       Enc+Dmd:
         codes:
-          - m1:MCB001:M1.Encoder
-          - m1:MCB001:M1.MotDmd
+          - m1:MCB001:M1:Encoder
+          - m1:MCB001:M1:MotDmd
       PosnErr:
         codes:
-          - m1:MCB001:M1.PosnErr
+          - m1:MCB001:M1:PosnErr
     Lat +X:
       Enc+Dmd:
         codes:
-          - m1:MCB036:M1.Encoder
-          - m1:MCB036:M1.MotDmd
+          - m1:MCB036:M1:Encoder
+          - m1:MCB036:M1:MotDmd
       PosnErr:
         codes:
-          - m1:MCB036:M1.PosnErr
+          - m1:MCB036:M1:PosnErr
     Lat -X:
       Enc+Dmd:
         codes:
-          - m1:MCB035:M2.Encoder
-          - m1:MCB035:M2.MotDmd
+          - m1:MCB035:M2:Encoder
+          - m1:MCB035:M2:MotDmd
       PosnErr:
         codes:
-          - m1:MCB035:M2.PosnErr
+          - m1:MCB035:M2:PosnErr
     Coarses:
       Coarse 1:
         Enc+Dmd:
           codes:
-            - m1:MCB005:M1.Encoder
-            - m1:MCB005:M1.MotDmd
+            - m1:MCB005:M1:Encoder
+            - m1:MCB005:M1:MotDmd
         PosnErr:
           codes:
-            - m1:MCB005:M1.PosnErr
+            - m1:MCB005:M1:PosnErr
       Coarse 2:
         Enc+Dmd:
           codes:
-            - m1:MCB006:M1.Encoder
-            - m1:MCB006:M1.MotDmd
+            - m1:MCB006:M1:Encoder
+            - m1:MCB006:M1:MotDmd
         PosnErr:
           codes:
-            - m1:MCB006:M1.PosnErr
+            - m1:MCB006:M1:PosnErr
       Coarse 3:
         Enc+Dmd:
           codes:
-            - m1:MCB010:M1.Encoder
-            - m1:MCB010:M1.MotDmd
+            - m1:MCB010:M1:Encoder
+            - m1:MCB010:M1:MotDmd
         PosnErr:
           codes:
-            - m1:MCB010:M1.PosnErr
+            - m1:MCB010:M1:PosnErr
       Coarse 4:
         Enc+Dmd:
           codes:
-            - m1:MCB027:M1.Encoder
-            - m1:MCB027:M1.MotDmd
+            - m1:MCB027:M1:Encoder
+            - m1:MCB027:M1:MotDmd
         PosnErr:
           codes:
-            - m1:MCB027:M1.PosnErr
+            - m1:MCB027:M1:PosnErr
       Coarse 5:
         Enc+Dmd:
           codes:
-            - m1:MCB031:M1.Encoder
-            - m1:MCB031:M1.MotDmd
+            - m1:MCB031:M1:Encoder
+            - m1:MCB031:M1:MotDmd
         PosnErr:
           codes:
-            - m1:MCB031:M1.PosnErr
+            - m1:MCB031:M1:PosnErr
       Coarse 6:
         Enc+Dmd:
           codes:
-            - m1:MCB032:M1.Encoder
-            - m1:MCB032:M1.MotDmd
+            - m1:MCB032:M1:Encoder
+            - m1:MCB032:M1:MotDmd
         PosnErr:
           codes:
-            - m1:MCB032:M1.PosnErr
+            - m1:MCB032:M1:PosnErr
     Fines:
       Fine 1:
         Enc+Dmd:
           codes:
-            - m1:MCB005:M2.Encoder
-            - m1:MCB005:M2.MotDmd
+            - m1:MCB005:M2:Encoder
+            - m1:MCB005:M2:MotDmd
         PosnErr:
           codes:
-            - m1:MCB005:M2.PosnErr
+            - m1:MCB005:M2:PosnErr
       Fine 2:
         Enc+Dmd:
           codes:
-            - m1:MCB006:M2.Encoder
-            - m1:MCB006:M2.MotDmd
+            - m1:MCB006:M2:Encoder
+            - m1:MCB006:M2:MotDmd
         PosnErr:
           codes:
-            - m1:MCB006:M2.PosnErr
+            - m1:MCB006:M2:PosnErr
       Fine 3:
         Enc+Dmd:
           codes:
-            - m1:MCB010:M2.Encoder
-            - m1:MCB010:M2.MotDmd
+            - m1:MCB010:M2:Encoder
+            - m1:MCB010:M2:MotDmd
         PosnErr:
           codes:
-            - m1:MCB010:M2.PosnErr
+            - m1:MCB010:M2:PosnErr
       Fine 4:
         Enc+Dmd:
           codes:
-            - m1:MCB027:M2.Encoder
-            - m1:MCB027:M2.MotDmd
+            - m1:MCB027:M2:Encoder
+            - m1:MCB027:M2:MotDmd
         PosnErr:
           codes:
-            - m1:MCB027:M2.PosnErr
+            - m1:MCB027:M2:PosnErr
       Fine 5:
         Enc+Dmd:
           codes:
-            - m1:MCB031:M2.Encoder
-            - m1:MCB031:M2.MotDmd
+            - m1:MCB031:M2:Encoder
+            - m1:MCB031:M2:MotDmd
         PosnErr:
           codes:
-            - m1:MCB031:M2.PosnErr
+            - m1:MCB031:M2:PosnErr
       Fine 6:
         Enc+Dmd:
           codes:
-            - m1:MCB032:M2.Encoder
-            - m1:MCB032:M2.MotDmd
+            - m1:MCB032:M2:Encoder
+            - m1:MCB032:M2:MotDmd
         PosnErr:
           codes:
-            - m1:MCB032:M2.PosnErr
+            - m1:MCB032:M2:PosnErr
   Hydraulics:
     Axial Load:
       Sector 1:
