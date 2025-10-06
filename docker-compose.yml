@@ -3,7 +3,7 @@ services:
 #######################################################################################################
 
   elasticsearch:
-    image: ted-elasticsearch:8.15.0
+    image: ted-elasticsearch:9.1.4
     hostname: elasticsearch
     container_name: es01
     restart: unless-stopped
@@ -18,14 +18,16 @@ services:
         - GID=${G_ID}
 
     network_mode: "host"
+    
+    environment:
+      HOST_IP: "${HOST_IP}"
 
     volumes:
       - ./es01/config:/usr/share/elasticsearch/config
-      - ./es01/logs:/usr/share/elasticsearch/logs
       - ${DATA_PATH}/es01:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://172.17.71.25:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http:/${HOST_IP}:9200/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -40,7 +42,7 @@ services:
 ############################################################################################################
 
   elasticsearch-2:
-    image: ted-elasticsearch:8.15.0
+    image: ted-elasticsearch:9.1.4
     hostname: elasticsearch-2
     container_name: es02
     restart: unless-stopped
@@ -56,13 +58,15 @@ services:
 
     network_mode: "host"
 
+    environment:
+      HOST_IP: "${HOST_IP}"
+
     volumes:
       - ./es02/config:/usr/share/elasticsearch/config
-      - ./es02/logs:/usr/share/elasticsearch/logs
       - ${DATA_PATH}/es02:/usr/share/elasticsearch/data
 
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://172.17.71.27:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://${HOST_IP}:9200/_cluster/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -77,7 +81,7 @@ services:
 ############################################################################################################
 
   kibana:
-    image: kibana:8.15.0
+    image: kibana:9.1.4
     hostname: kibana
     container_name: ki01
     restart: unless-stopped
@@ -86,7 +90,7 @@ services:
 
     environment:
       INTERACTIVESETUP_ENABLED: false
-      ELASTICSEARCH_HOSTS: "http://172.17.71.27:${ES01_PORT}"
+      ELASTICSEARCH_HOSTS: "http://${HOST_IP}:9200"
       elasticsearch.ssl.verificationMode: "none"
 
     depends_on:
@@ -102,7 +106,7 @@ services:
 #################################################################################################################
 
   logstash:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:9.1.4
     hostname: logstash
     container_name: ls01
     restart: unless-stopped
@@ -120,7 +124,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.27:${ES01_PORT}"
+      HOST_IP: "${HOST_IP}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -139,7 +143,7 @@ services:
 #################################################################################################################
 
   logstash-daily:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:9.1.4
     hostname: logstash-daily
     container_name: ls03
     restart: unless-stopped
@@ -157,7 +161,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.27:${ES01_PORT}"
+      HOST_IP: "${HOST_IP}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -176,7 +180,7 @@ services:
 #################################################################################################################
   
   logstash-4:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:9.1.4
     hostname: logstash-4
     container_name: ls04
     restart: unless-stopped
@@ -194,13 +198,13 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.25:${ES01_PORT}"
+      HOST_IP: "${HOST_IP}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
       - ./ls04/config:/usr/share/logstash/config
       - ./ls04/pipeline:/usr/share/logstash/pipeline
-      - ${LOGS_PATH}:/usr/logs/log
+      - ${LOGS_PATH}/ghost/cicada:/usr/logs/log/ghost/cicada
       - ${DATA_PATH}/ls04/db:/db
       - /etc/localtime:/etc/localtime
 
@@ -212,7 +216,7 @@ services:
 
 #################################################################################################################
   logstash-5:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:9.1.4
     hostname: logstash-5
     container_name: ls05
     restart: unless-stopped
@@ -230,7 +234,7 @@ services:
 
     environment:
       LOGSTASH_MODE: tail
-      HOST_1: "172.17.71.25:${ES01_PORT}"
+      HOST_IP: "${HOST_IP}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
@@ -297,11 +301,6 @@ services:
 
     network_mode: "host"
 
-    environment:
-      GF_RENDERING_SERVER_URL: "http://172.17.71.25:8081/render"
-      GF_RENDERING_CALLBACK_URL: "http://172.17.71.25:3000/"
-      GF_LOG_FILTERS: "rendering:debug"
-
     volumes:
       - ./gr01/grafana-data:/var/lib/grafana
       - ./gr01/conf/grafana.ini:/etc/grafana/grafana.ini
@@ -311,17 +310,3 @@ services:
       options:
         max-size: 100m
         max-file: 1
-
-
-#################################################################################################################
-
-  renderer:
-    image: grafana/grafana-image-renderer:3.11.3
-    hostname: renderer
-    container_name: gr01-render
-    restart: unless-stopped
-    network_mode: "host" 
-    volumes:
-      - ./gr01/render/config.json:/usr/src/app/config.json
-
-#################################################################################################################

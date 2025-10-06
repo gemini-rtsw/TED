@@ -1,4 +1,4 @@
-FROM grafana/grafana:11.1.4-ubuntu
+FROM grafana/grafana:12.3.0-17962464148-ubuntu
 
 ARG UID
 ARG USER

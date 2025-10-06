@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   logstash02:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:9.1.4
     hostname: logstash02
     container_name: ls02
 
@@ -9,7 +9,7 @@ services:
 
     environment:
       LOGSTASH_MODE: read
-      HOST_1: "http://172.17.71.25:${ES01_PORT}"
+      HOST_IP: "${HOST_IP}"
       TIMEZONE: "${LS_TIMEZONE}"
       DAY: "${DAY}"
       MONTH: "${MONTH}"
