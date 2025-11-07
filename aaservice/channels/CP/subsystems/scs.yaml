@@ -160,7 +160,9 @@ SCS:
         - m2:act1Diag.VALB
         - m2:act2Diag.VALB
         - m2:act3Diag.VALB
-
+  Focus:
+    codes:
+      - m2:real.VALE
   Baffle Status:
     Deploy/Demand:
       codes:

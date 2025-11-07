@@ -125,26 +125,26 @@ PCS:
   Hydraulics:
     Axial Load:
       Sector 1:
-      codes:
-        - m1:pss:ps:AxHydLoad.VALA
-    Sector 2:
-      codes:
-        - m1:pss:ps:AxHydLoad.VALB
-    Sector 3:
-      codes:
-        - m1:pss:ps:AxHydLoad.VALC
-    Sector 4:
-      codes:
-        - m1:pss:ps:AxHydLoad.VALD
-    Sector 5:
-      codes:
-        - m1:pss:ps:AxHydLoad.VALE
-    Sector 6:
-      codes:
-        - m1:pss:ps:AxHydLoad.VALF
-    Total:
-      codes:
-        - m1:axialLoad
+        codes:
+          - m1:pss:ps:AxHydLoad.VALA
+      Sector 2:
+        codes:
+          - m1:pss:ps:AxHydLoad.VALB
+      Sector 3:
+        codes:
+          - m1:pss:ps:AxHydLoad.VALC
+      Sector 4:
+        codes:
+          - m1:pss:ps:AxHydLoad.VALD
+      Sector 5:
+        codes:
+          - m1:pss:ps:AxHydLoad.VALE
+      Sector 6:
+        codes:
+          - m1:pss:ps:AxHydLoad.VALF
+      Total:
+        codes:
+          - m1:axialLoad
     Axial Master Cylinder Pressures (psi):
       1:
         codes:
@@ -781,6 +781,23 @@ PCS:
       codes:
         - m1:PNB014:PnuDemand
         - m1:PNB014:JocPressure
+    Air-Bag (Everything):
+      codes:
+        - m1:PNB004:PnuDemand
+        - m1:PNB004:JocPressure
+        - m1:PNB009:PnuDemand
+        - m1:PNB009:JocPressure
+        - m1:PNB015:PnuDemand
+        - m1:PNB015:JocPressure
+        - m1:PNB022:PnuDemand
+        - m1:PNB022:JocPressure
+        - m1:PNB028:PnuDemand
+        - m1:PNB028:JocPressure
+        - m1:PNB033:PnuDemand
+        - m1:PNB033:JocPressure
+    Out Select:
+      codes:
+        - m1:apss:outSel
   Temperature:
     Mean Air:
       codes:

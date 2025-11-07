@@ -1,0 +1,287 @@
+GWS:
+  Weather Data:
+    Temperature:
+      codes:
+        - ws:cpTemp50m
+    Pressure:
+      codes:
+        - ws:cpPress
+    Wind Speed:
+      codes:
+        - ws:cpWindSpeed
+    Wind Direction:
+      codes:
+        - ws:cpWindDir
+    Humidity:
+      codes:
+        - ws:cpHumid
+    Dew Point:
+      codes:
+        - ws:wsDew
+    Precipitable water vapor:
+      codes:
+        - ws:pwv
+  Telescope temperature sensors:
+    Top End:
+      Air temp.  -X:
+        codes:
+          - ws:tpAtTeMx
+      Surface temp. -X:
+        codes:
+          - ws:tpStTeMx
+      Air tempe. +X:
+        codes:
+          - ws:tpAtTePx
+      Surface temperature  +X:
+        codes:
+          - ws:tpStTePx
+    Truss:
+      Air temp.  -X:
+        codes:
+          - ws:tpAtMtMx
+      Surface temp.  -X:
+        codes:
+          - ws:tpStMtMx
+      Air temp.  +X:
+        codes:
+          - ws:tpAtMtPx
+      Surface temp. +X:
+        codes:
+          - ws:tpStMtPx
+    Lower Truss:
+      Air temp. -X:
+        codes:
+          - ws:tpAtLtMx
+      Surface temp. -X:
+        codes:
+          - ws:tpStLtMx
+      Air temp. -X:
+        codes:
+          - ws:tpAtLtPx
+      Surface temp. -X:
+        codes:
+          - ws:tpStLtPx
+    M1:
+      M1 Temperature +Y:
+        codes:
+          - ws:tpStSfUp
+      M1 Temperature -Y:
+        codes:
+          - ws:tpStSfDn
+  Telescope Wind sensors:
+    Top End:
+      Wind Speed.  -X:
+        codes:
+          - ws:tpUaMxSpeed3D
+      Wind Direction. -X:
+        codes:
+          - ws:tpUaMxWindAz
+      Wind Speed.  +X:
+        codes:
+          - ws:tpUaPxSpeed3D
+      Wind Direction. +X:
+        codes:
+          - ws:tpUaPxWindAz
+      Wind Speed.  Top End:
+        codes:
+          - ws:tpUaTeSpeed3D
+      Wind Direction. Top End:
+        codes:
+          - ws:tpUaTeWindAz
+  Telescope Humidity sensor:
+    Telescope Relative Humidity:
+      codes:
+        - ws:tpHsPxRh
+    Telescope Dew Point:
+      codes:
+        - ws:tpHsPxTd
+  Particle monitor:
+    0.3 micron:
+      codes:
+        - ws:tpPmPxChan1
+    0.5 micron:
+      codes:
+        - ws:tpPmPxChan2
+    0.7 micron:
+      codes:
+        - ws:tpPmPxChan3
+    1.0 micron:
+      codes:
+        - ws:tpPmPxChan4
+    2.0 micron:
+      codes:
+        - ws:tpPmPxChan5
+    3.0 micron:
+      codes:
+        - ws:tpPmPxChan6
+    5.0 micron:
+      codes:
+        - ws:tpPmPxChan7
+    10.0 micron:
+      codes:
+        - ws:tpPmPxChan8
+    Error messages:
+      codes:
+        - ws:tpPmPxErr
+    Temperature:
+      codes:
+        - ws:tpPmPxTemp
+    Humidity:
+      codes:
+        - ws:tpPmPxRH
+    Air flow lpm:
+      codes:
+        - ws:tpPmPxFlow
+    All:
+      codes:
+        - ws:tpPmPxChan1
+        - ws:tpPmPxChan2
+        - ws:tpPmPxChan3
+        - ws:tpPmPxChan4
+        - ws:tpPmPxChan5
+        - ws:tpPmPxChan6
+        - ws:tpPmPxChan7
+        - ws:tpPmPxChan8
+  Site Monitoring:
+    RINGSS (first value 2024-10-21):
+      UTC datetime:
+        codes:
+          - ws:ringssDateTimeUTC
+      Catalogue HR number:
+        codes:
+          - ws:ringssStar
+      Zenith distance:
+        codes:
+          - ws:ringssZen
+      Total flux in electrons:
+        codes:
+          - ws:ringssFlux
+      Seeing profile-adjusted weight in arcseconds:
+        codes:
+          - ws:ringssSee2
+      Seeing in arcseconds:
+        codes:
+          - ws:ringssSee
+      FA seeing in arcseconds (1km and above):
+        codes:
+          - ws:ringssFsee
+      Effective wind speed in meters per second:
+        codes:
+          - ws:ringssWind
+      Time constant:
+        codes:
+          - ws:ringssTau0
+      Isoplanatic angle:
+        codes:
+          - ws:ringssTheta0
+      Total variance:
+        codes:
+          - ws:ringssTotvar
+      Error RMS residual:
+        codes:
+          - ws:ringssErms
+      Zenith-corrected integral at 0m in m1/3:
+        codes:
+          - ws:ringssJ0
+      Zenith-corrected integral at 250m in m1/3:
+        codes:
+          - ws:ringssJ025
+      Zenith-corrected integral at 500m in m1/3:
+        codes:
+          - ws:ringssJ05
+      Zenith-corrected integral at 1km in m1/3:
+        codes:
+          - ws:ringssJ1
+      Zenith-corrected integral at 2km in m1/3:
+        codes:
+          - ws:ringssJ2
+      Zenith-corrected integral at 4km in m1/3:
+        codes:
+          - ws:ringssJ4
+      Zenith-corrected integral at 8km in m1/3:
+        codes:
+          - ws:ringssJ8
+      Zenith-corrected integral at 16km in m1/3:
+        codes:
+          - ws:ringssJ16
+
+    Water vapor monitor:
+      Precipitable water vapor:
+        codes:
+          - ws:pwv
+
+    Pier Lab:
+      Air sensor 2 meters above floor:
+        codes:
+          - ws:pltAbPl
+      Air sensor 2 meters above and 3 meters away:
+        codes:
+          - ws:pltAbAwPl
+      Surface sensor floor:
+        codes:
+          - ws:pltFlPl
+      Air sensor outside pier lab:
+        codes:
+          - ws:pltAbOuPl
+      Barometric pressure sensor:
+        codes:
+          - ws:plyng0Pressure
+
+    Data Logger:
+      Temperature 1:
+        codes:
+          - ws:dlD1Temp1
+      Relative humidity 1:
+        codes:
+          - ws:dlD1Rh1
+      Dew point 1:
+        codes:
+          - ws:dlD1DewPoint1
+      Temperature 2:
+        codes:
+          - ws:dlD1Temp2
+      Relative humidity 2:
+        codes:
+          - ws:dlD1Rh2
+      Dewpoint 2:
+        codes:
+          - ws:dlD1DewPoint2
+      Atmospheric Pressure:
+        codes:
+          - ws:dlD1Press
+      Snow:
+        codes:
+          - ws:dlD1Snow
+      Ice:
+        codes:
+          - ws:dlD1Ice
+
+    Precipitation sensors:
+      Precipitation sensor 1:
+        codes:
+          - ws:ptAlarm1
+      Precipitation sensor 2:
+        codes:
+          - ws:ptAlarm2
+      Precipitation sensor 3:
+        codes:
+          - ws:ptAlarm3
+      Precipitation sensor 4:
+        codes:
+          - ws:ptAlarm4
+
+    WFS SDSU temperatures:
+      P1WFS SDSU Temperture (Deg C):
+        codes:
+          - ws:tpAgP1
+      P2WFS SDSU Temperture (Deg C):
+        codes:
+          - ws:tpAgP2
+      HRWFS SDSU Temperture (Deg C):
+        codes:
+          - ws:tpAgHr
+      All WFS SDSU Temperture (Deg C):
+        codes:
+          - ws:tpAgP1
+          - ws:tpAgP2
+          - ws:tpAgHr
