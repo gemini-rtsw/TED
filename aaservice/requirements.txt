@@ -2,3 +2,5 @@ fastapi
 uvicorn
 httpx
 PyYAML
+pyepics
+mysql-connector-python
