@@ -193,7 +193,7 @@ services:
   archappl:
     container_name: "${APPLIANCE_NAME}"
     hostname: "${APPLIANCE_NAME}"
-    mem_limit: 5G
+    mem_limit: 6G
     build:
       context: ./archappl
       dockerfile: Dockerfile
@@ -213,7 +213,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      MYSQL_CONNECTION_STRING: "--user=archappl --password=archappl --database=archappl --host=127.0.0.1"
+      MYSQL_CONNECTION_STRING: "--user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} --host=${MYSQL_HOST}"
       ARCHAPPL_MYIDENTITY: ${APPLIANCE_NAME}
       EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
       EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
@@ -254,7 +254,14 @@ services:
         - GROUP=${GROUP}
         - GID=${G_ID}
     image: aaservice:0.1
-    command: uvicorn aaservice:app --host 0.0.0.0 --port 8000
+    environment:
+      EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
+      EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_HOST: ${MYSQL_HOST}
+    command: uvicorn aaservice:app --host 0.0.0.0 --port 8000 --reload
     restart: unless-stopped
     network_mode: "host"
     volumes:
