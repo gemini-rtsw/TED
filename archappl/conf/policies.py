@@ -59,7 +59,7 @@ def determinePolicy(pvInfoDict):
     pvPolicyDict = {}
     userPolicyOverride = pvInfoDict.get("policyName")
     if userPolicyOverride in ["Save all values", None]:
-        if pvInfoDict.get("SCAN") and  pvInfoDict["SCAN"] != "I/O Intr" and pvInfoDict["SCAN"] != "Passive":
+        if pvInfoDict.get("SCAN") and  pvInfoDict["SCAN"] != "I/O Intr" and pvInfoDict["SCAN"] != "Passive" and pvInfoDict["SCAN"] != "Event":
             pvPolicyDict["samplingPeriod"] = float(pvInfoDict["SCAN"].split()[0])
         else:
             pvPolicyDict["samplingPeriod"] = float(round_well(pvInfoDict["eventRate"]))
