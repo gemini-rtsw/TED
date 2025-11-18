@@ -7,29 +7,93 @@
       "type": "datasource",
       "pluginId": "marcusolsson-json-datasource",
       "pluginName": "JSON API"
-    },
-    {
-      "name": "DS_ARCHIVERAPPLIANCE",
-      "label": "ArchiverAppliance",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "sasaki77-archiverappliance-datasource",
-      "pluginName": "ArchiverAppliance"
     }
   ],
-  "__elements": {},
+  "__elements": {
+    "bf2n6ddxksr28c": {
+      "name": "Channel Selector",
+      "uid": "bf2n6ddxksr28c",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "aepy5iqt7ke80c"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "options": {
+          "afterRender": "const isHome = context.grafana.replaceVariables(\"${isHome}\");\nconsole.log(isHome);\n\nconst container = document.getElementById('pvTree');\nif (container) container.innerHTML = \"\";\n\nconst jsonString = context.data[0][0].pvTree;\nconst data = JSON.parse(jsonString);\nconst catBtns = document.getElementsByClassName('catBtn');\n\nArray.from(catBtns).forEach(catBtn => {\n  catBtn.addEventListener(\"click\", (e) => {\n    context.grafana.locationService.partial({\n      'var-pvTreeCategory': e.target.textContent.toLowerCase()\n    }, true);\n  });\n})\n\nfunction collapseAll() {\n  document.querySelectorAll('.children').forEach(el => {\n    el.classList.add('hidden');\n  });\n  document.querySelectorAll('.expand-icon').forEach(icon => {\n    icon.textContent = '▶';\n  });\n  Object.keys(localStorage)\n    .filter(k => k.startsWith(\"treeExpanded:\"))\n    .forEach(k => localStorage.setItem(k, \"false\"));\n}\n\nconst collBtn = document.getElementById('collBtn');\ncollBtn.addEventListener(\"click\", () => {\n  collapseAll();\n});\n\n\nconst searchInput = document.getElementById('treeSearch');\n\nsearchInput.addEventListener('input', () => {\n  const term = searchInput.value.toLowerCase().trim();\n  localStorage.setItem('pvTreeSearch', term);\n  filterTree(container, term);\n});\n\nfunction filterTree(root, searchTerm) {\n  const term = searchTerm.toLowerCase().trim();\n  // Recursively check a tree wrapper\n  function checkTree(treeNode) {\n    let match = false;\n    // Check leaf inside tree\n    const leaf = treeNode.querySelector('.leaf');\n    if (leaf) {\n      const name = leaf.querySelector('.nameText').textContent.toLowerCase();\n      match = name.includes(term);\n      leaf.style.display = match ? '' : 'none';\n    }\n    // Check children container\n    const childrenContainer = treeNode.querySelector('.children');\n    if (childrenContainer) {\n      const childTrees = Array.from(childrenContainer.children);\n      let childMatch = false;\n      childTrees.forEach(child => {\n        if (child.classList.contains('tree')) {\n          const childResult = checkTree(child);\n          if (childResult) childMatch = true;\n        }\n      });\n      // Show children container if any child matches\n      childrenContainer.classList.toggle('hidden', !childMatch);\n      // Update icon\n      const icon = treeNode.querySelector('.expand-icon');\n      if (icon) icon.textContent = childMatch ? '▼' : '▶';\n      if (childMatch) match = true;\n    }\n    // Show or hide tree wrapper itself\n    treeNode.style.display = match ? '' : 'none';\n    return match;\n  }\n  Array.from(root.children).forEach(treeNode => {\n    if (treeNode.classList.contains('tree')) {\n      checkTree(treeNode);\n    }\n  });\n}\n\n\n\n\n// This is for action buttons on each tree leaf item\nfunction createButton(parent, className, textContent, eventFunct) {\n  const btn = document.createElement('div');\n  btn.className = className;\n  btn.textContent = textContent;\n  btn.addEventListener(\"click\", (e) => eventFunct(e, parent));\n  parent.appendChild(btn);\n}\n\nfunction buildTree(obj, container, path = []) {\n  for (const key in obj) {\n    const currentPath = [...path, key];\n\n    // If have codes, is clickeable leaf\n    if ('codes' in obj[key]) {\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'leaf';\n      const nameText = document.createElement('div');\n      nameText.textContent = key;\n      nameText.className = 'nameText';\n      keyDiv.appendChild(nameText);\n\n      // Button holder\n      const btnHolder = document.createElement('div');\n      btnHolder.className = 'btnHolder';\n      keyDiv.appendChild(btnHolder);\n\n      //BUTTONS\n      //Append Button\n      if (isHome != \"true\") {\n        createButton(btnHolder, 'leafBtn', '+L', (e, parent) => {\n          e.stopPropagation();\n          let currentTitle = context.grafana.replaceVariables(\"${title:csv}\");\n\n          const arrCodes = JSON.parse(parent.parentElement.dataset.codes);\n          let selectedPVs = context.grafana.replaceVariables(\"${pv:csv}\").split(\",\");\n          let selectedExtraAxisPVs = context.grafana.replaceVariables(\"${pvExtraAxis:csv}\").split(\",\");\n\n          for (const code of arrCodes) {\n            if (!selectedPVs.includes(code)) {\n              selectedPVs.push(code);\n            }\n            if (selectedExtraAxisPVs.includes(code)) {\n              selectedExtraAxisPVs = selectedExtraAxisPVs.filter(c => c != code);\n              context.grafana.locationService.partial({\n                'var-pvExtraAxis': selectedExtraAxisPVs\n              }, true);\n            }\n          }\n          context.grafana.locationService.partial({\n            'var-pv': selectedPVs,\n            'var-title': currentTitle.includes(keyDiv.dataset.path) ? currentTitle : `${currentTitle} + \\n ${keyDiv.dataset.path}`,\n          }, true);\n        })\n        //Append (w extra axis) Button\n        createButton(btnHolder, 'leafBtn', '+R', (e, parent) => {\n          e.stopPropagation();\n          let currentTitle = context.grafana.replaceVariables(\"${title:csv}\");\n\n          const arrCodes = JSON.parse(parent.parentElement.dataset.codes);\n          let selectedPVs = context.grafana.replaceVariables(\"${pv:csv}\").split(\",\");\n          let selectedExtraAxisPVs = context.grafana.replaceVariables(\"${pvExtraAxis:csv}\").split(\",\");\n          // Adding to pv to query\n          for (const code of arrCodes) {\n            if (!selectedPVs.includes(code)) {\n              selectedPVs.push(code);\n            }\n          }\n          context.grafana.locationService.partial({\n            'var-pv': selectedPVs,\n            'var-title': currentTitle.includes(keyDiv.dataset.path) ? currentTitle : `${currentTitle} + ${keyDiv.dataset.path}`,\n          }, true);\n\n\n          if (selectedExtraAxisPVs[0] == \"\") {\n            selectedExtraAxisPVs = arrCodes;\n          }\n          else {\n            selectedExtraAxisPVs.push(...arrCodes);\n          }\n\n          context.grafana.locationService.partial({\n            'var-pvExtraAxis': selectedExtraAxisPVs.join(\",\")\n          }, true);\n        })\n      }\n      // Div Channel Name\n\n      keyDiv.dataset.codes = JSON.stringify(obj[key][\"codes\"]);\n      keyDiv.dataset.path = currentPath.join(\">\");\n      keyDiv.addEventListener(\"click\", () => {\n        const arrCodes = JSON.parse(keyDiv.dataset.codes);\n        if (isHome == \"true\") {\n          const codesParam = arrCodes.map(code => `var-pv=${code}`);\n          const codesParamStr = codesParam.join(\"&\");\n          const pathParamStr = path.join(\">\");\n          // console.log(\"Path:\", path.join(\" → \"));\n          // console.log(\"Codes:\", codesParamStr);\n          window.location.href = `http://ted-dev.cl.gemini.edu/d/063032a1-9bfd-4aa0-a7fc-1e79dc1c46ca/telemetry?orgId=1&from=now-12h&to=now&timezone=browser&var-title=${pathParamStr}&${codesParamStr}&var-pvExtraAxis=&var-ppType=firstFill&var-ppBin=1`;\n        }\n        else {\n          context.grafana.locationService.partial({\n            'var-pv': arrCodes,\n            'var-title': keyDiv.dataset.path\n          }, true);\n          context.grafana.locationService.partial({\n            'var-pvExtraAxis': ''\n          }, true);\n        }\n      });\n\n      wrapper.appendChild(keyDiv);\n      container.appendChild(wrapper);\n\n    } else {\n      // Create Section\n      const value = obj[key];\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'key';\n      const expandIcon = document.createElement('span');\n      const nodePath = currentPath.join(\" > \");\n      const isExpanded = localStorage.getItem(`treeExpanded:${nodePath}`) === \"true\";\n      expandIcon.textContent = isExpanded ? '▼' : '▶';\n      expandIcon.className = 'expand-icon';\n      keyDiv.appendChild(expandIcon);\n      const keyText = document.createElement('span');\n      keyText.textContent = ` ${key}`;\n      keyDiv.appendChild(keyText);\n      const childrenContainer = document.createElement('div');\n      childrenContainer.className = 'children';\n      if (!isExpanded) {\n        childrenContainer.classList.add('hidden');\n      }\n\n      if (typeof value === 'object' && value !== null) {\n        buildTree(value, childrenContainer, currentPath);\n\n        keyDiv.addEventListener(\"click\", () => {\n          const isHidden = childrenContainer.classList.toggle('hidden');\n          expandIcon.textContent = !isHidden ? '▼' : '▶';\n          localStorage.setItem(`treeExpanded:${nodePath}`, (!isHidden).toString());\n        });\n      }\n\n      wrapper.appendChild(keyDiv);\n      wrapper.appendChild(childrenContainer);\n      container.appendChild(wrapper);\n    }\n  }\n}\n\nbuildTree(data, container);\n\nsearchInput.value = localStorage.getItem('pvTreeSearch');\nconst term = searchInput.value.toLowerCase().trim();\nif (term != \"\") {\n  filterTree(container, term);\n}\n",
+          "content": "<div class=\"categoriesContainer\">\n  <div class=\"catBtn\">Subsystems</div>\n  <div class=\"catBtn\">Instruments</div>\n</div>\n<hr />\n<input type=\"text\" id=\"treeSearch\" placeholder=\"Search PVs...\">\n<hr />\n<div id=\"collBtn\">Collapse</div>\n<div id=\"pvTree\"></div>",
+          "contentPartials": [],
+          "defaultContent": "The query didn't return any results.",
+          "editor": {
+            "format": "auto",
+            "language": "html"
+          },
+          "editors": [
+            "afterRender",
+            "styles"
+          ],
+          "externalStyles": [],
+          "helpers": "",
+          "renderMode": "data",
+          "styles": "/* Top Action Buttons */\n.categoriesContainer {\n  background-color: ${theme.colors.background.primary};\n  display: flex;\n  justify-content: space-around;\n}\n\n.catBtn {\n  width: 100%;\n  padding: 1%;\n  cursor: pointer;\n  justify-content: center;\n  text-align: center;\n  background-color: ${theme.colors.background.secondary};\n}\n\n.catBtn:hover {\n  padding: 1%;\n  cursor: pointer;\n  color: ${theme.colors.background.primary};\n  background-color:  ${theme.colors.primary.main};\n}\n\n#treeSearch {\n  width: 100%;\n}\n\n#collBtn {\n  width: 100%;\n  background-color: ${theme.colors.background.secondary};\n  color: ${theme.colors.text.primary};\n  padding: 5px;\n  text-align: center;\n  cursor: pointer;\n}\n\n#collBtn:hover {\n  color: ${theme.colors.background.primary};\n  background-color:  ${theme.colors.primary.main};\n}\n\n/* Base Tree */\n.tree {\n  width: 100%;\n  font-family: monospace;\n  background-color: ${theme.colors.background.primary};\n}\n\n.hidden {\n  display: none;\n}\n\n/* Sections */\n.key {\n  font-weight: 600;\n  color: ${theme.colors.text.primary};\n  padding: 4px 6px;\n  cursor: pointer;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n\n.key:hover {\n  color:  ${theme.colors.primary.main}\n}\n\n.children { \n  margin-left: 20px;\n}\n\n.expand-icon {\n  display: inline-block;\n  width: 14px;\n  text-align: center;\n}\n\n/* Leafs */\n.leaf {\n  border-left:dashed;\n  border-radius: 2px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0px 20px;\n}\n\n.leaf:hover {\n  background-color: ${theme.colors.background.secondary};\n  cursor: pointer;\n}\n\n.leaf:hover .nameText {\n  color: ${theme.colors.primary.main}\n}\n\n.leaf:hover .btnHolder {\n  display: inline-flex;\n}\n\n.nameText {\n  color: ${theme.colors.text.primary};\n  font-weight: bold;\n  cursor: pointer;\n  padding: 1px;\n  transition: background-color 0.2s ease;\n}\n\n.btnHolder {\n  display: none;\n  width: 100px;\n  height: 20px;\n  justify-content: right;\n  align-items: center;\n}\n\n.leafBtn {\n  display: flex;\n  padding: 0;\n  width: 20px;\n  height: 20px;\n  margin-right: 5px;\n  border-radius: 2px;\n  background-color: ${theme.colors.background.primary};\n  color: ${theme.colors.primary.main};\n  font-size: 15px;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n\n.leafBtn:hover {\n  background-color:  ${theme.colors.primary.main};\n  color: ${theme.colors.text.primary};\n}\n",
+          "wrap": true
+        },
+        "pluginVersion": "5.7.0",
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "aepy5iqt7ke80c"
+            },
+            "fields": [
+              {
+                "jsonPath": "$.",
+                "name": "pvTree"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              [
+                "category",
+                "${pvTreeCategory}"
+              ]
+            ],
+            "queryParams": "",
+            "refId": "PvTree",
+            "urlPath": "/getPvTree"
+          }
+        ],
+        "title": "Channel Selector",
+        "type": "marcusolsson-dynamictext-panel"
+      }
+    }
+  },
   "__requires": [
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
       "version": "12.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "marcusolsson-dynamictext-panel",
-      "name": "Business Text",
-      "version": "5.7.0"
     },
     {
       "type": "datasource",
@@ -42,12 +106,6 @@
       "id": "nline-plotlyjs-panel",
       "name": "Plotly",
       "version": "1.8.1"
-    },
-    {
-      "type": "datasource",
-      "id": "sasaki77-archiverappliance-datasource",
-      "name": "ArchiverAppliance",
-      "version": "2.0.2"
     }
   ],
   "annotations": {
@@ -73,86 +131,22 @@
   "links": [],
   "panels": [
     {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "aepy5iqt7ke80c"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 28,
         "w": 5,
         "x": 0,
         "y": 0
       },
-      "id": 1,
-      "options": {
-        "afterRender": "const container = document.getElementById('pvTree');\nif (container) container.innerHTML = \"\";\n\nconst jsonString = context.data[0][0].pvTree;\nconst data = JSON.parse(jsonString);\nconst catBtns = document.getElementsByClassName('catBtn');\n\nArray.from(catBtns).forEach(catBtn => {\n  catBtn.addEventListener(\"click\", (e) => {\n    context.grafana.locationService.partial({\n      'var-pvTreeCategory': e.target.textContent.toLowerCase()\n    }, true);\n  });\n})\n\nfunction collapseAll() {\n  document.querySelectorAll('.children').forEach(el => {\n    el.classList.add('hidden');\n  });\n  document.querySelectorAll('.expand-icon').forEach(icon => {\n    icon.textContent = '▶';\n  });\n  Object.keys(localStorage)\n    .filter(k => k.startsWith(\"treeExpanded:\"))\n    .forEach(k => localStorage.setItem(k, \"false\"));\n}\n\nconst collBtn = document.getElementById('collBtn');\ncollBtn.addEventListener(\"click\", () => {\n  collapseAll();\n});\n\n\nconst searchInput = document.getElementById('treeSearch');\n\nsearchInput.addEventListener('input', () => {\n  const term = searchInput.value.toLowerCase().trim();\n  localStorage.setItem('pvTreeSearch', term);\n  filterTree(container, term);\n});\n\nfunction filterTree(root, searchTerm) {\n  const term = searchTerm.toLowerCase().trim();\n  // Recursively check a tree wrapper\n  function checkTree(treeNode) {\n    let match = false;\n    // Check leaf inside tree\n    const leaf = treeNode.querySelector('.leaf');\n    if (leaf) {\n      const name = leaf.querySelector('.nameText').textContent.toLowerCase();\n      match = name.includes(term);\n      leaf.style.display = match ? '' : 'none';\n    }\n    // Check children container\n    const childrenContainer = treeNode.querySelector('.children');\n    if (childrenContainer) {\n      const childTrees = Array.from(childrenContainer.children);\n      let childMatch = false;\n      childTrees.forEach(child => {\n        if (child.classList.contains('tree')) {\n          const childResult = checkTree(child);\n          if (childResult) childMatch = true;\n        }\n      });\n      // Show children container if any child matches\n      childrenContainer.classList.toggle('hidden', !childMatch);\n      // Update icon\n      const icon = treeNode.querySelector('.expand-icon');\n      if (icon) icon.textContent = childMatch ? '▼' : '▶';\n      if (childMatch) match = true;\n    }\n    // Show or hide tree wrapper itself\n    treeNode.style.display = match ? '' : 'none';\n    return match;\n  }\n  Array.from(root.children).forEach(treeNode => {\n    if (treeNode.classList.contains('tree')) {\n      checkTree(treeNode);\n    }\n  });\n}\n\n\n\n\n// This is for action buttons on each tree leaf item\nfunction createButton(parent, className, textContent, eventFunct) {\n  const btn = document.createElement('div');\n  btn.className = className;\n  btn.textContent = textContent;\n  btn.addEventListener(\"click\", (e) => eventFunct(e, parent));\n  parent.appendChild(btn);\n}\nfunction buildTree(obj, container, path = []) {\n  for (const key in obj) {\n    const currentPath = [...path, key];\n\n    // If have codes, is clickeable leaf\n    if ('codes' in obj[key]) {\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'leaf';\n      const nameText = document.createElement('div');\n      nameText.textContent = key;\n      nameText.className = 'nameText';\n      keyDiv.appendChild(nameText);\n\n      // Button holder\n      const btnHolder = document.createElement('div');\n      btnHolder.className = 'btnHolder';\n      keyDiv.appendChild(btnHolder);\n\n      //BUTTONS\n      //Append Button\n      createButton(btnHolder, 'leafBtn', '+L', (e, parent) => {\n        e.stopPropagation();\n        let currentTitle = context.grafana.replaceVariables(\"${title:csv}\");\n\n        const arrCodes = JSON.parse(parent.parentElement.dataset.codes);\n        let selectedPVs = context.grafana.replaceVariables(\"${pv:csv}\").split(\",\");\n        let selectedExtraAxisPVs = context.grafana.replaceVariables(\"${pvExtraAxis:csv}\").split(\",\");\n\n        for (const code of arrCodes) {\n          if (!selectedPVs.includes(code)) {\n            selectedPVs.push(code);\n          }\n          if (selectedExtraAxisPVs.includes(code)) {\n            selectedExtraAxisPVs = selectedExtraAxisPVs.filter(c => c != code);\n            context.grafana.locationService.partial({\n              'var-pvExtraAxis': selectedExtraAxisPVs\n            }, true);\n          }\n        }\n        context.grafana.locationService.partial({\n          'var-pv': selectedPVs,\n          'var-title': currentTitle.includes(keyDiv.dataset.path) ? currentTitle : `${currentTitle} + \\n ${keyDiv.dataset.path}`,\n        }, true);\n      })\n\n      //Append (w extra axis) Button\n      createButton(btnHolder, 'leafBtn', '+R', (e, parent) => {\n        e.stopPropagation();\n        let currentTitle = context.grafana.replaceVariables(\"${title:csv}\");\n\n        const arrCodes = JSON.parse(parent.parentElement.dataset.codes);\n        let selectedPVs = context.grafana.replaceVariables(\"${pv:csv}\").split(\",\");\n        let selectedExtraAxisPVs = context.grafana.replaceVariables(\"${pvExtraAxis:csv}\").split(\",\");\n        // Adding to pv to query\n        for (const code of arrCodes) {\n          if (!selectedPVs.includes(code)) {\n            selectedPVs.push(code);\n          }\n        }\n        context.grafana.locationService.partial({\n          'var-pv': selectedPVs,\n          'var-title': currentTitle.includes(keyDiv.dataset.path) ? currentTitle : `${currentTitle} + ${keyDiv.dataset.path}`,\n        }, true);\n\n        if (selectedExtraAxisPVs[0] == \"\") {\n          selectedExtraAxisPVs = arrCodes;\n        }\n        else {\n          selectedExtraAxisPVs.push(...arrCodes);\n        }\n\n        context.grafana.locationService.partial({\n          'var-pvExtraAxis': selectedExtraAxisPVs.join(\",\")\n        }, true);\n      })\n\n      // Div Channel Name\n\n      keyDiv.dataset.codes = JSON.stringify(obj[key][\"codes\"]);\n      keyDiv.dataset.path = currentPath.join(\">\");\n      keyDiv.addEventListener(\"click\", () => {\n\n        const arrCodes = JSON.parse(keyDiv.dataset.codes);\n        context.grafana.locationService.partial({\n          'var-pv': arrCodes,\n          'var-title': keyDiv.dataset.path\n        }, true);\n        context.grafana.locationService.partial({\n          'var-pvExtraAxis': ''\n        }, true);\n      });\n\n      wrapper.appendChild(keyDiv);\n      container.appendChild(wrapper);\n\n    } else {\n      // Create Section\n      const value = obj[key];\n      const wrapper = document.createElement('div');\n      wrapper.className = 'tree';\n      const keyDiv = document.createElement('div');\n      keyDiv.className = 'key';\n      const expandIcon = document.createElement('span');\n      const nodePath = currentPath.join(\" > \");\n      const isExpanded = localStorage.getItem(`treeExpanded:${nodePath}`) === \"true\";\n      expandIcon.textContent = isExpanded ? '▼' : '▶';\n      expandIcon.className = 'expand-icon';\n      keyDiv.appendChild(expandIcon);\n      const keyText = document.createElement('span');\n      keyText.textContent = ` ${key}`;\n      keyDiv.appendChild(keyText);\n      const childrenContainer = document.createElement('div');\n      childrenContainer.className = 'children';\n      if (!isExpanded) {\n        childrenContainer.classList.add('hidden');\n      }\n\n      if (typeof value === 'object' && value !== null) {\n        buildTree(value, childrenContainer, currentPath);\n\n        keyDiv.addEventListener(\"click\", () => {\n          const isHidden = childrenContainer.classList.toggle('hidden');\n          expandIcon.textContent = !isHidden ? '▼' : '▶';\n          localStorage.setItem(`treeExpanded:${nodePath}`, (!isHidden).toString());\n        });\n      }\n\n      wrapper.appendChild(keyDiv);\n      wrapper.appendChild(childrenContainer);\n      container.appendChild(wrapper);\n    }\n  }\n}\n\nbuildTree(data, container);\n\nsearchInput.value = localStorage.getItem('pvTreeSearch');\nconst term = searchInput.value.toLowerCase().trim();\nif (term != \"\") {\n  filterTree(container, term);\n}\n",
-        "content": "<div class=\"categoriesContainer\">\n  <div class=\"catBtn\">Subsystems</div>\n  <div class=\"catBtn\">Instruments</div>\n</div>\n<hr />\n<input type=\"text\" id=\"treeSearch\" placeholder=\"Search PVs...\">\n<hr />\n<div id=\"collBtn\">Collapse</div>\n<div id=\"pvTree\"></div>",
-        "contentPartials": [],
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "html"
-        },
-        "editors": [
-          "afterRender",
-          "styles"
-        ],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "data",
-        "styles": "/* Top Action Buttons */\n.categoriesContainer {\n  background-color: ${theme.colors.background.primary};\n  display: flex;\n  justify-content: space-around;\n}\n\n.catBtn {\n  width: 100%;\n  padding: 1%;\n  cursor: pointer;\n  justify-content: center;\n  text-align: center;\n  background-color: ${theme.colors.background.secondary};\n}\n\n.catBtn:hover {\n  padding: 1%;\n  cursor: pointer;\n  color: ${theme.colors.background.primary};\n  background-color:  ${theme.colors.primary.main};\n}\n\n#treeSearch {\n  width: 100%;\n}\n\n#collBtn {\n  width: 100%;\n  background-color: ${theme.colors.background.secondary};\n  color: ${theme.colors.text.primary};\n  padding: 5px;\n  text-align: center;\n  cursor: pointer;\n}\n\n#collBtn:hover {\n  color: ${theme.colors.background.primary};\n  background-color:  ${theme.colors.primary.main};\n}\n\n/* Base Tree */\n.tree {\n  width: 100%;\n  font-family: monospace;\n  background-color: ${theme.colors.background.primary};\n}\n\n.hidden {\n  display: none;\n}\n\n/* Sections */\n.key {\n  font-weight: 600;\n  color: ${theme.colors.text.primary};\n  padding: 4px 6px;\n  cursor: pointer;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n\n.key:hover {\n  color:  ${theme.colors.primary.main}\n}\n\n.children { \n  margin-left: 20px;\n}\n\n.expand-icon {\n  display: inline-block;\n  width: 14px;\n  text-align: center;\n}\n\n/* Leafs */\n.leaf {\n  border-left:dashed;\n  border-radius: 2px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0px 20px;\n}\n\n.leaf:hover {\n  background-color: ${theme.colors.background.secondary};\n  cursor: pointer;\n}\n\n.leaf:hover .nameText {\n  color: ${theme.colors.primary.main}\n}\n\n.leaf:hover .btnHolder {\n  display: inline-flex;\n}\n\n.nameText {\n  color: ${theme.colors.text.primary};\n  font-weight: bold;\n  cursor: pointer;\n  padding: 1px;\n  transition: background-color 0.2s ease;\n}\n\n.btnHolder {\n  display: none;\n  width: 100px;\n  height: 20px;\n  justify-content: right;\n  align-items: center;\n}\n\n.leafBtn {\n  display: flex;\n  padding: 0;\n  width: 20px;\n  height: 20px;\n  margin-right: 5px;\n  border-radius: 2px;\n  background-color: ${theme.colors.background.primary};\n  color: ${theme.colors.primary.main};\n  font-size: 15px;\n  font-weight: bold;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n\n.leafBtn:hover {\n  background-color:  ${theme.colors.primary.main};\n  color: ${theme.colors.text.primary};\n}\n",
-        "wrap": true
-      },
-      "pluginVersion": "5.7.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 5,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "aepy5iqt7ke80c"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.",
-              "name": "pvTree"
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "category",
-              "${pvTreeCategory}"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "PvTree",
-          "urlPath": "/getPvTree"
-        }
-      ],
-      "title": "PV selector",
-      "type": "marcusolsson-dynamictext-panel"
+      "id": 6,
+      "libraryPanel": {
+        "uid": "bf2n6ddxksr28c",
+        "name": "Channel Selector"
+      }
     },
     {
       "datasource": {
-        "type": "sasaki77-archiverappliance-datasource",
-        "uid": "cesb7dv10h3i8b"
+        "type": "marcusolsson-json-datasource",
+        "uid": "aepy5iqt7ke80c"
       },
       "gridPos": {
         "h": 28,
@@ -167,6 +161,7 @@
         "data": [],
         "imgFormat": "png",
         "layout": {
+          "editable": true,
           "font": {
             "family": "Inter, Helvetica, Arial, sans-serif",
             "uirevision": true
@@ -208,109 +203,67 @@
         },
         "onclick": "// Event handling\n/*\n// 'data', 'variables', 'options', 'utils', and 'event' are passed as arguments\n\ntry {\n  const { type: eventType, data: eventData } = event;\n  const { timeZone, dayjs, locationService, getTemplateSrv } = utils;\n\n  switch (eventType) {\n    case 'click':\n      console.log('Click event:', eventData.points);\n      break;\n    case 'select':\n      console.log('Selection event:', eventData.range);\n      break;\n    case 'zoom':\n      console.log('Zoom event:', eventData);\n      break;\n    default:\n      console.log('Unhandled event type:', eventType, eventData);\n  }\n\n  console.log('Current time zone:', timeZone);\n  console.log('From time:', dayjs(variables.__from).format());\n  console.log('To time:', dayjs(variables.__to).format());\n\n  // Example of using locationService\n  // locationService.partial({ 'var-example': 'test' }, true);\n\n} catch (error) {\n  console.error('Error in onclick handler:', error);\n}\n*/\n  ",
         "resScale": 2,
-        "script": "// console.log(data);\n// console.log(variables);\n// console.log(options);\n\n\nlet series = data.series;\nlet layout = {\n  title: variables.title.current.text,\n  yaxis: {\n    showline: true,\n    title: \"\"\n  },\n  yaxis2: {\n    title: \"\",\n    overlaying: 'y',\n    side: 'right',\n  }\n};\n\nif (series[0] != \"no data\"){\n\n\n  let traces = [];\n\n\nconst pvExtraAxis = variables.pvExtraAxis.current.text.split(\",\");\nseries.forEach((s, i) => {\n\n  let name, x, y;\n\n  name = s.fields[1].config.displayName;\n  x = Array.from(s.fields[0].values);\n  y = Array.from(s.fields[1].values);\n\n\n  let pvInExtraAxis = pvExtraAxis.some(pv => pv.includes(name));\n  let targetAxis = pvInExtraAxis ? 'y2' : 'y1';\n\n  // Fix single-point issue\n  let traceMode = 'lines';\n  // if(x.length === 1){\n  //   traceMode = 'lines+markers';\n\n  //   if(!layout.xaxis) layout.xaxis = {};\n  //   if(!layout.xaxis.range) layout.xaxis.range = [x[0] - 1, x[0] + 1];\n  // }\n\n  traces.push({\n    x: x,\n    y: y,\n    type: 'scatter',\n    mode: traceMode,\n    name: name,\n    yaxis: targetAxis,\n  });\n\n  if(pvInExtraAxis){\n    layout.yaxis2.title = layout.yaxis2.title ? `${name}, ${layout.yaxis2.title}` : name;\n  } else {\n    layout.yaxis.title = layout.yaxis.title ? `${name}, ${layout.yaxis.title}` : name;\n  }\n});\n\n  \n  return {\n    data: traces,\n    layout: layout\n  };\n}",
+        "script": "// console.log(data);\n// console.log(variables);\n// console.log(options);\n\n\nlet series = data.series;\nlet layout = {\n  title: variables.title.current.text,\n  yaxis: {\n    showline: true,\n    title: \"\"\n  },\n  yaxis2: {\n    title: \"\",\n    overlaying: 'y',\n    side: 'right',\n  }\n};\n\n\nconst config = {\n  editable:true\n}\n\nif (series[0] != \"no data\"){\n\n\n  let traces = [];\n\n\n  const pvExtraAxis = variables.pvExtraAxis.current.text.split(\",\");\n  series.forEach((s, i) => {\n\n  let name, x, y;\n  \n  name = s.name;\n  x = Array.from(s.fields[0].values);\n  y = Array.from(s.fields[1].values);\n\n\n  let pvInExtraAxis = pvExtraAxis.some(pv => pv.includes(name));\n  let targetAxis = pvInExtraAxis ? 'y2' : 'y1';\n\n  // Fix single-point issue\n  let traceMode = 'lines';\n  // if(x.length === 1){\n  //   traceMode = 'lines+markers';\n\n  //   if(!layout.xaxis) layout.xaxis = {};\n  //   if(!layout.xaxis.range) layout.xaxis.range = [x[0] - 1, x[0] + 1];\n  // }\n\n  traces.push({\n    x: x,\n    y: y,\n    type: 'scatter',\n    mode: 'lines',\n    line:{\n      shape:'hv'\n    },\n    name: name,\n    yaxis: targetAxis,\n  });\n\n  if(pvInExtraAxis){\n      layout.yaxis2.title = layout.yaxis2.title ? `${name}, ${layout.yaxis2.title}` : name;\n    } else {\n      layout.yaxis.title = layout.yaxis.title ? `${name}, ${layout.yaxis.title}` : name;\n    }\n  });\n\n  return {\n      data: traces,\n      layout: layout,\n      config: config\n    };\n  }\n\n",
         "syncTimeRange": true,
         "timeCol": ""
       },
       "pluginVersion": "1.8.1",
       "targets": [
         {
-          "alias": "",
-          "aliasPattern": "",
+          "cacheDurationSeconds": 0,
           "datasource": {
-            "type": "sasaki77-archiverappliance-datasource",
-            "uid": "cesb7dv10h3i8b"
+            "type": "marcusolsson-json-datasource",
+            "uid": "aepy5iqt7ke80c"
           },
-          "functions": [
+          "experimentalGroupByField": "Channel",
+          "experimentalMetricField": "Value",
+          "fields": [
             {
-              "def": {
-                "category": "Options",
-                "defaultParams": [
-                  "900"
-                ],
-                "name": "binInterval",
-                "params": [
-                  {
-                    "name": "interval",
-                    "type": "int"
-                  }
-                ]
-              },
-              "params": [
-                "${ppBin}"
-              ]
+              "jsonPath": "$.data.(secs*1000+nanos/1000000)",
+              "language": "jsonata",
+              "name": "Time",
+              "type": "time"
             },
             {
-              "def": {
-                "category": "Options",
-                "defaultParams": [
-                  "true"
-                ],
-                "name": "disableExtrapol",
-                "params": [
-                  {
-                    "name": "boolean",
-                    "options": [
-                      "true",
-                      "false"
-                    ],
-                    "type": "string"
-                  }
-                ]
-              },
-              "params": [
-                "true"
-              ]
+              "jsonPath": "$.data.val",
+              "language": "jsonata",
+              "name": "Value"
+            },
+            {
+              "jsonPath": "$.data.val.%.%.meta.name",
+              "language": "jsonata",
+              "name": "Channel"
             }
           ],
-          "hide": false,
-          "live": false,
-          "operator": "${ppType}",
-          "refId": "A",
-          "regex": true,
-          "stream": false,
-          "strmCap": "",
-          "strmInt": "",
-          "target": "${pv}"
-        },
-        {
-          "alias": "",
-          "aliasPattern": "",
-          "datasource": {
-            "type": "sasaki77-archiverappliance-datasource",
-            "uid": "cesb7dv10h3i8b"
-          },
-          "functions": [],
-          "hide": true,
-          "live": false,
-          "operator": "",
-          "refId": "Trick for loading when pvExtraAxisChanges",
-          "regex": false,
-          "stream": false,
-          "strmCap": "",
-          "strmInt": "",
-          "target": "$pvExtraAxis"
-        }
-      ],
-      "title": "TimeSeries",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "isNull",
-                  "options": {}
-                },
-                "fieldName": "ws:cpTemp50m"
-              }
+          "method": "GET",
+          "params": [
+            [
+              "pv",
+              "${pv:csv}"
             ],
-            "match": "any",
-            "type": "exclude"
-          }
+            [
+              "from",
+              "${__from:date}"
+            ],
+            [
+              "to",
+              "${__to:date}"
+            ],
+            [
+              "pp_mode",
+              "${ppType}"
+            ],
+            [
+              "pp_bin",
+              "auto"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "Data",
+          "urlPath": "/getPVs"
         }
       ],
+      "title": " ",
       "type": "nline-plotlyjs-panel"
     }
   ],
@@ -321,19 +274,19 @@
     "list": [
       {
         "current": {
-          "text": "CRCS>General>States>cr:crStateS",
-          "value": "CRCS>General>States>cr:crStateS"
+          "text": "ECS>Top Shutter>Demand",
+          "value": "ECS>Top Shutter>Demand"
         },
         "hide": 2,
         "name": "title",
         "options": [
           {
             "selected": true,
-            "text": "CRCS>General>States>cr:crStateS",
-            "value": "CRCS>General>States>cr:crStateS"
+            "text": "ECS>Top Shutter>Demand",
+            "value": "ECS>Top Shutter>Demand"
           }
         ],
-        "query": "CRCS>General>States>cr:crStateS",
+        "query": "ECS>Top Shutter>Demand",
         "type": "textbox"
       },
       {
@@ -386,14 +339,10 @@
           "text": "firstFill",
           "value": "firstFill"
         },
+        "description": "",
         "label": "Mode",
         "name": "ppType",
         "options": [
-          {
-            "selected": false,
-            "text": "RAW",
-            "value": "raw"
-          },
           {
             "selected": true,
             "text": "First Fill",
@@ -410,34 +359,7 @@
             "value": "median"
           }
         ],
-        "query": "RAW : raw, First Fill : firstFill, Mean : mean, Median : median",
-        "type": "custom"
-      },
-      {
-        "current": {
-          "text": "1",
-          "value": "1"
-        },
-        "label": "Bin (s)",
-        "name": "ppBin",
-        "options": [
-          {
-            "selected": true,
-            "text": "SECONDS",
-            "value": "1"
-          },
-          {
-            "selected": false,
-            "text": "MINUTES",
-            "value": "60"
-          },
-          {
-            "selected": false,
-            "text": "HOURS",
-            "value": "3600"
-          }
-        ],
-        "query": "SECONDS : 1, MINUTES : 60, HOURS : 3600",
+        "query": "First Fill : firstFill, Mean : mean, Median : median",
         "type": "custom"
       },
       {
@@ -465,7 +387,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -485,7 +407,7 @@
   },
   "timezone": "browser",
   "title": "Telemetry",
-  "uid": "063032a1-9bfd-4aa0-a7fc-1e79dc1c46ca",
-  "version": 21,
+  "uid": "642d6862-e9a1-461d-9a06-85209807bc47",
+  "version": 62,
   "weekStart": ""
 }
