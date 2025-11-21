@@ -9,6 +9,10 @@ ARG GROUP
 USER root
 
 RUN apk add --no-cache shadow
+RUN apk add sqlite
+
+COPY grafana.sql /var/lib/grafana/grafana.sql
+RUN sqlite3 /var/lib/grafana/grafana.db < /var/lib/grafana/grafana.sql
 
 RUN groupadd -r -g ${GID} ${GROUP}
 RUN useradd -g ${GROUP} -u ${GID} ${GROUP}
