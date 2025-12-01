@@ -4,14 +4,14 @@
 set -euo pipefail
 
 CONTAINER="grafana"
-SRC_PATH="/var/lib/grafana/grafana.db"
+DB_PATH="/var/lib/grafana/grafana.db"
 BACKUP_DIR="${1:-$HOME/grafanaBackups}"
 
 mkdir -p "$BACKUP_DIR"
 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-BACKUP_FILE="$BACKUP_DIR/grafana.db-$TIMESTAMP.bak"
+BACKUP_FILE="$BACKUP_DIR/grafana.sql-$TIMESTAMP"
 
-docker cp "$CONTAINER:$SRC_PATH" "$BACKUP_FILE"
+docker exec -i "$CONTAINER" sqlite3 "$DB_PATH" .dump > "$BACKUP_FILE"
 
 echo "Backup created: $BACKUP_FILE"
