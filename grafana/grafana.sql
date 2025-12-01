@@ -679,9 +679,9 @@ CREATE TABLE `user` (
 , `created` DATETIME NOT NULL
 , `updated` DATETIME NOT NULL
 , `help_flags1` INTEGER NOT NULL DEFAULT 0, `last_seen_at` DATETIME NULL, `is_disabled` INTEGER NOT NULL DEFAULT 0, is_service_account BOOLEAN DEFAULT 0, `uid` TEXT NULL, `is_provisioned` INTEGER NOT NULL DEFAULT 0);
-INSERT INTO user VALUES(1,0,'admin','admin@localhost','','fb43da1f52f9faff597eca2d24ac2110c67012fc06c617552c60de117e227775ce3b0933ba6cc8f39bf4cc26bd44f58f8a95','od9nJNacF9','BsnGu0JztA','',1,1,0,'','2025-09-08 19:46:05','2025-09-08 19:46:05',0,'2025-12-01 18:34:56',0,0,'bexhjukll01dse',0);
+INSERT INTO user VALUES(1,0,'admin','admin@localhost','','fb43da1f52f9faff597eca2d24ac2110c67012fc06c617552c60de117e227775ce3b0933ba6cc8f39bf4cc26bd44f58f8a95','od9nJNacF9','BsnGu0JztA','',1,1,0,'','2025-09-08 19:46:05','2025-09-08 19:46:05',0,'2025-12-01 18:58:57',0,0,'bexhjukll01dse',0);
 INSERT INTO user VALUES(2,0,'software','software','Software','c9d9b94cdd7a6ba01b07de1b05e27155d7772cc9fc72cacf88bb8835d74ef707054256ba2ab49905caa43af770de0735928c','kYmhRUkFsv','6eRyzQ5sKX','',1,0,0,'','2025-12-01 18:41:34','2025-12-01 18:41:34',0,'2015-12-01 18:41:34',0,0,'bf5t4dn1afta8d',0);
-INSERT INTO user VALUES(3,0,'telops','telops','Telops','9bc0023dd3898a3f4f276f530b52a126dac46b381d65990fd7e244c0889d5e5875dca9b55ddf36eff1cfe3d8515630dea2f8','iLiJURL05p','UKCABWDUUh','',1,0,0,'','2025-12-01 18:41:50','2025-12-01 18:41:50',0,'2015-12-01 18:41:50',0,0,'ef5t4ejac8r9cd',0);
+INSERT INTO user VALUES(3,0,'telops','telops','Telops','9bc0023dd3898a3f4f276f530b52a126dac46b381d65990fd7e244c0889d5e5875dca9b55ddf36eff1cfe3d8515630dea2f8','iLiJURL05p','UKCABWDUUh','',1,0,0,'','2025-12-01 18:41:50','2025-12-01 18:41:50',0,'2025-12-01 18:58:25',0,0,'ef5t4ejac8r9cd',0);
 CREATE TABLE `temp_user` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `org_id` INTEGER NOT NULL
@@ -782,11 +782,11 @@ CREATE TABLE `data_source` (
 , `created` DATETIME NOT NULL
 , `updated` DATETIME NOT NULL
 , `with_credentials` INTEGER NOT NULL DEFAULT 0, `secure_json_data` TEXT NULL, `read_only` INTEGER NULL, `uid` TEXT NOT NULL DEFAULT 0, `is_prunable` INTEGER NULL DEFAULT 0, `api_version` TEXT NULL);
-INSERT INTO data_source VALUES(1,1,1,'elasticsearch','Elasticsearch','proxy','http://172.17.71.27:9200','','','logs-*',0,'','',1,'{"esVersion":"8.0.0","global_queries":[],"includeFrozen":false,"logLevelField":"","logMessageField":"msg","maxConcurrentShardRequests":5,"timeField":"@timestamp","timeInterval":"1s"}','2025-09-08 19:46:07','2025-12-01 15:57:50',0,'{}',1,'F1zgMdwVz',0,'');
-INSERT INTO data_source VALUES(2,1,1,'marcusolsson-json-datasource','Elasticsearch API','proxy','http://172.17.71.27:9200/','','','',0,'','',0,'{}','2025-09-08 19:46:07','2025-12-01 15:57:50',0,'{}',1,'X9mrkFjVk',0,'');
-INSERT INTO data_source VALUES(3,1,1,'marcusolsson-json-datasource','GEA API','proxy','http://172.27.6.21:8000','','','',0,'','',0,'{"esVersion":"8.0.0","includeFrozen":false,"logLevelField":"","logMessageField":"","maxConcurrentShardRequests":5,"timeField":"@timestamp","timeout":300}','2025-09-08 19:46:07','2025-12-01 15:57:50',0,'{}',1,'Cgf7JOwVz',0,'');
-INSERT INTO data_source VALUES(4,1,1,'marcusolsson-json-datasource','AAservice','proxy','http://127.0.0.1:8000','','','',0,'','',0,'{}','2025-09-08 19:46:07','2025-12-01 15:57:50',0,'{}',1,'aepy5iqt7ke80c',0,'');
-INSERT INTO data_source VALUES(5,1,1,'sasaki77-archiverappliance-datasource','ArchiverAppliance','proxy','http://172.27.6.21:17665/retrieval','','','',0,'','',0,'{"hideInvalid":false,"useBackend":false,"useLiveUpdate":true}','2025-09-08 19:46:07','2025-12-01 15:57:50',0,'{}',1,'cesb7dv10h3i8b',0,'');
+INSERT INTO data_source VALUES(1,1,1,'elasticsearch','Elasticsearch','proxy','http://172.17.71.27:9200','','','logs-*',0,'','',1,'{"esVersion":"8.0.0","global_queries":[],"includeFrozen":false,"logLevelField":"","logMessageField":"msg","maxConcurrentShardRequests":5,"timeField":"@timestamp","timeInterval":"1s"}','2025-09-08 19:46:07','2025-12-01 18:58:08',0,'{}',1,'F1zgMdwVz',0,'');
+INSERT INTO data_source VALUES(2,1,1,'marcusolsson-json-datasource','Elasticsearch API','proxy','http://172.17.71.27:9200/','','','',0,'','',0,'{}','2025-09-08 19:46:07','2025-12-01 18:58:08',0,'{}',1,'X9mrkFjVk',0,'');
+INSERT INTO data_source VALUES(3,1,1,'marcusolsson-json-datasource','GEA API','proxy','http://172.27.6.21:8000','','','',0,'','',0,'{"esVersion":"8.0.0","includeFrozen":false,"logLevelField":"","logMessageField":"","maxConcurrentShardRequests":5,"timeField":"@timestamp","timeout":300}','2025-09-08 19:46:07','2025-12-01 18:58:08',0,'{}',1,'Cgf7JOwVz',0,'');
+INSERT INTO data_source VALUES(4,1,1,'marcusolsson-json-datasource','AAservice','proxy','http://127.0.0.1:8000','','','',0,'','',0,'{}','2025-09-08 19:46:07','2025-12-01 18:58:08',0,'{}',1,'aepy5iqt7ke80c',0,'');
+INSERT INTO data_source VALUES(5,1,1,'sasaki77-archiverappliance-datasource','ArchiverAppliance','proxy','http://172.27.6.21:17665/retrieval','','','',0,'','',0,'{"hideInvalid":false,"useBackend":false,"useLiveUpdate":true}','2025-09-08 19:46:07','2025-12-01 18:58:08',0,'{}',1,'cesb7dv10h3i8b',0,'');
 CREATE TABLE `api_key` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `org_id` INTEGER NOT NULL
@@ -1061,6 +1061,8 @@ CREATE TABLE `login_attempt` (
 , `ip_address` TEXT NOT NULL
 , `created` INTEGER NOT NULL DEFAULT 0
 );
+INSERT INTO login_attempt VALUES(5,'telops','172.16.80.11',1764615499);
+INSERT INTO login_attempt VALUES(6,'admin','172.16.80.11',1764615533);
 CREATE TABLE `user_auth` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `user_id` INTEGER NOT NULL
@@ -1074,9 +1076,9 @@ CREATE TABLE `server_lock` (
 , `version` INTEGER NOT NULL
 , `last_execution` INTEGER NOT NULL
 );
-INSERT INTO server_lock VALUES(1,'migrate API keys to service accounts',11,1764604669);
+INSERT INTO server_lock VALUES(1,'migrate API keys to service accounts',12,1764615488);
 INSERT INTO server_lock VALUES(3,'cleanup expired auth tokens',143,1764598617);
-INSERT INTO server_lock VALUES(4,'dashboard-cleanup',204292,1764614509);
+INSERT INTO server_lock VALUES(4,'dashboard-cleanup',204297,1764615638);
 INSERT INTO server_lock VALUES(5,'delete old login attempts',10211,1764614269);
 INSERT INTO server_lock VALUES(6,'cleanup old anon devices',171,1764611869);
 CREATE TABLE `user_auth_token` (
@@ -1094,14 +1096,17 @@ CREATE TABLE `user_auth_token` (
 , `revoked_at` INTEGER NULL, `external_session_id` INTEGER NULL);
 INSERT INTO user_auth_token VALUES(19,1,'0e407d4a732fe7447c7afeee7b6dab71f9ba1e70b70481ab4aa242f273df0f0d','1fc6dacb86704b3c09dc95f2fe1d7698e068642ff0eb5a981593eb1cc4f833cb','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36','172.16.80.11',1,1764612380,1764612379,1764598648,1764598648,0,0);
 INSERT INTO user_auth_token VALUES(20,1,'30ccbcf99fbf0c6e0f12afab924e31deefdeaa517dd0b5878df8d638f129745e','30cb5e882f9fdc08e1049a36e81279798794de46523e959aae3b3b7a183b5ea1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36','172.16.80.11',1,1764614214,1764614096,1764612665,1764612665,0,0);
+INSERT INTO user_auth_token VALUES(23,3,'d69b03ad78c45e40b95941bc0852284625cf2453eff961302b44f603c6f5b6ab','d69b03ad78c45e40b95941bc0852284625cf2453eff961302b44f603c6f5b6ab','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36','172.16.80.11',1,1764615631,1764615631,1764615631,1764615631,0,0);
 CREATE TABLE `cache_data` (
 `cache_key` TEXT PRIMARY KEY NOT NULL
 , `data` BLOB NOT NULL
 , `expires` INTEGER NOT NULL
 , `created_at` INTEGER NOT NULL
 );
-INSERT INTO cache_data VALUES('id-token0-user-1None',X'65794a68624763694f694a46557a49314e694973496d74705a434936496d6c6b4c5449774d6a55744d5449745a584d794e5459694c434a30655841694f694a716433516966512e65794a68645751694f694a76636d63364d434973496d567459576c73496a6f6959575274615735416247396a5957786f62334e30496977695a586877496a6f784e7a59304e6a45304f4445304c434a70595851694f6a45334e6a51324d5451794d545173496d6c6b5a57353061575a705a5849694f694a695a58686f616e5672624777774d57527a5a534973496d6c7a63794936496d6830644841364c7939305a5751745a4756324c6d4e734c6d646c62576c756153356c5a48557649697769626d46745a534936496d466b62576c7549697769626d46745a584e7759574e6c496a6f6962334a6e4c5441694c434a796232786c496a6f69546d39755a534973496e4e3159694936496e567a5a5849364d534973496e5235634755694f694a31633256794969776964584e6c636d3568625755694f694a685a47317062694a392e484d58393961486f6339454f3143644e51685f54447848343456466a2d704c534f6a746d546a38672d6d4559736579624658517644397278463666726d55434e576e324d63496644723139484d6f6d37526a66653967',569,1764614214);
-INSERT INTO cache_data VALUES('id-token1-user-1Admin',X'65794a68624763694f694a46557a49314e694973496d74705a434936496d6c6b4c5449774d6a55744d5449745a584d794e5459694c434a30655841694f694a716433516966512e65794a68645751694f694a76636d63364d534973496d567459576c73496a6f6959575274615735416247396a5957786f62334e30496977695a586877496a6f784e7a59304e6a45314d444d324c434a70595851694f6a45334e6a51324d5451304d7a5973496d6c6b5a57353061575a705a5849694f694a695a58686f616e5672624777774d57527a5a534973496d6c7a63794936496d6830644841364c7939305a5751745a4756324c6d4e734c6d646c62576c756153356c5a48557649697769626d46745a534936496d466b62576c7549697769626d46745a584e7759574e6c496a6f695a47566d5958567364434973496e4a76624755694f694a425a47317062694973496e4e3159694936496e567a5a5849364d534973496e5235634755694f694a31633256794969776964584e6c636d3568625755694f694a685a47317062694a392e61334a514b7a77556f634e723373347231773634764d66546578786e62425449336f4d31576930415f676d39424c436e4373347a644f736a4a6e5565506f4f5177734a346258383874354d524d584a4d316f71747a67',569,1764614436);
+INSERT INTO cache_data VALUES('id-token1-user-3Viewer',X'65794a68624763694f694a46557a49314e694973496d74705a434936496d6c6b4c5449774d6a55744d5449745a584d794e5459694c434a30655841694f694a716433516966512e65794a68645751694f694a76636d63364d534973496d46316447686c626e5270593246305a57524365534936496e426863334e3362334a6b496977695a573168615777694f694a305a57787663484d694c434a6c654841694f6a45334e6a51324d5459784d445573496d6c68644349364d5463324e4459784e5455774e5377696157526c626e52705a6d6c6c63694936496d566d4e5851305a577068597a68794f574e6b4969776961584e7a496a6f696148523063446f764c33526c5a43316b5a585975593277755a325674615735704c6d566b645338694c434a755957316c496a6f69564756736233427a49697769626d46745a584e7759574e6c496a6f695a47566d5958567364434973496e4a76624755694f694a57615756335a5849694c434a7a645749694f694a31633256794f6a4d694c434a306558426c496a6f6964584e6c63694973496e567a5a584a755957316c496a6f69644756736233427a496e302e4e565734513635376253337252766c743633736158385973736461312d326b675057537a3954722d534a5f7649664e777543766e7047524e334d47796770527762535145724349736d455a686a623543414332686967',569,1764615505);
+INSERT INTO cache_data VALUES('id-token0-user-3None',X'65794a68624763694f694a46557a49314e694973496d74705a434936496d6c6b4c5449774d6a55744d5449745a584d794e5459694c434a30655841694f694a716433516966512e65794a68645751694f694a76636d63364d434973496d567459576c73496a6f69644756736233427a496977695a586877496a6f784e7a59304e6a45324d5441314c434a70595851694f6a45334e6a51324d5455314d445573496d6c6b5a57353061575a705a5849694f694a6c5a6a56304e47567159574d34636a6c6a5a434973496d6c7a63794936496d6830644841364c7939305a5751745a4756324c6d4e734c6d646c62576c756153356c5a48557649697769626d46745a534936496c526c6247397763794973496d35686257567a6347466a5a534936496d39795a79307749697769636d39735a534936496b3576626d55694c434a7a645749694f694a31633256794f6a4d694c434a306558426c496a6f6964584e6c63694973496e567a5a584a755957316c496a6f69644756736233427a496e302e41526b5262326c6c374c41614d474536323379306545394b4163366947765455704f455675676c756a3752594f356f71304b6a74424d576a7a523069655071657073795769387258682d614c67573045422d686e4241',569,1764615505);
+INSERT INTO cache_data VALUES('id-token1-user-1Admin',X'65794a68624763694f694a46557a49314e694973496d74705a434936496d6c6b4c5449774d6a55744d5449745a584d794e5459694c434a30655841694f694a716433516966512e65794a68645751694f694a76636d63364d534973496d46316447686c626e5270593246305a57524365534936496e426863334e3362334a6b496977695a573168615777694f694a685a473170626b427362324e6862476876633351694c434a6c654841694f6a45334e6a51324d5459784d7a6373496d6c68644349364d5463324e4459784e54557a4e7977696157526c626e52705a6d6c6c63694936496d4a6c6547687164577473624441785a484e6c4969776961584e7a496a6f696148523063446f764c33526c5a43316b5a585975593277755a325674615735704c6d566b645338694c434a755957316c496a6f6959575274615734694c434a755957316c63334268593255694f694a6b5a575a686457783049697769636d39735a534936496b466b62576c754969776963335669496a6f6964584e6c636a6f784969776964486c775a534936496e567a5a5849694c434a3163325679626d46745a534936496d466b62576c75496e302e4d4a4a79354e6e74716c4762434a48375a65574a626f5771754342707662386c574d53476874435f43397355784e395270364a464f30776358637947452d45335a4b693338637a4b54447a58593655502d4474355177',569,1764615537);
+INSERT INTO cache_data VALUES('id-token0-user-1None',X'65794a68624763694f694a46557a49314e694973496d74705a434936496d6c6b4c5449774d6a55744d5449745a584d794e5459694c434a30655841694f694a716433516966512e65794a68645751694f694a76636d63364d434973496d567459576c73496a6f6959575274615735416247396a5957786f62334e30496977695a586877496a6f784e7a59304e6a45324d544d334c434a70595851694f6a45334e6a51324d5455314d7a6373496d6c6b5a57353061575a705a5849694f694a695a58686f616e5672624777774d57527a5a534973496d6c7a63794936496d6830644841364c7939305a5751745a4756324c6d4e734c6d646c62576c756153356c5a48557649697769626d46745a534936496d466b62576c7549697769626d46745a584e7759574e6c496a6f6962334a6e4c5441694c434a796232786c496a6f69546d39755a534973496e4e3159694936496e567a5a5849364d534973496e5235634755694f694a31633256794969776964584e6c636d3568625755694f694a685a47317062694a392e51784f433744716c32654f7a4454646845486b616336626237396b77463164317a715f6470426b7a42666f4739784e37614f386345427841426f61337a4d596465666f37782d69386f425a56516a745a326b72654a67',569,1764615537);
 CREATE TABLE `short_url` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `org_id` INTEGER NOT NULL
@@ -1204,7 +1209,7 @@ CREATE TABLE `alert_configuration_history` (
 INSERT INTO alert_configuration_history VALUES(1,1,replace('{\n	"alertmanager_config": {\n		"route": {\n			"receiver": "grafana-default-email",\n			"group_by": ["grafana_folder", "alertname"]\n		},\n		"receivers": [{\n			"name": "grafana-default-email",\n			"grafana_managed_receiver_configs": [{\n				"uid": "",\n				"name": "email receiver",\n				"type": "email",\n				"settings": {\n					"addresses": "<example@email.com>"\n				}\n			}]\n		}]\n	}\n}\n','\n',char(10)),'ed091fbc8c639dd8063190127c806946','v1',1757360766,1,1757360766);
 INSERT INTO alert_configuration_history VALUES(2,1,'{"template_files":null,"alertmanager_config":{"route":{"receiver":"grafana-default-email","group_by":["grafana_folder","alertname"]},"receivers":[{"name":"grafana-default-email","grafana_managed_receiver_configs":[{"uid":"","name":"email receiver","type":"email","disableResolveMessage":false,"settings":{"addresses":"\u003cexample@email.com\u003e"}},{"uid":"fesr7afzpjgn4c","name":"grafana-default-email","type":"email","disableResolveMessage":false,"settings":{"addresses":"oscar.fuentes@noirlab.edu","message":"value: {{ $values.A.Value }}","singleEmail":false}}]}]}}','41a7ae5b6688b97727a0f53aea3460fe','v1',1757360767,0,0);
 INSERT INTO alert_configuration_history VALUES(3,1,'{"template_files":null,"alertmanager_config":{"route":{"receiver":"grafana-default-email","group_by":["grafana_folder"],"group_wait":"30s","group_interval":"10s","repeat_interval":"10s"},"receivers":[{"name":"grafana-default-email","grafana_managed_receiver_configs":[{"uid":"","name":"email receiver","type":"email","disableResolveMessage":false,"settings":{"addresses":"\u003cexample@email.com\u003e"}},{"uid":"fesr7afzpjgn4c","name":"grafana-default-email","type":"email","disableResolveMessage":false,"settings":{"addresses":"oscar.fuentes@noirlab.edu","message":"value: {{ $values.A.Value }}","singleEmail":false}}]}]}}','d9d6385c3310f37996c2031ec2010b96','v1',1757360767,0,1761248405);
-INSERT INTO alert_configuration_history VALUES(4,1,'{"template_files":null,"alertmanager_config":{"route":{"receiver":"grafana-default-email","group_by":["grafana_folder"],"group_wait":"30s","group_interval":"10s","repeat_interval":"10s"},"receivers":[{"name":"grafana-default-email","grafana_managed_receiver_configs":[{"uid":"","name":"email receiver","type":"email","disableResolveMessage":false,"settings":{"addresses":"\u003cexample@email.com\u003e"}},{"uid":"fesr7afzpjgn4c","name":"grafana-default-email","type":"email","disableResolveMessage":false,"settings":{"addresses":"oscar.fuentes@noirlab.edu","message":"value: {{ $values.A.Value }}","singleEmail":false}}]},{"name":"Testers","grafana_managed_receiver_configs":[{"uid":"bf20sahrz4u0we","name":"Testers","type":"email","disableResolveMessage":false,"settings":{"addresses":"oscar.fuentes@noirlab.edu\nmiguel.gomez@noirlab.edu","singleEmail":false}}]}]}}','184d772f2194d6ce4270b714edf1526b','v1',1761313289,0,1764604669);
+INSERT INTO alert_configuration_history VALUES(4,1,'{"template_files":null,"alertmanager_config":{"route":{"receiver":"grafana-default-email","group_by":["grafana_folder"],"group_wait":"30s","group_interval":"10s","repeat_interval":"10s"},"receivers":[{"name":"grafana-default-email","grafana_managed_receiver_configs":[{"uid":"","name":"email receiver","type":"email","disableResolveMessage":false,"settings":{"addresses":"\u003cexample@email.com\u003e"}},{"uid":"fesr7afzpjgn4c","name":"grafana-default-email","type":"email","disableResolveMessage":false,"settings":{"addresses":"oscar.fuentes@noirlab.edu","message":"value: {{ $values.A.Value }}","singleEmail":false}}]},{"name":"Testers","grafana_managed_receiver_configs":[{"uid":"bf20sahrz4u0we","name":"Testers","type":"email","disableResolveMessage":false,"settings":{"addresses":"oscar.fuentes@noirlab.edu\nmiguel.gomez@noirlab.edu","singleEmail":false}}]}]}}','184d772f2194d6ce4270b714edf1526b','v1',1761313289,0,1764615488);
 CREATE TABLE `library_element` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `org_id` INTEGER NOT NULL
@@ -1260,11 +1265,11 @@ CREATE TABLE `secrets` (
 , `created` DATETIME NOT NULL
 , `updated` DATETIME NOT NULL
 );
-INSERT INTO secrets VALUES(1,1,'Elasticsearch','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqOTUxTVNOTGfvmRlerm+zkFnmRgqQtvqZy2I','2025-09-08 19:46:07','2025-12-01 15:57:50');
-INSERT INTO secrets VALUES(2,1,'Elasticsearch API','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqNEdMTDFZRk5IxaZjW/9ircuWctNuo1G/h6o','2025-09-08 19:46:07','2025-12-01 15:57:50');
-INSERT INTO secrets VALUES(3,1,'GEA API','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqSkc1cFh2MWby62aEuRAptZBPTgSx22ikgjY','2025-09-08 19:46:07','2025-12-01 15:57:50');
-INSERT INTO secrets VALUES(4,1,'AAservice','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqY3FtTUNQOTOrjLWWgHuXoFoCA2w7bjQSako','2025-09-08 19:46:07','2025-12-01 15:57:50');
-INSERT INTO secrets VALUES(5,1,'ArchiverAppliance','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqTnNhZDRTVTmT2+/nWoKwhz25Xw2AFXzR81U','2025-09-08 19:46:07','2025-12-01 15:57:50');
+INSERT INTO secrets VALUES(1,1,'Elasticsearch','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqeGtWYkFOdmeO4JHr00CUbIHJIQPrPXwRBNE','2025-09-08 19:46:07','2025-12-01 18:58:08');
+INSERT INTO secrets VALUES(2,1,'Elasticsearch API','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqRmpWRmxaamOfD9DFsS/uQHeUZmsSOTptrVE','2025-09-08 19:46:07','2025-12-01 18:58:08');
+INSERT INTO secrets VALUES(3,1,'GEA API','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqNGdDVGN2dWUfFV2CW5gxOX3LuLjDBNXSmIk','2025-09-08 19:46:07','2025-12-01 18:58:08');
+INSERT INTO secrets VALUES(4,1,'AAservice','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqYlA5ZTNLT1ltP6NKvB3KtPoJVjvAfRrxWIE','2025-09-08 19:46:07','2025-12-01 18:58:08');
+INSERT INTO secrets VALUES(5,1,'ArchiverAppliance','datasource','I1pXWTFjMmR6YjJkNGVYSmpkMlkjKllXVnpMV05tWWcqSUV2U3FDeW+P/WOSAp3RG5Q+u44zM+Fm8m0','2025-09-08 19:46:07','2025-12-01 18:58:08');
 CREATE TABLE `kv_store` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `org_id` INTEGER NOT NULL
@@ -1545,13 +1550,6 @@ INSERT INTO permission VALUES(745,2,'library.panels:delete','folders:uid:df5t2sm
 INSERT INTO permission VALUES(746,2,'dashboards:read','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
 INSERT INTO permission VALUES(747,2,'dashboards:delete','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
 INSERT INTO permission VALUES(748,2,'folders:write','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
-INSERT INTO permission VALUES(749,1,'folders:view','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
-INSERT INTO permission VALUES(750,1,'alert.silences:read','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
-INSERT INTO permission VALUES(751,1,'dashboards:read','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
-INSERT INTO permission VALUES(752,1,'annotations:read','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
-INSERT INTO permission VALUES(753,1,'folders:read','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
-INSERT INTO permission VALUES(754,1,'alert.rules:read','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
-INSERT INTO permission VALUES(755,1,'library.panels:read','folders:uid:df5t2smg75ekgc','2025-12-01 18:23:48','2025-12-01 18:23:48','folders','uid','df5t2smg75ekgc');
 INSERT INTO permission VALUES(756,3,'folders:admin','folders:uid:df5t2teaqwao0d','2025-12-01 18:24:03','2025-12-01 18:24:03','folders','uid','df5t2teaqwao0d');
 INSERT INTO permission VALUES(757,3,'dashboards.permissions:read','folders:uid:df5t2teaqwao0d','2025-12-01 18:24:03','2025-12-01 18:24:03','folders','uid','df5t2teaqwao0d');
 INSERT INTO permission VALUES(758,3,'library.panels:read','folders:uid:df5t2teaqwao0d','2025-12-01 18:24:03','2025-12-01 18:24:03','folders','uid','df5t2teaqwao0d');
@@ -1609,6 +1607,29 @@ INSERT INTO permission VALUES(809,3,'teams:delete','teams:id:2','2025-12-01 18:4
 INSERT INTO permission VALUES(810,3,'teams:write','teams:id:2','2025-12-01 18:40:58','2025-12-01 18:40:58','teams','id','2');
 INSERT INTO permission VALUES(811,3,'teams.permissions:read','teams:id:2','2025-12-01 18:40:58','2025-12-01 18:40:58','teams','id','2');
 INSERT INTO permission VALUES(812,3,'teams.permissions:write','teams:id:2','2025-12-01 18:40:58','2025-12-01 18:40:58','teams','id','2');
+INSERT INTO permission VALUES(836,4,'folders:edit','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(837,4,'annotations:write','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(838,4,'annotations:create','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(839,4,'folders:read','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(840,4,'dashboards:create','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(841,4,'dashboards:read','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(842,4,'alert.silences:read','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(843,4,'folders:write','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(844,4,'alert.rules:create','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(845,4,'alert.rules:write','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(846,4,'annotations:delete','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(847,4,'folders:delete','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(848,4,'alert.rules:delete','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(849,4,'library.panels:delete','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(850,4,'dashboards:delete','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(851,4,'alert.rules:read','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(852,4,'library.panels:read','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(853,4,'alert.silences:create','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(854,4,'alert.silences:write','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(855,4,'library.panels:create','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(856,4,'library.panels:write','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(857,4,'dashboards:write','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
+INSERT INTO permission VALUES(858,4,'annotations:read','folders:uid:df5t2teaqwao0d','2025-12-01 19:00:14','2025-12-01 19:00:14','folders','uid','df5t2teaqwao0d');
 CREATE TABLE `role` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `name` TEXT NOT NULL
@@ -1622,6 +1643,7 @@ CREATE TABLE `role` (
 INSERT INTO role VALUES(1,'managed:builtins:viewer:permissions','',0,1,'cexhjuo0d0d8gc','2025-09-08 19:46:07','2025-09-08 19:46:07','','',0);
 INSERT INTO role VALUES(2,'managed:builtins:editor:permissions','',0,1,'dexhjuo0i05xcf','2025-09-08 19:46:07','2025-09-08 19:46:07','','',0);
 INSERT INTO role VALUES(3,'managed:users:1:permissions','',0,1,'ef1djqkmtdr7kb','2025-10-18 01:23:40','2025-10-18 01:23:40','','',0);
+INSERT INTO role VALUES(4,'managed:teams:1:permissions','',0,1,'ff5t60gct2tq8f','2025-12-01 18:59:53','2025-12-01 18:59:53','','',0);
 CREATE TABLE `team_role` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `org_id` INTEGER NOT NULL
@@ -1629,6 +1651,7 @@ CREATE TABLE `team_role` (
 , `role_id` INTEGER NOT NULL
 , `created` DATETIME NOT NULL
 );
+INSERT INTO team_role VALUES(1,1,1,4,'2025-12-01 18:59:53');
 CREATE TABLE `user_role` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `org_id` INTEGER NOT NULL
@@ -1731,9 +1754,9 @@ CREATE TABLE `folder` (
 );
 INSERT INTO folder VALUES(16,'df5snb89lpreoe',1,'Common','',NULL,'2025-12-01 15:30:14.874628597+00:00','2025-12-01 15:30:14');
 INSERT INTO folder VALUES(17,'ef5sncf9sa6m8b',1,'Generic','','df5snb89lpreoe','2025-12-01 15:30:37.194327834+00:00','2025-12-01 15:30:37');
-INSERT INTO folder VALUES(20,'bf5t2jxjk1udcc',1,'Utils','','df5snb89lpreoe','2025-12-01 18:21:06.588452075+00:00','2025-12-01 18:21:06.588452169+00:00');
-INSERT INTO folder VALUES(22,'df5t2smg75ekgc',1,'CP','',NULL,'2025-12-01 18:23:48.931618946+00:00','2025-12-01 18:23:48.931619002+00:00');
-INSERT INTO folder VALUES(23,'df5t2teaqwao0d',1,'SWG','','df5t2smg75ekgc','2025-12-01 18:24:03.385438892+00:00','2025-12-01 18:24:03.385439244+00:00');
+INSERT INTO folder VALUES(20,'bf5t2jxjk1udcc',1,'Utils','','df5snb89lpreoe','2025-12-01 18:21:06.588452075+00:00','2025-12-01 18:21:06');
+INSERT INTO folder VALUES(22,'df5t2smg75ekgc',1,'CP','',NULL,'2025-12-01 18:23:48.931618946+00:00','2025-12-01 18:23:48');
+INSERT INTO folder VALUES(23,'df5t2teaqwao0d',1,'SWG','','df5t2smg75ekgc','2025-12-01 18:24:03.385438892+00:00','2025-12-01 18:24:03');
 CREATE TABLE `anon_device` (
 `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 , `client_ip` TEXT NOT NULL
@@ -1915,6 +1938,37 @@ INSERT INTO sqlite_sequence VALUES('data_source',5);
 INSERT INTO sqlite_sequence VALUES('preferences',2);
 INSERT INTO sqlite_sequence VALUES('annotation',466);
 INSERT INTO sqlite_sequence VALUES('dashboard_version',376);
+INSERT INTO sqlite_sequence VALUES('team',2);
+INSERT INTO sqlite_sequence VALUES('team_member',2);
+INSERT INTO sqlite_sequence VALUES('dashboard_acl',2);
+INSERT INTO sqlite_sequence VALUES('server_lock',7);
+INSERT INTO sqlite_sequence VALUES('user_auth_token',23);
+INSERT INTO sqlite_sequence VALUES('short_url',10);
+INSERT INTO sqlite_sequence VALUES('alert_rule_version',58);
+INSERT INTO sqlite_sequence VALUES('alert_configuration',1);
+INSERT INTO sqlite_sequence VALUES('provenance_type',13);
+INSERT INTO sqlite_sequence VALUES('alert_configuration_history',4);
+INSERT INTO sqlite_sequence VALUES('library_element',1);
+INSERT INTO sqlite_sequence VALUES('library_element_connection',40);
+INSERT INTO sqlite_sequence VALUES('secrets',5);
+INSERT INTO sqlite_sequence VALUES('kv_store',11);
+INSERT INTO sqlite_sequence VALUES('permission',858);
+INSERT INTO sqlite_sequence VALUES('role',4);
+INSERT INTO sqlite_sequence VALUES('user_role',1);
+INSERT INTO sqlite_sequence VALUES('builtin_role',2);
+INSERT INTO sqlite_sequence VALUES('folder',28);
+INSERT INTO sqlite_sequence VALUES('anon_device',314);
+INSERT INTO sqlite_sequence VALUES('signing_key',4);
+INSERT INTO sqlite_sequence VALUES('resource_migration_log',26);
+INSERT INTO sqlite_sequence VALUES('migration_log',654);
+INSERT INTO sqlite_sequence VALUES('user',3);
+INSERT INTO sqlite_sequence VALUES('org',1);
+INSERT INTO sqlite_sequence VALUES('org_user',3);
+INSERT INTO sqlite_sequence VALUES('dashboard',44);
+INSERT INTO sqlite_sequence VALUES('data_source',5);
+INSERT INTO sqlite_sequence VALUES('preferences',2);
+INSERT INTO sqlite_sequence VALUES('annotation',466);
+INSERT INTO sqlite_sequence VALUES('dashboard_version',376);
 INSERT INTO sqlite_sequence VALUES('dashboard_acl',2);
 INSERT INTO sqlite_sequence VALUES('server_lock',7);
 INSERT INTO sqlite_sequence VALUES('user_auth_token',20);
@@ -2032,7 +2086,7 @@ INSERT INTO sqlite_sequence VALUES('alert_rule_tag',0);
 INSERT INTO sqlite_sequence VALUES('annotation_tag',0);
 INSERT INTO sqlite_sequence VALUES('dashboard_version',335);
 INSERT INTO sqlite_sequence VALUES('dashboard_acl',2);
-INSERT INTO sqlite_sequence VALUES('login_attempt',4);
+INSERT INTO sqlite_sequence VALUES('login_attempt',6);
 INSERT INTO sqlite_sequence VALUES('seed_assignment',0);
 INSERT INTO sqlite_sequence VALUES('folder',66);
 INSERT INTO sqlite_sequence VALUES('kv_store',11);
@@ -2065,6 +2119,7 @@ INSERT INTO sqlite_sequence VALUES('library_element',1);
 INSERT INTO sqlite_sequence VALUES('library_element_connection',9);
 INSERT INTO sqlite_sequence VALUES('team',2);
 INSERT INTO sqlite_sequence VALUES('team_member',2);
+INSERT INTO sqlite_sequence VALUES('team_role',1);
 CREATE UNIQUE INDEX `UQE_user_login` ON `user` (`login`);
 CREATE UNIQUE INDEX `UQE_user_email` ON `user` (`email`);
 CREATE INDEX `IDX_user_login_email` ON `user` (`login`,`email`);
