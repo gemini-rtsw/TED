@@ -1,0 +1,641 @@
+WFS:
+  Seeing Estimates:
+    P2:
+      codes:
+        - pwfs2:dc:seeing
+    GMOS OI:
+      codes:
+        - oiwfs:dc:seeing
+    F2 OI:
+      codes:
+        - f2oi:dc:seeing
+  Total Counts:
+    P1:
+      codes:
+        - pwfs1:dc:fgDiag6P1.VALH
+    P2:
+      codes:
+        - pwfs2:dc:fgDiag1P2.VALQ
+    GMOS OI:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALQ
+    F2 OI:
+      codes:
+        - f2oi:dc:fgDiag1P2.VALQ
+  Detector Temperatures:
+    P1:
+      codes:
+        - pwfs1:dc:headTemp
+    P2:
+      codes:
+        - pwfs2:dc:headTemp
+    HRWFS:
+      codes:
+        - hrwfs:dc:headTemp
+    GMOS OI:
+      codes:
+        - oiwfs:dc:headTemp
+    F2 OI:
+      codes:
+        - f2oi:dc:headTemp
+  Wfs RMS Values:
+    P1:
+      codes:
+        - pwfs1:dc:aoRms
+    P2:
+      codes:
+        - pwfs2:dc:aoRms
+    GMOS OI:
+      codes:
+        - oiwfs:dc:aoRms
+    F2 OI:
+      codes:
+        - f2oi:dc:aoRms
+  P1 & P2 astigmatism (allows to see transition from one to the other guider):
+    P1:
+      codes:
+        - pwfs1:dc:aoZ.VALD
+        - pwfs1:dc:aoZ.VALE
+    P2:
+      codes:
+        - pwfs2:dc:aoZ.VALD
+        - pwfs2:dc:aoZ.VALE
+    All:
+      codes:
+        - pwfs1:dc:aoZ.VALD
+        - pwfs1:dc:aoZ.VALE
+        - pwfs2:dc:aoZ.VALD
+        - pwfs2:dc:aoZ.VALE
+  P1 + OIWFS astigmatism (transition from one to the other guider (i.e. good relative calibration)):
+    P1:
+      codes:
+        - pwfs1:dc:aoZ.VALD
+        - pwfs1:dc:aoZ.VALE
+    GMOS OI:
+      codes:
+        - oiwfs:dc:aoZ.VALD
+        - oiwfs:dc:aoZ.VALE
+    All:
+      codes:
+        - pwfs1:dc:aoZ.VALD
+        - pwfs1:dc:aoZ.VALE
+        - oiwfs:dc:aoZ.VALD
+        - oiwfs:dc:aoZ.VALE
+  M1 tuning (P1 astigmatism, coma trefoil - allows to see how good the M1/M2 LUTs are):
+    P1:
+      codes:
+        - pwfs1:dc:aoZ.VALD
+        - pwfs1:dc:aoZ.VALE
+        - pwfs1:dc:aoZ.VALF
+        - pwfs1:dc:aoZ.VALG
+        - pwfs1:dc:aoZ.VALI
+        - pwfs1:dc:aoZ.VALJ
+    All:
+      codes:
+        - pwfs1:dc:aoZ.VALD
+        - pwfs1:dc:aoZ.VALE
+        - pwfs1:dc:aoZ.VALF
+        - pwfs1:dc:aoZ.VALG
+        - pwfs1:dc:aoZ.VALI
+        - pwfs1:dc:aoZ.VALJ
+  P1 high order Zernikes:
+    Z11:
+      codes:
+        - pwfs1:dc:aoZ.VALK
+    Z12:
+      codes:
+        - pwfs1:dc:aoZ.VALL
+    Z13:
+      codes:
+        - pwfs1:dc:aoZ.VALM
+    Z14:
+      codes:
+        - pwfs1:dc:aoZ.VALN
+    Z15:
+      codes:
+        - pwfs1:dc:aoZ.VALO
+    Z16:
+      codes:
+        - pwfs1:dc:aoZ.VALP
+    Z17:
+      codes:
+        - pwfs1:dc:aoZ.VALQ
+    Z18:
+      codes:
+        - pwfs1:dc:aoZ.VALR
+    Z19:
+      codes:
+        - pwfs1:dc:aoZ.VALS
+    spherical Z8:
+      codes:
+        - pwfs1:dc:aoZ.VALH
+    All:
+      codes:
+        - pwfs1:dc:aoZ.VALK
+        - pwfs1:dc:aoZ.VALL
+        - pwfs1:dc:aoZ.VALM
+        - pwfs1:dc:aoZ.VALN
+        - pwfs1:dc:aoZ.VALO
+        - pwfs1:dc:aoZ.VALP
+        - pwfs1:dc:aoZ.VALQ
+        - pwfs1:dc:aoZ.VALR
+        - pwfs1:dc:aoZ.VALS
+        - pwfs1:dc:aoZ.VALH
+  P2 astigmatism (in Y) vs Composite Angle (in X) - allows to see residual error in models:
+    Astig0:
+      codes:
+        - pwfs2:dc:aoZ.VALD
+    Astig45:
+      codes:
+        - pwfs2:dc:aoZ.VALE
+    CA:
+      codes:
+        - pwfs2:dc:aoZ.VALF
+    All:
+      codes:
+        - pwfs2:dc:aoZ.VALD
+        - pwfs2:dc:aoZ.VALE
+        - pwfs2:dc:aoZ.VALF
+  P2 coma:
+    Xcoma:
+      codes:
+        - pwfs2:dc:aoZ.VALF
+    Ycoma:
+      codes:
+        - pwfs2:dc:aoZ.VALG
+    All:
+      codes:
+        - pwfs2:dc:aoZ.VALF
+        - pwfs2:dc:aoZ.VALG
+  GMOS + F2 OIWFS astigmatism:
+    GMOS 0 astigmatism:
+      codes:
+        - gmoi:dc:aoZ.VALD
+    GMOS 45 astigmatism:
+      codes:
+        - gmoi:dc:aoZ.VALE
+    F2 0 astigmatism:
+      codes:
+        - f2oi:dc:aoZ.VALD
+    F2 45 astigmatism:
+      codes:
+        - f2oi:dc:aoZ.VALE
+    All:
+      codes:
+        - gmoi:dc:aoZ.VALD
+        - gmoi:dc:aoZ.VALE
+        - f2oi:dc:aoZ.VALD
+        - f2oi:dc:aoZ.VALE
+  P2 FG centroid total counts and thresholds in 4 subpupils:
+    Total Counts:
+      1:
+        codes:
+          - pwfs2:dc:fgDiag1P2.VALM
+      2:
+        codes:
+          - pwfs2:dc:fgDiag1P2.VALN
+      3:
+        codes:
+          - pwfs2:dc:fgDiag1P2.VALO
+      4:
+        codes:
+          - pwfs2:dc:fgDiag1P2.VALP
+      All:
+        codes:
+          - pwfs2:dc:fgDiag1P2.VALM
+          - pwfs2:dc:fgDiag1P2.VALN
+          - pwfs2:dc:fgDiag1P2.VALO
+          - pwfs2:dc:fgDiag1P2.VALP
+    Thresholds:
+      1:
+        codes:
+          - pwfs2:dc:fgDiag2P2.VALA
+      2:
+        codes:
+          - pwfs2:dc:fgDiag2P2.VALB
+      3:
+        codes:
+          - pwfs2:dc:fgDiag2P2.VALC
+      4:
+        codes:
+          - pwfs2:dc:fgDiag2P2.VALD
+      All:
+        codes:
+          - pwfs2:dc:fgDiag2P2.VALA
+          - pwfs2:dc:fgDiag2P2.VALB
+          - pwfs2:dc:fgDiag2P2.VALC
+          - pwfs2:dc:fgDiag2P2.VALD
+  WFS FG Centroids Position displayed in control CB:
+    OIWFS (to TCS):
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALA
+    F2OI:
+      codes:
+        - f2oi:dc:fgDiag1P2.VALA
+    GMOS:
+      codes:
+        - gmoi:dc:fgDiag1P2.VALA
+    P1:
+      codes:
+        - pwfs1:dc:fgDiag1P2.VALA
+    P2:
+      codes:
+        - pwfs2:dc:fgDiag1P2.VALA
+  P2 aO centroid total counts in 4 subpupils:
+    1:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALK
+    2:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALL
+    3:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALM
+    4:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALN
+    All:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALK
+        - pwfs2:dc:aoDiagP2.VALL
+        - pwfs2:dc:aoDiagP2.VALM
+        - pwfs2:dc:aoDiagP2.VALN
+  P2 aO centroid threshold in 4 subpupils:
+    1:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALQ
+    2:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALR
+    3:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALS
+    4:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALT
+    All:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALQ
+        - pwfs2:dc:aoDiagP2.VALR
+        - pwfs2:dc:aoDiagP2.VALS
+        - pwfs2:dc:aoDiagP2.VALT
+  P2 aO centroid X position in 4 subpupils:
+    1:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALC
+    2:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALE
+    3:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALG
+    4:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALI
+    All:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALC
+        - pwfs2:dc:aoDiagP2.VALE
+        - pwfs2:dc:aoDiagP2.VALG
+        - pwfs2:dc:aoDiagP2.VALI
+  P2 aO centroid Y position in 4 subpupils:
+    1:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALD
+    2:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALF
+    3:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALH
+    4:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALJ
+    All:
+      codes:
+        - pwfs2:dc:aoDiagP2.VALD
+        - pwfs2:dc:aoDiagP2.VALF
+        - pwfs2:dc:aoDiagP2.VALH
+        - pwfs2:dc:aoDiagP2.VALJ
+  P2 0 point astigmatism model:
+    ast0:
+      codes:
+        - pwfs2:dc:aoZero.VALG
+    ast45:
+      codes:
+        - pwfs2:dc:aoZero.VALH
+    All:
+      codes:
+        - pwfs2:dc:aoZero.VALG
+        - pwfs2:dc:aoZero.VALH
+  P2 composite angle:
+    codes:
+      - pwfs2:dc:ttfZero.VALF
+  P1 aO centroid counts in 4 subpupils:
+    3:
+      codes:
+        - pwfs1:dc:aoDiag4P1.VALN
+    4:
+      codes:
+        - pwfs1:dc:aoDiag4P1.VALO
+    8:
+      codes:
+        - pwfs1:dc:aoDiag4P1.VALS
+    9:
+      codes:
+        - pwfs1:dc:aoDiag4P1.VALT
+    10:
+      codes:
+        - pwfs1:dc:aoDiag4P1.VALU
+    11:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALA
+    13:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALC
+    14:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALD
+    17:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALG
+    18:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALH
+    19:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALI
+    20:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALJ
+    23:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALM
+    24:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALN
+    26:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALP
+    27:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALQ
+    28:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALR
+    29:
+      codes:
+        - pwfs1:dc:aoDiag5P1.VALS
+
+    33:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALB
+    34:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALC
+    All:
+      codes:
+        - pwfs1:dc:aoDiag4P1.VALN
+        - pwfs1:dc:aoDiag4P1.VALO
+        - pwfs1:dc:aoDiag4P1.VALS
+        - pwfs1:dc:aoDiag4P1.VALT
+        - pwfs1:dc:aoDiag4P1.VALU
+        - pwfs1:dc:aoDiag5P1.VALA
+        - pwfs1:dc:aoDiag5P1.VALC
+        - pwfs1:dc:aoDiag5P1.VALD
+        - pwfs1:dc:aoDiag5P1.VALG
+        - pwfs1:dc:aoDiag5P1.VALH
+        - pwfs1:dc:aoDiag5P1.VALI
+        - pwfs1:dc:aoDiag5P1.VALJ
+        - pwfs1:dc:aoDiag5P1.VALM
+        - pwfs1:dc:aoDiag5P1.VALN
+        - pwfs1:dc:aoDiag5P1.VALP
+        - pwfs1:dc:aoDiag5P1.VALQ
+        - pwfs1:dc:aoDiag5P1.VALR
+        - pwfs1:dc:aoDiag5P1.VALS
+        - pwfs1:dc:aoDiag6P1.VALB
+        - pwfs1:dc:aoDiag6P1.VALC
+  P1 aO centroid threshold in 4 subpupils:
+    3:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALJ
+    4:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALK
+    8:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALO
+    9:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALP
+    10:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALQ
+    11:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALR
+    13:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALT
+    14:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALU
+    17:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALC
+    18:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALD
+    19:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALE
+    20:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALF
+    23:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALI
+    24:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALJ
+    26:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALL
+    27:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALM
+    28:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALN
+    29:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALO
+    33:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALS
+    34:
+      codes:
+        - pwfs1:dc:aoDiag7P1.VALT
+    All:
+      codes:
+        - pwfs1:dc:aoDiag6P1.VALJ
+        - pwfs1:dc:aoDiag6P1.VALK
+        - pwfs1:dc:aoDiag6P1.VALO
+        - pwfs1:dc:aoDiag6P1.VALP
+        - pwfs1:dc:aoDiag6P1.VALQ
+        - pwfs1:dc:aoDiag6P1.VALR
+        - pwfs1:dc:aoDiag6P1.VALT
+        - pwfs1:dc:aoDiag6P1.VALU
+        - pwfs1:dc:aoDiag7P1.VALC
+        - pwfs1:dc:aoDiag7P1.VALD
+        - pwfs1:dc:aoDiag7P1.VALE
+        - pwfs1:dc:aoDiag7P1.VALF
+        - pwfs1:dc:aoDiag7P1.VALI
+        - pwfs1:dc:aoDiag7P1.VALJ
+        - pwfs1:dc:aoDiag7P1.VALL
+        - pwfs1:dc:aoDiag7P1.VALM
+        - pwfs1:dc:aoDiag7P1.VALN
+        - pwfs1:dc:aoDiag7P1.VALO
+        - pwfs1:dc:aoDiag7P1.VALS
+        - pwfs1:dc:aoDiag7P1.VALT
+  P1 0 point astigmatism model:
+    P1 0point model ast0:
+      codes:
+        - pwfs1:dc:aoZero.VALG
+    P1 0point model ast45:
+      codes:
+        - pwfs1:dc:aoZero.VALH
+    All:
+      codes:
+        - pwfs1:dc:aoZero.VALG
+        - pwfs1:dc:aoZero.VALH
+  P1 composite angle:
+    1:
+      codes:
+        - pwfs1:dc:ttfZero.VALF
+    2:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALM
+    3:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALN
+    4:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALO
+    5:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALP
+    All:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALM
+        - oiwfs:dc:fgDiag1P2.VALN
+        - oiwfs:dc:fgDiag1P2.VALO
+        - oiwfs:dc:fgDiag1P2.VALP
+  TTF:
+    Xtilt of P1 (sent to M2):
+      codes:
+        - pwfs1:dc:ttf.VALA
+    Ytilt of P1 (sent to M2):
+      codes:
+        - pwfs1:dc:ttf.VALB
+    focus of P1 (sent to M2):
+      codes:
+        - pwfs1:dc:ttf.VALC
+    Xtilt of P2 (sent to M2):
+      codes:
+        - pwfs2:dc:ttf.VALA
+    Ytilt of P2 (sent to M2):
+      codes:
+        - pwfs2:dc:ttf.VALB
+    focus of P2 (sent to M2):
+      codes:
+        - pwfs2:dc:ttf.VALC
+  OIWFS total counts per quadrant:
+    Q1:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALM
+    Q2:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALN
+    Q3:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALO
+    Q4:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALP
+    All:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALM
+        - oiwfs:dc:fgDiag1P2.VALN
+        - oiwfs:dc:fgDiag1P2.VALO
+        - oiwfs:dc:fgDiag1P2.VALP
+  GMOS OIWFS total counts per quadrant:
+    Q1:
+      codes:
+        - gmoi:dc:fgDiag1P2.VALM
+    Q2:
+      codes:
+        - gmoi:dc:fgDiag1P2.VALN
+    Q3:
+      codes:
+        - gmoi:dc:fgDiag1P2.VALO
+    Q4:
+      codes:
+        - gmoi:dc:fgDiag1P2.VALP
+    All:
+      codes:
+        - gmoi:dc:fgDiag1P2.VALM
+        - gmoi:dc:fgDiag1P2.VALN
+        - gmoi:dc:fgDiag1P2.VALO
+        - gmoi:dc:fgDiag1P2.VALP
+  F2 OIWFS total counts per quadrant:
+    Q1:
+      codes:
+        - f2oi:dc:fgDiag1P2.VALM
+    Q2:
+      codes:
+        - f2oi:dc:fgDiag1P2.VALN
+    Q3:
+      codes:
+        - f2oi:dc:fgDiag1P2.VALO
+    Q4:
+      codes:
+        - f2oi:dc:fgDiag1P2.VALP
+    All:
+      codes:
+        - f2oi:dc:fgDiag1P2.VALM
+        - f2oi:dc:fgDiag1P2.VALN
+        - f2oi:dc:fgDiag1P2.VALO
+        - f2oi:dc:fgDiag1P2.VALP
+  OIWFS other:
+    oiwfs_ttf_x:
+      codes:
+        - oiwfs:dc:ttf.VALA
+    oiwfs_ttf_y:
+      codes:
+        - oiwfs:dc:ttf.VALB
+    oiwfs_ttf_focus:
+      codes:
+        - oiwfs:dc:ttf.VALC
+    oiwfs_quadB:
+      codes:
+        - oiwfs:dc:fgDiag1P2.VALB
+  Sky Dark fits file:
+    pwfs1:
+      codes:
+        - pwfs1:dc:aoDarkInit
+    pwfs2:
+      codes:
+        - pwfs2:dc:aoDarkInit
+    gmoi:
+      codes:
+        - gmoi:dc:aoDarkInit
+    f2oi:
+      codes:
+        - f2oi:dc:aoDarkInit
+    All:
+      codes:
+        - pwfs1:dc:aoDarkInit
+        - pwfs2:dc:aoDarkInit
+        - gmoi:dc:aoDarkInit
+        - f2oi:dc:aoDarkInit
