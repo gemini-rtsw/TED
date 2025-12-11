@@ -1,0 +1,400 @@
+A&G:
+  Science Fold:
+    Eng Positions:
+      codes:
+        - ag:sfEngPosA.VALA
+        - ag:sfEngPosA.VALB
+        - ag:sfEngPosA.VALC
+    Positions RT Tilt Linear:
+      codes:
+        - ag:sfPosA.VALA
+        - ag:sfPosA.VALB
+        - ag:sfPosA.VALC
+    Spreadsheet Names:
+      codes:
+        - ag:sfName
+        - ag:sfxlat.VALA
+    Plot RT2 Position:
+      codes:
+        - ag:RT2PosA.VALA
+    Spreadsheet RT2 xlat:
+      codes:
+        - ag:RT2xlat.VALI
+        - ag:RT2xlat.VALG
+    Plot Tilt Position:
+      codes:
+        - ag:TiltPosA.VALA
+    Spreadsheet Tilt xlat:
+      codes:
+        - ag:Tiltxlat.VALI
+        - ag:Tiltxlat.VALG
+    Plot Linear2 Position:
+      codes:
+        - ag:Lin2PosA.VALA
+    Spreadsheet Linear2 xlat:
+      codes:
+        - ag:Lin2xlat.VALI
+        - ag:Lin2xlat.VALG
+        - ag:Lin2xlat.VALA
+    Extra Overrides:
+      codes:
+        - ag:Tiltxlat.VALA
+        - ag:RT2xlat.VALA
+  HRWFS General:
+    Real Pos Demand:
+      codes:
+        - ag:hwMove.A
+    Eng Pos Demand:
+      codes:
+        - ag:hwEng.A
+    Selected Pos Demand:
+      codes:
+        - ag:hwSel.A
+    HR Parked Flag:
+      codes:
+        - ag:hwParked
+    Position Values:
+      codes:
+        - ag:hwPosA.VALA
+        - ag:hwEngPosA.VALA
+    HW Xlat:
+      codes:
+        - ag:hwxlat.VALG
+        - ag:hwxlat.VALI
+        - ag:hwxlat.VALA
+    Encoder Mode:
+      codes:
+        - hrwfs:encoderMode
+    Encoder Switch:
+      codes:
+        - hrwfs:encoderStatusStr
+  HRWFS Mechanisms:
+    Focus:
+      Eng Position:
+        codes:
+          - hrwfs:focusEngPosA.VALA
+      Position:
+        codes:
+          - hrwfs:focusPosA.VALA
+      Name:
+        codes:
+          - hrwfs:focusName
+    Lens:
+      Eng Position:
+        codes:
+          - hrwfs:lensEngPosA.VALA
+      Position:
+        codes:
+          - hrwfs:lensPosA.VALA
+      Name:
+        codes:
+          - hrwfs:lensName
+    CLFilter:
+      Eng Position:
+        codes:
+          - hrwfs:clfilterEngPosA.VALA
+      Position:
+        codes:
+          - hrwfs:clfilterPosA.VALA
+      Name:
+        codes:
+          - hrwfs:clfilterName
+    NDFilter:
+      Eng Position:
+        codes:
+          - hrwfs:ndfilterEngPosA.VALA
+      Position:
+        codes:
+          - hrwfs:ndfilterPosA.VALA
+      Name:
+        codes:
+          - hrwfs:ndfilterName
+    Fldstop:
+      Eng Position:
+        codes:
+          - hrwfs:fldstopEngPosA.VALA
+      Position:
+        codes:
+          - hrwfs:fldstopPosA.VALA
+      Name:
+        codes:
+          - hrwfs:fldstopName
+  PWFS1:
+    RT34:
+      PosA Vala:
+        codes:
+          - ag:p1:RT34PosA.VALA
+      xlat Vali:
+        codes:
+          - ag:p1:RT34xlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p1:RT34xlat.VALG
+      xlat Vala:
+        codes:
+          - ag:p1:RT34xlat.VALA
+    PA34:
+      PosA Vala:
+        codes:
+          - ag:p1:PA34PosA.VALA
+      xlat Vali:
+        codes:
+          - ag:p1:PA34xlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p1:PA34xlat.VALG
+    Focus:
+      PosA Vala:
+        codes:
+          - ag:p1:focusPosA.VALA
+      xlat Vali:
+        codes:
+          - ag:p1:focusxlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p1:focusxlat.VALG
+    Filter:
+      PosA Vala:
+        codes:
+          - ag:p1:filterPosA.VALA
+      xlat Vala:
+        codes:
+          - ag:p1:filterxlat.VALA
+      xlat Vali:
+        codes:
+          - ag:p1:filterxlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p1:filterxlat.VALG
+      Move A:
+        codes:
+          - ag:p1:filterMove.A
+    Fldstop:
+      PosA Vala:
+        codes:
+          - ag:p1:fldstopPosA.VALA
+      xlat Vala:
+        codes:
+          - ag:p1:fldstopxlat.VALA
+      xlat Vali:
+        codes:
+          - ag:p1:fldstopxlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p1:fldstopxlat.VALG
+      Move A:
+        codes:
+          - ag:p1:fldstopMove.A
+  PWFS2:
+    RT34:
+      PosA Vala:
+        codes:
+          - ag:p2:RT34PosA.VALA
+      xlat Vali:
+        codes:
+          - ag:p2:RT34xlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p2:RT34xlat.VALG
+      xlat Vala:
+        codes:
+          - ag:p2:RT34xlat.VALA
+      Interpol Vala (Demand):
+        codes:
+          - ag:p2:interpol.VALA
+    PA34:
+      PosA Vala:
+        codes:
+          - ag:p2:PA34PosA.VALA
+      xlat Vali:
+        codes:
+          - ag:p2:PA34xlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p2:PA34xlat.VALG
+      xlat Vala:
+        codes:
+          - ag:p2:PA34xlat.VALA
+      Interpol Valb (Demand):
+        codes:
+          - ag:p2:interpol.VALB
+    Focus:
+      PosA Vala:
+        codes:
+          - ag:p2:focusPosA.VALA
+      xlat Vali:
+        codes:
+          - ag:p2:focusxlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p2:focusxlat.VALG
+      xlat Vala:
+        codes:
+          - ag:p2:focusxlat.VALA
+    Filter:
+      PosA Vala:
+        codes:
+          - ag:p2:filterPosA.VALA
+      xlat Vala:
+        codes:
+          - ag:p2:filterxlat.VALA
+      xlat Vali:
+        codes:
+          - ag:p2:filterxlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p2:filterxlat.VALG
+      Move A:
+        codes:
+          - ag:p2:filterMove.A
+    Fldstop:
+      PosA Vala:
+        codes:
+          - ag:p2:fldstopPosA.VALA
+      xlat Vala:
+        codes:
+          - ag:p2:fldstopxlat.VALA
+      xlat Vali:
+        codes:
+          - ag:p2:fldstopxlat.VALI
+      xlat Valg:
+        codes:
+          - ag:p2:fldstopxlat.VALG
+      Move A:
+        codes:
+          - ag:p2:fldstopMove.A
+    Probe:
+      xlat Vala:
+        codes:
+          - ag:p2:probexlat.VALA
+  Active Optic:
+    PA3AO:
+      PosA Vala:
+        codes:
+          - ag:PA3AOPosA.VALA
+      Move A:
+        codes:
+          - ag:PA3AOMove.A
+      Eng A:
+        codes:
+          - ag:PA3AOEng.A
+      In Position Val:
+        codes:
+          - ag:PA3AOinPosition.VAL
+      EngPosA Vala:
+        codes:
+          - ag:PA3AOEngPosA.VALA
+      xlat Vali:
+        codes:
+          - ag:PA3AOxlat.VALI
+      xlat Valg:
+        codes:
+          - ag:PA3AOxlat.VALG
+      xlat Vala:
+        codes:
+          - ag:PA3AOxlat.VALA
+    AO:
+      Eng A (RT3 Demand):
+        codes:
+          - ag:aoEng.A
+      Eng B (PA3AO Demand):
+        codes:
+          - ag:aoEng.B
+      EngPosA Vala (RT3 Position):
+        codes:
+          - ag:aoEngPosA.VALA
+      EngPosA Valb (PA3AO Position):
+        codes:
+          - ag:aoEngPosA.VALB
+  In Position Flags:
+    codes:
+      - ag:Lin2inPosition
+      - ag:PA3AOinPosition
+      - ag:RT2inPosition
+      - ag:TiltinPosition
+      - ag:aoinPosition
+      - ag:cc:inPosition
+      - ag:hwinPosition
+      - ag:p1:PA34inPosition
+      - ag:p1:RT34inPosition
+      - ag:p1:filterinPosition
+      - ag:p1:fldstopinPosition
+      - ag:p1:focusinPosition
+      - ag:p1:inPosition
+      - ag:p1:probeinPosition
+      - ag:p2:PA34inPosition
+      - ag:p2:RT34inPosition
+      - ag:p2:filterinPosition
+      - ag:p2:fldstopinPosition
+      - ag:p2:focusinPosition
+      - ag:p2:inPosition
+      - ag:p2:probeinPosition
+      - ag:sfinPosition
+  Amplifier Faults of MACCON amps:
+    Amp.1 AO Fold Mirror:
+      codes:
+        - ag:torque.VALD
+    Amp.2 Tilt Sc. Fold:
+      codes:
+        - ag:torque.VALB
+    HRWFS mirror:
+      codes:
+        - ag:torque.VALF
+    RT4 actual torque:
+      codes:
+        - ag:torque.VALO
+    PA3 actual torque:
+      codes:
+        - ag:torque.VALR
+    RT2 actual torque:
+      codes:
+        - ag:torque.VALS
+    RT3 actual torque:
+      codes:
+        - ag:torque.VALQ
+    PA4 actual torque:
+      codes:
+        - ag:torque.VALP
+    HRWFS Move to eng. Pos.:
+      codes:
+        - ag:hwEng.A
+  IOC Stats:
+    Susp Tasks:
+      codes:
+        - ag:iocStats:SUSP_TASK_CNT
+    Free memory:
+      codes:
+        - ag:iocStats:MEM_FREE
+    Global load:
+      codes:
+        - ag:iocStats:LOAD
+    Uptime:
+      codes:
+        - ag:iocStats:UPTIME
+    Time errors:
+      codes:
+        - ag:iocStats:GTIM_ERR_CNT
+    Free Sys MBUFs:
+      codes:
+        - ag:iocStats:SYS_MBUF_FREE
+    "% Clust available":
+      codes:
+        - ag:iocStats:SYS_CLUST_AVAIL_0
+        - ag:iocStats:SYS_CLUST_AVAIL_1
+    CA Connections:
+      codes:
+        - ag:iocStats:CA_CONN_CNT
+    IF errors:
+      codes:
+        - ag:iocStats:IFI_ERR_CNT
+        - ag:iocStats:IFO_ERR_CNT
+    Free FDs:
+      codes:
+        - ag:iocStats:FD_FREE
+    Boot version:
+      codes:
+        - ag:iocStats:APP_DIR1
+        - ag:iocStats:APP_DIR2
+    CA Clients:
+      codes:
+        - ag:iocStats:CA_CLNT_CNT
