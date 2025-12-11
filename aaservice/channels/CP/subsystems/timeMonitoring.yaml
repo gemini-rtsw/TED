@@ -1,0 +1,64 @@
+TA:
+  Information about the time synchronization (current reference AG clock):
+    Delay to time reference:
+      codes:
+        - ta:cr:diff
+        - ta:m2:diff
+        - ta:mc:diff
+        - ta:tcs:diff
+        - ta:ag:diff
+        - ta:ta:diff
+    Difference since last 1Hz update:
+      codes:
+        - ta:ta:timeDemux.VALG
+        - ta:cr:timeDemux.VALG
+        - ta:m2:timeDemux.VALG
+        - ta:mc:timeDemux.VALG
+        - ta:tcs:timeDemux.VALG
+        - ta:ag:timeDemux.VALG
+    Full time info array:
+      codes:
+        - ta:timeProbe:TAI.VALA
+        - cr:timeProbe:TAI.VALA
+        - m2:timeProbe:TAI.VALA
+        - mc:timeProbe:TAI.VALA
+        - tcs:timeProbe:TAI.VALA
+        - ag:timeProbe:TAI.VALA
+    Running RMS Error of the last 10 samples:
+      Rms Error:
+        codes:
+          - ta:cr:rmsErr.VALJ
+          - ta:m2:rmsErr.VALJ
+          - ta:mc:rmsErr.VALJ
+          - ta:tcs:rmsErr.VALJ
+          - ta:ag:rmsErr.VALJ
+          - ta:ta:rmsErr.VALJ
+      RmsErr TCS-MCS-CRCS:
+        codes:
+          - ta:cr:rmsErr.VALJ
+          - ta:mc:rmsErr.VALJ
+          - ta:tcs:rmsErr.VALJ
+      RmsErr tcs-ta:
+        codes:
+          - ta:tcs:rmsErr.VALJ
+          - ta:ta:rmsErr.VALJ
+    Difference to timeAudit clock:
+      Delay TCS-MCS-CRCS:
+        codes:
+          - ta:cr:diff
+          - ta:mc:diff
+          - ta:tcs:diff
+      Delay tcs-ta:
+        codes:
+          - ta:tcs:diff
+          - ta:ta:diff
+  Last 30 minutes:
+    Delay from reference to TCS and timeAudit:
+      codes:
+        - ta:tcs:diff
+        - ta:ta:diff
+    Delay from reference to CRCS-MCS-SCS:
+      codes:
+        - ta:cr:diff
+        - ta:mc:diff
+        - ta:m2:diff
