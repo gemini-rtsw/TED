@@ -178,6 +178,168 @@ GIS:
       codes:
         - gis:mon:other:m1posxscrewi
         - gis:mon:other:m1negxscrewi
+  Faults:
+    M1 cover skewed:
+      codes:
+        - gis:mon:other:m1covskewedi
+    Instrument Cover Iris:
+      codes:
+        - gis:mon:other:m1instsums
+    AZ overspeed fault:
+      codes:
+        - gis:az:azos:azosi
+    ALT overspeed fault:
+      codes:
+        - gis:alt:altos:altosi
+    AZ Overtravel Faults:
+      codes:
+        - gis:az:azos:azosii
+        - gis:az:azos:azost01i
+        - gis:az:azos:azost02i
+        - gis:az:azos:azost03i
+        - gis:az:azos:azost04i
+    ALT Overtravel Faults:
+      codes:
+        - gis:alt:altot:altotsums
+        - gis:alt:altot:altotzen01i
+        - gis:alt:altot:altotzen02i
+        - gis:alt:altot:altothor01i
+        - gis:alt:altot:altothor02i
+    AZ non zero speed fault:
+      codes:
+        - gis:az:azns:aznssums
+    ALT non zero speed fault:
+      codes:
+        - gis:alt:altns:altnssums
+    ALT cable wrap faults posX:
+      codes:
+        - gis:alt:altcw:altcwhiposxi
+        - gis:alt:altcw:altcwloposxi
+    ALT cable wrap faults negX:
+      codes:
+        - gis:alt:altcw:altcwhinegxi
+        - gis:alt:altcw:altcwlonegxi
+    ALT cable wrap faults all:
+      codes:
+        - gis:alt:altcw:altcwhiposxi
+        - gis:alt:altcw:altcwloposxi
+        - gis:alt:altcw:altcwhinegxi
+        - gis:alt:altcw:altcwlonegxi
+        - gis:alt:altcw:altcwsums
+    AZ Faults:
+      codes:
+        - gis:az:aztb:aztbi
+        - gis:az:azot:azotsums
+        - gis:az:azcw:azcwsums
+        - gis:az:azombr:azombrsums
+        - gis:az:azpp:azppi
+        - gis:misc:misczsums
+        - gis:az:azos:azosi
+        - gis:az:azdr:azdrsums
+        - gis:ck:cksums
+        - gis:hbs:hbssums
+        - gis:az:azns:aznssums
+        - gis:az:azbr:azbri
+        - gis:az:azlo:azlosums
+        - gis:alt:altlp:altlpsum1s
+        - gis:az:azbg:azbgsums
+    ALT Faults:
+      codes:
+        - gis:pcs:pcssums
+        - gis:alt:altot:altotsums
+        - gis:alt:altcw:altcwsums
+        - gis:alt:altombr:altombrsums
+        - gis:alt:altpp:altppi
+        - gis:misc:misclsums
+        - gis:alt:altos:altosi
+        - gis:alt:altdr:altdrsums
+        - gis:ck:cksums
+        - gis:hbs:hbssums
+        - gis:alt:altns:altnssums
+        - gis:alt:altbr:altbrsums
+        - gis:alt:altlo:altlosums
+        - gis:alt:altlp:altlpsums
+        - gis:alt:altbg:altbgsums
+        - gis:cass:gmdoor
+        - gis:cass:gmintf
+    Cassegrain Faults:
+      codes:
+        - gis:cass:rwpmaci
+        - gis:cass:rdri
+        - gis:cass:rdrdci
+        - gis:cass:rcwi
+        - gis:cass:rccwi
+        - gis:cass:wdri
+        - gis:cass:wdrdci
+        - gis:cass:wcwi
+        - gis:cass:wccwi
+        - gis:cass:gmdoor
+        - gis:cass:gmintf
+    PCS Faults:
+      codes:
+        - gis:pcs:noreli
+        - gis:pcs:ndisablei
+        - gis:pcs:ngrabi
+    PCL Rack Faults:
+      codes:
+        - gis:rack:r00i
+        - gis:rack:r01i
+        - gis:rack:r02i
+        - gis:rack:r03i
+        - gis:rack:r04i
+        - gis:rack:r05i
+        - gis:rack:r06i
+        - gis:rack:r07i
+        - gis:rack:r10i
+    Emergency Stop and PLX Faults:
+      codes:
+        - gis:es:es01i
+        - gis:es:e01i
+        - gis:es:e03i
+        - gis:es:e02i
+        - gis:es:e04i
+        - gis:es:e23i
+        - gis:es:e24i
+        - gis:es:e10i
+        - gis:es:e11i
+        - gis:es:e12i
+        - gis:es:e13i
+        - gis:es:e14i
+        - gis:es:e01i
+        - gis:es:e02i
+        - gis:es:e03i
+        - gis:es:e04i
+        - gis:es:e05i
+        - gis:es:e06i
+        - gis:es:e20i
+        - gis:es:e21i
+        - gis:es:e22i
+        - gis:es:e23i
+        - gis:es:e24i
+        - gis:es:e25i
+        - gis:es:e26i
+        - gis:es:e28i
+        - gis:es:e29i
+        - gis:es:plxm
+        - gis:es:plctripi
+    Interfaces:
+      codes:
+        - gis:int:int01i
+        - gis:int:int02i
+        - gis:int:int03i
+        - gis:int:int04i
+        - gis:int:int05i
+        - gis:int:int06i
+        - gis:int:int07i
+        - gis:int:int08i
+        - gis:int:int09i
+        - gis:int:int10i
+        - gis:int:int11i
+        - gis:int:int12i
+        - gis:int:int13i
+        - gis:int:int14i
+        - gis:int:int15i
+        - gis:int:int16i
   Precipitation sensors:
     Optical (most sensitive):
       codes:
