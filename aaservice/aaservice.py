@@ -92,6 +92,12 @@ async def get_pvs(request: Request):
     fmt = "%Y-%m-%dT%H:%M:%S.%fZ"
     deltaDate = datetime.strptime(date_to, fmt) - datetime.strptime(date_from, fmt)
     delta_seconds = deltaDate.total_seconds()
+
+    delta_days = deltaDate.total_seconds()/(3600*24)
+    print("DELTA DAYS: ",delta_days)
+    if (delta_days>30):
+        return {"errorMsg":"Query limited to < 30 days"}
+
     bin_size = get_bin_size(delta_seconds)
 
     #Store PV type info per PV
