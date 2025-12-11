@@ -1,0 +1,65 @@
+Gpol/Gcal:
+  Filter wheel:
+    Target:
+      codes:
+        - gc:filtDevice.VAL
+    Current:
+      codes:
+        - gc:filtDevice.MPOS
+    Target_and_Current:
+      codes:
+        - gc:filtDevice.VAL
+        - gc:filtDevice.MPOS
+  Diffuser:
+    Target:
+      codes:
+        - gc:diffuseDevice.VAL
+    Current:
+      codes:
+        - gc:diffuseDevice.MPOS
+    Target_and_Current:
+      codes:
+        - gc:diffuseDevice.VAL
+        - gc:diffuseDevice.MPOS
+  Shutter (For IR lamp):
+    Target:
+      codes:
+        - gc:shutterDevice.VAL
+    Current:
+      codes:
+        - gc:shutterDevice.MPOS
+    Target_and_Current:
+      codes:
+        - gc:shutterDevice.VAL
+        - gc:shutterDevice.MPOS
+    Current position name:
+      codes:
+        - gc:shutterStateIn
+  Lamps:
+    IR:
+      codes:
+        - gc:IR_LampState.VAL
+    QH:
+      codes:
+        - gc:QH_LampState.VAL
+    Ar:
+      codes:
+        - gc:Ar_LampState.VAL
+    Xe:
+      codes:
+        - gc:Xe_LampState.VAL
+    ThAr:
+      codes:
+        - gc:ThAr_LampState.VAL
+    CuAr:
+      codes:
+        - gc:CuAr_LampState.VAL
+    All_Filled:
+      codes:
+        - gc:IR_LampState.VAL
+        - gc:QH_LampState.VAL
+        - gc:Ar_LampState.VAL
+        - gc:Xe_LampState.VAL
+        - gc:ThAr_LampState.VAL
+        - gc:CuAr_LampState.VAL
+  
