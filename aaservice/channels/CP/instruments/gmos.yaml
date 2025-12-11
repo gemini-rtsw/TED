@@ -63,159 +63,138 @@ GMOS:
         - gm:cc:temp6
         - gm:cc:temp7
         - gm:cc:temp8
-
     All CC:
       codes:
-        - gm:cc:temp.
+        - gm:cc:temp1
+        - gm:cc:temp2
+        - gm:cc:temp3
+        - gm:cc:temp4
+        - gm:cc:temp5
+        - gm:cc:temp6
+        - gm:cc:temp7
+        - gm:cc:temp8
   DC setup:
     gm:dc:dcSetup.*:
       codes:
-        - gm:dc:dcSetup.*
+        - gm:dc:dcSetup
+        - gm:dc:dcSetup.A
+        - gm:dc:dcSetup.DIR
+        - gm:dc:dcSetup.F
+        - gm:dc:dcSetup.G
+        - gm:dc:dcSetup.VALA
+        - gm:dc:dcSetup.VALF
+        - gm:dc:dcSetup.VALG
+        - gm:dc:dcSetup.VALS
   Masks:
     gm:cc:mskNotAligned:
       codes:
         - gm:cc:mskNotAligned
-
     gm:cc:mskNotInSlot (Testing...):
       codes:
         - gm:cc:mskNotInSlot
-
     gm:cc:mskNotCassette:
       codes:
         - gm:cc:mskNotCassette
-
     gm:cc:optsensorEnable:
       codes:
         - gm:cc:optsensorEnable
-
     gm:cc:mskIfuNotIn:
       codes:
         - gm:cc:mskIfuNotIn
-
     gm:cc:mskNotInFp:
       codes:
         - gm:cc:mskNotInFp
-
     gm:cc:mskMaskNotIn:
       codes:
         - gm:cc:mskMaskNotIn
-
     gm:cc:mskGrpNotGripped:
       codes:
         - gm:cc:mskGrpNotGripped
-
     gm:cc:mskGrpNotReleased:
       codes:
         - gm:cc:mskGrpNotReleased
-
     gm:cc:mskGrpPower:
       codes:
         - gm:cc:mskGrpPower
-
     gm:cc:mskGrpDevice.MPOS:
       codes:
         - gm:cc:mskGrpDevice.MPOS
-
     gm:cc:mskGrpDevice:
       codes:
         - gm:cc:mskGrpDevice
-
     gm:cc:mskExtDevice:
       codes:
         - gm:cc:mskExtDevice
-
     gm:cc:mskExtDevice.MPOS:
       codes:
         - gm:cc:mskExtDevice.MPOS
-
     gm:cc:mskCasDevice:
       codes:
         - gm:cc:mskCasDevice
-
     gm:cc:mskCasDevice.MPOS:
       codes:
         - gm:cc:mskCasDevice.MPOS
-
     gm:cc:mskCasDevice.RRBV:
       codes:
         - gm:cc:mskCasDevice.RRBV
-
     gm:cc:mskRelDevice:
       codes:
         - gm:cc:mskRelDevice
-
     gm:cc:mskRelDevice.MPOS:
       codes:
         - gm:cc:mskRelDevice.MPOS
-
     Mask switch Status Word:
       codes:
         - gm:cc:mskSwitchWord.VALA
-
     released, locked or in between:
       codes:
         - gm:cc:mskSwitchWord.VALB
-
     gripped, released or between:
       codes:
         - gm:cc:mskSwitchWord.VALC
-
     Mask, IFU or neither in FP:
       codes:
         - gm:cc:mskSwitchWord.VALD
-
     Not In focal plane:
       codes:
         - gm:cc:mskNotInFp
-
     Not Mask In:
       codes:
         - gm:cc:mskMaskNotIn
-
     Not Ifu In:
       codes:
         - gm:cc:mskIfuNotIn
-
     Mask Not In Focal Plane (INPUT):
       codes:
         - gm:cc:mskSwitchWord.H
-
     IFU Not In Focal Plane (INPUT):
       codes:
         - gm:cc:mskSwitchWord.I
-
     Not In Focal Plane (INPUT):
       codes:
         - gm:cc:mskSwitchWord.J
-
     mskExt Power and Power Status:
       codes:
         - gm:cc:mskExtDevice.PWR
         - gm:cc:mskExtDevice.PSTA
-
     mskCas Power and Power Status:
       codes:
         - gm:cc:mskCasDevice.PWR
         - gm:cc:mskCasDevice.PSTA
-
     mskGrp Power and Power Status:
       codes:
         - gm:cc:mskGrpDevice.PWR
         - gm:cc:mskGrpDevice.PSTA
-
     mskRel Power and Power Status:
       codes:
         - gm:cc:mskRelDevice.PWR
         - gm:cc:mskRelDevice.PSTA
-
     mskRel Position:
       codes:
         - gm:cc:mskRelDevice.MPOS
-
     mskRel Lock:
       codes:
         - gm:cc:mskRelNotLocked
-
     gm:cc:mskLvdt (Plot):
       codes:
         - gm:cc:mskLvdt
@@ -307,7 +286,6 @@ GMOS:
     Follow Track ID:
       codes:
         - gm:wfs:followA.VALC
-
     Demanded pos in Tel. Coord:
       X_T:
         codes:
@@ -315,7 +293,6 @@ GMOS:
       Y_T:
         codes:
           - gm:wfs:followA.B
-
     Demanded pos in Mask Coord:
       X_M:
         codes:
@@ -323,7 +300,6 @@ GMOS:
       Y_M:
         codes:
           - gm:wfs:followA.VALF
-
     Probe Offsets:
       track ID:
         codes:
@@ -525,7 +501,6 @@ GMOS:
     Ignore Barcode Reader Failure (Spreadsheet):
       codes:
         - gm:cc:mskAssembly.SIN
-
   Filter wheels:
     Filter wheel 1 position:
       codes:
@@ -545,7 +520,6 @@ GMOS:
     Filter wheel 2:
       codes:
         - gm:fltPos.B
-
   Nod & Shuffle:
     Input state:
       codes:
@@ -635,7 +609,6 @@ GMOS:
     gm:cc:fltAssembly.INDX:
       codes:
         - gm:cc:fltAssembly.INDX
-
   Errors:
     Probe base error message:
       codes:
@@ -646,7 +619,6 @@ GMOS:
     Mask Assembly error message:
       codes:
         - gm:cc:mskAssembly.MESS
-
   IOC Stats:
     Current Free Heap:
       codes:
