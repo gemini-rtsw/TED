@@ -150,38 +150,38 @@ F2:
     SDSU Temperature:
       codes:
         - f2oi:dc:sdsuTemp
-    F2 Wheels positions:
-      Window:
-        codes:
-          - f2:sad:WINSTEP
-      MOS:
-        codes:
-          - f2:sad:MOSSTEP
-      Decker:
-        codes:
-          - f2:sad:DCKRSTEP
-      Filter 1:
-        codes:
-          - f2:sad:FIL1STEP
-      Lyot:
-        codes:
-          - f2:sad:LYOTSTEP
-      Filter 2:
-        codes:
-          - f2:sad:FIL2STEP
-      Grism:
-        codes:
-          - f2:sad:GRSMSTEP
-      Focus:
-        codes:
-          - f2:sad:FOCUSTEP
-      ALL:
-        codes:
-          - f2:sad:WINSTEP
-          - f2:sad:MOSSTEP
-          - f2:sad:DCKRSTEP
-          - f2:sad:FIL1STEP
-          - f2:sad:LYOTSTEP
-          - f2:sad:FIL2STEP
-          - f2:sad:GRSMSTEP
-          - f2:sad:FOCUSTEP
+  F2 Wheels positions:
+    Window:
+      codes:
+        - f2:sad:WINSTEP
+    MOS:
+      codes:
+        - f2:sad:MOSSTEP
+    Decker:
+      codes:
+        - f2:sad:DCKRSTEP
+    Filter 1:
+      codes:
+        - f2:sad:FIL1STEP
+    Lyot:
+      codes:
+        - f2:sad:LYOTSTEP
+    Filter 2:
+      codes:
+        - f2:sad:FIL2STEP
+    Grism:
+      codes:
+        - f2:sad:GRSMSTEP
+    Focus:
+      codes:
+        - f2:sad:FOCUSTEP
+    ALL:
+      codes:
+        - f2:sad:WINSTEP
+        - f2:sad:MOSSTEP
+        - f2:sad:DCKRSTEP
+        - f2:sad:FIL1STEP
+        - f2:sad:LYOTSTEP
+        - f2:sad:FIL2STEP
+        - f2:sad:GRSMSTEP
+        - f2:sad:FOCUSTEP
