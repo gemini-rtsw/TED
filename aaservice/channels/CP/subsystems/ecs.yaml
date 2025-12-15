@@ -54,7 +54,10 @@ ECS:
         - ec:bsBrk2w
     Drive Currents:
       codes:
-        - ec:sh:b2.
+        - ec:sh:b2w
+        - ec:sh:b2x
+        - ec:sh:b2y
+        - ec:sh:b2z
     Current Sum:
       codes:
         - ec:sh:bsum
@@ -221,4 +224,3 @@ ECS:
     West Vent Gate:
       codes:
         - ec:powSeq5proc.VALD
-  
