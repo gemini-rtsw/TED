@@ -21,3 +21,4 @@ archappl/webapps/etl
 archappl/webapps/mgmt
 archappl/webapps/retrieval
 aaservice/__pycache__
+timescale

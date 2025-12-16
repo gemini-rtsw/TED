@@ -266,8 +266,23 @@ services:
     network_mode: "host"
     volumes:
       - ./aaservice:/aaservice/
+      - /home/software/calibrations2025:/calibrations
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "1"
+#################################################################################################################
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    container_name: timescaledb
+    network_mode: "host"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: calibrations
+    restart: unless-stopped
+    volumes:
+      - ./timescale:/var/lib/postgresql/data
+volumes:
+  timescale:

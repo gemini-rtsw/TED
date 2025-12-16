@@ -4,3 +4,4 @@ httpx
 PyYAML
 pyepics
 mysql-connector-python
+psycopg[binary]
