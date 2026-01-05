@@ -8,11 +8,14 @@ from datetime import datetime
 # Third-party imports
 import httpx
 import yaml
+from concurrent.futures import ThreadPoolExecutor
 from fastapi import FastAPI, Request, Response, HTTPException, Body
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi.responses import JSONResponse, StreamingResponse
+
+import asyncio
 
 # Local application imports
 from enum_loader import loadAllEnumsAtOnce
@@ -208,8 +211,10 @@ async def loadAllEnums(request: Request):
     return {"updated_pvs": enums}
 
 #===================================================================================================
+calib_executor = ThreadPoolExecutor(max_workers=2)
 @app.get("/loadCalibrations/{prefix}")
 async def loadPrefixCalib(prefix: str):
+
     async def event_generator():
         try:
             days = list(getDirsByPrefix(prefix))
@@ -217,13 +222,12 @@ async def loadPrefixCalib(prefix: str):
 
             for i, day in enumerate(days, start=1):
                 yield f"data: [{i}/{total}] Loading {day}...\n\n"
-                await run_in_threadpool(insertDay, day)
+                await asyncio.get_running_loop().run_in_executor(
+                    calib_executor, insertDay, day
+                )
 
             yield "data: DONE\n\n"
         except Exception as e:
             yield f"data: ERROR: {e}\n\n"
 
-    return StreamingResponse(
-        event_generator(),
-        media_type="text/event-stream"
-    )
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
