@@ -8,13 +8,27 @@ from datetime import datetime
 # Third-party imports
 import httpx
 import yaml
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Request, Response, HTTPException, Body
+from fastapi.concurrency import run_in_threadpool
+from fastapi.middleware.cors import CORSMiddleware
+
 from fastapi.responses import JSONResponse, StreamingResponse
 
 # Local application imports
 from enum_loader import loadAllEnumsAtOnce
+from ted_calibrations import getDirsByPrefix, insertDay
 
 app = FastAPI() 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://ted-dev.cl.gemini.edu",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/getPvTree")
 async def get_pv_tree(request: Request):
@@ -193,3 +207,23 @@ async def loadAllEnums(request: Request):
     enums = await loadAllEnumsAtOnce()
     return {"updated_pvs": enums}
 
+#===================================================================================================
+@app.get("/loadCalibrations/{prefix}")
+async def loadPrefixCalib(prefix: str):
+    async def event_generator():
+        try:
+            days = list(getDirsByPrefix(prefix))
+            total = len(days)
+
+            for i, day in enumerate(days, start=1):
+                yield f"data: [{i}/{total}] Loading {day}...\n\n"
+                await run_in_threadpool(insertDay, day)
+
+            yield "data: DONE\n\n"
+        except Exception as e:
+            yield f"data: ERROR: {e}\n\n"
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream"
+    )
