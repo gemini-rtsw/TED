@@ -266,7 +266,7 @@ services:
     network_mode: "host"
     volumes:
       - ./aaservice:/aaservice/
-      - /home/software/calibrations2025:/calibrations
+      - /gemsoft/var/calibrations:/calibrations:ro
     logging:
       driver: "json-file"
       options:
