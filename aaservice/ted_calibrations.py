@@ -4,7 +4,7 @@ import psycopg
 from psycopg import sql
 import os
 from pathlib import Path
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 
 calib_data_path = Path("/calibrations")
@@ -42,6 +42,55 @@ def initTables():
         print(f"Error creating tables: {e}")
         return 1
 
+def parse_timerange(date_str: str):
+    date_str = date_str.strip()
+    print(date_str)
+    print(len(date_str))
+    # YEAR
+    if len(date_str) == 4:
+        start = datetime(int(date_str), 1, 1)
+        end = datetime(int(date_str) + 1, 1, 1)
+    # MONTH
+    elif len(date_str) == 6:
+        start = datetime.strptime(date_str, "%Y%m")
+        if start.month == 12:
+            end = datetime(start.year + 1, 1, 1)
+        else:
+            end = datetime(start.year, start.month + 1, 1)
+    # DAY or DATETIME
+    else:
+        ts = datetime.strptime(date_str, "%Y%m%d")
+        start = ts.replace(hour=0, minute=0, second=0, microsecond=0)
+        end = start + timedelta(days=1)
+    return start, end
+
+def queryCalib(date_str: str, key: str):
+    system = key.split(":")[1]
+    try:
+        parse_timerange(date_str)
+        start, end = parse_timerange(date_str)
+        with get_conn() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    sql.SQL("""
+                        SELECT *
+                        FROM {table}
+                        WHERE "key" = %s
+                          AND "time" >= %s
+                          AND "time" < %s
+                        ORDER BY "time"
+                    """).format(
+                        table=sql.Identifier(system)
+                    ),
+                    (key, start, end)
+                )
+
+                rows = cur.fetchall()
+                return rows
+        return 0
+    except Exception as e:
+        print(f"Error querying tables: {e}")
+        return 1
 
 def insertAll():
     allDays = calib_data_path.iterdir()
@@ -106,18 +155,33 @@ def main():
         description="TED TimescaleDB calibration data loader"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
+
     subparsers.add_parser("init", help="Initialize tables")
+
     subparsers.add_parser("all", help="Load all calibrations")
+
+    query_parser = subparsers.add_parser("query", help="Query calibration value")
+    query_parser.add_argument(
+        "date",
+        help="Date in YYYYMMDD, YYYYMM, YYYY, (e.g. 202512)"
+    )
+    query_parser.add_argument(
+        "key",
+        help="Key value"
+    )
+
     prefix_parser = subparsers.add_parser("prefix", help="Load calibrations for directories that matches a prefix")
     prefix_parser.add_argument(
         "date",
         help="Date in YYYYMMDD, YYYYMM, YYYY, (e.g. 202512)"
     )
+    
     day_parser = subparsers.add_parser("day", help="Load calibrations for one day")
     day_parser.add_argument(
         "date",
         help="Date in YYYYMMDD (e.g. 20251201)"
     )
+    
     subparsers.add_parser("today", help="Load today calibration")
 
     args = parser.parse_args()
@@ -125,6 +189,8 @@ def main():
     match args.command:
         case "init":
             initTables()
+        case "query":
+            print(queryCalib(args.date, args.key))
         case "all":
             insertAll()
         case "prefix":

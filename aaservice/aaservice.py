@@ -19,7 +19,7 @@ import asyncio
 
 # Local application imports
 from enum_loader import loadAllEnumsAtOnce
-from ted_calibrations import getDirsByPrefix, insertDay
+from ted_calibrations import getDirsByPrefix, insertDay, queryCalib
 
 app = FastAPI() 
 
@@ -212,9 +212,8 @@ async def loadAllEnums(request: Request):
 
 #===================================================================================================
 calib_executor = ThreadPoolExecutor(max_workers=2)
-@app.get("/loadCalibrations/{prefix}")
+@app.get("/loadCalib/{prefix}")
 async def loadPrefixCalib(prefix: str):
-
     async def event_generator():
         try:
             days = list(getDirsByPrefix(prefix))
@@ -225,9 +224,24 @@ async def loadPrefixCalib(prefix: str):
                 await asyncio.get_running_loop().run_in_executor(
                     calib_executor, insertDay, day
                 )
-
             yield "data: DONE\n\n"
         except Exception as e:
             yield f"data: ERROR: {e}\n\n"
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+@app.get("/getCalib")
+async def getCalibData(request: Request):
+    date =  request.query_params.get("date")
+    key =  request.query_params.get("key")
+    data = queryCalib(date,key)
+    json_ready = [
+        {
+            "time": row[0].isoformat(),
+            "key": row[1],
+            "value": row[2]
+        }
+        for row in data
+    ]
+    json_str = json.dumps(json_ready)
+    return Response(json_str)
