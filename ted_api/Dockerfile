@@ -5,7 +5,7 @@ ARG UID
 ARG GID
 ARG GROUP
 
-WORKDIR /aaservice
+WORKDIR /ted_api
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt

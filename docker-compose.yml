@@ -242,18 +242,19 @@ services:
       timeout: 5s
       retries: 10
       start_period: 5s
-  aaservice:
-    container_name: aaservice
-    hostname: "aaservice"
+  
+  ted-api:
+    container_name: ted-api
+    hostname: "ted-api"
     build:
-      context: ./aaservice
+      context: ./ted_api
       dockerfile: Dockerfile
       args:
         - USER=${USER}
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
-    image: aaservice:0.1
+    image: ted-api:0.1
     environment:
       EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
       EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
@@ -261,11 +262,11 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_HOST: ${MYSQL_HOST}
-    command: uvicorn aaservice:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ./aaservice:/aaservice/
+      - ./ted_api:/ted_api/
       - /gemsoft/var/calibrations:/calibrations:ro
     logging:
       driver: "json-file"

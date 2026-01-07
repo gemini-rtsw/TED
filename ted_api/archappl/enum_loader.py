@@ -2,7 +2,7 @@ import os
 import asyncio
 import mysql.connector
 import json
-from epicsutils import get_enum_strs
+from utils.epics import get_enum_strs
 
 def get_mysql_connection():
     return mysql.connector.connect(
@@ -12,7 +12,7 @@ def get_mysql_connection():
         database=os.getenv("MYSQL_DATABASE")
     )
 
-async def loadEnumStates(pvName):
+async def load_enum_states(pvName):
     conn = get_mysql_connection()
     cursor = conn.cursor()
 
@@ -20,7 +20,7 @@ async def loadEnumStates(pvName):
     enum_strs = await loop.run_in_executor(None, get_enum_strs, pvName)
 
     if not enum_strs or len(enum_strs) == 0:    
-        print(f"⚠️ Could not get enum_strs for {pvName}")
+        print(f"Could not get enum_strs for {pvName}")
         cursor.close()
         conn.close()
         return
@@ -41,13 +41,13 @@ async def loadEnumStates(pvName):
             (new_json, pvName)
         )
         conn.commit()
-        print(f"✅ Updated enum_strs for {pvName}")
+        print(f"Updated enum_strs for {pvName}")
 
     cursor.close()
     conn.close()
 
 
-async def loadAllEnumsAtOnce():
+async def load_all_enums():
     conn = get_mysql_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -63,9 +63,9 @@ async def loadAllEnumsAtOnce():
     async def sem_task(pvName):
         async with sem:
             try:
-                await loadEnumStates(pvName)
+                await load_enum_states(pvName)
             except Exception as e:
-                print(f"❌ Error loading {pvName}: {e}")
+                print(f"Error loading {pvName}: {e}")
 
     tasks = [sem_task(enumPvName) for (enumPvName,) in enums]
     await asyncio.gather(*tasks)
