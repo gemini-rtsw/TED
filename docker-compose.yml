@@ -208,6 +208,7 @@ services:
       - ./archappl/conf:/etc/archappl/
       - ./archappl/webapps:/usr/local/tomcat/webapps
       - ${APPLIANCE_STS}:/storage/sts
+      - ${APPLIANCE_MTS}:/storage/mts
       - ${APPLIANCE_LTS}:/storage/lts
       - ${APPLIANCE_LOGS}:/storage/logs
     stdin_open: true
