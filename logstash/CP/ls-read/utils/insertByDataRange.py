@@ -21,6 +21,7 @@ def setupLogger():
 
 # --- Retry Helper ---
 def retryCommand(command, retries=3, delay=3):
+    print("on retry...")
     for attempt in range(retries):
         try:
             subprocess.run(command, check=True)
@@ -31,7 +32,7 @@ def retryCommand(command, retries=3, delay=3):
     logging.error(f"Command failed after {retries} retries: {' '.join(command)}")
 
 # --- Environment Handling ---
-def loadEnvironment(path="../../../../.env"):
+def loadEnvironment(path="../.env"):
     envDict = {}
     try:
         with open(path, "r") as file:
@@ -79,8 +80,8 @@ def createPipelinesFile(subsystems, subsystemsFilter, outputPath="../config/pipe
 
 # --- Input Parsing ---
 def parseInput(userInput):
-    matches = re.findall(r'-(l|s|i|f) ("[^\"]*"|\S+)', userInput)
-    options = {'l': None, 's': None, 'i': None, 'f': None}
+    matches = re.findall(r'-(g|s|i|f) ("[^\"]*"|\S+)', userInput)
+    options = {'g': None, 's': None, 'i': None, 'f': None}
     for opt, arg in matches:
         cleaned = arg.strip('"')
         options[opt] = cleaned.split()
@@ -110,8 +111,8 @@ def dockerUp(date, env):
     print(f"\n### Logs ingestion for {date[3]} {date[0]} ###\n")
     print(date)
     os.environ.update({
-        'HOST01_IP': env.get('HOST01_IP'),
-        'ES01_PORT': env.get('ES01_PORT', ''),
+        'HOST1_IP': env.get('HOST1_IP'),
+        'ES1_HTTP_PORT': env.get('ES1_HTTP_PORT', ''),
         'LS_TIMEZONE': env.get('LS_TIMEZONE', ''),
         'LOGS_PATH': env.get('LOGS_PATH', ''),
         'DATA_PATH': env.get('DATA_PATH', ''),
@@ -180,7 +181,7 @@ Options:
   -f [end date]      : Format: YYYY/MM/DD
 
 Example:
-  -l core -s tcs -i 2022/11/25 -f 2022/12/30
+  -g core -s tcs -i 2022/11/25 -f 2022/12/30
 """)
     if subsystems:
         if showLocations:

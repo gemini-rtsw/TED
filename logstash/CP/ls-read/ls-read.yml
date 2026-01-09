@@ -1,14 +1,11 @@
 services:
   ls-read:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:9.1.4
     hostname: ls-read
     container_name: ls-read
-    networks:
-      - ted_network
-    ports:
-      - "9600:9600"
+    network_mode: host
     environment:
-      HOST_1: "http://${HOST01_IP}:${ES01_PORT}"
+      HOST_1: "http://${HOST1_IP}:${ES1_HTTP_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
       DAY: "${DAY}"
       MONTH: "${MONTH}"
@@ -16,13 +13,10 @@ services:
     volumes:
       - ./config:/usr/share/logstash/config
       - ./pipeline:/usr/share/logstash/pipeline
+      - ./utils:/usr/share/logstash/utils
       - ${LOGS_PATH}:/gemsoft/var
     logging:
       driver: json-file
       options:
         max-size: 100m
         max-file: 1
-networks:
-  ted_network:
-    driver: bridge
-    external: true
