@@ -188,17 +188,34 @@ def main():
     #------------------------------------------------------------------------------
     parser_system = subparsers.add_parser(
         "system",
-        help="List available systems"
+        help="Load specific system"
     )
     parser_system.add_argument(
         "systems",
-        help="Subsystem name (e.g. tcs, core, f2)"
+        help="Subsystem name (e.g. tcs, vii, f2-wfs)"
     )
     parser_system.add_argument(
         "date_from",
         help="Start date (YYYYMMDD)"
     )
     parser_system.add_argument(
+        "date_to",
+        help="End date (YYYYMMDD)"
+    )
+    #------------------------------------------------------------------------------
+    parser_group = subparsers.add_parser(
+        "group",
+        help="Load entire group"
+    )
+    parser_group.add_argument(
+        "group",
+        help="Subsystem name (e.g. core, f2)"
+    )
+    parser_group.add_argument(
+        "date_from",
+        help="Start date (YYYYMMDD)"
+    )
+    parser_group.add_argument(
         "date_to",
         help="End date (YYYYMMDD)"
     )
@@ -218,6 +235,21 @@ def main():
         print("From:", args.date_from)
         print("To:", args.date_to)
         pipelines_ids = create_pipeline_file(systems_dict, args.systems)
+        for dates_by_month in get_dates_by_month(args.date_from, args.date_to):
+            print(dates_by_month)
+            docker_up(dates_by_month, env)
+            checkPipelineCompletion(pipelines_ids)
+            dockerDown()
+        return
+
+    if args.command == "group":
+        print("\nLoad data for subsystem:\n")
+        print("Subsystem:", args.group)
+        print("From:", args.date_from)
+        print("To:", args.date_to)
+        print(args.group)
+        group_systems = ",".join(systems_dict.get(args.group, {}).keys())
+        pipelines_ids = create_pipeline_file(systems_dict, group_systems)
         for dates_by_month in get_dates_by_month(args.date_from, args.date_to):
             print(dates_by_month)
             docker_up(dates_by_month, env)
