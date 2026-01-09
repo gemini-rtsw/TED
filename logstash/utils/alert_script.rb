@@ -22,7 +22,7 @@ require "date"
 @timerFile = "./timerAlerts.txt"
 
 #read the .json file and set the content to alerts
-configurationFile = "/usr/share/logstash/pipeline/utils/alert_config.json"
+configurationFile = "/usr/share/logstash/utils/alert_config.json"
 content = ""
 open(configurationFile, "r") do |file|
   content = file.read()

@@ -1,21 +1,20 @@
-FROM logstash:8.15.0
+FROM logstash:9.1.4
 
 ARG USER
-ARG U_ID
+ARG UID
 
-ARG G_ID
+ARG GID
 ARG GROUP
 
 USER root
 
-RUN groupadd -r -g ${G_ID} ${GROUP}
-RUN useradd -g ${GROUP} -u ${G_ID} ${GROUP}
-RUN useradd -m -g ${GROUP} -G logstash -s /bin/bash -u ${U_ID} ${USER}
+RUN groupadd -r -g ${GID} ${GROUP} && \
+    useradd -m -u ${UID} -g ${GROUP} -G logstash -s /bin/bash ${USER}
 
 RUN chown -R ${USER}:${GROUP} /usr/share/logstash
 
-RUN mkdir -p /db/sincedb /db/completed
-RUN chown -R ${USER}:${GROUP} /db
-RUN chmod 770 /db
+RUN mkdir -p /db/sincedb /db/completed && \
+    chown -R ${USER}:${GROUP} /db && \
+    chmod 770 /db
 
 USER ${USER}

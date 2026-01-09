@@ -1,94 +1,58 @@
+x-logstash-common: &logstash-common
+  image: ted-logstash:9.1.4
+  restart: unless-stopped
+  network_mode: host
+  build:
+    context: "."
+    dockerfile: Dockerfile
+    args:
+      - USER=${USER}
+      - UID=${U_ID}
+      - GROUP=${GROUP}
+      - GID=${G_ID}
+  environment:
+    HOST_1: "${HOST1_IP}:${ES1_HTTP_PORT}"
+    TIMEZONE: "${LS_TIMEZONE}"
+  logging:
+    driver: json-file
+    options:
+      max-size: 100m
+      max-file: 1
+
 services:
   ls-core:
-    image: ted-logstash:8.15.0
-    hostname: logstash
+    <<: *logstash-common
     container_name: ls-core
-    restart: unless-stopped
     cpus: 1.0
     mem_limit: 1g
-    build:
-      context: "."
-      dockerfile: Dockerfile
-      args:
-        - USER=${USER}
-        - UID=${U_ID}
-        - GROUP=${GROUP}
-        - GID=${G_ID}
-    network_mode: "host"
-    environment:
-      HOST_1: "${HOST1_IP}:${ES1_HTTP_PORT}"
-      TIMEZONE: "${LS_TIMEZONE}"
     volumes:
-      - "./${SITE}/ls-core/config:/usr/share/logstash/config"
-      - "./${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline"
-      - ${LOGS_PATH}:/gemsoft/var/
+      - ./${SITE}/ls-core/config:/usr/share/logstash/config
+      - ./${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline
       - ${DATA_PATH}/ls-core/db:/db
+      - ${LOGS_PATH}:/gemsoft/var/
       - /etc/localtime:/etc/localtime
-    logging:
-      driver: json-file
-      options:
-        max-size: 100m
-        max-file: 1
+      - ./utils:/usr/share/logstash/utils
 
-#################################################################################################################
   ls-guiders:
-    image: ted-logstash:8.15.0
+    <<: *logstash-common
     container_name: ls-guiders
-    restart: unless-stopped
     cpus: 1.0
     mem_limit: 2g
-    build:
-      context: "."
-      dockerfile: Dockerfile
-      args:
-        - USER=${USER}
-        - UID=${U_ID}
-        - GROUP=${GROUP}
-        - GID=${G_ID}
-    network_mode: "host"
-    environment:
-      HOST_1: "${HOST1_IP}:${ES1_HTTP_PORT}"
-      TIMEZONE: "${LS_TIMEZONE}"
     volumes:
       - "./${SITE}/ls-guiders/config:/usr/share/logstash/config"
       - "./${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
-      - ${LOGS_PATH}:/gemsoft/var/
       - ${DATA_PATH}/ls-guiders/db:/db
+      - ${LOGS_PATH}:/gemsoft/var/
       - /etc/localtime:/etc/localtime
 
-    logging:
-      driver: json-file
-      options:
-        max-size: 100m
-        max-file: 1
-
-#################################################################################################################
   ls-opstools:
-    image: ted-logstash:8.15.0
+    <<: *logstash-common
     container_name: ls-opstools
-    restart: unless-stopped
     cpus: 1.0
     mem_limit: 2g
-    build:
-      context: "."
-      dockerfile: Dockerfile
-      args:
-        - USER=${USER}
-        - UID=${U_ID}
-        - GROUP=${GROUP}
-        - GID=${G_ID}
-    network_mode: "host"
-    environment:
-      HOST_1: "${HOST1_IP}:${ES1_HTTP_PORT}"
-      TIMEZONE: "${LS_TIMEZONE}"
     volumes:
       - "./${SITE}/ls-opstools/config:/usr/share/logstash/config"
       - "./${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
-      - ${LOGS_PATH}:/gemsoft/var/
       - ${DATA_PATH}/ls-opstools/db:/db
+      - ${LOGS_PATH}:/gemsoft/var/
       - /etc/localtime:/etc/localtime
-    logging:
-      driver: json-file
-      options:
-        max-size: 100m
-        max-file: 1
