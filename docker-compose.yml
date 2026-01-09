@@ -1,11 +1,11 @@
 services:
   elasticsearch-1:
-    image: ted-elasticsearch:8.15.0
+    image: ted-elasticsearch:9.1.4
     hostname: elasticsearch-1
     container_name: elasticsearch-1
     restart: unless-stopped
     cpus: 2.0
-    mem_limit: 4g
+    mem_limit: 2g
     build:
       context: ./elasticsearch
       args:
@@ -13,7 +13,6 @@ services:
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
-
     network_mode: "host"
     environment:
       cluster.name: "elastic"
@@ -37,12 +36,12 @@ services:
         max-size: 100m
         max-file: 1
   elasticsearch-2:
-    image: ted-elasticsearch:8.15.0
+    image: ted-elasticsearch:9.1.4
     hostname: elasticsearch-2
     container_name: elasticsearch-2
     restart: unless-stopped
     cpus: 2.0
-    mem_limit: 4g
+    mem_limit: 2g
     build:
       context: ./elasticsearch
       args:
@@ -74,11 +73,13 @@ services:
         max-file: 1
 ############################################################################################################
   kibana:
-    image: kibana:8.15.0
+    image: kibana:9.1.4
     hostname: kibana
     container_name: kibana
     restart: unless-stopped
     network_mode: "host"
+    cpus: 0.2
+    mem_limit: 1g
     environment:
       SERVER_HOST: ${HOST1_IP}
       SERVER_PORT: ${KI_HTTP_PORT}
