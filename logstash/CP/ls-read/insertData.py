@@ -23,7 +23,6 @@ def setup_logger():
 
 # --- Retry Helper ---
 def retry_cmd(command, retries=3, delay=3):
-    print("on retry...")
     for attempt in range(retries):
         try:
             subprocess.run(command, check=True)
@@ -67,7 +66,6 @@ def print_tree(data):
 def get_pipeline_path(system_name, systems_dict):
     for group in systems_dict.values():
         if system_name in group:
-            print(group[system_name])
             return group[system_name]
     return None
 
@@ -89,8 +87,8 @@ def create_pipeline_file(systems_dict, systems, outputPath="./config/pipelines.y
 def get_dates_by_month(startDate, endDate):
     grouped = {}
     try:
-        start = datetime.strptime(startDate, "%Y%m%d").date()
-        end = datetime.strptime(endDate, "%Y%m%d").date()
+        start = datetime.strptime(startDate, "%Y/%m/%d").date()
+        end = datetime.strptime(endDate, "%Y/%m/%d").date()
     except ValueError as exc:
         logging.error(f"Date format error: {exc}")
         return []
@@ -102,9 +100,8 @@ def get_dates_by_month(startDate, endDate):
 
     return [[f"{y:04d}", f"{{{m:02d},{calendar.month_abbr[m]}}}", f"{{{','.join(f'{d:02d}' for d in days)}}}", calendar.month_abbr[m]]
             for (y, m), days in grouped.items()]
+
 def docker_up(date, env):
-    print(f"\n### Logs ingestion for {date[3]} {date[0]} ###\n")
-    print(date)
     os.environ.update({
         'HOST1_IP': env.get('HOST1_IP'),
         'ES1_HTTP_PORT': env.get('ES1_HTTP_PORT', ''),
@@ -125,15 +122,10 @@ def dockerDown():
 def checkPipelineCompletion(pipelineNames):
     finished = set()
     total = len(pipelineNames)
-    print("pipelineNames: ",pipelineNames) 
-    print("finished: ", finished)
-    print("total", total)
     while len(finished) < total:
         for name in pipelineNames:
-            print("name", name)
             if name in finished:
                 continue
-
             cmd = f"docker exec ls-read curl -sS 'http://localhost:9600/_node/stats/pipelines/{name}'"
             try:
                 result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -149,17 +141,17 @@ def checkPipelineCompletion(pipelineNames):
                 for m in ['output_throughput', 'filter_throughput', 'input_throughput','queue_backpressure', 'queue_persisted_growth_bytes', 'queue_persisted_growth_events']:
                     value = flow.get(m, {}).get('current', -1)
                     comparison = (value == 0.0)
-                    print(f"{m}: current={value} → {comparison}")
+                    # print(f"{m}: current={value} → {comparison}")
                     if not comparison:
                         flowCondition = False
 
                 eventsIn = events.get('in', 0)
-                print("eventsIn", eventsIn)
                 eventsOut = events.get('out', 0)
-                print("eventsOut", eventsOut)
+                
                 eventsCondition = eventsIn == eventsOut
-                print("flowCondition", flowCondition)
-                print("eventsCondition", eventsCondition)
+
+                print(f"Events detected: {eventsIn}, Events checked: {eventsOut}")
+
                 if flowCondition and eventsCondition:
                     finished.add(name)
                     print(f"✔ Finished: {name}")
@@ -167,7 +159,12 @@ def checkPipelineCompletion(pipelineNames):
                 logging.error(f"Error monitoring pipeline {name}: {e}")
         time.sleep(5)
 
-
+def handle_docker(env, pipelines_ids, date_from, date_to):
+    for dates_by_month in get_dates_by_month(date_from, date_to):
+        print(f"INSERTING LOGS FOR {dates_by_month[0]} | {dates_by_month[-1]} | {dates_by_month[2]}")
+        docker_up(dates_by_month, env)
+        checkPipelineCompletion(pipelines_ids)
+        dockerDown()
 
 # --- Main Menu ---
 def main():
@@ -196,11 +193,11 @@ def main():
     )
     parser_system.add_argument(
         "date_from",
-        help="Start date (YYYYMMDD)"
+        help="Start date (YYYY/MM/DD)"
     )
     parser_system.add_argument(
         "date_to",
-        help="End date (YYYYMMDD)"
+        help="End date (YYYY/MM/DD)"
     )
     #------------------------------------------------------------------------------
     parser_group = subparsers.add_parser(
@@ -213,11 +210,11 @@ def main():
     )
     parser_group.add_argument(
         "date_from",
-        help="Start date (YYYYMMDD)"
+        help="Start date (YYYY/MM/DD)"
     )
     parser_group.add_argument(
         "date_to",
-        help="End date (YYYYMMDD)"
+        help="End date (YYYY/MM/DD)"
     )
     
     args = parser.parse_args()
@@ -230,32 +227,29 @@ def main():
         return
 
     if args.command == "system":
-        print("\nLoad data for subsystem:\n")
-        print("Subsystem:", args.systems)
+        print("============================================================")
+        print(f"Loading data for system: {args.systems}\n")
         print("From:", args.date_from)
         print("To:", args.date_to)
+        print("")
+        print("============================================================")
         pipelines_ids = create_pipeline_file(systems_dict, args.systems)
-        for dates_by_month in get_dates_by_month(args.date_from, args.date_to):
-            print(dates_by_month)
-            docker_up(dates_by_month, env)
-            checkPipelineCompletion(pipelines_ids)
-            dockerDown()
-        return
+        handle_docker(env, pipelines_ids, args.date_from, args.date_to)
+        print("COMPLETED. Exiting...")
+        return 0
 
     if args.command == "group":
-        print("\nLoad data for subsystem:\n")
-        print("Subsystem:", args.group)
+        print("============================================================")
+        print(f"Loading data for group: {args.group}\n")
         print("From:", args.date_from)
         print("To:", args.date_to)
-        print(args.group)
+        print("")
+        print("============================================================")
         group_systems = ",".join(systems_dict.get(args.group, {}).keys())
         pipelines_ids = create_pipeline_file(systems_dict, group_systems)
-        for dates_by_month in get_dates_by_month(args.date_from, args.date_to):
-            print(dates_by_month)
-            docker_up(dates_by_month, env)
-            checkPipelineCompletion(pipelines_ids)
-            dockerDown()
-        return
+        handle_docker(env, pipelines_ids, args.date_from, args.date_to)
+        print("COMPLETED. Exiting...")
+        return 0
 
 
     parser.print_help()
