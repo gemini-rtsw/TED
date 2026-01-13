@@ -189,7 +189,7 @@ def main():
     )
     parser_system.add_argument(
         "systems",
-        help="Subsystem name (e.g. tcs, vii, f2-wfs)"
+        help="Subsystem name (e.g. tcs, vii, f2-wfs). Also, you can separate multiple systems using a ',' (e.g ag,f2-opc)"
     )
     parser_system.add_argument(
         "date_from",
