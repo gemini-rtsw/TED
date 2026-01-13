@@ -37,22 +37,25 @@ services:
     <<: *logstash-common
     container_name: ls-guiders
     cpus: 1.0
-    mem_limit: 2g
+    mem_limit: 1g
     volumes:
       - "./${SITE}/ls-guiders/config:/usr/share/logstash/config"
       - "./${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
       - ${DATA_PATH}/ls-guiders/db:/db
       - ${LOGS_PATH}:/gemsoft/var/
       - /etc/localtime:/etc/localtime
+      - ./utils:/usr/share/logstash/utils
+
 
   ls-opstools:
     <<: *logstash-common
     container_name: ls-opstools
     cpus: 1.0
-    mem_limit: 2g
+    mem_limit: 1g
     volumes:
       - "./${SITE}/ls-opstools/config:/usr/share/logstash/config"
       - "./${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
       - ${DATA_PATH}/ls-opstools/db:/db
       - ${LOGS_PATH}:/gemsoft/var/
       - /etc/localtime:/etc/localtime
+      - ./utils:/usr/share/logstash/utils
