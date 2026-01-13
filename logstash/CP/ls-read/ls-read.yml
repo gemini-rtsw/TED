@@ -13,7 +13,7 @@ services:
     volumes:
       - ./config:/usr/share/logstash/config
       - ./pipeline:/usr/share/logstash/pipeline
-      - ./utils:/usr/share/logstash/utils
+      - ../../utils:/usr/share/logstash/utils
       - ${LOGS_PATH}:/gemsoft/var
     logging:
       driver: json-file
