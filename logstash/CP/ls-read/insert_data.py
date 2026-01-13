@@ -115,7 +115,7 @@ def docker_up(date, env):
     retry_cmd(['/bin/docker', 'compose', '-f', './ls-read.yml', 'up', '-d', 'ls-read'])
 
 
-def dockerDown():
+def docker_down():
     retry_cmd(['/bin/docker', 'rm', '-f', 'ls-read'])
 
 # --- Pipeline Monitoring ---
@@ -164,7 +164,7 @@ def handle_docker(env, pipelines_ids, date_from, date_to):
         print(f"INSERTING LOGS FOR {dates_by_month[0]} | {dates_by_month[-1]} | {dates_by_month[2]}")
         docker_up(dates_by_month, env)
         checkPipelineCompletion(pipelines_ids)
-        dockerDown()
+        docker_down()
 
 # --- Main Menu ---
 def main():
