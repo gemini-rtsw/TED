@@ -5,7 +5,7 @@ ARG UID
 ARG GID
 ARG GROUP
 
-WORKDIR /ted_api
+WORKDIR /ted-api
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt

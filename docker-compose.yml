@@ -249,7 +249,7 @@ services:
     container_name: ted-api
     hostname: "ted-api"
     build:
-      context: ./ted_api
+      context: ./ted-api
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -268,7 +268,7 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ./ted_api:/ted_api/
+      - ./ted-api:/ted-api/
       - /gemsoft/var/calibrations:/calibrations:ro
     logging:
       driver: "json-file"
