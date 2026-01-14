@@ -1,6 +1,6 @@
 services:
   ls-f2:
-    image: ted-logstash:8.15.0
+    image: ted-logstash:9.1.4
     hostname: ls-f2 
     container_name: ls-f2
     restart: unless-stopped

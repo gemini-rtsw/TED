@@ -1,11 +1,11 @@
 services:
-  ls-gnirs:
-    image: ted-logstash:8.15.0
+  ls-ghost:
+    image: ted-logstash:9.1.4
     hostname: ls-ghost
     container_name: ls-ghost
     restart: unless-stopped
     cpus: 2.0
-    mem_limit: 4g
+    mem_limit: 2g
     build:
       context: "../"
       dockerfile: Dockerfile
@@ -14,17 +14,18 @@ services:
         - UID=${U_ID}
         - GROUP=${GROUP}
         - GID=${G_ID}
-    networks:
-      - ted_network
+
+    network_mode: host
 
     environment:
-      HOST_1: "es01:${ES01_PORT}"
+      HOST_1: "${HOST1_IP}:${ES1_HTTP_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
 
     volumes:
       - "./config:/usr/share/logstash/config"
       - "./pipeline:/usr/share/logstash/pipeline"
-      - ${LOGS_PATH}:/gemsoft/var/
+      - "../../utils:/usr/share/logstash/utils"
+      - ${LOGS_PATH}/log/ghost:/gemsoft/var/log/ghost
       - ${DATA_PATH}/ls-ghost/db:/db
       - /etc/localtime:/etc/localtime
 
@@ -33,9 +34,3 @@ services:
       options:
         max-size: 100m
         max-file: 1
-
-
-networks:
-  ted_network:
-    driver: bridge
-    external: true
