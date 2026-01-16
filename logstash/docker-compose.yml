@@ -59,3 +59,46 @@ services:
       - ${LOGS_PATH}:/gemsoft/var/
       - /etc/localtime:/etc/localtime
       - ./utils:/usr/share/logstash/utils
+
+  # GS Instruments
+  ls-gmos:
+    <<: *logstash-common
+    container_name: ls-gmos
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "./${SITE}/ls-gmos/config/:/usr/share/logstash/config"
+      - "./${SITE}/ls-gmos/pipeline:/usr/share/logstash/pipeline"
+      - ./utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}:/gemsoft/var/
+      - ${DATA_PATH}/ls-gmos/db:/db
+      - /etc/localtime:/etc/localtime
+
+
+  ls-f2:
+    <<: *logstash-common
+    container_name: ls-f2
+    restart: unless-stopped
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "./${SITE}/ls-f2/config/:/usr/share/logstash/config"
+      - "./${SITE}/ls-f2/pipeline:/usr/share/logstash/pipeline"
+      - ./utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}:/gemsoft/var/
+      - ${DATA_PATH}/ls-f2/db:/db
+      - /etc/localtime:/etc/localtime
+
+  ls-ghost:
+    <<: *logstash-common
+    container_name: ls-ghost
+    restart: unless-stopped
+    cpus: 2.0
+    mem_limit: 2g
+    volumes:
+      - "./${SITE}/ls-ghost/config/:/usr/share/logstash/config"
+      - "./${SITE}/ls-ghost/pipeline:/usr/share/logstash/pipeline"
+      - ./utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}/log/ghost:/gemsoft/var/log/ghost
+      - ${DATA_PATH}/ls-ghost/db:/db
+      - /etc/localtime:/etc/localtime
