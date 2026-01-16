@@ -4,8 +4,8 @@ services:
     hostname: elasticsearch-1
     container_name: elasticsearch-1
     restart: unless-stopped
-    cpus: 2.0
-    mem_limit: 2g
+    cpus: 1.0
+    mem_limit: 1g
     build:
       context: ./elasticsearch
       args:
@@ -23,7 +23,6 @@ services:
       transport.port: "${ES1_TR_PORT}"
       node.roles: master,data,ingest,remote_cluster_client
       discovery.seed_hosts: ${HOST1_IP}:${ES1_TR_PORT},${HOST2_IP}:${ES2_TR_PORT}
-      cluster.initial_master_nodes: elasticsearch-1,elasticsearch-2
       xpack.security.enabled: false
       xpack.security.enrollment.enabled: false
       xpack.security.http.ssl.enabled: false
@@ -40,8 +39,8 @@ services:
     hostname: elasticsearch-2
     container_name: elasticsearch-2
     restart: unless-stopped
-    cpus: 2.0
-    mem_limit: 2g
+    cpus: 1.0
+    mem_limit: 1g
     build:
       context: ./elasticsearch
       args:
@@ -59,7 +58,6 @@ services:
       transport.port: "${ES2_TR_PORT}"
       node.roles: master,data,ingest,remote_cluster_client
       discovery.seed_hosts: ${HOST1_IP}:${ES1_TR_PORT},${HOST2_IP}:${ES2_TR_PORT}
-      cluster.initial_master_nodes: elasticsearch-1,elasticsearch-2
       xpack.security.enabled: false
       xpack.security.enrollment.enabled: false
       xpack.security.http.ssl.enabled: false
