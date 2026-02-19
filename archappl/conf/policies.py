@@ -64,8 +64,8 @@ def determinePolicy(pvInfoDict):
             pvPolicyDict["samplingPeriod"] = float(pvInfoDict["SCAN"].split()[0])
         else:
             pvPolicyDict["samplingPeriod"] = float(round_well(pvInfoDict["eventRate"]))
-        pvPolicyDict["samplingMethod"] = "MONITOR"
-        pvPolicyDict["dataStores"] = [
+            pvPolicyDict["samplingMethod"] = "MONITOR"
+            pvPolicyDict["dataStores"] = [
             shorttermstore_plugin_url,
             mediumtermstore_plugin_url,
             longtermstore_plugin_url,
