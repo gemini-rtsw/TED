@@ -1,7 +1,5 @@
 #!/bin/sh
-source ../.env
-
-curl -X PUT "${HOST01_IP}:${ES01_PORT}/_index_template/logs_nano?pretty" -H 'Content-Type: application/json' -d'
+curl -X PUT "${HOST2_IP}:${ES1_HTTP_PORT}/_index_template/logs_nano?pretty" -H 'Content-Type: application/json' -d'
 {
   "index_patterns": [ "logs*" ],
   "data_stream": { },
