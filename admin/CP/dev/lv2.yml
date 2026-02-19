@@ -1,0 +1,97 @@
+# TED node 2: Elasticsearch and non-instrument Logstash
+
+x-logstash-common: &logstash-common
+  image: ted-logstash:9.1.4
+  restart: unless-stopped
+  network_mode: host
+  build:
+    context: "."
+    dockerfile: Dockerfile
+    args:
+      - USER=${USER}
+      - UID=${U_ID}
+      - GROUP=${GROUP}
+      - GID=${G_ID}
+  environment:
+    HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
+    TIMEZONE: "${LS_TIMEZONE}"
+  logging:
+    driver: json-file
+    options:
+      max-size: 100m
+      max-file: 1
+
+services:
+  ls-core:
+    <<: *logstash-common
+    container_name: ls-core
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - ../../../logstash/${SITE}/ls-core/config:/usr/share/logstash/config
+      - ../../../logstash/${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline
+      - ${DATA_PATH}/ls-core/db:/db
+      - ${LOGS_PATH}:/gemsoft/var/log
+      - /etc/localtime:/etc/localtime
+      - ../../../logstash/utils:/usr/share/logstash/utils
+  ls-guiders:
+    <<: *logstash-common
+    container_name: ls-guiders
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../../logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
+      - "../../../logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
+      - ${DATA_PATH}/ls-guiders/db:/db
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/log/serialcon
+      - /etc/localtime:/etc/localtime
+      - ../../../logstash/utils:/usr/share/logstash/utils
+  ls-opstools:
+    <<: *logstash-common
+    container_name: ls-opstools
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../../logstash/${SITE}/ls-opstools/config:/usr/share/logstash/config"
+      - "../../../logstash/${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
+      - ${DATA_PATH}/ls-opstools/db:/db
+      - ${LOGS_PATH}:/gemsoft/var/log
+      - /etc/localtime:/etc/localtime
+      - ../../../logstash/utils:/usr/share/logstash/utils
+      
+  elasticsearch-1:
+    image: ted-elasticsearch:9.1.4
+    hostname: elasticsearch-1
+    container_name: elasticsearch-1
+    restart: unless-stopped
+    cpus: 1.0
+    mem_limit: 1g
+    build:
+      context: ../../../elasticsearch
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    network_mode: "host"
+    environment:
+      cluster.name: "elastic"
+      node.name: "elasticsearch-1"
+      network.host: "${HOST2_IP}"
+      transport.host: "${HOST2_IP}"
+      http.port: "${ES1_HTTP_PORT}"
+      transport.port: "${ES1_TR_PORT}"
+      node.roles: master,data,ingest,remote_cluster_client
+      discovery.seed_hosts: ${HOST2_IP}:${ES1_TR_PORT},${HOST3_IP}:${ES2_TR_PORT}
+      cluster.initial_master_nodes: elasticsearch-1
+      xpack.security.enabled: false
+      xpack.security.enrollment.enabled: false
+      xpack.security.http.ssl.enabled: false
+      xpack.security.transport.ssl.enabled: false
+    volumes:
+      - ${DATA_PATH}/elasticsearch-1:/usr/share/elasticsearch/data
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1

@@ -1,0 +1,156 @@
+services:
+  softioc:
+    image: jeffersonlab/softioc:1.1.0
+    tty: true
+    environment:
+      - EPICS_CA_AUTO_ADDR_LIST=NO
+      - EPICS_CA_ADDR_LIST=127.0.0.1
+    stdin_open: true
+    hostname: softioc
+    container_name: softioc
+    volumes:
+      - ../../../softioc/data/softioc.db:/db/softioc.db
+    network_mode: "host"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M   
+  kibana:
+    image: kibana:9.1.4
+    hostname: kibana
+    container_name: kibana
+    restart: unless-stopped
+    network_mode: "host"
+    # cpus: 1.0
+    # mem_limit: 1g
+    environment:
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: ${KI_HTTP_PORT}
+      INTERACTIVE_SETUP_ENABLED: false
+      ELASTICSEARCH_HOSTS: "http://${HOST2_IP}:${ES1_HTTP_PORT}"
+      ELASTICSEARCH_SSL_VERIFICATIONMODE: none
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+  archappl:
+    container_name: "${APPLIANCE_NAME}"
+    hostname: "${APPLIANCE_NAME}"
+    mem_limit: 6G
+    build:
+      context: ../../../archappl
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    image: ted-appliance:1.1.0
+    network_mode: "host"
+    volumes:
+      - ../../../archappl/conf:/etc/archappl/
+      - ../../../archappl/webapps:/usr/local/tomcat/webapps
+      - ${APPLIANCE_STS}:/storage/sts
+      - ${APPLIANCE_MTS}:/storage/mts
+      - ${APPLIANCE_LTS}:/storage/lts
+      - ${APPLIANCE_LOGS}:/storage/logs
+    stdin_open: true
+    tty: true
+    environment:
+      MYSQL_CONNECTION_STRING: "--user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} --host=${MYSQL_HOST}"
+      ARCHAPPL_MYIDENTITY: ${APPLIANCE_NAME}
+      EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
+      EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
+    depends_on:
+      archappl-mysql:
+        condition: service_healthy
+    command: sh -c "python3 /usr/local/tomcat/bin/addMysqlConnPool.py && /usr/local/tomcat/bin/catalina.sh run"
+  archappl-mysql:
+    container_name: ${MYSQL_NAME}
+    hostname: ${MYSQL_NAME}
+    build:
+      context: ../../../mysql
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    image: ted-mysql:8.0.35-debian
+    volumes:
+      - ${MYSQL_DATA}:/var/lib/mysql
+    network_mode: "host"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  grafana:
+    image: ted-grafana:12.0.0
+    hostname: grafana
+    container_name: grafana
+    restart: unless-stopped
+    build:
+      context: ../../../grafana
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    network_mode: "host"
+    environment:
+      HOST_IP: "${HOST1_IP}"
+      SITE: "${SITE}"
+      GR_HTTP_PORT: "${GR_HTTP_PORT}"
+      ES_API_IP: "${ES_API_IP}"
+      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GF_AUTH_API_KEY_ENABLED: true
+      # GF_RENDERING_SERVER_URL: "http://${HOST01_IP}:8081/render"
+      # GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
+      # GF_LOG_FILTERS: "rendering:debug"
+    volumes:
+      - ../../../grafana/grafana-data/plugins:/var/lib/grafana/plugins
+      - ../../../grafana/conf/:/etc/grafana/
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+   
+  ted-api:
+    container_name: ted-api
+    hostname: "ted-api"
+    build:
+      context: ../../../ted-api
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    image: ted-api:0.1
+    environment:
+      EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
+      EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_HOST: ${MYSQL_HOST}
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - ../../../ted-api:/ted-api/
+      - ${CALIBRATIONS_PATH}:/calibrations:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"
