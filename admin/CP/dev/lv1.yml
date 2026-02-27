@@ -23,8 +23,8 @@ services:
     container_name: kibana
     restart: unless-stopped
     network_mode: "host"
-    # cpus: 1.0
-    # mem_limit: 1g
+    cpus: 1.0
+    mem_limit: 1g
     environment:
       SERVER_HOST: 0.0.0.0
       SERVER_PORT: ${KI_HTTP_PORT}
@@ -39,7 +39,8 @@ services:
   archappl:
     container_name: "${APPLIANCE_NAME}"
     hostname: "${APPLIANCE_NAME}"
-    mem_limit: 6G
+    mem_limit: 4G
+    cpus: 2.0
     build:
       context: ../../../archappl
       dockerfile: Dockerfile
@@ -95,6 +96,8 @@ services:
     hostname: grafana
     container_name: grafana
     restart: unless-stopped
+    cpus: 2.0
+    mem_limit: 3g
     build:
       context: ../../../grafana
       dockerfile: Dockerfile
@@ -128,6 +131,8 @@ services:
   ted-api:
     container_name: ted-api
     hostname: "ted-api"
+    cpus: 1.0
+    mem_limit: 1g
     build:
       context: ../../../ted-api
       dockerfile: Dockerfile
@@ -156,3 +161,15 @@ services:
       options:
         max-size: "100m"
         max-file: "1"
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    container_name: timescaledb
+    network_mode: "host"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: calibrations
+    restart: unless-stopped
+    volumes:
+      - /gemsoft/var/lib/TED/timescaledb/:/var/lib/postgresql/data
