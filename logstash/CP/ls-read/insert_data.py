@@ -34,7 +34,7 @@ def retry_cmd(command, retries=3, delay=3):
 
 
 # --- Environment Handling ---
-def load_env(path="./.env"):
+def load_env(path="/gemsoft/opt/TED/TED/admin/CP/dev/.env"):
     envDict = {}
     try:
         with open(path, "r") as file:
@@ -103,7 +103,7 @@ def get_dates_by_month(startDate, endDate):
 
 def docker_up(date, env):
     os.environ.update({
-        'HOST1_IP': env.get('HOST1_IP'),
+        'HOST2_IP': env.get('HOST2_IP'),
         'ES1_HTTP_PORT': env.get('ES1_HTTP_PORT', ''),
         'LS_TIMEZONE': env.get('LS_TIMEZONE', ''),
         'LOGS_PATH': env.get('LOGS_PATH', ''),
@@ -150,7 +150,7 @@ def checkPipelineCompletion(pipelineNames):
                 
                 eventsCondition = eventsIn == eventsOut
 
-                print(f"Events detected: {eventsIn}, Events checked: {eventsOut}")
+                print(f"{name} > Events detected: {eventsIn}, Events checked: {eventsOut}")
 
                 if flowCondition and eventsCondition:
                     finished.add(name)

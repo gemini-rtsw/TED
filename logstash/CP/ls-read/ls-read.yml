@@ -5,7 +5,7 @@ services:
     container_name: ls-read
     network_mode: host
     environment:
-      HOST_1: "http://${HOST1_IP}:${ES1_HTTP_PORT}"
+      HOST_1: "http://${HOST2_IP}:${ES1_HTTP_PORT}"
       TIMEZONE: "${LS_TIMEZONE}"
       DAY: "${DAY}"
       MONTH: "${MONTH}"
@@ -14,7 +14,7 @@ services:
       - ./config:/usr/share/logstash/config
       - ./pipeline:/usr/share/logstash/pipeline
       - ../../utils:/usr/share/logstash/utils
-      - ${LOGS_PATH}:/gemsoft/var
+      - ${LOGS_PATH}:/gemsoft/var/log
     logging:
       driver: json-file
       options:
