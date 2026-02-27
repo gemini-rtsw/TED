@@ -112,6 +112,7 @@ services:
       GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       GF_AUTH_API_KEY_ENABLED: true
+      GRAFANA_TED_URL: ${GRAFANA_TED_URL}
       # GF_RENDERING_SERVER_URL: "http://${HOST01_IP}:8081/render"
       # GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
       # GF_LOG_FILTERS: "rendering:debug"
@@ -137,6 +138,7 @@ services:
         - GID=${G_ID}
     image: ted-api:0.1
     environment:
+      GRAFANA_TED_URL: ${GRAFANA_TED_URL}
       EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
       EPICS_CA_ADDR_LIST: ${CA_ADDR_LIST}
       MYSQL_USER: ${MYSQL_USER}
