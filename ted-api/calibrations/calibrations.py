@@ -113,6 +113,7 @@ def insertDay(dateStr):
         if file.is_file():
             with file.open() as f:
                 for line in f:
+ 
                     dataByLine = line.split(" ")
                     print(dateStr, dataByLine)
                     date = dataByLine[0].replace('-', '/')
@@ -123,6 +124,11 @@ def insertDay(dateStr):
                         key = dataByLine[2]                        
                         system = key.split(":")[1]
                         value = dataByLine[-1].strip()
+                    try:
+                        value = float(value)
+                    except ValueError:
+                        print(f"Skipping non-numeric value: {value}")
+                        continue
                     try:
                         with get_conn() as conn:
                             with conn.cursor() as cur:
@@ -151,7 +157,7 @@ def insertToday():
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="ted_calibrations.py",
+        prog="calibrations.py",
         description="TED TimescaleDB calibration data loader"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
