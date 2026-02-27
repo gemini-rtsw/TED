@@ -60,15 +60,17 @@ def determinePolicy(pvInfoDict):
     pvPolicyDict = {}
     userPolicyOverride = pvInfoDict.get("policyName")
     if userPolicyOverride in ["Save all values", None]:
-        if pvInfoDict.get("SCAN") and  pvInfoDict["SCAN"] != "I/O Intr" and pvInfoDict["SCAN"] != "Passive" and pvInfoDict["SCAN"] != "Event":
+        if pvInfoDict.get("SCAN") and  pvInfoDict["SCAN"] not in ["I/O Intr", "Passive", "Event"]:
             pvPolicyDict["samplingPeriod"] = float(pvInfoDict["SCAN"].split()[0])
+            pvPolicyDict["samplingMethod"] = "SCAN"
         else:
             pvPolicyDict["samplingPeriod"] = float(round_well(pvInfoDict["eventRate"]))
             pvPolicyDict["samplingMethod"] = "MONITOR"
-            pvPolicyDict["dataStores"] = [
-            shorttermstore_plugin_url,
-            mediumtermstore_plugin_url,
-            longtermstore_plugin_url,
+
+        pvPolicyDict["dataStores"] = [
+        shorttermstore_plugin_url,
+        mediumtermstore_plugin_url,
+        longtermstore_plugin_url,
         ]
         pvPolicyDict["policyName"] = "Save all values"
     pvPolicyDict["archiveFields"]=[]
