@@ -52,7 +52,7 @@ def getFieldsArchivedAsPartOfStream():
 
 # We use the environment variables ARCHAPPL_SHORT_TERM_FOLDER and ARCHAPPL_MEDIUM_TERM_FOLDER to determine the location of the STS and the MTS in the appliance
 shorttermstore_plugin_url = "pb://localhost?name=STS&rootFolder=${ARCHAPPL_SHORT_TERM_FOLDER}&partitionGranularity=PARTITION_DAY&consolidateOnShutdown=true&hold=8&gather=1"
-mediumtermstore_plugin_url = "pb://localhost?name=MTS&rootFolder=${ARCHAPPL_SHORT_TERM_FOLDER}&partitionGranularity=PARTITION_MONTH&consolidateOnShutdown=true&hold=12&gather=1"
+mediumtermstore_plugin_url = "pb://localhost?name=MTS&rootFolder=${ARCHAPPL_SHORT_TERM_FOLDER}&partitionGranularity=PARTITION_MONTH&consolidateOnShutdown=true&hold=13&gather=1"
 longtermstore_plugin_url = "pb://localhost?name=LTS&rootFolder=${ARCHAPPL_LONG_TERM_FOLDER}&partitionGranularity=PARTITION_YEAR"
 
 
