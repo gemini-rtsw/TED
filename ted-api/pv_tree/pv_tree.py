@@ -4,11 +4,11 @@ import json
 
 from collections import OrderedDict
 
-def get_tree(category):
+def get_tree(site, category):
     merged_data = {}
-    yaml_files = os.listdir(f"/ted-api/pv_tree/channels/CP/{category}")
+    yaml_files = os.listdir(f"/ted-api/pv_tree/channels/{site}/{category}")
     for file_path in yaml_files:
-        with open(f"/ted-api/pv_tree/channels/CP/{category}/{file_path}") as f:
+        with open(f"/ted-api/pv_tree/channels/{site}/{category}/{file_path}") as f:
             data = yaml.full_load(f)
             if data:
                 merged_data.update(data)
