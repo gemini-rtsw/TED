@@ -26,9 +26,9 @@ services:
     cpus: 1.0
     mem_limit: 1g
     volumes:
-      - "../../../logstash/${SITE}/ls-gmos/config/:/usr/share/logstash/config"
-      - "../../../logstash/${SITE}/ls-gmos/pipeline:/usr/share/logstash/pipeline"
-      - ../../../logstash/utils:/usr/share/logstash/utils
+      - "../../logstash/${SITE}/ls-gmos/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-gmos/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
       - ${LOGS_PATH}:/gemsoft/var/log
       - ${DATA_PATH}/ls-gmos/db:/db
       - /etc/localtime:/etc/localtime
@@ -40,9 +40,9 @@ services:
   #   cpus: 1.0
   #   mem_limit: 1g
   #   volumes:
-  #     - "../../../logstash/${SITE}/ls-f2/config/:/usr/share/logstash/config"
-  #     - "../../../logstash/${SITE}/ls-f2/pipeline:/usr/share/logstash/pipeline"
-  #     - ../../../logstash/utils:/usr/share/logstash/utils
+  #     - "../../logstash/${SITE}/ls-f2/config/:/usr/share/logstash/config"
+  #     - "../../logstash/${SITE}/ls-f2/pipeline:/usr/share/logstash/pipeline"
+  #     - ../../logstash/utils:/usr/share/logstash/utils
   #     - ${LOGS_PATH}:/gemsoft/var/log
   #     - ${DATA_PATH}/ls-f2/db:/db
   #     - /etc/localtime:/etc/localtime
@@ -54,9 +54,9 @@ services:
     cpus: 2.0
     mem_limit: 2g
     volumes:
-      - "../../../logstash/${SITE}/ls-ghost/config/:/usr/share/logstash/config"
-      - "../../../logstash/${SITE}/ls-ghost/pipeline:/usr/share/logstash/pipeline"
-      - ../../../logstash/utils:/usr/share/logstash/utils
+      - "../../logstash/${SITE}/ls-ghost/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-ghost/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
       - ${LOGS_PATH}/ghost:/gemsoft/var/log/ghost
       - ${DATA_PATH}/ls-ghost/db:/db
       - /etc/localtime:/etc/localtime

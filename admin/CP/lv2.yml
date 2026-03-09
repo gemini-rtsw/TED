@@ -28,36 +28,36 @@ services:
     cpus: 1.0
     mem_limit: 1g
     volumes:
-      - ../../../logstash/${SITE}/ls-core/config:/usr/share/logstash/config
-      - ../../../logstash/${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline
+      - ../../logstash/${SITE}/ls-core/config:/usr/share/logstash/config
+      - ../../logstash/${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline
       - ${DATA_PATH}/ls-core/db:/db
       - ${LOGS_PATH}:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
-      - ../../../logstash/utils:/usr/share/logstash/utils
+      - ../../logstash/utils:/usr/share/logstash/utils
   ls-guiders:
     <<: *logstash-common
     container_name: ls-guiders
     cpus: 1.0
     mem_limit: 1g
     volumes:
-      - "../../../logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
-      - "../../../logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
+      - "../../logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
       - ${DATA_PATH}/ls-guiders/db:/db
       - ${LOGS_PATH}/serialcon:/gemsoft/var/log/serialcon
       - /etc/localtime:/etc/localtime
-      - ../../../logstash/utils:/usr/share/logstash/utils
+      - ../../logstash/utils:/usr/share/logstash/utils
   ls-opstools:
     <<: *logstash-common
     container_name: ls-opstools
     cpus: 1.0
     mem_limit: 1g
     volumes:
-      - "../../../logstash/${SITE}/ls-opstools/config:/usr/share/logstash/config"
-      - "../../../logstash/${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
+      - "../../logstash/${SITE}/ls-opstools/config:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
       - ${DATA_PATH}/ls-opstools/db:/db
       - ${LOGS_PATH}:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
-      - ../../../logstash/utils:/usr/share/logstash/utils
+      - ../../logstash/utils:/usr/share/logstash/utils
       
   elasticsearch-1:
     image: ted-elasticsearch:9.1.4
@@ -67,7 +67,7 @@ services:
     cpus: 2.0
     mem_limit: 3g
     build:
-      context: ../../../elasticsearch
+      context: ../../elasticsearch
       args:
         - USER=${USER}
         - UID=${U_ID}

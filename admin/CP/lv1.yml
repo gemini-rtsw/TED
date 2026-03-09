@@ -9,7 +9,7 @@ services:
     hostname: softioc
     container_name: softioc
     volumes:
-      - ../../../softioc/data/softioc.db:/db/softioc.db
+      - ../../softioc/data/softioc.db:/db/softioc.db
     network_mode: "host"
     deploy:
       resources:
@@ -42,7 +42,7 @@ services:
     mem_limit: 4G
     cpus: 2.0
     build:
-      context: ../../../archappl
+      context: ../../archappl
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -52,8 +52,8 @@ services:
     image: ted-appliance:1.1.0
     network_mode: "host"
     volumes:
-      - ../../../archappl/conf:/etc/archappl/
-      - ../../../archappl/webapps:/usr/local/tomcat/webapps
+      - ../../archappl/conf:/etc/archappl/
+      - ../../archappl/webapps:/usr/local/tomcat/webapps
       - ${APPLIANCE_STS}:/storage/sts
       - ${APPLIANCE_MTS}:/storage/mts
       - ${APPLIANCE_LTS}:/storage/lts
@@ -73,7 +73,7 @@ services:
     container_name: ${MYSQL_NAME}
     hostname: ${MYSQL_NAME}
     build:
-      context: ../../../mysql
+      context: ../../mysql
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -99,7 +99,7 @@ services:
     cpus: 2.0
     mem_limit: 3g
     build:
-      context: ../../../grafana
+      context: ../../grafana
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -120,8 +120,8 @@ services:
       # GF_RENDERING_CALLBACK_URL: "http://${HOST01_IP}:8080/"
       # GF_LOG_FILTERS: "rendering:debug"
     volumes:
-      - ../../../grafana/grafana-data/plugins:/var/lib/grafana/plugins
-      - ../../../grafana/conf/:/etc/grafana/
+      - ../../grafana/grafana-data/plugins:/var/lib/grafana/plugins
+      - ../../grafana/conf/:/etc/grafana/
     logging:
       driver: json-file
       options:
@@ -134,7 +134,7 @@ services:
     cpus: 1.0
     mem_limit: 1g
     build:
-      context: ../../../ted-api
+      context: ../../ted-api
       dockerfile: Dockerfile
       args:
         - USER=${USER}
@@ -154,7 +154,7 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ../../../ted-api:/ted-api/
+      - ../../ted-api:/ted-api/
       - ${CALIBRATIONS_PATH}:/calibrations:ro
     logging:
       driver: "json-file"
