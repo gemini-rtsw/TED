@@ -1,0 +1,399 @@
+A&G:
+  Science Fold:
+    RT2:
+      Eng Pos A:
+        codes:
+          - ag:sfEngPosA.VALA
+      Pos RT (deg):
+        codes:
+          - ag:sfPosA.VALA
+      ag:RT2PosA.VALA:
+        codes:
+          - ag:RT2PosA.VALA
+      ag:RT2xlat.VALI:
+        codes:
+          - ag:RT2xlat.VALI
+      ag:RT2xlat.VALG:
+        codes:
+          - ag:RT2xlat.VALG
+      PM1_PLC3_response:
+        codes:
+          - ag:RT2xlat.VALA
+      RT2 inPosition:
+        codes:
+          - ag:RT2inPosition.VAL
+    Tilt:
+      Eng Pos B:
+        codes:
+          - ag:sfEngPosA.VALB
+      Pos tilt (deg):
+        codes:
+          - ag:sfPosA.VALB
+      ag:TiltPosA.VALA:
+        codes:
+          - ag:TiltPosA.VALA
+      ag:Tiltxlat.VALI:
+        codes:
+          - ag:Tiltxlat.VALI
+      ag:Tiltxlat.VALG:
+        codes:
+          - ag:Tiltxlat.VALG
+      PM1_PLC4_response:
+        codes:
+          - ag:Tiltxlat.VALA
+      Tilt inPosition:
+        codes:
+          - ag:TiltinPosition
+    Linear Stage:
+      Eng Pos C:
+        codes:
+          - ag:sfEngPosA.VALC
+      Pos linear stage (mm):
+        codes:
+          - ag:sfPosA.VALC
+      ag:Lin2PosA.VALA:
+        codes:
+          - ag:Lin2PosA.VALA
+      ag:Lin2xlat.VALI:
+        codes:
+          - ag:Lin2xlat.VALI
+      ag:Lin2xlat.VALG:
+        codes:
+          - ag:Lin2xlat.VALG
+      PM1_PLC5_response:
+        codes:
+          - ag:Lin2xlat.VALA
+      Lin inPosition:
+        codes:
+          - ag:Lin2inPosition
+    SF (not real mechanism):
+      ag:sfxlat.VALI:
+        codes:
+          - ag:sfxlat.VALI
+      ag:sfxlat.VALG:
+        codes:
+          - ag:sfxlat.VALG
+      PM1_PLC10_response:
+        codes:
+          - ag:sfxlat.VALA
+      SF inPosition:
+        codes:
+          - ag:sfinPosition
+  Linear stage skew detection:
+    Skew ??:
+      codes:
+        - ag:Lin2DPRead.VALK
+    Position ECT count:
+      codes:
+        - ag:Lin2DPRead.VALL
+    Skew ECT count:
+      codes:
+        - ag:Lin2DPRead.VALM
+  Science Fold All:
+    SF position current:
+      codes:
+        - ag:sfName
+    PM1_PLC10_response:
+      codes:
+        - ag:sfxlat.VALA
+    SF position selected:
+      codes:
+        - ag:sfSel.A
+  HRWFS Probe Arm:
+    Pos Encoder points:
+      codes:
+        - ag:hwEngPosA.VALA
+    Pos Degrees:
+      codes:
+        - ag:hwPosA.VALA
+    Pos Name:
+      codes:
+        - ag:hwName
+    PMAC2 PLC4 Resp:
+      codes:
+        - ag:hwxlat.VALA
+    Status Words:
+      codes:
+        - ag:hwxlat.VALI
+    PLC Flags:
+      codes:
+        - ag:hwxlat.VALG
+    Eng Pos Demand:
+      codes:
+        - ag:hwEng.A
+    Real Pos Demand:
+      codes:
+        - ag:hwMove.A
+    Selected Pos Demand:
+      codes:
+        - ag:hwSel.A
+    HR Parked flag:
+      codes:
+        - ag:hwParked
+  HRWFS Mechanisms:
+    Eng Position:
+      Focus:
+        codes:
+          - hrwfs:focusEngPosA.VALA
+      Lens:
+        codes:
+          - hrwfs:lensEngPosA.VALA
+      CLFilter:
+        codes:
+          - hrwfs:clfilterEngPosA.VALA
+      NDFilter:
+        codes:
+          - hrwfs:ndfilterEngPosA.VALA
+      Fldstop:
+        codes:
+          - hrwfs:fldstopEngPosA.VALA
+    Position:
+      Focus:
+        codes:
+          - hrwfs:focusPosA.VALA
+      Lens:
+        codes:
+          - hrwfs:lensPosA.VALA
+      CLFilter:
+        codes:
+          - hrwfs:clfilterPosA.VALA
+      NDFilter:
+        codes:
+          - hrwfs:ndfilterPosA.VALA 
+      Fldstop:
+        codes:
+          - hrwfs:fldstopPosA.VALA
+    Name:
+      Focus:
+        codes:
+          - hrwfs:focusName
+      Lens:
+        codes:
+          - hrwfs:lensName
+      CLFilter:
+        codes:
+          - hrwfs:clfilterName
+      NDFilter:
+        codes:
+          - hrwfs:ndfilterName
+      Fldstop:
+        codes:
+          - hrwfs:fldstopName
+    Mechanism state:
+      Focus:
+        codes:
+          - hrwfs:focusxlat.VALA
+      Lens:
+        codes:
+          - hrwfs:lensxlat.VALA
+      CLFilter:
+        codes:
+          - hrwfs:clfilterxlat.VALA
+      NDFilter:
+        codes:
+          - hrwfs:ndfilterxlat.VALA
+      Fldstop:
+        codes:
+          - hrwfs:fldstopxlat.VALA
+    Motor Status:
+      Focus:
+        codes:
+          - hrwfs:focusxlat.VALI
+      Lens:
+        codes:
+          - hrwfs:lensxlat.VALI
+      CLFilter:
+        codes:
+          - hrwfs:clfilterxlat.VALI
+      NDFilter:
+        codes:
+          - hrwfs:ndfilterxlat.VALI
+      Fldstop:
+        codes:
+          - hrwfs:fldstopxlat.VALI
+    16bit PLC flags:
+      Focus:
+        codes:
+          - hrwfs:focusxlat.VALG
+      Lens:
+        codes:
+          - hrwfs:lensxlat.VALG
+      CLFilter:
+        codes:
+          - hrwfs:clfilterxlat.VALG
+      NDFilter:
+        codes:
+          - hrwfs:ndfilterxlat.VALG
+      Fldstop:
+        codes:
+          - hrwfs:fldstopxlat.VALG
+  HRWFS Other:
+    codes:
+      - hrwfs:encoderStatusStr
+      - hrwfs:encoderMode
+  PWFS1:
+    Filter:
+      codes:
+        - ag:p1:filterEngPosA.VALA
+        - ag:p1:filterPosA
+        - ag:p1:filterxlat.VALA
+        - ag:p1:filterxlat.VALG
+        - ag:p1:filterxlat.VALI
+    Fieldstop:
+      codes:
+        - ag:p1:fldstopEngPosA.VALA
+        - ag:p1:fldstopPosA
+        - ag:p1:fldstopxlat.VALA
+        - ag:p1:fldstopxlat.VALG
+        - ag:p1:fldstopxlat.VALI
+    Focus:
+      codes:
+        - ag:p1:focusEngPosA.VALA
+        - ag:p1:focusPosA
+        - ag:p1:focusxlat.VALA
+        - ag:p1:focusxlat.VALG
+        - ag:p1:focusxlat.VALI
+    PA:
+      codes:
+        - ag:p1:PA34EngPosA.VALA
+        - ag:p1:PA34PosA
+        - ag:p1:PA34xlat.VALA
+        - ag:p1:PA34xlat.VALG
+        - ag:p1:PA34xlat.VALI
+    RT:
+      codes:
+        - ag:p1:RT34EngPosA.VALA
+        - ag:p1:RT34PosA.VALA
+        - ag:p1:RT34xlat.VALA
+        - ag:p1:RT34xlat.VALG
+        - ag:p1:RT34xlat.VALI
+    Probe:
+      codes:
+        - ag:p1:probexlat.VALA
+        - ag:p1:probexlat.VALG
+        - ag:p1:probexlat.VALI
+  PWFS2:
+    Filter:
+      codes:
+        - ag:p2:filterEngPosA.VALA
+        - ag:p2:filterPosA
+        - ag:p2:filterxlat.VALA
+        - ag:p2:filterxlat.VALG
+        - ag:p2:filterxlat.VALI
+    Fieldstop:
+      codes:
+        - ag:p2:fldstopEngPosA.VALA
+        - ag:p2:fldstopPosA
+        - ag:p2:fldstopxlat.VALA
+        - ag:p2:fldstopxlat.VALG
+        - ag:p2:fldstopxlat.VALI
+    Focus:
+      codes:
+        - ag:p2:focusEngPosA.VALA
+        - ag:p2:focusPosA
+        - ag:p2:focusxlat.VALA
+        - ag:p2:focusxlat.VALG
+        - ag:p2:focusxlat.VALI
+    PA:
+      codes:
+        - ag:p2:PA34EngPosA.VALA
+        - ag:p2:PA34PosA
+        - ag:p2:PA34xlat.VALA
+        - ag:p2:PA34xlat.VALG
+        - ag:p2:PA34xlat.VALI
+    RT:
+      codes:
+        - ag:p2:RT34EngPosA.VALA
+        - ag:p2:RT34PosA.VALA
+        - ag:p2:RT34xlat.VALA
+        - ag:p2:RT34xlat.VALG
+        - ag:p2:RT34xlat.VALI
+    Probe:
+      codes:
+        - ag:p2:probexlat.VALA
+        - ag:p2:probexlat.VALG
+        - ag:p2:probexlat.VALI
+  Active Optic:
+    codes:
+      - ag:PA3AOPosA.VALA
+      - ag:PA3AOMove.A
+      - ag:PA3AOEng.A
+      - ag:PA3AOinPosition
+      - ag:PA3AOEngPosA.VALA
+      - ag:PA3AOxlat.VALA
+      - ag:PA3AOxlat.VALI
+      - ag:PA3AOxlat
+  InPosition flags (Spreadsheet, last 3 hours):
+    ag:.*inPosition:
+      codes:
+        - ag:Lin2inPosition
+        - ag:PA3AOinPosition
+        - ag:RT2inPosition
+        - ag:TiltinPosition
+        - ag:aoinPosition
+        - ag:cc:inPosition
+        - ag:hwinPosition
+        - ag:p1:PA34inPosition
+        - ag:p1:RT34inPosition
+        - ag:p1:filterinPosition
+        - ag:p1:fldstopinPosition
+        - ag:p1:focusinPosition
+        - ag:p1:inPosition
+        - ag:p1:probeinPosition
+        - ag:p2:PA34inPosition
+        - ag:p2:RT34inPosition
+        - ag:p2:filterinPosition
+        - ag:p2:fldstopinPosition
+        - ag:p2:focusinPosition
+        - ag:p2:inPosition
+        - ag:p2:probeinPosition
+        - ag:sfinPosition
+    Just science fold inPosition flags:
+      codes:
+        - ag:TiltinPosition
+        - ag:Lin2inPosition
+        - ag:RT2inPosition
+        - ag:sfinPosition
+  Amplifier Faults of MACCON amps:
+    Amp.1 AO Fold Mirror:
+      codes:
+        - ag:torque.VALD
+    Amp.2 Tilt Sc. Fold:
+      codes:
+        - ag:torque.VALB
+    HRWFS mirror:
+      codes:
+        - ag:torque.VALF
+    HRWFS Move to eng. Pos.:
+      codes:
+        - ag:hwEng.A
+  Countertorque Flags:
+    countertorque enabled flags:
+      codes:
+        - ag:torque.VALK
+    countertorque applied flags:
+      codes:
+        - ag:torque.VALL
+  Countertorque Values:
+    RT4 countertorque applied value:
+      codes:
+        - ag:torque.VALO
+    PA4 countertorque applied value:
+      codes:
+        - ag:torque.VALP
+    RT3 countertorque applied value:
+      codes:
+        - ag:torque.VALQ
+    PA3 countertorque applied value:
+      codes:
+        - ag:torque.VALR
+    RT2 countertorque applied value:
+      codes:
+        - ag:torque.VALS
+  For Stan:
+    codes:
+      - ag:p2:RT34DPRead.VALA
+      - ag:p2:RT34DPRead.VALB
+      - ag:p2:RT34DPRead.VALC
+      - ag:p2:probexlat.VALI
+      - ag:PA3AOName

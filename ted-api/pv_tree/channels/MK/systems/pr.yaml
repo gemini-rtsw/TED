@@ -1,0 +1,1400 @@
+PlantRoom:
+  General:
+    Plant Room Air Temp [deg C]:
+      codes:
+        - pr:airTemp
+    Compressed Air flow OUT [scfm]:
+      codes:
+        - pr:air:outFlow
+    Compressed Air pressure OUT [psi]:
+      codes:
+        - pr:air:outPressure
+  Chiller 1 Energy:
+    Total Energy Consumption (kWh):
+      codes:
+        - pr:elec:ch1energy
+    Real Power (kW):
+      codes:
+        - pr:elec:ch1totRealPwr
+    Apparent Power (kVA):
+      codes:
+        - pr:elec:ch1totAppPwr
+    Power Factor:
+      codes:
+        - pr:elec:ch1totPwrFactor
+    Voltage L-L (V):
+      codes:
+        - pr:elec:ch1voltageL-L
+    Voltage L-N (V):
+      codes:
+        - pr:elec:ch1voltageL-N
+    Current (A):
+      codes:
+        - pr:elec:ch1current
+  Chiller 2 Energy:
+    Total Energy Consumption (kWh):
+      codes:
+        - pr:elec:ch2energy
+    Real Power (kW):
+      codes:
+        - pr:elec:ch2totRealPwr
+    Apparent Power (kVA):
+      codes:
+        - pr:elec:ch2totAppPwr
+    Power Factor:
+      codes:
+        - pr:elec:ch2totPwrFactor
+    Voltage L-L (V):
+      codes:
+        - pr:elec:ch2voltageL-L
+    Voltage L-N (V):
+      codes:
+        - pr:elec:ch2voltageL-N
+    Current (A):
+      codes:
+        - pr:elec:ch2current
+  Exhaust Fan 1:
+      codes:
+        - pr:ef:ef1sword:word
+  Exhaust Fan 2 Power Meter:
+    Total Energy Consumption (kWh):
+      codes:
+        - pr:elec:ef2energy
+      codes:
+        - pr:ef:ef2sword:word
+    Real Power (kW):
+      codes:
+        - pr:elec:ef2totRealPwr
+    Apparent Power (kVA):
+      codes:
+        - pr:elec:ef2totAppPwr
+    Power Factor:
+      codes:
+        - pr:elec:ef2totPwrFactor
+    Voltage L-L (V):
+      codes:
+        - pr:elec:ef2voltageL-L
+    Voltage L-N (V):
+      codes:
+        - pr:elec:ef2voltageL-N
+    Current (A):
+      codes:
+        - pr:elec:ef2current
+  EF2_VFD:
+    EF2 Current:
+      codes:
+        - pr:ef:ef2c
+    EF2 Voltage:
+      codes:
+        - pr:ef:ef2v
+  EF13_Aux_Exhaust_Fan:
+    Run/Stopped:
+      codes:
+        - pr:ef:ef1soword:bits.B1
+  Transformer_T5:
+    Total Real Power (kW):
+      codes:
+        - pr:elec:t5trp
+    Frequency (Hz):
+      codes:
+        - pr:elec:t5freq
+    Phase 1/2/3 Real Power (kW):
+      codes:
+        - pr:elec:t5rp1
+        - pr:elec:t5rp2
+        - pr:elec:t5rp3
+    Average Phase Voltage (V):
+      codes:
+        - pr:elec:t5apv
+    Average Line Voltage (V):
+      codes:
+        - pr:elec:t5alv
+    Average Phase Current (Amps):
+      codes:
+        - pr:elec:t5apc
+    Neutral Current (Amps):
+      codes:
+        - pr:elec:t5nc
+    Total Apparent Power (kVA):
+      codes:
+        - pr:elec:t5tap
+    System Power Factor:
+      codes:
+        - pr:elec:t5spf
+  Chillers_External:
+    CH1 Temp In/Out [degC]:
+      codes:
+        - pr:ch:c1to
+        - pr:ch:c1ti
+    5FLM CH1 flow in gallons:
+      codes:
+        - pr:Chiller1Flow
+    CH1 Rejected Heat Power:
+      codes:
+        - pr:ch:c1RejPow
+    FM66 HX1 Coolant Flow:
+      codes:
+        - pr:hx1:coolantFlow
+    TT3 HX1 warm side OUT temperature:
+      codes:
+        - pr:hx1:warmOutTemp
+    DPT60 Differential Pressure (AHUs lev 5):
+      codes:
+        - pr:ahu:diffPres
+    Tunnel Temps:
+      codes:
+        - pr:ef:tut
+        - pr:ef:out
+    CH2 secondary Loop:
+      Temp In [degC]:
+        codes:
+          - pr:ch2:extTempIn
+      Temp Out [degC]:
+        codes:
+          - pr:ch2:extTempOut
+      Pressure In [psi]:
+        codes:
+          - pr:ch2:extPresIn
+      Pressure Out [psi]:
+        codes:
+          - pr:ch2:extPresOut
+      Discharge Pressure [psi]:
+        codes:
+          - pr:ch2:extDisPres
+      Flow in gallons:
+        codes:
+          - pr:ch2:extFlowOut
+      Rejected Heat Power:
+        codes:
+          - pr:ch2:extRejPow2
+      COP:
+        codes:
+          - pr:ch2:extCOP
+  Chiller_2:
+    Cooling SetPoint:
+      codes:
+        - pr:ch2:coolSp
+    Sys Temp In/Out [degC]:
+      codes:
+        - pr:ch2:sysTempIn
+        - pr:ch2:sysTempOut
+    Master C1/C2 Status:
+      codes:
+        - pr:ch2:mac1stat
+        - pr:ch2:mac2stat
+    Slave 1 C1/C2 Status:
+      codes:
+        - pr:ch2:sm1c1stat
+        - pr:ch2:sm1c2stat
+    Slave 2 C1/C2 Status:
+      codes:
+        - pr:ch2:sm2c1stat
+        - pr:ch2:sm2c2stat
+    Slave 3 C1/C2 Status:
+      codes:
+        - pr:ch2:sm3c1stat
+        - pr:ch2:sm3c2stat
+    Pumps Status:
+      codes:
+        - pr:ch2:p1stat
+        - pr:ch2:p2stat
+    Pumps Suction Pres [psi]:
+      codes:
+        - pr:ch2:pumpSuctPres
+    Pumps Discharge Pres [psi]:
+      codes:
+        - pr:ch2:pumpDisPres
+    Pumps Module Pres Out [psi]:
+      codes:
+        - pr:ch2:pumpModPresOut
+    Master Temp In/Out [degC]:
+      codes:
+        - pr:ch2:maTempIn
+        - pr:ch2:maTempOut
+    Master C1 low/high pres [psi]:
+      codes:
+        - pr:ch2:maC1low
+        - pr:ch2:maC1high
+    Master C2 low/high pres [psi]:
+      codes:
+        - pr:ch2:maC2low
+        - pr:ch2:maC2high
+    Slave 1 Temp In/Out [degC]:
+      codes:
+        - pr:ch2:sm1TempIn
+        - pr:ch2:sm1TempOut
+    Slave 1 C1 low/high pres [psi]:
+      codes:
+        - pr:ch2:sm1C1low
+        - pr:ch2:sm1C1high
+    Slave 1 C2 low/high pres [psi]:
+      codes:
+        - pr:ch2:sm1C2low
+        - pr:ch2:sm1C2high
+    Slave 2 Temp In/Out [degC]:
+      codes:
+        - pr:ch2:sm2TempIn
+        - pr:ch2:sm2TempOut
+    Slave 2 C1 low/high pres [psi]:
+      codes:
+        - pr:ch2:sm2C1low
+        - pr:ch2:sm2C1high
+    Slave 2 C2 low/high pres [psi]:
+      codes:
+        - pr:ch2:sm2C2low
+        - pr:ch2:sm2C2high
+    Slave 3 Temp In/Out [degC]:
+      codes:
+        - pr:ch2:sm3TempIn
+        - pr:ch2:sm3TempOut
+    Slave 3 C1 low/high pres [psi]:
+      codes:
+        - pr:ch2:sm3C1low
+        - pr:ch2:sm3C1high
+    Slave 3 C2 low/high pres [psi]:
+      codes:
+        - pr:ch2:sm3C2low
+        - pr:ch2:sm3C2high
+  Chiller_2_Compressors_and_Pumps_Hour_Meters:
+    P1:
+      codes:
+        - pr:ch2:p1runtime
+    P2:
+      codes:
+        - pr:ch2:p2runtime
+    C1:
+      codes:
+        - pr:ch2:c1runtime
+    C2:
+      codes:
+        - pr:ch2:c2runtime
+  Circulation_Pump_Pressures:
+    CP1 Suction:
+      codes:
+        - pr:cp1in
+    CP1 Discharge:
+      codes:
+        - pr:cp1out
+    CP1 Differential:
+      codes:
+        - pr:cp1diff
+    CP1 All Pressures:
+      codes:
+        - pr:cp1in
+        - pr:cp1out
+        - pr:cp1diff
+    CP3 Suction:
+      codes:
+        - pr:cp3in
+    CP3 Discharge:
+      codes:
+        - pr:cp3out
+    CP3 Differential:
+      codes:
+        - pr:cp3diff
+    CP3 All Pressures:
+      codes:
+        - pr:cp3in
+        - pr:cp3out
+        - pr:cp3diff
+    CP4 Suction:
+      codes:
+        - pr:cp4in
+    CP4 Discharge:
+      codes:
+        - pr:cp4out
+    CP4 Differential:
+      codes:
+        - pr:cp4diff
+    CP4 All Pressures:
+      codes:
+        - pr:cp4in
+        - pr:cp4out
+        - pr:cp4diff
+    CP4B Suction:
+      codes:
+        - pr:cp4bin
+    CP4B Discharge:
+      codes:
+        - pr:cp4bout
+    CP4B Differential:
+      codes:
+        - pr:cp4bdiff
+    CP4B All Pressures:
+      codes:
+        - pr:cp4bin
+        - pr:cp4bout
+        - pr:cp4bdiff
+    CP5 Suction:
+      codes:
+        - pr:cp5in
+    CP5 Discharge:
+      codes:
+        - pr:cp5out
+    CP5 Differential:
+      codes:
+        - pr:cp5diff
+    CP5 All Pressures:
+      codes:
+        - pr:cp5in
+        - pr:cp5out
+        - pr:cp5diff
+  Fluid_Cooler_Sensors:
+    FC Coolant In Temp [degC]:
+      codes:
+        - pr:fcInTemp
+    FC Coolant Out Temp [degC]:
+      codes:
+        - pr:fcOutTemp
+    FC Coolant In Pressure [psi]:
+      codes:
+        - pr:fcInPres
+    FC Coolant Out Pressure [psi]:
+      codes:
+        - pr:fcOutPres
+    FC Area Air Temp [degC]:
+      codes:
+        - pr:fcAirTemp
+    FC Coolant Out Flow [gpm]:
+      codes:
+        - pr:fcOutFlow
+    CP8 Suction Pressure [psi]:
+      codes:
+        - pr:cp8InPres
+    CP8 Discharge Pressure [psi]:
+      codes:
+        - pr:cp8OutPres
+    CP6A/B Suction Pressure [psi]:
+      codes:
+        - pr:cp6abInPres
+    Coolant Supply Temp to HE Compressors [degC]:
+      codes:
+        - pr:heSupplyTemp
+    FC Rejected Heat Power:
+      codes:
+        - pr:fcRejPow
+    FC Performance:
+      codes:
+        - pr:fcAirTemp
+        - pr:fcOutTemp
+        - pr:fcRejPow
+  Heat_Exchanger_2:
+    HX2 Cold Temp In:
+      codes:
+        - pr:hx2coldTempIn
+    HX2 Cold Temp Out:
+      codes:
+        - pr:hx2coldTempOut
+    HX2 Cold Flow:
+      codes:
+        - pr:hx2coldFlow
+    HX2 Valve Position:
+      codes:
+        - pr:hx2coldValve
+    HX2 Absorbed Heat Power:
+      codes:
+        - pr:hx2coldAbsPow
+    HX2 Setpoint:
+      codes:
+        - pr:hx2coldSetPoint
+    HX2 Warm Temp In:
+      codes:
+        - pr:hx2warmTempIn
+    HX2 Warm Temp Out:
+      codes:
+        - pr:hx2warmTempOut
+    CP7 Suction Pressure:
+      codes:
+        - pr:cp7InPres
+    CP7 Discharge Pressure:
+      codes:
+        - pr:cp7OutPres
+    HX2 Warm Flow:
+      codes:
+        - pr:hx2warmFlow
+    HX2 Rejected Heat Power:
+      codes:
+        - pr:hx2warmRejPow
+  Heat_Exchanger_3:
+    HX3 Cold Temp In:
+      codes:
+        - pr:hx3coldTempIn
+    HX3 Cold Temp Out:
+      codes:
+        - pr:hx3coldTempOut
+    HX3 Cold Flow:
+      codes:
+        - pr:hx3coldFlow
+    HX3 Valve Position:
+      codes:
+        - pr:hx3coldValve
+    HX3 Absorbed Heat Power:
+      codes:
+        - pr:hx3coldAbsPow
+    HX3 Setpoint:
+      codes:
+        - pr:hx3coldSetPoint
+    HX3 Warm Temp In:
+      codes:
+        - pr:hx3warmTempIn
+    HX3 Warm Temp Out:
+      codes:
+        - pr:hx3warmTempOut
+    HX3 Warm Pressure Out:
+      codes:
+        - pr:hx3warmPresOut
+    HX3 Rejected Heat Power:
+      codes:
+        - pr:hx3warmRejPow
+  Domestic_Water:
+    Tank Gallons:
+      codes:
+        - pr:waterGallons
+  Helium_Pressures:
+    Helium Supply Left Wall:
+      codes:
+        - pr:helium1supply
+    Helium Supply Right Wall:
+      codes:
+        - pr:helium2supply
+    Helium Supply 3:
+      codes:
+        - pr:helium3supply
+    Helium Supply Island:
+      codes:
+        - pr:helium4supply
+    Helium Supply 5:
+      codes:
+        - pr:helium5supply
+    Helium Return Left Wall:
+      codes:
+        - pr:helium1return
+    Helium Return Right Wall:
+      codes:
+        - pr:helium2return
+    Helium Return 3:
+      codes:
+        - pr:helium3return
+    Helium Return Island:
+      codes:
+        - pr:helium4return
+    Helium Return 5:
+      codes:
+        - pr:helium5return
+    Island Flow:
+      codes:
+        - pr:heliumIflow
+    Island Pressure:
+      codes:
+        - pr:heliumIpres
+    Island Temp:
+      codes:
+        - pr:heliumItemp
+    Wall Flow:
+      codes:
+        - pr:heliumWflow
+    Wall Pressure:
+      codes:
+        - pr:heliumWpres
+    Wall Temp:
+      codes:
+        - pr:heliumWtemp
+  AHUs_Observing_Floor:
+    Temperature:
+      AHU_2:
+        codes:
+          - pr:ahu:ah2t
+      AHU_3:
+        codes:
+          - pr:ahu:ah3t
+      AHU_4:
+        codes:
+          - pr:ahu:ah4t
+      AHU_5:
+        codes:
+          - pr:ahu:ah5t
+      All:
+        codes:
+          - pr:ahu:ah2t
+          - pr:ahu:ah3t
+          - pr:ahu:ah4t
+          - pr:ahu:ah5t
+    Status_Text:
+      AHU_2:
+        codes:
+          - pr:ahu:ahuproc.VALA
+      AHU_3:
+        codes:
+          - pr:ahu:ahuproc.VALB
+      AHU_4:
+        codes:
+          - pr:ahu:ahuproc.VALC
+      AHU_5:
+        codes:
+          - pr:ahu:ahuproc.VALD
+      All:
+        codes:
+          - pr:ahu:ahuproc.VALA
+          - pr:ahu:ahuproc.VALB
+          - pr:ahu:ahuproc.VALC
+          - pr:ahu:ahuproc.VALD
+    Status_Numerical:
+      AHU_2:
+        codes:
+          - pr:ahu:ahuproc.A
+      AHU_3:
+        codes:
+          - pr:ahu:ahuproc.B
+      AHU_4:
+        codes:
+          - pr:ahu:ahuproc.C
+      AHU_5:
+        codes:
+          - pr:ahu:ahuproc.D
+      All:
+        codes:
+          - pr:ahu:ahuproc.A
+          - pr:ahu:ahuproc.B
+          - pr:ahu:ahuproc.C
+          - pr:ahu:ahuproc.D
+    Manual_Control:
+      AHU_2:
+        codes:
+          - pr:ahu:ahucStartbit2.PROC
+          - pr:ahu:ahucStopbit3.PROC
+      AHU_3:
+        codes:
+          - pr:ahu:ahucStartbit4.PROC
+          - pr:ahu:ahucStopbit5.PROC
+      AHU_4:
+        codes:
+          - pr:ahu:ahucStartbit6.PROC
+          - pr:ahu:ahucStopbit7.PROC
+      AHU_5:
+        codes:
+          - pr:ahu:ahucStartbit8.PROC
+          - pr:ahu:ahucStopbit9.PROC
+      All:
+        codes:
+          - pr:ahu:ahucStartbit2.PROC
+          - pr:ahu:ahucStartbit4.PROC
+          - pr:ahu:ahucStartbit6.PROC
+          - pr:ahu:ahucStartbit8.PROC
+          - pr:ahu:ahucStopbit3.PROC
+          - pr:ahu:ahucStopbit5.PROC
+          - pr:ahu:ahucStopbit7.PROC
+          - pr:ahu:ahucStopbit9.PROC
+    Auto_Sequence:
+      Status_Text:
+        codes:
+          - pr:ahu:ahuproc.VALE
+      Status_Num:
+        codes:
+          - pr:ahu:ahuproc.E
+      On_Off:
+        codes:
+          - pr:ahu:ahucStartbit0.PROC
+          - pr:ahu:ahucStopbit1.PROC
+      Power_Fail_Sequence:
+        codes:
+          - pr:ahu:ahuproc.VALF
+  Generator_Transfer:
+    UPS1_Contactor_State:
+      codes:
+        - pr:trans:ups1contactor
+    UPS1_On_Battery:
+      codes:
+        - pr:trans:ups1onbattery
+    UPS1_Battery_Low:
+      codes:
+        - pr:trans:ups1batlow
+    UPS1_Time_On_Battery:
+      codes:
+        - pr:trans:ups1timeonbattery
+    ATS3_Utility:
+      codes:
+        - pr:trans:ats3util
+    ATS3_Generator:
+      codes:
+        - pr:trans:ats3gen
+    ATS3_Command_To_Gen:
+      codes:
+        - pr:trans:ats3cmdtogen
+    Sequence_Step_Number:
+      codes:
+        - pr:trans:genTransferSeq
+    Sequence_Step:
+      codes:
+        - pr:trans:genPower.VALA
+  Hydrostatic_Bearing_System:
+    Oil_Tank_Temperature:
+      codes:
+        - hbs:oilTemp
+        - hbs:oilTankTemp
+    Oil_Out_Temperature:
+      codes:
+        - hbs:oilOutTemp
+    Dome_Temperature:
+      codes:
+        - hbs:domeAirTemp
+    Oil_Level:
+      codes:
+        - hbs:oilLevel
+    HBS_Pressure_Out:
+      codes:
+        - hbs:outPressure
+    Flow_Rate:
+      codes:
+        - hbs:flow
+    Top_Accumulator_Pressure:
+      codes:
+        - hbs:accPressure
+    Bottom_Accumulator_Pressure:
+      codes:
+        - hbs:botPressure
+    No_Faults:
+      codes:
+        - hbs:noFaults
+    EStop:
+      codes:
+        - hbs:estop
+    Auto_Mode:
+      codes:
+        - hbs:autoMode
+    Manual_Mode:
+      codes:
+        - hbs:manualMode
+    Heartbeat:
+      codes:
+        - hbs:heartbeat
+    HBS_Sequence_Step:
+      codes:
+        - hbs:seqStep
+    Armed_Status:
+      codes:
+        - hbs:armed
+    EPICS_Commands:
+      codes:
+        - hbs:armOut
+        - hbs:startOut
+        - hbs:stopOut
+    Boost_Pressure:
+      codes:
+        - hbs:boostPressure
+    Pump_A_Hours:
+      codes:
+        - hbs:totalOpHoursA
+    Pump_B_Hours:
+      codes:
+        - hbs:totalOpHoursB
+    Pump_A_Auto:
+      codes:
+        - hbs:autoModeA
+    Pump_B_Auto:
+      codes:
+        - hbs:autoModeB
+    Fault_Words:
+      Word1:
+        codes:
+          - hbs:faults1word
+      Word2:
+        codes:
+          - hbs:faults2word
+      Word3:
+        codes:
+          - hbs:faults3word
+      Word4:
+        codes:
+          - hbs:faults4word
+    Time_P60A:
+      codes:
+        - hbs:timeP60A
+    Val_P60A:
+      codes:
+        - hbs:valP60A
+    Accumulator_Tank_Ext_Temp:
+      codes:
+        - hbs:extTankTemp
+    Calc_Preset:
+      codes:
+        - hbs:calcPreset
+    HX1A_Flow:
+      codes:
+        - pr:hx1a:coolantFlow
+  Platform_Lift_VFDs:
+    Drive_Ready:
+      codes:
+        - pl:c1:ready
+        - pl:c2:ready
+        - pl:c3:ready
+        - pl:c4:ready
+    Drive_Running:
+      codes:
+        - pl:c1:running
+        - pl:c2:running
+        - pl:c3:running
+        - pl:c4:running
+    Drive_At_Speed:
+      codes:
+        - pl:c1:atspeed
+        - pl:c2:atspeed
+        - pl:c3:atspeed
+        - pl:c4:atspeed
+    Drive_Accelerating:
+      codes:
+        - pl:c1:accelerating
+        - pl:c2:accelerating
+        - pl:c3:accelerating
+        - pl:c4:accelerating
+    Drive_Decelerating:
+      codes:
+        - pl:c1:decelerating
+        - pl:c2:decelerating
+        - pl:c3:decelerating
+        - pl:c4:decelerating
+    Drive_Direction_Command:
+      codes:
+        - pl:c1:dirCom
+        - pl:c2:dirCom
+        - pl:c3:dirCom
+        - pl:c4:dirCom
+    Drive_Direction_Actual:
+      codes:
+        - pl:c1:dirAct
+        - pl:c2:dirAct
+        - pl:c3:dirAct
+        - pl:c4:dirAct
+    Drive_Fault:
+      codes:
+        - pl:c1:fault
+        - pl:c2:fault
+        - pl:c3:fault
+        - pl:c4:fault
+    Drive_Alarm:
+      codes:
+        - pl:c1:alarm
+        - pl:c2:alarm
+        - pl:c3:alarm
+        - pl:c4:alarm
+    Position:
+      codes:
+        - pl:c1:position
+        - pl:c2:position
+        - pl:c3:position
+        - pl:c4:position
+    Encoder:
+      codes:
+        - pl:c1:encoder
+        - pl:c2:encoder
+        - pl:c3:encoder
+        - pl:c4:encoder
+    Power:
+      codes:
+        - pl:c1:power
+        - pl:c2:power
+        - pl:c3:power
+        - pl:c4:power
+    Frequency:
+      codes:
+        - pl:c1:freq
+        - pl:c2:freq
+        - pl:c3:freq
+        - pl:c4:freq
+    Voltage:
+      codes:
+        - pl:c1:voltage
+        - pl:c2:voltage
+        - pl:c3:voltage
+        - pl:c4:voltage
+    Speed:
+      codes:
+        - pl:c1:speed
+        - pl:c2:speed
+        - pl:c3:speed
+        - pl:c4:speed
+    Bus_Voltage:
+      codes:
+        - pl:c1:busvolt
+        - pl:c2:busvolt
+        - pl:c3:busvolt
+        - pl:c4:busvolt
+    Current:
+      codes:
+        - pl:c1:current
+        - pl:c2:current
+        - pl:c3:current
+        - pl:c4:current
+  Telescope_Systems_Remote_Switch:
+    Observatory Mode:
+      codes:
+        - bfo:summitMode
+        - bfo:standbyMode
+        - bfo:baseMode
+    Conditions for Transfer to Standby:
+      codes:
+        - bfo:mcsStatus
+        - bfo:crcsStatus
+        - bfo:ecsStatus
+        - bfo:hbsStatus
+        - bfo:pinStatus
+        - bfo:icStatus
+        - bfo:mcStatus
+        - bfo:azStatus
+        - bfo:elStatus
+        - bfo:lotoStatus
+        - bfo:emoStatus
+  Facility_Protection_System:
+    Heartbeat FPS to IOC:
+      codes:
+        - fps:fps2ioc
+    Heartbeat IOC to FPS:
+      codes:
+        - fps:ioc2fps
+    ss0 - Main:
+      codes:
+        - fps:ss0active
+    ss0 fault:
+      codes:
+        - fps:ss0fault
+    ss1 - Precipitation:
+      codes:
+        - fps:ss1active
+    ss1 fault:
+      codes:
+        - fps:ss1fault
+    ss2 - Network:
+      codes:
+        - fps:ss2active
+    ss2 fault:
+      codes:
+        - fps:ss2fault
+    ss3 - Earthquate:
+      codes:
+        - fps:ss3active
+    ss3 fault:
+      codes:
+        - fps:ss3fault
+    ss4 - Stop motion:
+      codes:
+        - fps:ss4active
+    ss4 fault:
+      codes:
+        - fps:ss4fault
+    ss5 - Secure enclosure:
+      codes:
+        - fps:ss5active
+    ss5 fault:
+      codes:
+        - fps:ss5fault
+    ss6 - Secure telescope:
+      codes:
+        - fps:ss6active
+    ss6 fault:
+      codes:
+        - fps:ss6fault
+    ss7 - Secure instrument:
+      codes:
+        - fps:ss7active
+    ss7 fault:
+      codes:
+        - fps:ss7fault
+    ss8 - Close dome:
+      codes:
+        - fps:ss8active
+    ss8 fault:
+      codes:
+        - fps:ss8fault
+    ss9 - ECS On/Off:
+      codes:
+        - fps:ss9active
+    ss9 fault:
+      codes:
+        - fps:ss9fault
+    Word 0:
+      codes:
+        - fps:intw0
+    Word 1:
+      codes:
+        - fps:intw1
+    Word 2:
+      codes:
+        - fps:intw2
+    Word 3:
+      codes:
+        - fps:intw3
+    Word 4:
+      codes:
+        - fps:intw4
+    Word 5:
+      codes:
+        - fps:intw5
+    Word 6:
+      codes:
+        - fps:intw6
+  CP1_VFD:
+    Current:
+      codes:
+        - pr:cp1current
+    Frequency:
+      codes:
+        - pr:cp1freq
+    Voltage:
+      codes:
+        - pr:cp1voltage
+    Power:
+      codes:
+        - pr:cp1power
+    Temperature:
+      codes:
+        - pr:cp1temp
+    Bus Voltage:
+      codes:
+        - pr:cp1busvolt
+    Sequence:
+      codes:
+        - pr:cp1Sequence
+  CP3_VFD:
+    Current:
+      codes:
+        - pr:cp3current
+    Frequency:
+      codes:
+        - pr:cp3freq
+    Voltage:
+      codes:
+        - pr:cp3voltage
+    Power:
+      codes:
+        - pr:cp3power
+    Temperature:
+      codes:
+        - pr:cp3temp
+    Bus Voltage:
+      codes:
+        - pr:cp3busvolt
+    Sequence:
+      codes:
+        - pr:cp3Sequence
+  CP4_VFD:
+    Current:
+      codes:
+        - pr:cp4current
+    Frequency:
+      codes:
+        - pr:cp4freq
+    Voltage:
+      codes:
+        - pr:cp4voltage
+    Power:
+      codes:
+        - pr:cp4power
+    Temperature:
+      codes:
+        - pr:cp4temp
+    Bus Voltage:
+      codes:
+        - pr:cp4busvolt
+    Sequence:
+      codes:
+        - pr:cp4Sequence
+  CP4B_VFD:
+    Current:
+      codes:
+        - pr:cp4bcurrent
+    Frequency:
+      codes:
+        - pr:cp4bfreq
+    Voltage:
+      codes:
+        - pr:cp4bvoltage
+    Power:
+      codes:
+        - pr:cp4bpower
+    Temperature:
+      codes:
+        - pr:cp4btemp
+    Bus Voltage:
+      codes:
+        - pr:cp4bbusvolt
+    Sequence:
+      codes:
+        - pr:cp4bSequence
+  CP4_CP4B_Autoselection:
+    Select to Run:
+      codes:
+        - pr:cp4autoSequence1
+    CP4 Fault:
+      codes:
+        - pr:cp4autoSequence2
+    CP4 Fault Count:
+      codes:
+        - pr:cp4autoCP4FaultCnt
+    CP4B Fault:
+      codes:
+        - pr:cp4autoSequence3
+    CP4B Fault Count:
+      codes:
+        - pr:cp4autoCP4BFaultCnt
+    Bus Voltage:
+      codes:
+        - pr:cp4busvolt
+    Sequence:
+      codes:
+        - pr:cp4Sequence
+  CP5_VFD:
+    Current:
+      codes:
+        - pr:cp5current
+    Frequency:
+      codes:
+        - pr:cp5freq
+    Voltage:
+      codes:
+        - pr:cp5voltage
+    Power:
+      codes:
+        - pr:cp5power
+    Temperature:
+      codes:
+        - pr:cp5temp
+    Bus Voltage:
+      codes:
+        - pr:cp5busvolt
+    Sequence:
+      codes:
+        - pr:cp5Sequence
+  CP6A_VFD:
+    Current:
+      codes:
+        - pr:cp6Acurrent
+    Frequency:
+      codes:
+        - pr:cp6Afreq
+    Voltage:
+      codes:
+        - pr:cp6Avoltage
+    Power:
+      codes:
+        - pr:cp6Apower
+    Temperature:
+      codes:
+        - pr:cp6Atemp
+    Bus Voltage:
+      codes:
+        - pr:cp6Abusvolt
+    Sequence:
+      codes:
+        - pr:cp6ASequence
+  CP6B_VFD:
+    Current:
+      codes:
+        - pr:cp6Bcurrent
+    Frequency:
+      codes:
+        - pr:cp6Bfreq
+    Voltage:
+      codes:
+        - pr:cp6Bvoltage
+    Power:
+      codes:
+        - pr:cp6Bpower
+    Temperature:
+      codes:
+        - pr:cp6Btemp
+    Bus Voltage:
+      codes:
+        - pr:cp6Bbusvolt
+    Sequence:
+      codes:
+        - pr:cp6BSequence
+  CP7_VFD:
+    Current:
+      codes:
+        - pr:cp7current
+    Frequency:
+      codes:
+        - pr:cp7freq
+    Voltage:
+      codes:
+        - pr:cp7voltage
+    Power:
+      codes:
+        - pr:cp7power
+    Temperature:
+      codes:
+        - pr:cp7temp
+    Bus Voltage:
+      codes:
+        - pr:cp7busvolt
+    Sequence:
+      codes:
+        - pr:cp7Sequence
+  CP8_VFD:
+    Current:
+      codes:
+        - pr:cp8current
+    Frequency:
+      codes:
+        - pr:cp8freq
+    Voltage:
+      codes:
+        - pr:cp8voltage
+    Power:
+      codes:
+        - pr:cp8power
+    Temperature:
+      codes:
+        - pr:cp8temp
+    Bus Voltage:
+      codes:
+        - pr:cp8busvolt
+    Sequence:
+      codes:
+        - pr:cp8Sequence
+  FCF1_VFD:
+    Current:
+      codes:
+        - pr:fcf1current
+    Frequency:
+      codes:
+        - pr:fcf1freq
+    Voltage:
+      codes:
+        - pr:fcf1voltage
+    Power:
+      codes:
+        - pr:fcf1power
+    Temperature:
+      codes:
+        - pr:fcf1temp
+    Bus Voltage:
+      codes:
+        - pr:fcf1busvolt
+    Sequence:
+      codes:
+        - pr:fcf1Sequence
+  FCF2_VFD:
+    Current:
+      codes:
+        - pr:fcf2current
+    Frequency:
+      codes:
+        - pr:fcf2freq
+    Voltage:
+      codes:
+        - pr:fcf2voltage
+    Power:
+      codes:
+        - pr:fcf2power
+    Temperature:
+      codes:
+        - pr:fcf2temp
+    Bus Voltage:
+      codes:
+        - pr:fcf2busvolt
+    Sequence:
+      codes:
+        - pr:fcf2Sequence
+  Observatory_Electrical_Power:
+    Real_Time_Measurements:
+      Average Line Voltage:
+        codes:
+          - pr:elec:alv
+          - pr:elec:alvab
+          - pr:elec:alvbc
+          - pr:elec:alvca
+      Average Phase Voltage:
+        codes:
+          - pr:elec:apv
+          - pr:elec:apvan
+          - pr:elec:apvbn
+          - pr:elec:apvcn
+      Average Phase Current:
+        codes:
+          - pr:elec:apc
+          - pr:elec:apca
+          - pr:elec:apcb
+          - pr:elec:apcc
+      kW Total:
+        codes:
+          - pr:elec:kwt
+      kW phase:
+        codes:
+          - pr:elec:kwta
+          - pr:elec:kwtb
+          - pr:elec:kwtc
+      kVA Total:
+        codes:
+          - pr:elec:kvt
+      kVA phase:
+        codes:
+          - pr:elec:kvta
+          - pr:elec:kvtb
+          - pr:elec:kvtc
+      Power factor (total and phases A,B,C):
+        codes:
+          - pr:elec:pft
+          - pr:elec:pfpa
+          - pr:elec:pfpb
+          - pr:elec:pfpc
+      Frequency on Va:
+        codes:
+          - pr:elec:freq
+      ATS1 Switch to Generator:
+        codes:
+          - pr:elec:generatorPwr
+      Helco power:
+        codes:
+          - pr:elec:helcoPwr
+    Power_Consumption:
+      kWh/MWh/GWh:
+        codes:
+          - pr:elec:gwh
+          - pr:elec:mwh
+          - pr:elec:kwh
+      kWh:
+        codes:
+          - pr:elec:kwh
+      MWh:
+        codes:
+          - pr:elec:mwh
+      GWh:
+        codes:
+          - pr:elec:gwh
+      kVARh/MVARh/GVARh:
+        codes:
+          - pr:elec:gvarh
+          - pr:elec:mvarh
+          - pr:elec:kvarh
+      kVARh:
+        codes:
+          - pr:elec:kvarh
+      MVARh:
+        codes:
+          - pr:elec:mvarh
+      GVARh:
+        codes:
+          - pr:elec:gvarh
+      kVAh/MVAh/GVAh:
+        codes:
+          - pr:elec:gvah
+          - pr:elec:mvah
+          - pr:elec:kvah
+      kVAh:
+        codes:
+          - pr:elec:kvah
+      MVAh:
+        codes:
+          - pr:elec:mvah
+      GVAh:
+        codes:
+          - pr:elec:gvah 
+  EMHC_Screen:
+    Power Monitor Bypass Switch:
+      codes:
+        - pr:emhc:pwrMonitorBypass
+    Power Monitor Status:
+      codes:
+        - pr:emhc:pwrMonitorStatus
+    24VDC P/S status:
+      codes:
+        - pr:emhc:24vdcPSstatus
+    24VDC P/S current:
+      codes:
+        - pr:emhc:24vdcPScurrent
+    480/120VAC trafo SEC 4CB:
+      codes:
+        - pr:emhc:trafoSECstatus
+    480/120VAC trafo PRI 1CB:
+      codes:
+        - pr:emhc:trafoPRIopen
+        - pr:emhc:trafoPRItripped
+    Power Monitor 3ph supply 2CB:
+      codes:
+        - pr:emhc:pwr3phTripped
+        - pr:emhc:pwr3phOpen
+    24VDC P/S 3ph supply 3CB:
+      codes:
+        - pr:emhc:24vdcOpen
+        - pr:emhc:24vdcTripped
+  CON_coil_status_and_supply_status:
+    HC 1-3-5 1CON:
+      codes:
+        - pr:emhc:coil0Status
+        - pr:emhc:coilSupply0Status
+    HC 2-4-6 2CON:
+      codes:
+        - pr:emhc:coil1Status
+        - pr:emhc:coilSupply1Status
+    HC 7-9-11 3CON:
+      codes:
+        - pr:emhc:coil2Status
+        - pr:emhc:coilSupply2Status
+    HC 8-10-12 4CON:
+      codes:
+        - pr:emhc:coil3Status
+        - pr:emhc:coilSupply3Status
+    HC 13-15-17 5CON:
+      codes:
+        - pr:emhc:coil4Status
+        - pr:emhc:coilSupply4Status
+    HC 14-16-18 6CON:
+      codes:
+        - pr:emhc:coil5Status
+        - pr:emhc:coilSupply5Status
+    HC 19-21-23 7CON:
+      codes:
+        - pr:emhc:coil6Status
+        - pr:emhc:coilSupply6Status
+    HC 20-22-24 8CON:
+      codes:
+        - pr:emhc:coil7Status
+        - pr:emhc:coilSupply7Status
+    HC 25-27-29 9CON:
+      codes:
+        - pr:emhc:coil8Status
+        - pr:emhc:coilSupply8Status
+    HC 26-28-30 10CON:
+      codes:
+        - pr:emhc:coil9Status
+        - pr:emhc:coilSupply9Status
+    EMHC 1-3-5 11CON:
+      codes:
+        - pr:emhc:coil10Status
+        - pr:emhc:coilSupply10Status
+    EMHC 7-9-11 12CON:
+      codes:
+        - pr:emhc:coil11Status
+        - pr:emhc:coilSupply11Status
+    EMHC 8-10-12 13CON:
+      codes:
+        - pr:emhc:coil12Status
+        - pr:emhc:coilSupply12Status
+    EMHC 13-15-17 14CON:
+      codes:
+        - pr:emhc:coil13Status
+        - pr:emhc:coilSupply13Status
+    EMHC 14-16-18 15CON:
+      codes:
+        - pr:emhc:coil14Status
+        - pr:emhc:coilSupply14Status
+    no supply 16CON:
+      codes:
+        - pr:emhc:coil15Status
+        - pr:emhc:coilSupply15Status
+  EMHC_Upstream:
+    1CON:
+      codes:
+        - pr:emhc:emhc1CONStatus
+    3CON:
+      codes:
+        - pr:emhc:emhc3CONStatus
+    4CON:
+      codes:
+        - pr:emhc:emhc4CONStatus
+    5CON:
+      codes:
+        - pr:emhc:emhc5CONStatus
+    6CON:
+      codes:
+        - pr:emhc:emhc6CONStatus

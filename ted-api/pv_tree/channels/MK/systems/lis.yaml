@@ -1,0 +1,341 @@
+LIS:
+  General:
+    LIS Health:
+      codes:
+        - lis:health
+    Laser Propagated:
+      codes:
+        - lis:lasProp
+    Laser Propagated (numeric):
+      codes:
+        - lis:lasPropProc.VALB
+    Reset Interlocks Trigger:
+      codes:
+        - lis:resetstatePu
+    Safety Shutter Close Cmd:
+      codes:
+        - lis:safShstateClPu
+    Safety Shutter Open Cmd:
+      codes:
+        - lis:safShstateOpPu
+    EarthQuake Detection:
+      codes:
+        - lis:in:eq
+    Spotter East:
+      codes:
+        - lis:in:spot1
+    Spotter West:
+      codes:
+        - lis:in:spot2
+  Toptica Inputs:
+    Laser Emission:
+      codes:
+        - lis:in:tlasOn
+    Laser Unit Powered:
+      codes:
+        - lis:in:tlasPower
+    Laser Shutter Status:
+      codes:
+        - lis:in:tlasShStatus
+    Exposed Hazardous Radiation Fault:
+      codes:
+        - lis:in:tlasExpRad
+    PLC Safety Fault:
+      codes:
+        - lis:in:tlasSafFlt
+    Laser Enet Interface Fault:
+      codes:
+        - lis:in:tlasIfFlt
+    Laser Unit Fault:
+      codes:
+        - lis:in:tlasLasFlt
+    Error Control Software:
+      codes:
+        - lis:in:tlasSwFlt
+    Wachdog Fault:
+      codes:
+        - lis:in:tlasHbFlt
+    All Laser Faults:
+      codes:
+        - lis:in:tlasExpRad
+        - lis:in:tlasSafFlt
+        - lis:in:tlasIfFlt
+        - lis:in:tlasLasFlt
+        - lis:in:tlasSwFlt
+        - lis:in:tlasHbFlt
+    Laser Head Heater current [mA]:
+      codes:
+        - lis:in:tlasLHcurrent
+  Toptica Outputs:
+    Emergency Power Shutdown:
+      codes:
+        - lis:out:tlasPwrSd
+    Emergency Shutdown:
+      codes:
+        - lis:out:tlasSd
+    Output Shutter Permission:
+      codes:
+        - lis:out:tlasShPerm
+    1SR State:
+      codes:
+        - lis:out:tlas1sr
+    2SR State:
+      codes:
+        - lis:out:tlas2sr
+    3SR State:
+      codes:
+        - lis:out:tlas3sr
+  GNEST Doors:
+    Door 1 Switch:
+      codes:
+        - lis:in:gnestDoor1drs
+    Door 2 Switch:
+      codes:
+        - lis:in:gnestDoor2drs
+    Exit Window Switch:
+      codes:
+        - lis:in:gnestDoor1cprs
+    4SR State:
+      codes:
+        - lis:in:gnestDoor4sr
+    5SR State:
+      codes:
+        - lis:in:gnestDoor5sr
+    6SR State:
+      codes:
+        - lis:in:gnestDoor6sr
+    Safety Bypass Circuit:
+      codes:
+        - lis:in:gnestDoorSafe
+  BIM Motion Control:
+    Spreadsheet:
+      Laser Power Mode:
+        codes:
+          - lis:mot:LaserPower
+      Alignment Motor 1 Disable:
+        codes:
+          - lis:mot:BM1Disable
+      BIM Track Model Coefficents:
+        codes:
+          - lis:mot:BIMtrack.G
+          - lis:mot:BIMtrack.H
+          - lis:mot:BIMtrack.I
+          - lis:mot:BIMtrack.J
+          - lis:mot:BIMtrack.K
+    Plot:
+      BM2 Closed Loop State:
+        codes:
+          - lis:mot:BIMtrack.A
+      BM2 In Position:
+        codes:
+          - lis:mot:BIMtrack.VALE
+      HWP Indexed:
+        codes:
+          - lis:mot:m1Indexed
+      HWP Demand/Position:
+        codes:
+          - lis:mot:m1
+          - lis:mot:m1.RBV
+      POL Indexed:
+        codes:
+          - lis:mot:m6Indexed
+      POL Demand/Position:
+        codes:
+          - lis:mot:m6
+          - lis:mot:m6.RBV
+      BM1 Tip Demand/Position:
+        codes:
+          - lis:mot:m2
+          - lis:mot:m2.RBV
+      BM1 Tilt Demand/Position:
+        codes:
+          - lis:mot:m3
+          - lis:mot:m3.RBV
+      BM2 Tip Indexed:
+        codes:
+          - lis:mot:m4Indexed
+      BM2 Tilt Indexed:
+        codes:
+          - lis:mot:m5Indexed
+      BM2 Tip Demand/Position:
+        codes:
+          - lis:mot:m4
+          - lis:mot:m4.RBV
+      BM2 Tilt Demand/Position:
+        codes:
+          - lis:mot:m5
+          - lis:mot:m5.RBV
+      BM2 Tip Done Move Flag:
+        codes:
+          - lis:mot:m4.DMOV
+      BM2 Tilt Done Move Flag:
+        codes:
+          - lis:mot:m5.DMOV
+      BM2 Tip Index Offset:
+        codes:
+          - lis:mot:m4IndexOffset
+      BM2 Tilt Index Offset:
+        codes:
+          - lis:mot:m5IndexOffset
+  TBAD:
+    lis:in:tbad:
+      codes:
+        - lis:in:tbad
+    lis:tbadOverrideState:
+      codes:
+        - lis:tbadOverrideState
+    lis:tbadOverride:
+      codes:
+        - lis:tbadOverride
+    lis:tbadHb:
+      codes:
+        - lis:tbadHb
+    lis:tbadHbFo:
+      codes:
+        - lis:tbadHbFo
+    lis:TBADHeartbeat:
+      codes:
+        - lis:TBADHeartbeat
+    lis:tbadPresent:
+      codes:
+        - lis:tbadPresent
+    lis:errMess:
+      codes:
+        - lis:errMess
+  Spotter button to bdm insertion timing:
+    Spotter East:
+      codes:
+        - lis:in:spot1
+    Spotter West:
+      codes:
+        - lis:in:spot2
+    BDM In:
+      codes:
+        - lis:in:bdmIn
+    BDM Out:
+      codes:
+        - lis:in:bdmOut
+    All:
+      codes:
+        - lis:in:bdmIn
+        - lis:in:bdmOut
+        - lis:in:spot1
+        - lis:in:spot2
+    BDM Close Switch:
+      codes:
+        - bto:bdmCloseSwitch
+    BDM Open Switch:
+      codes:
+        - bto:bdmOpenSwitch
+    BDM State:
+      codes:
+        - bto:bdmState
+  LIS Inputs from BTO:
+    BTO Heartbeat:
+      codes:
+        - lis:in:btoHb
+  LIS Inputs from SALSA:
+    BOCAD Heartbeat:
+      codes:
+        - lis:in:bocadHb
+    LTCS Heartbeat:
+      codes:
+        - lis:in:ltcsHb
+    LTCS Beam Collision:
+      codes:
+        - lis:in:ltcsDet
+    Everything:
+      codes:
+        - lis:in:bocadHb
+        - lis:in:ltcsHb
+        - lis:in:ltcsDet
+        - lis:in:spot1
+        - lis:in:spot2
+  LIS sequences:
+    Aircraft detection on BOCAD when laser propagated to the sky, Req.001:
+      codes:
+        - lis:seq:procWord178.VALA
+    ASCAM beam collision, satellite avoidance when laser propagated to the sky, Req.005:
+      codes:
+        - lis:seq:procWord178.VALB
+    BOCAD heartbeat down when laser propagated to the sky, Req.010:
+      codes:
+        - lis:seq:procWord178.VALC
+    LTCS?ASCAM heartbeat down, Req.015:
+      codes:
+        - lis:seq:procWord178.VALD
+    BTO heartbeat down when laser propagated to the sky, Req.020:
+      codes:
+        - lis:seq:procWord179.VALA
+    RTC heartbeat down when laser propagated to the sky, Req.025:
+      codes:
+        - lis:seq:procWord179.VALB
+    AOM heartbeat down when laser propagated to the sky, Req.030:
+      codes:
+        - lis:seq:procWord179.VALC
+    Laser fault when laser propagated to the sky, Req.040:
+      codes:
+        - lis:seq:procWord179.VALD
+    Laser fault when laser propagated to BDM, Req.041:
+      codes:
+        - lis:seq:procWord180.VALA
+    BTO heartbeat down when laser propagated to BDM, Req.050:
+      codes:
+        - lis:seq:procWord180.VALB
+    observing floor entered when laser propagated to BDM, Req.075:
+      codes:
+        - lis:seq:procWord180.VALC
+    Emergency stop tripped, Req.080:
+      codes:
+        - lis:seq:procWord180.VALD
+    BTO internal interlock when laser propagated to the sky, Req.090:
+      codes:
+        - lis:seq:procWord181.VALA
+    BTO internal interlock when laser propagated to BDM, Req.095:
+      codes:
+        - lis:seq:procWord181.VALB
+    BTO door interlock when laser propagated to the sky, Req.100:
+      codes:
+        - lis:seq:procWord181.VALC
+    BTO door interlock when laser propagated to BDM, Req.105:
+      codes:
+        - lis:seq:procWord181.VALD
+    AOM internal interlock when laser propagated to the sky, Req.110:
+      codes:
+        - lis:seq:procWord182.VALA
+    AOM door interlock when laser propagated to the sky, Req.120:
+      codes:
+        - lis:seq:procWord182.VALB
+    AOM door interlock when laser propagated to BDM, Req.125:
+      codes:
+        - lis:seq:procWord182.VALC
+    RTC internal interlock when laser propagated to the sky, Req.130:
+      codes:
+        - lis:seq:procWord182.VALD
+    LSE door interlock when laser propagated to the sky, Req.136:
+      codes:
+        - lis:seq:procWord183.VALA
+    LSE door interlock when laser propagated to BDM, Req.137:
+      codes:
+        - lis:seq:procWord183.VALB
+    TCS heartbeat down when laser propagated to the sky, Req.145:
+      codes:
+        - lis:seq:procWord183.VALC
+    Laser shutter or safety shutter fault when Laser ON, Req.150:
+      codes:
+        - lis:seq:procWord183.VALD
+    BTO shutters faults when Laser ON, Req.155:
+      codes:
+        - lis:seq:procWord184.VALA
+    Earthquake when laser propagated to the sky, Req.160:
+      codes:
+        - lis:seq:procWord184.VALB
+    Earthquake when laser propagated to BDM, Req.165:
+      codes:
+        - lis:seq:procWord184.VALC
+    Interface fault when laser ON and laser shutter open, Req.180:
+      codes:
+        - lis:seq:procWord184.VALD
+  EQ sensor detection:
+    codes:
+      - lis:in:eq

@@ -1,0 +1,62 @@
+CRCS:
+  Rotator:
+    Velocity:
+      codes:
+        - cr:crCurrentVel
+    Current angle:
+      codes:
+        - cr:crCurrentPos
+    Demand Pos.:
+      codes:
+        - cr:crDemandPos
+    Position Error:
+      codes:
+        - cr:crPosError
+    Pmac Demand Pos.:
+      codes:
+        - cr:crPmacDemandPos
+    PMAC Following Error:
+      codes:
+        - cr:crPmacPosError
+    inPosition flag:
+      codes:
+        - cr:inPosition
+    TCS Dem & Act Pos:
+      codes:
+        - cr:crCurrentPos
+        - tcs:demandRma
+    Positon Error and inPosition:
+      codes:
+        - cr:crPosError
+        - cr:inPosition
+  Wrap:
+    Current Position:
+      codes:
+        - cr:crCWP:CurrentPos
+    Demand Position:
+      codes:
+        - cr:crCWP:PmacDemandPos
+    PMAC Following Error:
+      codes:
+        - cr:crCWP:PmacPosError
+  Other:
+    cr:crStateS:
+      codes:
+        - cr:crStateS
+    TCS Stream:
+      codes:
+        - cr:followA.J
+  Bancom time and status:
+    Bancom time:
+      codes:
+        - cr:crcapturedTime
+    Bancom status:
+      codes:
+        - cr:logrecord
+  Statuses:
+    Rotator fatal following error:
+      codes:
+        - cr:crmotstat2:1:FFE
+    Wrap fatal following error:
+      codes:
+        - cr:crmotstat2:5:FFE

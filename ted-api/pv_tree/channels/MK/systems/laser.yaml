@@ -1,0 +1,128 @@
+Laser:
+  Toptica Laser:
+    Laser Epics Interface (LEI):
+      Laser Power (Watts):
+        codes:
+          - tlas:laserPower
+      Laser Wavelength (nm):
+        codes:
+          - tlas:laserWavelength
+      Seed Wavelength (nm):
+        codes:
+          - tlas:wmmWavelength
+      WLM Temperature (degC):
+        codes:
+          - tlas:wmmWlmTemp
+      Repumper SetPoint (%):
+        codes:
+          - tlas:laserRepumperAmpSp
+      Laser State:
+        codes:
+          - tlas:laserOpState
+      Shutter State:
+        codes:
+          - tlas:laserShutterStatus
+      Laser Detuned (0/1):
+        codes:
+          - tlas:laserDetuned
+    Laser Heat Exchanger (LHX):
+      LHX-TS2 Utility Temp IN [deg C]:
+        codes:
+          - lhx:utilTempIn
+      LHX-TS3 Utility Temp OUT [deg C]:
+        codes:
+          - lhx:utilTempOut
+      LHX-TS6 Process Temp IN [deg C]:
+        codes:
+          - lhx:procTempIn
+      LHX-TS7 Process Temp OUT [deg C]:
+        codes:
+          - lhx:procTempOut
+      LHX-TS8 Tank Input Temp [deg C]:
+        codes:
+          - lhx:tankInputTemp
+      LHX-TS10 Tank Temp [deg C]:
+        codes:
+          - lhx:tankTemp
+      LHX-FS1 Utility Inlet Flow [GPM]:
+        codes:
+          - lhx:utilInFlow
+      LHX-PS4 Utility Inlet Pressure [PSI]:
+        codes:
+          - lhx:utilInPressure
+      LHX-FS9 Process Outlet Flow [GPM]:
+        codes:
+          - lhx:procOutFlow
+      LHX-PS5 Process Outlet Pressure [PSI]:
+        codes:
+          - lhx:procOutPressure
+      LHX Process Load [Watts]:
+        codes:
+          - lhx:procLoad
+      LHX Utility Load [Watts]:
+        codes:
+          - lhx:utilLoad
+      LHX TCV open rate [%]:
+        codes:
+          - lhx:tcvRate
+      LHX Tank Heater Rate [%]:
+        codes:
+          - lhx:heaterRate
+      LHX Local Switch / 24VDC:
+        codes:
+          - lhx:localSwitch
+      LHX Pump Contactor:
+        codes:
+          - lhx:pumpCON
+      LHX Pump Circuit Breaker:
+        codes:
+          - lhx:pumpCB
+      LHX Heater Circuit Breaker:
+        codes:
+          - lhx:heaterCB
+    Laser Traffic Control System Server (LTCSS) variables:
+      activate:
+        codes:
+          - ltcss:activate
+      filter1:
+        codes:
+          - ltcss:filter1
+      filter2:
+        codes:
+          - ltcss:filter2
+      fov:
+        codes:
+          - ltcss:fov
+      grating:
+        codes:
+          - ltcss:grating
+      lasState:
+        codes:
+          - ltcss:lasState
+      laser_impacted:
+        codes:
+          - ltcss:laser_impacted
+      laser_run:
+        codes:
+          - ltcss:laser_run
+      laser_state:
+        codes:
+          - ltcss:laser_state
+      log_data:
+        codes:
+          - ltcss:log_data
+      mask:
+        codes:
+          - ltcss:mask
+      sciencefold:
+        codes:
+          - ltcss:sciencefold
+      timeout:
+        codes:
+          - ltcss:timeout
+      wavelength:
+        codes:
+          - ltcss:wavelength
+      controller.VALJ:
+        codes:
+          - ltcss:controller.VALJ

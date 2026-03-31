@@ -1,0 +1,100 @@
+igrins2:
+  Temperatures:
+    Bench:
+      Temp:
+        codes:
+          - ig2:sts:bench:temp
+      Heat Power:
+        codes:
+          - ig2:sts:bench:heat
+    Grating:
+      Temp:
+        codes:
+          - ig2:sts:grating:temp
+      Heat Power:
+        codes:
+          - ig2:sts:grating:heat
+    DCSS:
+      Temp:
+        codes:
+          - ig2:sts:dcss:temp
+      Heat Power:
+        codes:
+          - ig2:sts:dcss:heat
+    DCSK:
+      Temp:
+        codes:
+          - ig2:sts:dcsk:temp
+      Heat Power:
+        codes:
+          - ig2:sts:dcsk:heat
+    DCSH:
+      Temp:
+        codes:
+          - ig2:sts:dcsh:temp
+      Heat Power:
+        codes:
+          - ig2:sts:dcsh:heat
+    Cam H:
+      codes:
+        - ig2:sts:camh:temp
+    Cam K:
+      codes:
+        - ig2:sts:camk:temp
+    Bench Center:
+      codes:
+        - ig2:sts:benchCenter:temp
+    1st Cold Head:
+      codes:
+        - ig2:sts:1stColdHead:temp
+    2nd Cold Head:
+      codes:
+        - ig2:sts:2ndColdHead:temp
+    Heater Cover (Cold Stop):
+      codes:
+        - ig2:sts:heaterCover:temp
+    Charcoal Box:
+      codes:
+        - ig2:sts:charcoalBox:temp
+    Radiation Shield:
+      codes:
+        - ig2:sts:radShield:temp
+    Rack Ambient:
+      codes:
+        - ig2:sts:rackAmbient:temp
+  Power:
+    Macie:
+      codes:
+        - ig2:sts:macie:power
+    Vacuum Monitor:
+      codes:
+        - ig2:sts:vm:power
+    Motor:
+      codes:
+        - ig2:sts:motor:power
+    TH Lamp:
+      codes:
+        - ig2:sts:THLamp:power
+    HC Lamp:
+      codes:
+        - ig2:sts:HCLamp:power
+  Vacuum Pressure:
+    Pressure:
+      codes:
+        - ig2:sts:vacuum:pressure
+  Health:
+    Overall:
+      codes:
+        - ig2:health
+    ICS:
+      codes:
+        - ig2:ics:health
+    DCSH:
+      codes:
+        - ig2:sts:dcsh:health
+    DCSK:
+      codes:
+        - ig2:sts:dcsk:health
+    DCSS:
+      codes:
+        - ig2:sts:dcss:health

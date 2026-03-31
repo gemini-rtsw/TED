@@ -1,0 +1,576 @@
+GIS:
+  PAZ Bearings Pressure (bars):
+    G1 (+X-Y):
+      Vertical:
+        codes:
+          - gis:mon:azmon2:vrbpG1c
+      Radial:
+        codes:
+          - gis:mon:azmon2:rabpG1c
+    G2 (-X-Y):
+      Vertical:
+        codes:
+          - gis:mon:azmon2:vrbpG2c
+      Radial:
+        codes:
+          - gis:mon:azmon2:rabpG2c
+    G3 (+X+Y):
+      Vertical:
+        codes:
+          - gis:mon:azmon2:vrbpG3c
+      Radial:
+        codes:
+          - gis:mon:azmon2:rabpG3c
+    G4 (-X+Y):
+      Vertical:
+        codes:
+          - gis:mon:azmon2:vrbpG4c
+      Radial:
+        codes:
+          - gis:mon:azmon2:rabpG4c
+    G5 (+X):
+      Vertical:
+        codes:
+          - gis:mon:azmon2:vrbpG5c
+      Radial:
+        codes:
+          - gis:mon:azmon2:rabpG5c
+    G6 (-X):
+      Vertical:
+        codes:
+          - gis:mon:azmon2:vrbpG6c
+      Radial:
+        codes:
+          - gis:mon:azmon2:rabpG6c
+  ALT Bearings Pressure (bars):
+    H1 (-X):
+      Axial (861):
+        codes:
+          - gis:mon:altmon2:bpH1861c
+      Radial (862):
+        codes:
+          - gis:mon:altmon2:bpH1862c
+      Radial (863):
+        codes:
+          - gis:mon:altmon2:bpH1863c
+    H2 (+X):
+      Axial (861):
+        codes:
+          - gis:mon:altmon2:bpH2861c
+      Radial (862):
+        codes:
+          - gis:mon:altmon2:bpH2862c
+      Radial (863):
+        codes:
+          - gis:mon:altmon2:bpH2863c
+  Position encoder:
+    Azimuth (from GIS):
+      codes:
+        - gis:mon:azmon3:azposenc
+    Elevation (from MCS):
+      codes:
+        - mc:elCurrentPos
+    Azimuth (from MCS):
+      codes:
+        - mc:azCurrentPos
+  Azimuth Kaman sensors:
+    G1:
+      codes:
+        - gis:mon:azkam:g1k1
+        - gis:mon:azkam:g1k2
+        - gis:mon:azkam:g1k3
+        - gis:mon:azkam:g1za
+        - gis:mon:azkam:g1zb
+        - gis:mon:azkam:g1zc
+        - gis:mon:azkam:g1zd
+    G2:
+      codes:
+        - gis:mon:azkam:g2k1
+        - gis:mon:azkam:g2k2
+        - gis:mon:azkam:g2k3
+        - gis:mon:azkam:g2za
+        - gis:mon:azkam:g2zb
+        - gis:mon:azkam:g2zc
+        - gis:mon:azkam:g2zd
+    G3:
+      codes:
+        - gis:mon:azkam:g3k1
+        - gis:mon:azkam:g3k2
+        - gis:mon:azkam:g3k3
+        - gis:mon:azkam:g3za
+        - gis:mon:azkam:g3zb
+        - gis:mon:azkam:g3zc
+        - gis:mon:azkam:g3zd
+    G4:
+      codes:
+        - gis:mon:azkam:g4k1
+        - gis:mon:azkam:g4k2
+        - gis:mon:azkam:g4k3
+        - gis:mon:azkam:g4za
+        - gis:mon:azkam:g4zb
+        - gis:mon:azkam:g4zc
+        - gis:mon:azkam:g4zd
+    G5:
+      codes:
+        - gis:mon:azkam:g5k1
+        - gis:mon:azkam:g5k2
+        - gis:mon:azkam:g5k3
+        - gis:mon:azkam:g5za
+        - gis:mon:azkam:g5zb
+        - gis:mon:azkam:g5zc
+        - gis:mon:azkam:g5zd
+    G6:
+      codes:
+        - gis:mon:azkam:g6k1
+        - gis:mon:azkam:g6k2
+        - gis:mon:azkam:g6k3
+        - gis:mon:azkam:g6za
+        - gis:mon:azkam:g6zb
+        - gis:mon:azkam:g6zc
+        - gis:mon:azkam:g6zd
+  Alt Bearings:
+    H1A:
+      codes:
+        - gis:mon:altkam:h1ak1
+        - gis:mon:altkam:h1ak2
+        - gis:mon:altkam:h1ak3
+        - gis:mon:altkam:h1apos
+        - gis:mon:altkam:h1aza
+        - gis:mon:altkam:h1azb
+        - gis:mon:altkam:h1azc
+        - gis:mon:altkam:h1azd
+    H1B:
+      codes:
+        - gis:mon:altkam:h1bk1
+        - gis:mon:altkam:h1bk2
+        - gis:mon:altkam:h1bk3
+        - gis:mon:altkam:h1bpos
+        - gis:mon:altkam:h1bza
+        - gis:mon:altkam:h1bzb
+        - gis:mon:altkam:h1bzc
+        - gis:mon:altkam:h1bzd
+    H2A:
+      codes:
+        - gis:mon:altkam:h2ak1
+        - gis:mon:altkam:h2ak2
+        - gis:mon:altkam:h2ak3
+        - gis:mon:altkam:h2apos
+        - gis:mon:altkam:h2aza
+        - gis:mon:altkam:h2azb
+        - gis:mon:altkam:h2azc
+        - gis:mon:altkam:h2azd
+    H2B:
+      codes:
+        - gis:mon:altkam:h2bk1
+        - gis:mon:altkam:h2bk2
+        - gis:mon:altkam:h2bk3
+        - gis:mon:altkam:h2bpos
+        - gis:mon:altkam:h2bza
+        - gis:mon:altkam:h2bzb
+        - gis:mon:altkam:h2bzc
+        - gis:mon:altkam:h2bzd
+  Thermal Enclosure Temperatures:
+    PCS:
+      codes:
+        - gis:mon:temp:pcs
+    CRCS:
+      codes:
+        - gis:mon:temp:crcs
+    SCS:
+      codes:
+        - gis:mon:temp:scs
+    CEM:
+      codes:
+        - gis:mon:temp:cem
+  Computer Room Temperatures:
+    Comp room temp:
+      codes:
+        - gis:mon:croom:rair
+    AHU 6 temp:
+      codes:
+        - gis:mon:croom:6ahu
+    AHU 6A temp:
+      codes:
+        - gis:mon:croom:6Aahu
+    Comp room humidity:
+      codes:
+        - gis:mon:croom:hrair
+    AHU 6 humidity:
+      codes:
+        - gis:mon:croom:h6ahu
+    AHU 6A humidity:
+      codes:
+        - gis:mon:croom:h6Aahu
+  PMAC output voltage (ALT, Az):
+    ALT:
+      codes:
+        - gis:mon:altmon3:altdspdspc
+    Az:
+      codes:
+        - gis:mon:azmon3:azdspdspc
+  Automount Step Numbers:
+    Azimuth auto mode:
+      codes:
+        - gis:az:azmd:azmdautoss
+    Elevation auto mode:
+      codes:
+        - gis:alt:altmd:altmdautoss
+  M1 Cover Control:
+    M1cover Open Cmd:
+      codes:
+        - gis:mon:other:openM1cmd
+    M1cover Close Cmd:
+      codes:
+        - gis:mon:other:closeM1cmd
+    M1cover Stop Cmd:
+      codes:
+        - gis:mon:other:stopM1cmd
+    M1cover Position:
+      codes:
+        - gis:mon:other:m1coversums
+    M1cover Motion State:
+      codes:
+        - gis:mon:other:M1covercomb
+    M1cover VFD Fault:
+      codes:
+        - gis:mon:other:VFDfault
+  M1 Screw Count:
+    +X:
+      codes:
+        - gis:mon:other:m1posxscrewi
+    -X:
+      codes:
+        - gis:mon:other:m1negxscrewi
+    +X and -X:
+      codes:
+        - gis:mon:other:m1posxscrewi
+        - gis:mon:other:m1negxscrewi
+  M1 Cover VFD:
+    Current:
+      codes:
+        - gis:mon:other:m1vfdcurrent
+    Frequency:
+      codes:
+        - gis:mon:other:m1vfdfreq
+    Voltage:
+      codes:
+        - gis:mon:other:m1vfdvoltage
+    Temperature:
+      codes:
+        - gis:mon:other:m1vfdtemp
+    Last Fault:
+      codes:
+        - gis:mon:other:m1vfdfault
+    % Overload:
+      codes:
+        - gis:mon:other:m1vfdoverload
+    Status Word:
+      codes:
+        - gis:mon:other:m1vfdstatus
+  M1 Cover Vibration Protection:
+    Vibration +X:
+      codes:
+        - gis:mon:other:M1posxVibFlt
+    Vibration -X:
+      codes:
+        - gis:mon:other:M1negxVibFlt
+    Recovery Sequence:
+      codes:
+        - gis:mon:other:M1covVibSeq
+  CRCS Motor Currents:
+    Mot5 PhaseA:
+      codes:
+        - gis:cass:mot5PhaseA
+    Mot5 PhaseB:
+      codes:
+        - gis:cass:mot5PhaseB
+    Mot5 PhaseC:
+      codes:
+        - gis:cass:mot5PhaseC
+    Mot5 All:
+      codes:
+        - gis:cass:mot5PhaseA
+        - gis:cass:mot5PhaseB
+        - gis:cass:mot5PhaseC
+  Faults:
+    M1 cover skewed:
+      codes:
+        - gis:mon:other:m1covskewedi
+    Instrument Cover (The Iris):
+      codes:
+        - gis:mon:other:m1instsums
+    AZ overspeed fault:
+      codes:
+        - gis:az:azos:azosi
+    ALT overspeed fault:
+      codes:
+        - gis:alt:altos:altosi
+    AZ Overtravel Faults:
+      codes:
+        - gis:az:azos:azosi
+        - gis:az:azot:azot01i
+        - gis:az:azot:azot02i
+        - gis:az:azot:azot03i
+        - gis:az:azot:azot04i
+    ALT Overtravel Faults:
+      codes:
+        - gis:alt:altot:altotsums
+        - gis:alt:altot:altothor01i
+        - gis:alt:altot:altothor02i
+        - gis:alt:altot:altotzen01i
+        - gis:alt:altot:altotzen02i
+    AZ Drive Status:
+      codes:
+        - gis:az:azdr:ok01i
+        - gis:az:azdr:ok02i
+        - gis:az:azdr:ok03i
+        - gis:az:azdr:ok04i
+        - gis:az:azdr:ok05i
+        - gis:az:azdr:ok06i
+        - gis:az:azdr:ok07i
+        - gis:az:azdr:ok08i
+    AZ Drive Enabled Status:
+      codes:
+        - gis:az:azdr:en01i
+        - gis:az:azdr:en02i
+        - gis:az:azdr:en03i
+        - gis:az:azdr:en04i
+        - gis:az:azdr:en05i
+        - gis:az:azdr:en06i
+        - gis:az:azdr:en07i
+        - gis:az:azdr:en08i
+    AZ Drive Overload Status:
+      codes:
+        - gis:az:azdr:do01i
+        - gis:az:azdr:do02i
+        - gis:az:azdr:do03i
+        - gis:az:azdr:do04i
+        - gis:az:azdr:do05i
+        - gis:az:azdr:do06i
+        - gis:az:azdr:do07i
+        - gis:az:azdr:do08i
+    ALT Drive Status:
+      codes:
+        - gis:alt:altdr:ok01i
+        - gis:alt:altdr:ok02i
+        - gis:alt:altdr:ok03i
+        - gis:alt:altdr:ok04i
+    ALT Drive Enabled Status:
+      codes:
+        - gis:alt:altdr:en01i
+        - gis:alt:altdr:en02i
+        - gis:alt:altdr:en03i
+        - gis:alt:altdr:en04i
+    ALT Drive OverloadStatus:
+      codes:
+        - gis:alt:altdr:do01i
+        - gis:alt:altdr:do02i
+        - gis:alt:altdr:do03i
+        - gis:alt:altdr:do04i
+    AZ non-zero speed fault:
+      codes:
+        - gis:az:azns:aznssums
+    ALT non-zero speed fault:
+      codes:
+        - gis:alt:altns:altnssums
+    ALT cable Wrap Faults (+X):
+      codes:
+        - gis:alt:altcw:altcwloposxi
+        - gis:alt:altcw:altcwhiposxi
+    ALT cable Wrap Faults (-X):
+      codes:
+        - gis:alt:altcw:altcwhinegxi
+        - gis:alt:altcw:altcwlonegxi
+    ALT cable Wrap Faults (+X, -X and Sum):
+      codes:
+        - gis:alt:altcw:altcwloposxi
+        - gis:alt:altcw:altcwlonegxi
+        - gis:alt:altcw:altcwhiposxi
+        - gis:alt:altcw:altcwhinegxi
+        - gis:alt:altcw:altcwsums
+    AZ Faults:
+      codes:
+        - gis:alt:altlp:altlpsum1s
+        - gis:az:azbg:azbgsums
+        - gis:az:azbr:azbri
+        - gis:az:azcw:azcwsums
+        - gis:az:azdr:azdrsums
+        - gis:az:azlo:azlosums
+        - gis:az:azns:aznssums
+        - gis:az:azombr:azombrsums
+        - gis:az:azos:azosi
+        - gis:az:azpp:azppi
+        - gis:az:aztb:aztbi
+        - gis:ck:cksums
+        - gis:hbs:hbssums
+        - gis:misc:misczsums
+    ALT Faults:
+      codes:
+        - gis:alt:altbg:altbgsums
+        - gis:alt:altbr:altbrsums
+        - gis:alt:altcw:altcwsums
+        - gis:alt:altdr:altdrsums
+        - gis:alt:altlo:altlosums
+        - gis:alt:altlp:altlpsums
+        - gis:alt:altns:altnssums
+        - gis:alt:altombr:altombrsums
+        - gis:alt:altos:altosi
+        - gis:alt:altot:altotsums
+        - gis:alt:altpp:altppi
+        - gis:cass:gmdoor
+        - gis:cass:gmintf
+        - gis:ck:cksums
+        - gis:hbs:hbssums
+        - gis:misc:misclsums
+        - gis:pcs:pcssums
+    Cassegrian Faults:
+      codes:
+        - gis:cass:gmdoor
+        - gis:cass:gmintf
+        - gis:cass:rccwi
+        - gis:cass:rcwi
+        - gis:cass:rdrdci
+        - gis:cass:rdri
+        - gis:cass:rwpmaci
+        - gis:cass:wccwi
+        - gis:cass:wcwi
+        - gis:cass:wdrdci
+        - gis:cass:wdri
+    PCS Faults:
+      codes:
+        - gis:pcs:nodisablei
+        - gis:pcs:nograbi
+        - gis:pcs:noreli
+    PCL Rack Faults:
+      codes:
+        - gis:rack:r00i
+        - gis:rack:r01i
+        - gis:rack:r02i
+        - gis:rack:r03i
+        - gis:rack:r04i
+        - gis:rack:r05i
+        - gis:rack:r06i
+        - gis:rack:r07i
+        - gis:rack:r10i
+    Emergency Stop and PLX Faults:
+      codes:
+        - gis:es:e01i
+        - gis:es:e02i
+        - gis:es:e03i
+        - gis:es:e04i
+        - gis:es:e10i
+        - gis:es:e11i
+        - gis:es:e12i
+        - gis:es:e13i
+        - gis:es:e14i
+        - gis:es:e20i
+        - gis:es:e21i
+        - gis:es:e22i
+        - gis:es:e23i
+        - gis:es:e24i
+        - gis:es:e25i
+        - gis:es:e26i
+        - gis:es:e28i
+        - gis:es:e29i
+        - gis:es:es01i
+        - gis:es:plctripi
+        - gis:es:plxm
+    Interfaces:
+      codes:
+        - gis:int:int01i
+        - gis:int:int02i
+        - gis:int:int03i
+        - gis:int:int04i
+        - gis:int:int05i
+        - gis:int:int06i
+        - gis:int:int07i
+        - gis:int:int08i
+        - gis:int:int09i
+        - gis:int:int10i
+        - gis:int:int11i
+        - gis:int:int12i
+        - gis:int:int13i
+        - gis:int:int14i
+        - gis:int:int15i
+        - gis:int:int16i
+    Crane Park Fault Filtered:
+      codes:
+        - gis:mon:other:ecsCraneParkedAlarmFiltered
+    Crane Park Fault Live:
+      codes:
+        - gis:mon:other:ecsCraneParkedAlarm
+  Locking Pins:
+    +X Zenith 23LS:
+      codes:
+        - gis:alt:altlp:posxzeni
+    -X Zenith 23LS:
+      codes:
+        - gis:alt:altlp:negxzeni
+    +X Zenith Retracted State:
+      codes:
+        - gis:alt:altlp:posxzenRi
+    -X Zenith Retracted State:
+      codes:
+        - gis:alt:altlp:negxzenRi
+  Misc:
+    AZ Speed Set Pt. (volts):
+      codes:
+        - gis:mon:azmon3:azdspdspc
+    ALT Speed Set Pt. (volts):
+      codes:
+        - gis:mon:altmon3:altdspdspc
+    GIS Heartbeat:
+      codes:
+        - gis:mon:other:heartbeati
+  LSE:
+    Oxygen Level:
+      codes:
+        - gis:lse:O2LevC
+    Laser room temp.:
+      codes:
+        - gis:lse:roomTempC
+    Laser room humidity:
+      codes:
+        - gis:lse:roomHumC
+    Gown room temperature:
+      codes:
+        - gis:lse:gRoomTempC
+    Gown root humidity:
+      codes:
+        - gis:lse:gRoomHumC
+    Coolant IN temperature:
+      codes:
+        - gis:lse:coolInC
+    Coolant OUT(A) temperatuere:
+      codes:
+        - gis:lse:coolOutAC
+    Coolant OUT(B) temperatuere:
+      codes:
+        - gis:lse:coolOutBC
+    Circuit A proprotional valve:
+      codes:
+        - gis:lse:propValveAC
+    Circuit B proportional valve:
+      codes:
+        - gis:lse:propValveBC
+    AC drive speed setpoint:
+      codes:
+        - gis:lse:ACDriveSpeedC
+    Laser room temperature setpoint:
+      codes:
+        - gis:lse:roomTempTgtC
+    Differential pressure defrost coil A:
+      codes:
+        - gis:lse:presCoilAC
+    Differential pressure defrost coil B:
+      codes:
+        - gis:lse:presCoilBC
+    1DMP Position Message:
+      codes:
+        - gis:lse:DMPPos
+    Coil A Defrost:
+      codes:
+        - gis:lse:cADefrost
+    Coil B Defrost:
+      codes:
+        - gis:lse:cBDefrost

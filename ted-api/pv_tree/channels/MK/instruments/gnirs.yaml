@@ -1,0 +1,281 @@
+gnirs:
+  Process Variable Gateway (gnirsgate):
+    Connections:
+      codes:
+        - gnirsgate.vctotal
+        - gnirsgate.pvtotal
+        - gnirsgate.active
+        - gnirsgate.connected
+        - gnirsgate.inactive
+        - gnirsgate.unconnected
+        - gnirsgate.disconnected
+        - gnirsgate.dead
+    Client Rates:
+      codes:
+        - gnirsgate.clientEventRate
+        - gnirsgate.clientPostRate
+    Server Rates:
+      codes:
+        - gnirsgate.serverEventRate
+        - gnirsgate.serverPostRate
+    Load:
+      codes:
+        - gnirsgate.existTestRate
+        - gnirsgate.loopRate
+        - gnirsgate.cpuFract
+  Gnirs Detectors Data:
+    Overall Health:
+      codes:
+        - nirs:dc:dcHealth
+    Serial I/O Temperature:
+      codes:
+        - nirs:dc:C1Tmp
+    Heater:
+      codes:
+        - nirs:dc:C1Heat
+    OIWFS Serial I/O Temperature:
+      codes:
+        - nirs:eng:tmpC1Tmp
+    Requested bias:
+      codes:
+        - nirs:dc:arSetup.H
+    Achieved bias:
+      codes:
+        - nirs:dc:achvdBias
+    LNRS:
+      codes:
+        - nirs:dc:obsSetup.VALD
+    ApplyC:
+      codes:
+        - nirs:dc:applyC
+  Gnirs Dewar Pressure:
+    IG:
+      codes:
+        - nirs:sad:cc:pressureIG
+    TC2:
+      codes:
+        - nirs:sad:cc:pressureTC2
+  Gnirs Lakeshore Bench Temperature Control:
+    Heater Output:
+      codes:
+        - tc:btc:heater
+    P:
+      codes:
+        - tc:btc:pidgs.VALA
+    I:
+      codes:
+        - tc:btc:pidgs.VALB
+    D:
+      codes:
+        - tc:btc:pidgs.VALC
+    Sensor A:
+      codes:
+        - tc:btc:sensorA
+    Sensor B:
+      codes:
+        - tc:btc:sensorB
+    Setpoint:
+      codes:
+        - tc:btc:setp2
+  Gnirs Lakeshore Bench Temperature Warmup Control:
+    Heater Output:
+      codes:
+        - tc:btwc:heater
+    P:
+      codes:
+        - tc:btwc:pidgs.VALA
+    I:
+      codes:
+        - tc:btwc:pidgs.VALB
+    D:
+      codes:
+        - tc:btwc:pidgs.VALC
+    Sensor A:
+      codes:
+        - tc:btwc:sensorA
+    Sensor B:
+      codes:
+        - tc:btwc:sensorB
+    Setpoint:
+      codes:
+        - tc:btwc:setp2
+  Gnirs Hardware Temperatures:
+    Cryo:
+      codes:
+        - nirs:sad:cc:cryo
+        - nirs:sad:cc:cryo1_1s
+        - nirs:sad:cc:cryo2_1s
+        - nirs:sad:cc:cryo2_2s
+        - nirs:sad:cc:cryo3_1s
+        - nirs:sad:cc:cryo4_1s
+    Thermal Bus Bars:
+      codes:
+        - nirs:sad:cc:thermalBusBarS
+        - nirs:sad:cc:thermalBusBarP
+    Molecular Sieve:
+      codes:
+        - nirs:sad:cc:molSieve
+    Bench:
+      codes:
+        - nirs:sad:cc:benchWFS.VAL
+        - nirs:sad:cc:benchWFSGimbals.VAL
+        - nirs:sad:cc:benchTempPoint
+        - nirs:sad:cc:benchPreSlit
+        - nirs:sad:cc:benchUnderside
+    Optics:
+      codes:
+        - nirs:sad:cc:offner
+        - nirs:sad:cc:collimator
+    Structure (G10 Trusses + Shell):
+      codes:
+        - nirs:sad:cc:g10Truss1
+        - nirs:sad:cc:g10Truss2
+        - nirs:sad:cc:g10Truss3
+        - nirs:sad:cc:shell
+    Active Shield:
+      codes:
+        - nirs:sad:cc:activeShieldFwd
+        - nirs:sad:cc:activeShieldMid
+        - nirs:sad:cc:activeShieldAft
+        - nirs:sad:cc:PassiveShield
+    Mechanisms:
+      codes:
+        - nirs:sad:cc:deckerMM
+        - nirs:sad:cc:deckerMotor
+        - nirs:sad:cc:slitMM
+        - nirs:sad:cc:slitMotor
+        - nirs:sad:cc:fw1Housing
+        - nirs:sad:cc:fw1Motor
+        - nirs:sad:cc:fw2Housing
+        - nirs:sad:cc:fw2Motor
+        - nirs:sad:cc:acqMotor
+        - nirs:sad:cc:prismMM
+        - nirs:sad:cc:prismMotor
+        - nirs:sad:cc:cameraMM
+        - nirs:sad:cc:cameraMotor
+        - nirs:sad:cc:cameraTurret
+        - nirs:sad:cc:focusMM
+        - nirs:sad:cc:focusMotor
+        - nirs:sad:cc:gratingMotor
+        - nirs:sad:cc:gratingMM
+  Gnirs OIWFS Follow:
+    SetPoint1:
+      codes:
+        - nirs:sad:cc:setPoint1
+    SetPoint2:
+      codes:
+        - nirs:sad:cc:setPoint2
+    PB1:
+      codes:
+        - nirs:sad:cc:PB1
+    Reset1:
+      codes:
+        - nirs:sad:cc:reset1
+    Rate1:
+      codes:
+        - nirs:sad:cc:rate1
+    Send Main Reading:
+      codes:
+        - nirs:sad:cc:sendMainReading
+    Send Peak Reading:
+      codes:
+        - nirs:sad:cc:sendPeakReading
+    Send Valley Reading:
+      codes:
+        - nirs:sad:cc:sendValley
+    Send Reading 1:
+      codes:
+        - nirs:sad:cc:sendReading1
+    Send Reading 2:
+      codes:
+        - nirs:sad:cc:sendReading2
+  Gnirs OIWFS Temperature:
+    Sensor:
+      codes:
+        - nirs:eng:tmpC1Tmp
+    Heater:
+      codes:
+        - nirs:eng:tmpC1Heat
+    SetPoint:
+      codes:
+        - nirs:eng:tmpC1.SETP
+  ADC Temperatures:
+    codes:
+      - nirs:dc:c128_143:a0
+      - nirs:dc:c128_143:a4
+      - nirs:dc:c128_143:a8
+      - nirs:dc:c128_143:a12
+      - nirs:dc:c144_159:a0
+      - nirs:dc:c144_159:a4
+      - nirs:dc:c144_159:a8
+      - nirs:dc:c144_159:a12
+  Mechanisms:
+    Filter wheel 1:
+      codes:
+        - nirs:sad:cc:fw1Position
+        - nirs:sad:cc:fw1Eng
+        - nirs:cc:fw1C
+        - nirs:sad:cc:fw1Datumed
+    Filter wheel 2:
+      codes:
+        - nirs:sad:cc:fw2Position
+        - nirs:sad:cc:fw2Eng
+        - nirs:cc:fw2C
+        - nirs:sad:cc:fw2Datumed
+    Slit:
+      codes:
+        - nirs:sad:cc:slitPosition
+        - nirs:sad:cc:slitEng
+        - nirs:cc:slitC
+        - nirs:sad:cc:slitOT
+    Decker:
+      codes:
+        - nirs:sad:cc:deckerPosition
+        - nirs:sad:cc:deckerEng
+        - nirs:cc:deckerC
+        - nirs:sad:cc:deckerOT
+    Grating:
+      codes:
+        - nirs:sad:cc:gratingPosition
+        - nirs:sad:cc:gratingEng
+        - nirs:cc:gratingC
+    Prism:
+      codes:
+        - nirs:sad:cc:xdispPosition
+        - nirs:sad:cc:xdispEng
+        - nirs:cc:xdispC
+    Acquisition Mirror:
+      codes:
+        - nirs:sad:cc:acqPosition
+        - nirs:sad:cc:acqEng
+        - nirs:cc:acqC
+        - nirs:sad:cc:acqDatumed
+    Acq Mirror Limits:
+      codes:
+        - nirs:sad:cc:acqpLim
+        - nirs:sad:cc:acqnLim
+        - nirs:sad:cc:acqOT
+    Camera:
+      codes:
+        - nirs:sad:cc:cameraPosition
+        - nirs:sad:cc:cameraEng
+        - nirs:cc:cameraC
+    Focus:
+      codes:
+        - nirs:sad:cc:focusPosition
+        - nirs:sad:cc:focusEng
+        - nirs:cc:focusC
+    Cover:
+      codes:
+        - nirs:sad:cc:coverEng
+        - nirs:sad:cc:coverpLim
+        - nirs:sad:cc:covernLim
+        - nirs:sad:cc:coverOT
+  Other:
+    codes:
+      - nirs:dcActIdle
+      - nirs:ccActIdle
+  IRDC Temperature:
+    codes:
+      - tgnirs:dc:temperature
+      - nirs:dc:temperature

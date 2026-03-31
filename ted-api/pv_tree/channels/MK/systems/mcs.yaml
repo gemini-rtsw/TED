@@ -1,0 +1,320 @@
+MCS:
+  Mount:
+    Elevation:
+      Position (Deg):
+        codes:
+          - mc:elCurrentPos
+      Position (Points):
+        codes:
+          - mc:elCurrentPosEC
+      Error:
+        codes:
+          - mc:elPosError
+      Velocity:
+        codes:
+          - mc:elCurrentVel
+      TCS Demand:
+        codes:
+          - mc:elDemandPos
+      InPos Flag:
+        codes:
+          - mc:inPositionEl
+    Azimuth:
+      Position (Deg):
+        codes:
+          - mc:azCurrentPos
+      Position (Points):
+        codes:
+          - mc:azCurrentPosEC
+      Error:
+        codes:
+          - mc:azPosError
+      Velocity:
+        codes:
+          - mc:azCurrentVel
+      TCS Demand:
+        codes:
+          - mc:azDemandPos
+      InPos Flag:
+        codes:
+          - mc:inPositionAz
+      Mount Follow State:
+        codes:
+          - mc:followS
+  PMAC Data:
+    Elevation:
+      Encoder Counts:
+        codes:
+          - mc:elCurrentPosEC
+      Position:
+        codes:
+          - mc:elPmacDemandPos
+      Error:
+        codes:
+          - mc:elPmacPosError
+      HandshakeEL:
+        codes:
+          - mc:elMPHandshake
+    Azimuth:
+      Encoder Counts:
+        codes:
+          - mc:azCurrentPosEC
+      Position:
+        codes:
+          - mc:azPmacDemandPos
+      Error:
+        codes:
+          - mc:azPmacPosError
+      HandshakeAZ:
+        codes:
+          - mc:azMPHandshake
+  Elevation PMAC Tachos:
+    Tacho 1:
+      codes:
+        - mc:elTacho1
+    Tacho 2:
+      codes:
+        - mc:elTacho2
+    Tacho 3:
+      codes:
+        - mc:elTacho3
+    Tacho 4:
+      codes:
+        - mc:elTacho4
+  Azimuth PMAC Tachos:
+    Tacho 1:
+      codes:
+        - mc:azTacho1
+    Tacho 2:
+      codes:
+        - mc:azTacho2
+    Tacho 3:
+      codes:
+        - mc:azTacho3
+    Tacho 4:
+      codes:
+        - mc:azTacho4
+    Tacho 5:
+      codes:
+        - mc:azTacho5
+    Tacho 6:
+      codes:
+        - mc:azTacho6
+    Tacho 7:
+      codes:
+        - mc:azTacho7
+    Tacho 8:
+      codes:
+        - mc:azTacho8
+  Elevation PMAC Currents:
+    Motor 1:
+      codes:
+        - mc:elMotor1
+    Motor 2:
+      codes:
+        - mc:elMotor2
+    Motor 3:
+      codes:
+        - mc:elMotor3
+    Motor 4:
+      codes:
+        - mc:elMotor4
+  Azimuth PMAC Currents:
+    Motor 1:
+      codes:
+        - mc:azMotor1
+    Motor 2:
+      codes:
+        - mc:azMotor2
+    Motor 3:
+      codes:
+        - mc:azMotor3
+    Motor 4:
+      codes:
+        - mc:azMotor4
+    Motor 5:
+      codes:
+        - mc:azMotor5
+    Motor 6:
+      codes:
+        - mc:azMotor6
+    Motor 7:
+      codes:
+        - mc:azMotor7
+    Motor 8:
+      codes:
+        - mc:azMotor8
+  Azimuth Virtual Encoders Degrees:
+    FDE:
+      codes:
+        - mc:azengToDeg.VALB
+    Tape Head 1:
+      codes:
+        - mc:azengToDeg.VALC
+    Tape Head 2:
+      codes:
+        - mc:azengToDeg.VALD
+    Tape Head 3:
+      codes:
+        - mc:azengToDeg.VALE
+    Tape Head 4:
+      codes:
+        - mc:azengToDeg.VALF
+    Virtual Encoder:
+      codes:
+        - mc:azengToDeg.VALA
+  Elevation Virtual Encoders Degrees:
+    FDE:
+      codes:
+        - mc:elengToDeg.VALB
+    Tape Head 1:
+      codes:
+        - mc:elengToDeg.VALC
+    Tape Head 2:
+      codes:
+        - mc:elengToDeg.VALD
+    Virtual Encoder:
+      codes:
+        - mc:elengToDeg.VALA
+  PMAC status words:
+    Elevation:
+      codes:
+        - mc:elmotstat
+    Azimuth:
+      codes:
+        - mc:azmotstat
+  Non-Zerp Speed Fault investigation:
+    Azimuth Drive Condition (from GIS):
+      codes:
+        - mc:azDriveCondition
+    Elevation Drive Condition (from GIS):
+      codes:
+        - mc:elDriveCondition
+    AZ PMAC Open Loop Mode:
+      codes:
+        - mc:azmotstat1:2:OLM
+    EL PMAC Open Loop Mode:
+      codes:
+        - mc:elmotstat1:2:OLM
+  Runaway Checks:
+    Tracking A:
+      codes:
+        - mc:Tracking.A
+    Tracking B:
+      codes:
+        - mc:Tracking.B
+    Tracking C:
+      codes:
+        - mc:Tracking.C
+    Tracking D:
+      codes:
+        - mc:Tracking.D
+    Tracking E:
+      codes:
+        - mc:Tracking.E
+    Tracking F:
+      codes:
+        - mc:Tracking.F
+    Tracking G:
+      codes:
+        - mc:Tracking.G
+    Tracking H:
+      codes:
+        - mc:Tracking.H
+    Tracking I:
+      codes:
+        - mc:Tracking.I
+    Tracking J:
+      codes:
+        - mc:Tracking.J
+    Tracking K:
+      codes:
+        - mc:Tracking.K
+    Tracking L:
+      codes:
+        - mc:Tracking.L
+    Tracking M:
+      codes:
+        - mc:Tracking.M
+    Tracking N:
+      codes:
+        - mc:Tracking.N
+    Tracking O:
+      codes:
+        - mc:Tracking.O
+    Tracking P:
+      codes:
+        - mc:Tracking.P
+    Tracking Q:
+      codes:
+        - mc:Tracking.Q
+    Tracking R:
+      codes:
+        - mc:Tracking.R
+    Tracking S:
+      codes:
+        - mc:Tracking.S
+    Tracking VALA:
+      codes:
+        - mc:Tracking.VALA
+    Tracking VALB:
+      codes:
+        - mc:Tracking.VALB
+    Tracking VALC:
+      codes:
+        - mc:Tracking.VALC
+    Tracking VALD:
+      codes:
+        - mc:Tracking.VALD
+    Tracking VALE:
+      codes:
+        - mc:Tracking.VALE
+    Tracking VALF:
+      codes:
+        - mc:Tracking.VALF
+    Tracking VALG:
+      codes:
+        - mc:Tracking.VALG
+    Tracking VALH:
+      codes:
+        - mc:Tracking.VALH
+    Tracking VALJ:
+      codes:
+        - mc:Tracking.VALJ
+    Tracking VALK:
+      codes:
+        - mc:Tracking.VALK
+    Tracking VALL:
+      codes:
+        - mc:Tracking.VALL
+    Tracking VALP:
+      codes:
+        - mc:Tracking.VALP
+    Tracking VALQ:
+      codes:
+        - mc:Tracking.VALQ
+    followA.J:
+      codes:
+        - mc:followA.J
+    elMABBotPos:
+      codes:
+        - mc:elMABBotPos
+    elMABTopPos:
+      codes:
+        - mc:elMABTopPos
+    moveelSendJog VALA:
+      codes:
+        - mc:moveelSendJog.VALA
+    moveelSendJog A:
+      codes:
+        - mc:moveelSendJog.A
+    moveazSendJog VALA:
+      codes:
+        - mc:moveazSendJog.VALA
+    moveazSendJog A:
+      codes:
+        - mc:moveazSendJog.A
+    Azimuth or Elevation State:
+      codes:
+        - mc:azStateS
+        - mc:elStateS

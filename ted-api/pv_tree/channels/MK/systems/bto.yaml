@@ -1,0 +1,313 @@
+BTO:
+  General:
+    BTO Health message:
+      codes:
+        - bto:health.OMSS
+    Beam Dump Power Meter:
+      codes:
+        - bto:pm
+    BTOOP Entry Pressure:
+      codes:
+        - bto:btoopEnPr
+  Power threshold:
+    Warning threshold:
+      codes:
+        - las:pm:warnThresh
+    Fault Threshold:
+      codes:
+        - las:pm:faultThresh
+  Temperatures:
+    Supply Air Temp (deg C):
+      codes:
+        - bto:teeHexSupTemp
+    Return Air Temp (deg C):
+      codes:
+        - bto:teeHexRetTemp
+    Coolant Supply Temperature (deg C):
+      codes:
+        - bto:teeCoolSupTemp
+    Coolant Return Temperature (deg C):
+      codes:
+        - bto:teeCoolRetTemp
+    All:
+      codes:
+        - bto:teeHexSupTemp
+        - bto:teeHexRetTemp
+        - bto:teeCoolSupTemp
+        - bto:teeCoolRetTemp
+  Centering Mirror:
+    Tip:
+      Demand:
+        codes:
+          - bto:CMReConvertPMCM.VALA
+      Position:
+        codes:
+          - bto:CMTip
+      Demand and Position:
+        codes:
+          - bto:CMReConvertPMCM.VALA
+          - bto:CMTip
+      Open Loop Model:
+        codes:
+          - bto:PCKMLoopCMTip
+          - bto:PCKMLoopcoeffF
+    Tilt:
+      Demand:
+        codes:
+          - bto:CMReConvertPMCM.VALB
+      Position:
+        codes:
+          - bto:CMTilt
+      Demand and Position:
+        codes:
+          - bto:CMTilt
+          - bto:CMReConvertPMCM.VALB
+      Open Loop Model:
+        codes:
+          - bto:PCKMLoopCMTilt
+          - bto:PCKMLoopcoeffF
+  Pointing Mirror:
+    Tip:
+      Demand:
+        codes:
+          - bto:PMReConvertPMCM.VALA
+      Position:
+        codes:
+          - bto:PMTip
+      Demand and Position:
+        codes:
+          - bto:PMReConvertPMCM.VALA
+          - bto:PMTip
+      Open Loop Model:
+        codes:
+          - bto:PCKMLoopPMTip
+          - bto:PCKMLoopcoeffF
+    Tilt:
+      Demand:
+        codes:
+          - bto:PMReConvertPMCM.VALB
+      Position:
+        codes:
+          - bto:PMTilt
+      Demand and Position:
+        codes:
+          - bto:PMReConvertPMCM.VALB
+          - bto:PMTilt
+      Open Loop Model:
+        codes:
+          - bto:PCKMLoopPMTilt
+          - bto:PCKMLoopcoeffF
+  Zenith Check:
+    Open Loop Model C terms:
+      codes:
+        - bto:PCKMLoopPMTiltC
+        - bto:PCKMLoopPMTipC
+        - bto:PCKMLoopCMTiltC
+        - bto:PCKMLoopCMTipC
+  Actuators TGT/POS:
+    PM X:
+      codes:
+        - bto:PMCtrlCMC
+    CM X:
+      codes:
+        - bto:CMCtrlCMC
+    PM Y:
+      codes:
+        - bto:PMCtrlCMC
+    CM Y:
+      codes:
+        - bto:CMCtrlCMC
+  FSA Loop:
+    FSA Loop flag:
+      codes:
+        - bto:fsaConvertStatus.VALA
+    FSA Loop:
+      codes:
+        - bto:fsaLoop
+    FSA Gain:
+      codes:
+        - bto:fsaKFSA
+    Circular Buffer Position:
+      codes:
+        - bto:fsaCBPointer
+    Circular Buffer Counter:
+      codes:
+        - bto:fsaCBCounter
+    PM/CM Offload Enabled (not clamped):
+      codes:
+        - bto:yrckGensub.VALE
+    FSA offload Tip and Tilt:
+      codes:
+        - bto:yrckGensub.VALI
+        - bto:yrckGensub.VALJ
+    Clamp Max Value:
+      codes:
+        - bto:yrckGensub.O
+    manual FSA tip and tilt:
+      codes:
+        - bto:FSAMove.A
+        - bto:FSAMove.B
+    PM/CM offload gain:
+      codes:
+        - bto:yrckGensub.B
+    simulation mode status:
+      codes:
+        - bto:fsaSimulate
+    Current BTO version:
+      Raw Tip Demand (sampled):
+        codes:
+          - bto:fsaRawTip1
+      Raw Tilt Demand (sampled):
+        codes:
+          - bto:fsaRawTilt1
+      Integrated RTC Error Tip:
+        codes:
+          - bto:fsaTip1
+      Integrated RTC Error Tilt:
+        codes:
+          - bto:fsaTilt1
+    New BTO version under daytime development:
+      Tip RTC Error (arcsec):
+        codes:
+          - bto:fsaTipErr1
+      Tilt RTC Error (arcsed):
+        codes:
+          - bto:fsaTiltErr1
+      Tip Sky Frame Demand (arcsec):
+        codes:
+          - bto:fsaSkyTip1
+      Tilt Sky Frame Demand (arcsec):
+        codes:
+          - bto:fsaSkyTilt1
+  Error Messages:
+    TCM TPM Error messages:
+      codes:
+        - bto:apply.MESS
+    CM Error messages:
+      codes:
+        - bto:CMCtrlC.OMSS
+    CMCtrlCMC Error message:
+      codes:
+        - bto:CMCtrlCMC1.MESS
+    CMCtrlCMC Motor X Errors:
+      codes:
+        - bto:CMCtrlCMC1.MSTX
+    CMCtrlCMC Motor Y Errors:
+      codes:
+        - bto:CMCtrlCMC1.MSTY
+    PM Error messages:
+      codes:
+        - bto:PMCtrlC.OMSS
+    PMCtrlCMC Error message:
+      codes:
+        - bto:PMCtrlCMC1.MESS
+    PMCtrlCMC Motor X Errors:
+      codes:
+        - bto:PMCtrlCMC1.MSTX
+    PMCtrlCMC Motor Y Errors:
+      codes:
+        - bto:PMCtrlCMC1.MSTY
+  Removed in April 2018 (for Toptica installation):
+    TCM (Truss Centering Mirror):
+      Tip:
+        Demand:
+          codes:
+            - bto:TCA1TipDem
+        Position:
+          codes:
+            - bto:TCA1Tip
+        Demand and Position:
+          codes:
+            - bto:TCA1Tip
+            - bto:TCA1TipDem
+        Open Loop Model:
+          codes:
+            - bto:TCA1:tip
+      Tilt:
+        Demand:
+          codes:
+            - bto:TCA1TiltDem
+        Position:
+          codes:
+            - bto:TCA1Tilt
+        Demand and Position:
+          codes:
+            - bto:TCA1Tilt
+            - bto:TCA1TiltDem
+        Open Loop Model:
+          codes:
+            - bto:TCA1:tilt
+    TPM (Truss Pointing Mirror):
+      Tip:
+        Demand:
+          codes:
+            - bto:TPA1TipDem
+        Position:
+          codes:
+            - bto:TPA1Tip
+        Demand and Position:
+          codes:
+            - bto:TPA1Tip
+            - bto:TPA1TipDem
+        Open Loop Model:
+          codes:
+            - bto:TPA1:tip
+      Tilt:
+        Demand:
+          codes:
+            - bto:TPA1TiltDem
+        Position:
+          codes:
+            - bto:TPA1Tilt
+        Demand and Position:
+          codes:
+            - bto:TPA1Tilt
+            - bto:TPA1TiltDem
+        Open Loop Model:
+          codes:
+            - bto:TPA1:tilt
+    Zenith Check:
+      Open Loop Model C terms:
+        codes:
+          - bto:TCA1:tipC
+          - bto:TCA1:tiltC
+          - bto:TPA1:tipC
+          - bto:TPA1:tiltC
+    Actuators TGT/POS:
+      TPM X:
+        codes:
+          - bto:TPACtrlCMC1
+      TCM X:
+        codes:
+          - bto:TCACtrlCMC1
+      TPM Y:
+        codes:
+          - bto:TPACtrlCMC1
+      TCM Y:
+        codes:
+          - bto:TCACtrlCMC1
+    Error Messages:
+      TPM Error messages:
+        codes:
+          - bto:TPACtrlC.OMSS
+      TPACtrlCMC Error message:
+        codes:
+          - bto:TPACtrlCMC1.MESS
+      TPACtrlCMC Motor X Errors:
+        codes:
+          - bto:TPACtrlCMC1.MSTX
+      TPACtrlCMC Motor Y Errors:
+        codes:
+          - bto:TPACtrlCMC1.MSTY
+      TCM Error messages:
+        codes:
+          - bto:TCACtrlC.OMSS
+      TCACtrlCMC Error message:
+        codes:
+          - bto:TCACtrlCMC1.MESS
+      TCACtrlCMC Motor X Errors:
+        codes:
+          - bto:TCACtrlCMC1.MSTX
+      TCACtrlCMC Motor Y Errors:
+        codes:
+          - bto:TCACtrlCMC1.MSTY

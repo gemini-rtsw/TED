@@ -1,0 +1,249 @@
+GWS:
+  Weather Data Ultrasonic anemometers:
+    "(-X)":
+      Two dimensional wind speed:
+        codes:
+          - ws:tpUaMxSpeed2D
+      Three dimensional wind speed:
+        codes:
+          - ws:tpUaMxSpeed3D
+      Wind direction (azimuth):
+        codes:
+          - ws:tpUaMxWindAz
+      Wind elevation:
+        codes:
+          - ws:tpUaMxWindEl
+      Sonic temperature:
+        codes:
+          - ws:tpUaMxTemp
+    "(+X)":
+      Two dimensional wind speed:
+        codes:
+          - ws:tpUaPxSpeed2D
+      Three dimensional wind speed:
+        codes:
+          - ws:tpUaPxSpeed3D
+      Wind direction (azimuth):
+        codes:
+          - ws:tpUaPxWindAz
+      Wind elevation:
+        codes:
+          - ws:tpUaPxWindEl
+      Sonic temperature:
+        codes:
+          - ws:tpUaPxTemp
+    "(Top end)":
+      Two dimensional wind speed:
+        codes:
+          - ws:tpUaTeSpeed2D
+      Three dimensional wind speed:
+        codes:
+          - ws:tpUaTeSpeed3D
+      Wind direction (azimuth):
+        codes:
+          - ws:tpUaTeWindAz
+      Wind elevation:
+        codes:
+          - ws:tpUaTeWindEl
+      Sonic temperature:
+        codes:
+          - ws:tpUaTeTemp
+  Particle monitor:
+    0.3 micron:
+      codes:
+        - ws:tpPmPxChan1
+    0.5 micron:
+      codes:
+        - ws:tpPmPxChan2
+    0.7 micron:
+      codes:
+        - ws:tpPmPxChan3
+    1.0 micron:
+      codes:
+        - ws:tpPmPxChan4
+    2.0 micron:
+      codes:
+        - ws:tpPmPxChan5
+    3.0 micron:
+      codes:
+        - ws:tpPmPxChan6
+    5.0 micron:
+      codes:
+        - ws:tpPmPxChan7
+    10.0 micron:
+      codes:
+        - ws:tpPmPxChan8
+    Error messages:
+      codes:
+        - ws:tpPmPxErr
+      format: Spreadsheet
+    Temperature:
+      codes:
+        - ws:tpPmPxTemp
+    Humidity:
+      codes:
+        - ws:tpPmPxRH
+    Air flow lpm:
+      codes:
+        - ws:tpPmPxFlow
+  Humidity Sensor:
+    Wet bulb temperature:
+      codes:
+        - ws:tpHsPxTw
+    Relative humidity:
+      codes:
+        - ws:tpHsPxRh
+    Temperature:
+      codes:
+        - ws:tpHsPxT
+    Dew temperature:
+      codes:
+        - ws:tpHsPxTd
+    Absolute humidity:
+      codes:
+        - ws:tpHsPxA
+    Mixing ratio:
+      codes:
+        - ws:tpHsPxX
+    Dew point difference:
+      codes:
+        - ws:tpHsPxDt
+  CFHT Weather Data:
+    Temperature:
+      codes:
+        - ws:cfTemp
+    Pressure:
+      codes:
+        - ws:cfPress
+    Wind Speed:
+      codes:
+        - ws:cfWindSpeed
+    Wind Direction:
+      codes:
+        - ws:cfWindDir
+    Humidity:
+      codes:
+        - ws:cfHumid
+    Dew Point:
+      codes:
+        - ws:wsDew
+  UKIRT Weather Data:
+    Temperature:
+      codes:
+        - ws:ukTemp
+    Pressure:
+      codes:
+        - ws:ukPress
+    Wind Speed:
+      codes:
+        - ws:ukWindSpeed
+    Wind Direction:
+      codes:
+        - ws:ukWindDir
+    Humidity:
+      codes:
+        - ws:ukHumid
+  Pier Lab:
+    Air sensor 2 meters above floor:
+      codes:
+        - ws:pltAbPl
+    Air sensor 2 meters above and 3 meters away:
+      codes:
+        - ws:pltAbAwPl
+    Surface sensor floor:
+      codes:
+        - ws:pltFlPl
+    Air sensor outside pier lab:
+      codes:
+        - ws:pltAbOuPl
+    Barometric pressure sensor:
+      codes:
+        - ws:plyng0Pressure
+  Data Logger:
+    Snow:
+      codes:
+        - ws:dlD1Snow
+    Ice:
+      codes:
+        - ws:dlD1Ice
+    Temperature 1:
+      codes:
+        - ws:dlD1Temp1
+    Temperature 2:
+      codes:
+        - ws:dlD1Temp2
+    Relative Humidity 1:
+      codes:
+        - ws:dlD1Rh1
+    Relative Humidity 2:
+      codes:
+        - ws:dlD1Rh2
+    Atmospheric Pressure:
+      codes:
+        - ws:dlD1Press
+    Dew point 1:
+      codes:
+        - ws:dlD1DewPoint1
+    Dew point 2:
+      codes:
+        - ws:dlD1DewPoint2
+  Precipitation sensors:
+    Precipitation sensor 1:
+      codes:
+        - ws:ptSensor1
+    Precipitation sensor 2:
+      codes:
+        - ws:ptSensor2
+    Precipitation sensor 3:
+      codes:
+        - ws:ptSensor3
+    Precipitation sensor 4:
+      codes:
+        - ws:ptSensor4
+  Telescope temperature sensors:
+    Top End:
+      Air temp. -X:
+        codes:
+          - ws:tpAtTeMx
+      Surface temp. -X:
+        codes:
+          - ws:tpStTeMx
+      Air temp. +X:
+        codes:
+          - ws:tpAtTePx
+      Surface temp. +X:
+        codes:
+          - ws:tpStTePx
+    Truss:
+      Air temp. -X:
+        codes:
+          - ws:tpAtMtMx
+      Surface temp. -X:
+        codes:
+          - ws:tpStMtMx
+      Air temp. +X:
+        codes:
+          - ws:tpAtMtPx
+      Surface temp. +X:
+        codes:
+          - ws:tpStMtPx
+    Lower Truss:
+      Air temp. -X:
+        codes:
+          - ws:tpAtLtMx
+      Surface temp. -X:
+        codes:
+          - ws:tpStLtMx
+      Air temp. +X:
+        codes:
+          - ws:tpAtLtPx
+      Surface temp. +X:
+        codes:
+          - ws:tpStLtPx
+  Other:
+    (SO2) Sulfur Dioxide Sensor Readings:
+      codes:
+        - gis:mon:other:so2
+    (H2S) Hydrogen Sulfide Sensor Readings:
+      codes:
+        - gis:mon:other:h2s

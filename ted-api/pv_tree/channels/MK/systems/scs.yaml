@@ -1,0 +1,292 @@
+SCS:
+  Applied Guide:
+    X Tilt:
+      codes:
+        - m2:displayScs.VALA
+    Y Tilt:
+      codes:
+        - m2:displayScs.VALB
+    Z Focus:
+      codes:
+        - m2:displayScs2.VALB
+  Demand:
+    X Tilt:
+      codes:
+        - m2:displayScs2.VALF
+    Y Tilt:
+      codes:
+        - m2:displayScs2.VALG
+    Z Focus:
+      codes:
+        - m2:displayScs.VALC
+  Actual:
+    X Tilt:
+      codes:
+        - m2:real.VALC
+    Y Tilt:
+      codes:
+        - m2:real.VALD
+    Z Focus:
+      codes:
+        - m2:real.VALE
+  Error:
+    X Tilt:
+      codes:
+        - m2:xTiltErr
+    Y Tilt:
+      codes:
+        - m2:yTiltErr
+    Z Focus:
+      codes:
+        - m2:zErr
+  PWFS1:
+    X Tilt:
+      codes:
+        - m2:xtilt0
+    Y Tilt:
+      codes:
+        - m2:ytilt0
+    Z Focus:
+      codes:
+        - m2:focus0
+  PWFS2:
+    X Tilt:
+      codes:
+        - m2:xtilt1
+    Y Tilt:
+      codes:
+        - m2:ytilt1
+    Z Focus:
+      codes:
+        - m2:focus1
+  OIWFS:
+    X Tilt:
+      codes:
+        - m2:xtilt2
+    Y Tilt:
+      codes:
+        - m2:ytilt2
+    Z Focus:
+      codes:
+        - m2:focus2
+  ALTAIR:
+    X Tilt:
+      codes:
+        - m2:xtilt3
+    Y Tilt:
+      codes:
+        - m2:ytilt3
+    Z Focus:
+      codes:
+        - m2:focus3
+  PWFS1+PWFS2+OIWFS+ALTAIR:
+    X Tilt:
+      codes:
+        - m2:xtilt0
+        - m2:xtilt1
+        - m2:xtilt2
+        - m2:xtilt3
+    Y Tilt:
+      codes:
+        - m2:ytilt0
+        - m2:ytilt1
+        - m2:ytilt2
+        - m2:ytilt3
+    Z Focus:
+      codes:
+          - m2:focus0
+          - m2:focus1
+          - m2:focus2
+          - m2:focus3
+  After blending:
+    X:
+      codes:
+        - m2:displayScs2.VALC
+    Y:
+      codes:
+        - m2:displayScs2.VALD
+    Z:
+      codes:
+        - m2:displayScs2.VALE
+  After PID:
+    X:
+      codes:
+        - m2:displayScs.VALA
+    Y:
+      codes:
+        - m2:displayScs.VALB
+    Z:
+      codes:
+        - m2:displayScs2.VALB
+  Current windup:
+    X:
+      codes:
+        - m2:xWindup
+    Y:
+      codes:
+        - m2:yWindup
+    Z:
+      codes:
+        - m2:zWindup
+  Guide status:
+    codes:
+      - m2:guideOn
+  Demand:
+    X positioner:
+      codes:
+        - m2:xPosDmd
+    Y positioner:
+      codes:
+        - m2:yPosDmd
+  Actual:
+    X positioner:
+      codes:
+        - m2:xPos
+    Y positioner:
+      codes:
+        - m2:yPos
+  Error:
+    X positioner:
+      codes:
+        - m2:xPosErr
+    Y positioner:
+      codes:
+        - m2:yPosErr
+  Real:
+    X positioner:
+      codes:
+        - m2:real.VALN
+    Y positioner:
+      codes:
+        - m2:real.VALO
+  Display:
+    X positioner:
+      codes:
+        - m2:displayScs.VALN
+    Y positioner:
+      codes:
+        - m2:displayScs.VALO
+  Resultant XY Error:
+    codes:
+      - m2:xyerrMag
+  Mirror Control:
+    codes:
+      - m2:byte3:b6
+  Vibration Loop:
+    codes:
+      - m2:byte0:b6
+  Offloader:
+    codes:
+      - m2:byte3:b7
+  Actuator Power:
+    codes:
+      - m2:byte0:b2
+  CEM temperature:
+    codes:
+      - m2:status.VALE
+  Chop Frequency:
+    codes:
+      - m2:displayScs.VALS
+  Position Sensors:
+    Kaman:
+      Actuator 0:
+        codes:
+          - m2:act1Diag.VALD
+      Actuator 1:
+        codes:
+          - m2:act2Diag.VALD
+      Actuator 2:
+        codes:
+          - m2:act3Diag.VALD
+    uE:
+      Actuator 0:
+        codes:
+          - m2:act1Diag.VALA
+      Actuator 1:
+        codes:
+          - m2:act2Diag.VALA
+      Actuator 2:
+        codes:
+          - m2:act3Diag.VALA
+    Kaman and uE:
+      Actuator 0:
+        codes:
+          - m2:act1Diag.VALA
+          - m2:act1Diag.VALD
+      Actuator 1:
+        codes:
+          - m2:act2Diag.VALA
+          - m2:act2Diag.VALD
+      Actuator 2:
+        codes:
+          - m2:act3Diag.VALA
+          - m2:act3Diag.VALD
+    Follower positions:
+      Follower 0:
+        codes:
+          - m2:act1Diag.VALB
+      Follower 1:
+        codes:
+          - m2:act2Diag.VALB
+      Follower 2:
+        codes:
+          - m2:act3Diag.VALB
+    Drift:
+      Actuator 0:
+        codes:
+          - m2:posDrift0
+      Actuator 1:
+        codes:
+          - m2:posDrift1
+      Actuator 2:
+        codes:
+          - m2:posDrift2
+    Current:
+      Actuator 0:
+        codes:
+          - m2:act1Diag.VALC
+      Actuator 1:
+        codes:
+          - m2:act2Diag.VALC
+      Actuator 2:
+        codes:
+          - m2:act3Diag.VALC
+  Focus:
+    codes:
+      - m2:real.VALE
+  Baffle Status:
+    codes:
+      - m2:showDeploy
+      - m2:DeployBafflePos
+      - m2:showCentral
+      - m2:CentralBafflePos
+      - m2:real.VALR
+      - m2:real.VALS
+      - m2:real.VALT
+  StatusWord:
+    codes:
+      - m2:byte0:b2
+      - m2:byte0:b6
+      - m2:byte0:b7
+      - m2:byte2:b6
+      - m2:byte2:b7
+      - m2:byte3:b1
+      - m2:byte3:b2
+      - m2:byte3:b6
+      - m2:byte3:b7
+  Synchro Bus Status:
+    codes:
+      - m2:refmem:ring
+      - m2:displayScs.VALU
+      - m2:refmem:crc
+      - m2:real.VALB
+  Other:
+    codes:
+      - m2:displayScs.VALM
+      - m2:real.VALL
+      - m2:beam
+      - m2:activeC
+  VTK:
+    codes:
+      - m2:X:vtkactive
+      - m2:Y:vtkactive

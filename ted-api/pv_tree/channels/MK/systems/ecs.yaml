@@ -1,0 +1,609 @@
+ECS:
+  Top Shutter:
+    Demand:
+      codes:
+        - ec:moveShtrs.VALB
+    Position:
+      codes:
+        - ec:topShtrPos
+    Demand and Position:
+      codes:
+        - ec:moveShtrs.VALB
+        - ec:topShtrPos
+    Error:
+      codes:
+        - ec:topShtrErr
+    Error Message:
+      codes:
+        - ec:topShtrmotor.MESS
+    tsNewPosition:
+      codes:
+        - ec:tsNewPosition
+    Drive Currents:
+      codes:
+        - ec:sh:t1w
+        - ec:sh:t1x
+        - ec:sh:t1y
+        - ec:sh:t1z
+        - ec:sh:tsum
+    Left:
+      codes:
+        - ec:sh:tleft
+    Right:
+      codes:
+        - ec:sh:tright
+    Left and Right:
+      codes:
+        - ec:sh:tleft
+        - ec:sh:tright
+    Top:
+      codes:
+        - ec:sh:ttop
+    Bottom:
+      codes:
+        - ec:sh:tbottom
+    Top and Bottom:
+      codes:
+        - ec:sh:ttop
+        - ec:sh:tbottom
+    Brake Currents:
+      codes:
+        - ec:tsBrk1x
+        - ec:tsBrk1y
+        - ec:tsBrk1z
+        - ec:tsBrk1w
+    Brake Faults:
+      codes:
+        - ec:tsBrkFlt1x
+        - ec:tsBrkFlt1y
+        - ec:tsBrkFlt1z
+        - ec:tsBrkFlt1w
+    Galil Brake Release Command:
+      codes:
+        - ec:tsBrkCmd
+    Shutter Brakes Power Supply voltage:
+      codes:
+        - ec:shBrkPSV
+    Top Shutter Max move limit:
+      codes:
+        - ec:topShtrMax
+  Top Shutter Limit Switches:
+    Slow Speed Limit Close:
+      codes:
+        - ec:fault:word16:bits.B0
+    Slow Speed Limit Open:
+      codes:
+        - ec:fault:word16:bits.B3
+    End of Travel Close:
+      codes:
+        - ec:fault:word16:bits.B1
+    End of Travel Open:
+      codes:
+        - ec:fault:word16:bits.B4
+    Over Travel Close:
+      codes:
+        - ec:fault:word16:bits.B2
+    Over Travel Open:
+      codes:
+        - ec:fault:word16:bits.B5
+  Bottom Shutter:
+    Demand:
+      codes:
+        - ec:moveShtrs.VALD
+    Position:
+      codes:
+        - ec:botShtrPos
+    Demand and Position:
+      codes:
+        - ec:moveShtrs.VALD
+        - ec:botShtrPos
+    Error:
+      codes:
+        - ec:botShtrErr
+    Error Message:
+      codes:
+        - ec:botShtrmotor.MESS
+    Skew:
+      codes:
+        - ec:botShtrSkew
+        - ec:botShtrSkewEnc
+    Skew Encoder:
+      codes:
+        - ec:botShtrSkewEnc
+    Brake Currents:
+      codes:
+        - ec:bsBrk2x
+        - ec:bsBrk2y
+        - ec:bsBrk2z
+        - ec:bsBrk2w
+  Bottom Shutter Limit Switches:
+    Slow Speed Limit Close:
+      codes:
+        - ec:fault:word16:bits.B6
+    Slow Speed Limit Open:
+      codes:
+        - ec:fault:word16:bits.B9
+    End of Travel Close:
+      codes:
+        - ec:fault:word16:bits.B7
+    End of Travel Open:
+      codes:
+        - ec:fault:word16:bits.BA
+    Over Travel Close:
+      codes:
+        - ec:fault:word16:bits.B8
+    Over Travel Open:
+      codes:
+        - ec:fault:word16:bits.BB
+  Drive Currents:
+    All Drive Currents:
+      codes:
+        - ec:sh:b2w
+        - ec:sh:b2x
+        - ec:sh:b2y
+        - ec:sh:b2z
+    Current Sum:
+      codes:
+        - ec:sh:bsum
+    Drive Currents and Sum:
+      codes:
+        - ec:sh:b1w
+        - ec:sh:b1x
+        - ec:sh:b1y
+        - ec:sh:b1z
+        - ec:sh:bsum
+    Left:
+      codes:
+        - ec:sh:bleft
+    Right:
+      codes:
+        - ec:sh:bright
+    Left and Right:
+      codes:
+        - ec:sh:bleft
+        - ec:sh:bright
+    Top:
+      codes:
+        - ec:sh:btop
+    Bottom:
+      codes:
+        - ec:sh:bbottom
+    Top and Bottom:
+      codes:
+        - ec:sh:btop
+        - ec:sh:bbottom
+  Dome:
+    Demand:
+      codes:
+        - ec:moveDome.VALB
+    Position:
+      codes:
+        - ec:domePos
+    Demand and Position:
+      codes:
+        - ec:moveDome.VALB
+        - ec:domePos
+    Error:
+      codes:
+        - ec:domeErr
+  Vent Gates:
+    East:
+      codes:
+        - ec:eastVentGatePos
+        - ec:moveVgates.B
+        - ec:vg:evRPos
+        - ec:vg:evLPos
+        - ec:vg:evSkew
+    West:
+      codes:
+        - ec:moveVgates.C
+        - ec:westVentGatePos
+        - ec:vg:wvRPos
+        - ec:vg:wvLPos
+        - ec:vg:wvSkew
+    Both:
+      codes:
+        - ec:eastVentGatePos
+        - ec:moveVgates.B
+        - ec:moveVgates.C
+        - ec:westVentGatePos
+  Vent Gate Limit Switches:
+    East Slow Speed Close:
+      codes:
+        - ec:fault:word16:bits.BC
+    East Slow Speed Open:
+      codes:
+        - ec:fault:word16:bits.BE
+    East End of Travel Close:
+      codes:
+        - ec:fault:word16:bits.BD
+    East End of Travel Open:
+      codes:
+        - ec:fault:word16:bits.BF
+    East Overtravel:
+      codes:
+        - ec:fault:word17:bits.B9
+    All East Limit Switches:
+      codes:
+        - ec:fault:word16:bits.BC
+        - ec:fault:word16:bits.BD
+        - ec:fault:word16:bits.BE
+        - ec:fault:word16:bits.BF
+        - ec:fault:word17:bits.B9
+    West Slow Speed Limit Close:
+      codes:
+        - ec:fault:word17:bits.B0
+    West Slow Speed Limit Open:
+      codes:
+        - ec:fault:word17:bits.B2
+    West End of Travel Close:
+      codes:
+        - ec:fault:word17:bits.B1
+    West End of Travel Open:
+      codes:
+        - ec:fault:word17:bits.B3
+    West Overtravel:
+      codes:
+        - ec:fault:word17:bits.BA
+    All West Limit Switches:
+      codes:
+        - ec:fault:word17:bits.B0
+        - ec:fault:word17:bits.B1
+        - ec:fault:word17:bits.B2
+        - ec:fault:word17:bits.B3
+        - ec:fault:word17:bits.BA
+    All Limit Switches:
+      codes:
+        - ec:fault:word16:bits.BC
+        - ec:fault:word16:bits.BD
+        - ec:fault:word16:bits.BE
+        - ec:fault:word16:bits.BF
+        - ec:fault:word17:bits.B9
+        - ec:fault:word17:bits.B0
+        - ec:fault:word17:bits.B1
+        - ec:fault:word17:bits.B2
+        - ec:fault:word17:bits.B3
+        - ec:fault:word17:bits.BA
+  Heartbeats:
+    ECS IOC:
+      codes:
+        - ec:present
+    ECS PLC:
+      codes:
+        - ec:fault:plcHeartbeat
+    Plant Room:
+      codes:
+        - pr:plcHeartbeat
+  PLC:
+    Encoder faults:
+      codes:
+        - ec:fault:word17:bits
+  Dome Drive Currents:
+    Drive 3X:
+      codes:
+        - ec:dc:d3x
+    Drive 3Y:
+      codes:
+        - ec:dc:d3y
+    Drive 3Z:
+      codes:
+        - ec:dc:d3z
+    Drive 3W:
+      codes:
+        - ec:dc:d3w
+    Drive 3E:
+      codes:
+        - ec:dc:d3e
+    Drive 3F:
+      codes:
+        - ec:dc:d3f
+    Drive 3G:
+      codes:
+        - ec:dc:d3g
+    Drive 3H:
+      codes:
+        - ec:dc:d3h
+    All drives:
+      codes:
+        - ec:dc:d3x
+        - ec:dc:d3y
+        - ec:dc:d3z
+        - ec:dc:d3w
+        - ec:dc:d3e
+        - ec:dc:d3f
+        - ec:dc:d3g
+        - ec:dc:d3h
+  Vent Gate Currents:
+    East:
+      codes:
+        - ec:vg:ev4w
+        - ec:vg:ev4x
+        - ec:vg:ev4y
+        - ec:vg:ev4z
+    West:
+      codes:
+        - ec:vg:wv5w
+        - ec:vg:wv5x
+        - ec:vg:wv5y
+        - ec:vg:wv5z
+  ECS mode:
+    OFF:
+      codes:
+        - ec:fault:word6:bits.B0
+    ECS:
+      codes:
+        - ec:fault:word6:bits.B1
+    PCU1:
+      codes:
+        - ec:fault:word6:bits.B2
+    PCU2:
+      codes:
+        - ec:fault:word6:bits.B3
+    ALL:
+      codes:
+        - ec:fault:word6:bits.B0
+        - ec:fault:word6:bits.B1
+        - ec:fault:word6:bits.B2
+        - ec:fault:word6:bits.B3
+  Vent Gates motor overload:
+    East-X:
+      codes:
+        - ec:fault:word4:bits.BC
+    East-Y:
+      codes:
+        - ec:fault:word4:bits.BD
+    East-Z:
+      codes:
+        - ec:fault:word4:bits.BE
+    East-W:
+      codes:
+        - ec:fault:word4:bits.BF
+    East-ALL:
+      codes:
+        - ec:fault:word4:bits.BC
+        - ec:fault:word4:bits.BD
+        - ec:fault:word4:bits.BE
+        - ec:fault:word4:bits.BF
+    West-X:
+      codes:
+        - ec:fault:word5:bits.BC
+    West-Y:
+      codes:
+        - ec:fault:word5:bits.BD
+    West-Z:
+      codes:
+        - ec:fault:word5:bits.BE
+    West-W:
+      codes:
+        - ec:fault:word5:bits.BF
+    West-ALL:
+      codes:
+        - ec:fault:word5:bits.BC
+        - ec:fault:word5:bits.BD
+        - ec:fault:word5:bits.BE
+        - ec:fault:word5:bits.BF
+  Galil:
+    Bottom TEX:
+      codes:
+        - ec:shutGalilBotProc.VALB
+    Bottom TEY:
+      codes:
+        - ec:shutGalilBotProc.VALC
+    Bottom TEZ:
+      codes:
+        - ec:shutGalilBotProc.VALD
+    Bottom TEW:
+      codes:
+        - ec:shutGalilBotProc.VALE
+    Bottom TTX:
+      codes:
+        - ec:shutGalilBotProc.VALH
+    Bottom TTY:
+      codes:
+        - ec:shutGalilBotProc.VALI
+    Bottom TTZ:
+      codes:
+        - ec:shutGalilBotProc.VALJ
+    Bottom TTW:
+      codes:
+        - ec:shutGalilBotProc.VALK
+    Bottom RPX:
+      codes:
+        - ec:shutGalilBotProc.VALA
+    Bottom TI:
+      codes:
+        - ec:shutGalilBotProc.VALF
+    Bottom C1:
+      codes:
+        - ec:shutGalilBotProc.VALG
+    All Bottom except clock:
+      codes:
+        - ec:shutGalilBotProc.VALA
+        - ec:shutGalilBotProc.VALB
+        - ec:shutGalilBotProc.VALC
+        - ec:shutGalilBotProc.VALD
+        - ec:shutGalilBotProc.VALE
+        - ec:shutGalilBotProc.VALF
+        - ec:shutGalilBotProc.VALH
+        - ec:shutGalilBotProc.VALI
+        - ec:shutGalilBotProc.VALJ
+        - ec:shutGalilBotProc.VALK
+    Top TEX:
+      codes:
+        - ec:shutGalilTopProc.VALB
+    Top TEY:
+      codes:
+        - ec:shutGalilTopProc.VALC
+    Top TEZ:
+      codes:
+        - ec:shutGalilTopProc.VALD
+    Top TEW:
+      codes:
+        - ec:shutGalilTopProc.VALE
+    Top TTX:
+      codes:
+        - ec:shutGalilTopProc.VALH
+    Top TTY:
+      codes:
+        - ec:shutGalilTopProc.VALI
+    Top TTZ:
+      codes:
+        - ec:shutGalilTopProc.VALJ
+    Top TTW:
+      codes:
+        - ec:shutGalilTopProc.VALK
+    Top RPX:
+      codes:
+        - ec:shutGalilTopProc.VALA
+    Top TI:
+      codes:
+        - ec:shutGalilTopProc.VALF
+    Top C1:
+      codes:
+        - ec:shutGalilTopProc.VALG
+    All Top except clock:
+      codes:
+        - ec:shutGalilTopProc.VALA
+        - ec:shutGalilTopProc.VALB
+        - ec:shutGalilTopProc.VALC
+        - ec:shutGalilTopProc.VALD
+        - ec:shutGalilTopProc.VALE
+        - ec:shutGalilTopProc.VALF
+        - ec:shutGalilTopProc.VALF
+        - ec:shutGalilTopProc.VALH
+        - ec:shutGalilTopProc.VALI
+        - ec:shutGalilTopProc.VALJ
+        - ec:shutGalilTopProc.VALK
+    Bottom Error message:
+      codes:
+        - ec:shutGalilBotProc.VALL
+    Bottom Error number:
+      codes:
+        - ec:shutGalilBotProc.VALM
+    Top Error message:
+      codes:
+        - ec:shutGalilTopProc.VALL
+    Top Error number:
+      codes:
+        - ec:shutGalilTopProc.VALM
+    Bottom Shutter fault:
+      codes:
+        - ec:fault:word40:bits.B1
+    Top Shutter fault:
+      codes:
+        - ec:fault:word40:bits.B0
+    West vent gate fault:
+      codes:
+        - ec:fault:word40:bits.B4
+    East vent gate fault:
+      codes:
+        - ec:fault:word40:bits.B3
+    Dome fault:
+      codes:
+        - ec:fault:word40:bits.B2
+    All fault bits:
+      codes:
+        - ec:fault:word40:bits.B0
+        - ec:fault:word40:bits.B1
+        - ec:fault:word40:bits.B2
+        - ec:fault:word40:bits.B3
+        - ec:fault:word40:bits.B4
+  Generator Transfer Motion Interlock:
+    Plant Room ECS Motion Interlock:
+      codes:
+        - ec:prMotionInterlock
+  Power Sequence:
+    Dome Power Sequence:
+      codes:
+        - ec:powSeq1proc.VALC
+    Top Shutter Power Sequence:
+      codes:
+        - ec:powSeq1proc.VALA
+    Bottom Shutter Power Sequence:
+      codes:
+        - ec:powSeq1proc.VALB
+    East Ventgate Power Sequence:
+      codes:
+        - ec:powSeq1proc.VALD
+    West Ventgate Power Sequence:
+      codes:
+        - ec:powSeq2proc.VALA
+    All Power Sequences:
+      codes:
+        - ec:powSeq1proc.VALA
+        - ec:powSeq1proc.VALB
+        - ec:powSeq1proc.VALC
+        - ec:powSeq1proc.VALD
+        - ec:powSeq2proc.VALA
+  Power Command Sequences:
+    Dome Power Command Sequence:
+      codes:
+        - ec:powSeq2proc.VALD
+    Top Shutter Power Command Sequence:
+      codes:
+        - ec:powSeq2proc.VALB
+    Bottom Shutter Power Command Sequence:
+      codes:
+        - ec:powSeq2proc.VALC
+    East Ventgate Power Command Sequence:
+      codes:
+        - ec:powSeq3proc.VALA
+    West Ventgate Power Command Sequence:
+      codes:
+        - ec:powSeq3proc.VALB
+    All Power Command Sequences:
+      codes:
+        - ec:powSeq3proc.VALA
+        - ec:powSeq3proc.VALB
+        - ec:powSeq2proc.VALB
+        - ec:powSeq2proc.VALC
+        - ec:powSeq2proc.VALD
+  Auto Reset Sequences:
+    Dome Auto Reset Sequence:
+      codes:
+        - ec:powSeq4proc.VALA
+    Top Shutter Auto Reset Sequence:
+      codes:
+        - ec:powSeq3proc.VALC
+    Bottom Shutter Auto Reset Sequence:
+      codes:
+        - ec:powSeq3proc.VALD
+    East Ventgate Auto Reset Sequence:
+      codes:
+        - ec:powSeq4proc.VALB
+    West Ventgate Auto Reset Sequence:
+      codes:
+        - ec:powSeq4proc.VALC
+    All Auto Reset Sequences:
+      codes:
+        - ec:powSeq3proc.VALC
+        - ec:powSeq3proc.VALD
+        - ec:powSeq4proc.VALA
+        - ec:powSeq4proc.VALB
+        - ec:powSeq4proc.VALC
+  Auto Close Sequence / Setpoint Generator Sequence:
+    Shutter:
+      codes:
+        - ec:powSeq4proc.VALD
+    Top Shutter position SP ctrl:
+      codes:
+        - ec:powSeq5proc.VALA
+    Bottom Shutter position SP ctrl:
+      codes:
+        - ec:powSeq5proc.VALB
+    East Vent Gate:
+      codes:
+        - ec:powSeq5proc.VALC
+    West Vent Gate:
+      codes:
+        - ec:powSeq5proc.VALD
+  Observatory Modes:
+    Summit:
+      codes:
+        - ec:summitMode
+    Standby:
+      codes:
+        - ec:standbyMode
+    Base:
+      codes:
+        - ec:baseMode

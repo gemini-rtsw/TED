@@ -1,0 +1,351 @@
+tcs:
+  Subsystem States:
+    codes:
+      - tcs:agTimedOut
+      - tcs:aoTimedOut
+      - tcs:aomTimedOut
+      - tcs:crTimedOut
+      - tcs:ecTimedOut
+      - tcs:gpTimedOut
+      - tcs:gsaoiTimedOut
+      - tcs:m1TimedOut
+      - tcs:m2TimedOut
+      - tcs:mcTimedOut
+      - tcs:wsTimedOut
+  Pointing Model:
+    IA:
+      codes:
+        - tcs:ak:pm:par0:name
+    IE:
+      codes:
+        - tcs:ak:pm:par1:name
+    CA:
+      codes:
+        - tcs:ak:pm:par12:name
+  Session Pointing Adjustments:
+    Local:
+      CA:
+        codes:
+          - tcs:ak:pm:ca:local
+      CE:
+        codes:
+          - tcs:ak:pm:ce:local
+      CA/CE:
+        codes:
+          - tcs:ak:pm:ce:local
+          - tcs:ak:pm:ca:local
+    Net:
+      CA:
+        codes:
+          - tcs:ak:pm:ca:net
+      CE:
+        codes:
+          - tcs:ak:pm:ce:net
+      CA/CE:
+        codes:
+          - tcs:ak:pm:ce:net
+          - tcs:ak:pm:ca:net
+    Guide:
+      CA:
+        codes:
+          - tcs:ak:guide:ca
+      CE:
+        codes:
+          - tcs:ak:guide:ce
+      CA/CE:
+        codes:
+          - tcs:ak:guide:ce
+          - tcs:ak:guide:ca
+    Local/Net/Guide:
+      CA:
+        codes:
+          - tcs:ak:pm:ca:local
+          - tcs:ak:pm:ca:net
+          - tcs:ak:guide:ca
+      CE:
+        codes:
+          - tcs:ak:pm:ce:local
+          - tcs:ak:pm:ce:net
+          - tcs:ak:guide:ce
+      CA/CE:
+        codes:
+          - tcs:ak:pm:ca:local
+          - tcs:ak:pm:ca:net
+          - tcs:ak:guide:ca
+          - tcs:ak:pm:ce:local
+          - tcs:ak:pm:ce:net
+          - tcs:ak:guide:ce
+  Session Pointing Update:
+    CA:
+      codes:
+        - tcs:ak:pm:ca:session
+    CE:
+      codes:
+        - tcs:ak:pm:ce:session
+    IA:
+      codes:
+        - tcs:ak:pm:ia:session
+  Telescope:
+    Azimuth:
+      Demand:
+        codes:
+          - tcs:demandAz
+      Current:
+        codes:
+          - tcs:currentAz
+      Demand and Current:
+        codes:
+          - tcs:demandAz
+          - tcs:currentAz
+      Error:
+        codes:
+          - tcs:azError
+      DiffTrkRt:
+        codes:
+          - tcs:sad:sourceADiffRA
+    Elevation:
+      Demand:
+        codes:
+          - tcs:demandEl
+      Current:
+        codes:
+          - tcs:currentEl
+      Demand and Current:
+        codes:
+          - tcs:demandEl
+          - tcs:currentEl
+      Error:
+        codes:
+          - tcs:elError
+      DiffTrkRt:
+        codes:
+          - tcs:sad:sourceADiffRA
+    Time to Az wrap limit:
+      codes:
+        - tcs:sad:timeToAzlim
+    Time to AM limit:
+      codes:
+        - tcs:limits:amtime
+    Time to El limit:
+      codes:
+        - tcs:limits:eltime
+    Time to P1 limit:
+      codes:
+        - tcs:sad:timeToP1lim
+    time to P2 limit:
+      codes:
+        - tcs:sad:timeToP2lim
+    Zenith Instability:
+      Time to Enter:
+        codes:
+          - tcs:limits:zintime
+      Time to Leave:
+        codes:
+          - tcs:limits:zouttime
+      Both:
+        codes:
+          - tcs:limits:zintime
+          - tcs:limits:zouttime
+  Target:
+    RA:
+      codes:
+        - tcs:sourceA.C
+        - tcs:currentRA
+    Dec:
+      codes:
+        - tcs:sourceA.D
+        - tcs:currentDec
+    Both:
+      codes:
+        - tcs:sourceA.C
+        - tcs:sourceA.D
+        - tcs:currentRA
+        - tcs:currentDec
+    Name:
+      codes:
+        - tcs:sourceA.A
+    Frame:
+      codes:
+        - tcs:sourceA.B
+    Equinox:
+      codes:
+        - tcs:sourceA.E
+  TCS M2 adjustment:
+    Absorb Focus Flag:
+      codes:
+        - tcs:im:m2gm:absorbFocusFlag
+    Coma Correction Flag:
+      codes:
+        - tcs:im:m2gm:comaCorrectFlag
+    Average Truss temperature:
+      codes:
+        - tcs:om:tt:temp
+  Nod/Chop states demand:
+    All Oi:
+      codes:
+        - tcs:configOiwfs.A
+        - tcs:configOiwfs.B
+        - tcs:configOiwfs.D
+        - tcs:configOiwfs.E
+    All P1:
+      codes:
+        - tcs:configPwfs1.A
+        - tcs:configPwfs1.B
+        - tcs:configPwfs1.D
+        - tcs:configPwfs1.E
+    All P2:
+      codes:
+        - tcs:configPwfs2.A
+        - tcs:configPwfs2.B
+        - tcs:configPwfs2.D
+        - tcs:configPwfs2.E
+  Nod/Chop states applied:
+    All OI:
+      codes:
+        - tcs:drives:oiwfsnodAchopA
+        - tcs:drives:oiwfsnodAchopB
+        - tcs:drives:oiwfsnodBchopA
+        - tcs:drives:oiwfsnodBchopB
+    All P1:
+      codes:
+        - tcs:drives:pwfs1nodAchopA
+        - tcs:drives:pwfs1nodAchopB
+        - tcs:drives:pwfs1nodBchopA
+        - tcs:drives:pwfs1nodBchopB
+    All P2:
+      codes:
+        - tcs:drives:pwfs2nodAchopA
+        - tcs:drives:pwfs2nodAchopB
+        - tcs:drives:pwfs2nodBchopA
+        - tcs:drives:pwfs2nodBchopB
+  Other:
+    codes:
+      - tcs:sad:m2XDemand
+      - tcs:sad:m2YDemand
+      - tcs:sad:m2ZDemand
+      - tcs:m2XErrorCorr
+      - tcs:m2YErrorCorr
+      - tcs:m2GuideMode.B
+  Truss Temperature Sensors:
+    codes:
+      - tcs:om:tt:sensor1.B
+      - tcs:om:tt:sensor1.VALA
+      - tcs:om:tt:sensor2.B
+      - tcs:om:tt:sensor2.VALA
+  Flags:
+    TCS in position flag:
+      codes:
+        - tcs:sad:inPosition
+        - tcs:inPosCombine
+  Guide Setup and Status:
+    P1 Integrating:
+      codes:
+        - tcs:drives:p1Integrating
+    P2 Integrating:
+      codes:
+        - tcs:drives:p2Integrating
+    Oi Integrating:
+      codes:
+        - tcs:drives:oiIntegrating
+    M1 Guiding:
+      codes:
+        - tcs:im:m1GuideOn
+    M2 Guiding:
+      codes:
+        - tcs:om:m2GuideState
+    P1 Probe Guiding:
+      codes:
+        - tcs:ak:wfsguide:p1weight
+    P2 Probe Guiding:
+      codes:
+        - tcs:ak:wfsguide:p2weight
+    Oi Probe Guiding:
+      codes:
+        - tcs:ak:wfsguide:oiweight
+    Absorb tilt errors:
+      codes:
+        - tcs:absorbTipTiltFlag
+    Absorb focus errors:
+      codes:
+        - tcs:im:m2gm:absorbFocusFlag
+    Correcting coma:
+      codes:
+        - tcs:im:m2gm:comaCorrectFlag
+    M2 Guide control CAD:
+      codes:
+        - tcs:m2GuideControl.DIR
+    WFS Guiding CAD:
+      codes:
+        - tcs:wfsGuideMode.DIR
+  Shutter Control:
+    Shutter Following:
+      codes:
+        - tcs:autoMoveShtrs
+    TS Demand:
+      codes:
+        - tcs:drives:topShtrPosDem
+    TS Position:
+      codes:
+        - tcs:topShtrPos
+    TS Demand/Position:
+      codes:
+        - tcs:topShtrPos
+        - tcs:drives:topShtrPosDem
+    BS Demand:
+      codes:
+        - tcs:drives:botShtrPosDem
+    BS Position:
+      codes:
+        - tcs:botShtrPos
+    BS Demand/Position:
+      codes:
+        - tcs:botShtrPos
+        - tcs:drives:botShtrPosDem
+    TS Manual Move Dem:
+      codes:
+        - tcs:shutter.A
+    BS Manual Move Dem:
+      codes:
+        - tcs:shutter.B
+  Cass Rotator:
+    Wrap Logic Flag (TCS):
+      codes:
+        - tcs:rotwrap.A
+    Rotator Demand (TCS):
+      codes:
+        - tcs:demandRma
+    TCS Dem & Act Pos:
+      codes:
+        - tcs:demandRma
+        - cr:crCurrentPos
+    Time to limit:
+      codes:
+        - tcs:sad:timeToRotlim
+  Messages:
+    codes:
+      - tcs:apply.MESS
+      - tcs:ErrorMess
+      - tcs:logrecord
+      - tcs:drives:outPosReason
+      - tcs:sad:health.OMSS
+  Other:
+    codes:
+      - tcs:offsetPoA1.VALA
+      - tcs:offsetPoA1.VALB
+      - tcs:domeVignette
+      - tcs:timeToDomeLimit
+      - tcs:sad:oiwfsXmin
+      - tcs:sad:oiwfsXmax
+      - tcs:sad:oiwfsYmin
+      - tcs:sad:oiwfsYmax
+      - tcs:drives:driveAOS.VALB
+      - tcs:drives:driveAOS.VALC
+      - tcs:im:AOConfigFlag
+      - tcs:sad:pwfs2Wavelength
+      - tcs:filter1.VALD
+      - tcs:aoCorrect.DIR
+      - tcs:sad:instrPA
+  Offsets From gacq->tcc->handset->Here:
+    codes:
+      - tcs:incrOffset.A
+      - tcs:incrOffset.B

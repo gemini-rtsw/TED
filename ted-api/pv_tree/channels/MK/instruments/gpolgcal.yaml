@@ -1,0 +1,119 @@
+gcal:
+  Filter wheel:
+    Target:
+      codes:
+        - gc:filtDevice
+    Current:
+      codes:
+        - gc:filtDevice.MPOS
+    Target and Current:
+      codes:
+        - gc:filtDevice
+        - gc:filtDevice.MPOS
+    Filter busy flag:
+      codes:
+        - gc:filtC
+  Diffuser:
+    Target:
+      codes:
+        - gc:diffuseDevice
+    Current:
+      codes:
+        - gc:diffuseDevice.MPOS
+    Target and Current:
+      codes:
+        - gc:diffuseDevice
+        - gc:diffuseDevice.MPOS
+  Shutter (For IR lamp):
+    Target:
+      codes:
+        - gc:shutterDevice
+    Current:
+      codes:
+        - gc:shutterDevice.MPOS
+    Target and Current:
+      codes:
+        - gc:shutterDevice
+        - gc:shutterDevice.MPOS
+    Current position name:
+      codes:
+        - gc:shutterStateIn
+  Lamps:
+    IR:
+      codes:
+        - gc:IR_LampState
+    QH:
+      codes:
+        - gc:QH_LampState
+    Ar:
+      codes:
+        - gc:Ar_LampState
+    Xe:
+      codes:
+        - gc:Xe_LampState
+    ThAr:
+      codes:
+        - gc:ThAr_LampState
+    CuAr:
+      codes:
+        - gc:CuAr_LampState
+  IOC Stats:
+    Susp Tasks:
+      codes:
+        - gc:iocStats:SUSP_TASK_CNT
+    Free memory:
+      codes:
+        - gc:iocStats:MEM_FREE
+    Global load:
+      codes:
+        - gc:iocStats:LOAD
+    Uptime:
+      codes:
+        - gc:iocStats:UPTIME
+    Time errors:
+      codes:
+        - gc:iocStats:GTIM_ERR_CNT
+    Free Sys MBUFs:
+      codes:
+        - gc:iocStats:SYS_MBUF_FREE
+    Clust available:
+      codes:
+        - gc:iocStats:SYS_CLUST_AVAIL_0
+        - gc:iocStats:SYS_CLUST_AVAIL_1
+    CA Connections:
+      codes:
+        - gc:iocStats:CA_CONN_CNT
+    IF/O errors:
+      codes:
+        - gc:iocStats:IFI_ERR_CNT
+        - gc:iocStats:IFO_ERR_CNT
+    Free FDs:
+      codes:
+        - gc:iocStats:FD_FREE
+    Boot version:
+      codes:
+        - gc:iocStats:APP_DIR1
+        - gc:iocStats:APP_DIR2
+    CA Clients:
+      codes:
+        - gc:iocStats:CA_CLNT_CNT
+  Top Level:
+    Busy flag:
+      codes:
+        - gc:applyC
+  GCAL Lamp Power:
+    Lamp Output:
+      codes:
+        - gc:lampsOutput
+    Switch Disable:
+      codes:
+        - gc:lampSwitchDisable
+    Switch Enable:
+      codes:
+        - gc:lampSwitchEnable
+    Lamp Selection:
+      codes:
+        - gc:lampSel.F
+    Ar Lamp State:
+      codes:
+        - gc:Ar_LampState

@@ -1,0 +1,746 @@
+altair:
+  Process Variable Gateway (altairgate):
+    Connections:
+      codes:
+        - altairgate.vctotal
+        - altairgate.pvtotal
+        - altairgate.active
+        - altairgate.connected
+        - altairgate.inactive
+        - altairgate.unconnected
+        - altairgate.disconnected
+        - altairgate.dead
+    Client Rates:
+      codes:
+        - altairgate.clientEventRate
+        - altairgate.clientPostRate
+    Server Rates:
+      codes:
+        - altairgate.serverEventRate
+        - altairgate.serverPostRate
+    Load:
+      codes:
+        - altairgate.existTestRate
+        - altairgate.loopRate
+        - altairgate.cpuFract
+    All:
+      codes:
+        - altairgate.vctotal
+        - altairgate.pvtotal
+        - altairgate.active
+        - altairgate.connected
+        - altairgate.inactive
+        - altairgate.unconnected
+        - altairgate.disconnected
+        - altairgate.dead
+        - altairgate.clientEventRate
+        - altairgate.clientPostRate
+        - altairgate.serverEventRate
+        - altairgate.serverPostRate
+        - altairgate.existTestRate
+        - altairgate.loopRate
+        - altairgate.cpuFract
+  Position Sensors:
+    Entrance Shutter Position:
+      codes:
+        - ao:entShutterLoc
+    Exit Shutter Position:
+      codes:
+        - ao:exitShutterLoc
+    Beamsplitter Position (A/B):
+      codes:
+        - ao:cc:selectBsLocA
+        - ao:cc:selectBsLocB
+    Dichroic Device Position:
+      codes:
+        - ao:cc:selectBsDevice.MPOS
+  FSM:
+    Tip:
+      codes:
+        - ao:cc:lgsfsmTipDevice
+        - ao:cc:lgsfsmTipDevice.MPOS
+        - ao:cc:lgsfsmTipDevice.RRBV
+        - ao:cc:lgsfsmTipDevice.RENC
+        - ao:cc:lgsfsmTipDevice.MSTA
+        - ao:cc:lgsfsmTipDevice.HPVL
+    Tilt:
+      codes:
+        - ao:cc:lgsfsmTiltDevice.MPOS
+        - ao:cc:lgsfsmTiltDevice
+        - ao:cc:lgsfsmTiltDevice.RRBV
+        - ao:cc:lgsfsmTiltDevice.RENC
+        - ao:cc:lgsfsmTiltDevice.MSTA
+        - ao:cc:lgsfsmTiltDevice.HPVL
+    Assembly:
+      codes:
+        - ao:cc:lgsfsmAssembly.A
+        - ao:cc:lgsfsmAssembly.B
+        - ao:cc:lgsfsmAssembly.VALA
+        - ao:cc:lgsfsmAssembly.VALB
+  ENG101:
+    Strehl:
+      codes:
+        - cal:altair:Strehl
+    AOSeeing:
+      codes:
+        - cal:altair:AOSeeing
+    FWHM:
+      codes:
+        - cal:altair:FWHM
+    Ellipticity:
+      codes:
+        - cal:altair:Ellipticity
+  STRAP:
+    APD counts:
+      codes:
+        - ao:getStatus5.VALA
+        - ao:getStatus5.VALB
+        - ao:getStatus5.VALC
+        - ao:getStatus5.VALD
+    Centroids:
+      codes:
+        - ao:getStatus5.VALE
+        - ao:getStatus5.VALF
+    Centroid gains:
+      codes:
+        - ao:getStatus5.VALG
+        - ao:getStatus5.VALH
+    Exposure time:
+      codes:
+        - ao:wfcs:strapSEX.VALA
+    Flux mode:
+      codes:
+        - ao:wfcs:strapSFX.VALA
+    Integrating:
+      codes:
+        - ao:strapDevStatus.VALH
+    Correction Loop Closed:
+      codes:
+        - ao:wfcs:strapCorrCtl.VALA
+  STRAP temperature:
+    Temperature:
+      codes:
+        - ao:strapDevStatus.VALF
+    Temperature control:
+      codes:
+        - ao:strapDevStatus.VALL
+    Over temperature condition:
+      codes:
+        - ao:strapDevStatus.VALM
+  SFO:
+    defocus offset:
+      codes:
+        - ao:cc:SfoDefocus
+    counts:
+      codes:
+        - sfo:dspGlobalIntensity
+    exp time:
+      codes:
+        - sfo:expTime
+    focus:
+      codes:
+        - ao:cc:lgszoomSfoFocus
+    integrating:
+      codes:
+        - sfo:observing
+    Correction Loop Closed (0/1):
+      codes:
+        - ao:cc:lgszoomSfoLoop
+    Background Level:
+      codes:
+        - sfo:displaySubApDetails.VALG
+    Background RMS:
+      codes:
+        - sfo:displaySubApDetails.VALH
+    Intensity:
+      codes:
+        - sfo:displaySubApDetails.VALI
+    Cent 00:
+      codes:
+        - sfo:cenX00
+        - sfo:cenY00
+    Cent 01:
+      codes:
+        - sfo:cenX01
+        - sfo:cenY01
+    Cent 10:
+      codes:
+        - sfo:cenX10
+        - sfo:cenY10
+    Cent 11:
+      codes:
+        - sfo:cenX11
+        - sfo:cenY11
+    Reference X:
+      codes:
+        - sfo:displaySubApDetails.VALA
+    Reference Y:
+      codes:
+        - sfo:displaySubApDetails.VALB
+    Centroid X:
+      codes:
+        - sfo:displaySubApDetails.VALC
+    Centroid Y:
+      codes:
+        - sfo:displaySubApDetails.VALD
+    X Offset:
+      codes:
+        - sfo:displaySubApDetails.VALE
+    Y Offset:
+      codes:
+        - sfo:displaySubApDetails.VALF
+  Target stream coming from TCS:
+    X demand:
+      codes:
+        - ao:followB.VALA
+    Y demand:
+      codes:
+        - ao:followB.VALB
+    Z demand:
+      codes:
+        - ao:followB.VALC
+  Bancom time and status:
+    Bancom time:
+      codes:
+        - ao:followB.VALE
+    Bancom status:
+      codes:
+        - ao:logrecord
+  WFS/Gimbals Position:
+    WFS/Position_Focal_Plane_(mm):
+      X Pos:
+        codes:
+          - ao:wfsposPosition.VALA
+      Y Pos:
+        codes:
+          - ao:wfsposPosition.VALB
+      Z Pos:
+        codes:
+          - ao:wfsposPosition.VALC
+    WFS/Error Focal Plane (mm):
+      X Err:
+        codes:
+          - ao:wfsposPosition.VALD
+      Y Err:
+        codes:
+          - ao:wfsposPosition.VALE
+      Z Err:
+        codes:
+          - ao:wfsposPosition.VALF
+    WFS/Patch (mm):
+      X Patch:
+        codes:
+          - ao:wfcs:xPatchIn
+      Y Patch:
+        codes:
+          - ao:wfcs:yPatchIn
+    Gimbals G1 (RRBV/ENC):
+      G1 Tip:
+        codes:
+          - ao:cc:wfsposG1tipDevice.RRBV
+          - ao:cc:wfsposG1tipDevice.RENC
+      G1 Tilt:
+        codes:
+          - ao:cc:wfsposG1tiltDevice.RRBV
+          - ao:cc:wfsposG1tiltDevice.RENC
+    Gimbals G2 (RRBV/ENC):
+      G2 a:
+        codes:
+          - ao:cc:wfsposG2aDevice.RRBV
+          - ao:cc:wfsposG2aDevice.RENC
+      G2 b:
+        codes:
+          - ao:cc:wfsposG2bDevice.RRBV
+          - ao:cc:wfsposG2bDevice.RENC
+      G2 c:
+        codes:
+          - ao:cc:wfsposG2cDevice.RRBV
+          - ao:cc:wfsposG2cDevice.RENC
+    Gimbals G1 (VAL|MPOS):
+      G1 Tip:
+        codes:
+          - ao:cc:wfsposG1tipDevice.MPOS
+          - ao:cc:wfsposG1tipDevice
+      G1 Tilt:
+        codes:
+          - ao:cc:wfsposG1tiltDevice.MPOS
+          - ao:cc:wfsposG1tiltDevice
+    Gimbals G2 (VAL/MPOS):
+      G2 a:
+        codes:
+          - ao:cc:wfsposG2aDevice.MPOS
+          - ao:cc:wfsposG2aDevice
+      G2 b:
+        codes:
+          - ao:cc:wfsposG2bDevice.MPOS
+          - ao:cc:wfsposG2bDevice
+      G2 c:
+        codes:
+          - ao:cc:wfsposG2cDevice.MPOS
+          - ao:cc:wfsposG2cDevice
+    ADC/Positions (Demand):
+      Entrance:
+        codes:
+          - ao:cc:wfsadcEntDevice.MPOS
+      Exit:
+        codes:
+          - ao:cc:wfsadcExitDevice.MPOS
+    ADC/Positions (Encoder Position):
+      Entrance:
+        codes:
+          - ao:cc:wfsadcEntDevice.RENC
+      Exit:
+        codes:
+          - ao:cc:wfsadcExitDevice.RENC
+    wfsposTarget:
+      Cass Rotator:
+        codes:
+          - ao:cc:wfsposTarget.VALB
+      Zenith Angle:
+        codes:
+          - ao:cc:wfsposTarget.VALN
+    Flags:
+      inPosition:
+        codes:
+          - ao:wfsposPosition.VALI
+      followC:
+        codes:
+          - ao:followC
+      record state:
+        codes:
+          - ao:cc:wfsposAssembly.BUSY
+    Raw Gimbal Motors inPosition:
+      Raw Combined inPosition:
+        codes:
+          - ao:wfsposCombineInPos
+  Gimbals Power/Brake/Status/HPVL:
+    G1tip:
+      codes:
+        - ao:cc:wfsposG1tipDevice.HPVL
+        - ao:cc:wfsposG1tipDevice.MESS
+        - ao:cc:wfsposG1tipDevice.PWR
+        - ao:cc:wfsposG1tipDevice.PSTA
+        - ao:cc:wfsposG1tipDevice.BRK
+        - ao:cc:wfsposG1tipDevice.BSTA
+    G1tilt:
+      codes:
+        - ao:cc:wfsposG1tiltDevice.HPVL
+        - ao:cc:wfsposG1tiltDevice.MESS
+        - ao:cc:wfsposG1tiltDevice.PWR
+        - ao:cc:wfsposG1tiltDevice.PSTA
+        - ao:cc:wfsposG1tiltDevice.BRK
+        - ao:cc:wfsposG1tiltDevice.BSTA
+    G2a:
+      codes:
+        - ao:cc:wfsposG2aDevice.HPVL
+        - ao:cc:wfsposG2aDevice.MESS
+        - ao:cc:wfsposG2aDevice.PWR
+        - ao:cc:wfsposG2aDevice.PSTA
+        - ao:cc:wfsposG2aDevice.BRK
+        - ao:cc:wfsposG2aDevice.BSTA
+    G2b:
+      codes:
+        - ao:cc:wfsposG2bDevice.HPVL
+        - ao:cc:wfsposG2bDevice.MESS
+        - ao:cc:wfsposG2bDevice.PWR
+        - ao:cc:wfsposG2bDevice.PSTA
+        - ao:cc:wfsposG2bDevice.BRK
+        - ao:cc:wfsposG2bDevice.BSTA
+    G2c:
+      codes:
+        - ao:cc:wfsposG2cDevice.HPVL
+        - ao:cc:wfsposG2cDevice.MESS
+        - ao:cc:wfsposG2cDevice.PWR
+        - ao:cc:wfsposG2cDevice.PSTA
+        - ao:cc:wfsposG2cDevice.BRK
+        - ao:cc:wfsposG2cDevice.BSTA
+  Corrections; used when blending:
+    Flux:
+      codes:
+        - ao:correctM.VALB
+    x Offset:
+      codes:
+        - ao:wfcs:xOffset
+    y Offset:
+      codes:
+        - ao:wfcs:yOffset
+    z Offset:
+      codes:
+        - ao:wfcs:zOffset
+    x Patch Corr.:
+      codes:
+        - ao:wfcs:xPatch
+    y Patch Corr.:
+      codes:
+        - ao:wfcs:yPatch
+  Altair Calibration Unit:
+    Base Encoders:
+      Absolute:
+        codes:
+          - ao:cc:astarAbsAngles.VALA
+      Incremental:
+        codes:
+          - ao:cc:astarAbsAngles.VALC
+      Abs+Inc:
+        codes:
+          - ao:cc:astarAbsAngles.VALA
+          - ao:cc:astarAbsAngles.VALC
+    Probe Encoders:
+      Absolute:
+        codes:
+          - ao:cc:astarAbsAngles.VALB
+      Incremental:
+        codes:
+          - ao:cc:astarAbsAngles.VALD
+      Abs+Inc:
+        codes:
+          - ao:cc:astarAbsAngles.VALB
+          - ao:cc:astarAbsAngles.VALD
+    Potentiometers:
+      ao:cc:astarSinBase:
+        codes:
+          - ao:cc:astarSinBase
+      ao:cc:astarCosBase:
+        codes:
+          - ao:cc:astarCosBase
+      ao:cc:astarSinProbe:
+        codes:
+          - ao:cc:astarSinProbe
+      ao:cc:astarCosProbe:
+        codes:
+          - ao:cc:astarCosProbe
+    Target (mm):
+      X:
+        codes:
+          - ao:moveAStar.B
+      Y:
+        codes:
+          - ao:moveAStar.C
+      Z:
+        codes:
+          - ao:moveAStar.D
+    Motor demand/position:
+      base VAL/MPOS:
+        codes:
+          - ao:cc:astarBaseDevice.MPOS
+          - ao:cc:astarBaseDevice
+      probe VAL/MPOS:
+        codes:
+          - ao:cc:astarProbeDevice.MPOS
+          - ao:cc:astarProbeDevice
+      stage VAL/MPOS:
+        codes:
+          - ao:cc:astarStageDevice.MPOS
+          - ao:cc:astarStageDevice
+    Motor raw position/encoder:
+      base RRBV/RENC:
+        codes:
+          - ao:cc:astarBaseDevice.RRBV
+          - ao:cc:astarBaseDevice.RENC
+      probe RRBV/RENC:
+        codes:
+          - ao:cc:astarProbeDevice.RRBV
+          - ao:cc:astarProbeDevice.RENC
+      stage RRBV/RENC:
+        codes:
+          - ao:cc:astarStageDevice.RRBV
+          - ao:cc:astarStageDevice.RENC
+    Home Position Valid (Indexed):
+      base Indexed:
+        codes:
+          - ao:cc:astarBaseDevice.HPVL
+      probe Indexed:
+        codes:
+          - ao:cc:astarProbeDevice.HPVL
+      stage Indexed:
+        codes:
+          - ao:cc:astarStageDevice.HPVL
+    Limit signals (from XYCOM):
+      base limits:
+        codes:
+          - ao:cc:astarBasepLim
+          - ao:cc:astarBasenLim
+      probe limits:
+        codes:
+          - ao:cc:astarProbepLim
+          - ao:cc:astarProbenLim
+      stage limits:
+        codes:
+          - ao:cc:astarStagepLim
+          - ao:cc:astarStagenLim
+    Named Position:
+      codes:
+        - ao:cc:astarPosition.VALD
+  LGS Zoom:
+    Motor demand/position:
+      Roof VAL/MPOS:
+        codes:
+          - ao:cc:lgszoomRoofDevice.MPOS
+          - ao:cc:lgszoomRoofDevice
+      Lens1 VAL/MPOS:
+        codes:
+          - ao:cc:lgszoomLens1Device.MPOS
+          - ao:cc:lgszoomLens1Device
+      Lens2 VAL/MPOS:
+        codes:
+          - ao:cc:lgszoomLens1Device.MPOS
+          - ao:cc:lgszoomLens1Device
+    Motor raw position/encoder:
+      Roof RRBV/RENC:
+        codes:
+          - ao:cc:lgszoomRoofDevice.RRBV
+          - ao:cc:lgszoomRoofDevice.RENC
+      Lens1 RRBV/RENC:
+        codes:
+          - ao:cc:lgszoomLens1Device.RRBV
+          - ao:cc:lgszoomLens1Device.RENC
+      Lens2 RRBV/RENC:
+        codes:
+          - ao:cc:lgszoomLens2Device.RRBV
+          - ao:cc:lgszoomLens2Device.RENC
+    Messages:
+      Roof Messages:
+        codes:
+          - ao:cc:lgszoomRoofDevice.MESS
+      Lens1 Messages:
+        codes:
+          - ao:cc:lgszoomLens1Device.MESS
+      Lens2 Messages:
+        codes:
+          - ao:cc:lgszoomLens2Device.MESS
+    Limit signals (from XYCOM):
+      Roof limits:
+        codes:
+          - ao:cc:lgszoomRoofpLim
+          - ao:cc:lgszoomRoofnLim
+      Lens1 limits:
+        codes:
+          - ao:cc:lgszoomLens1pLim
+          - ao:cc:lgszoomLens1nLim
+      Lens2 limits:
+        codes:
+          - ao:cc:lgszoomLens2pLim
+          - ao:cc:lgszoomLens2nLim
+    Defocus Used:
+      DefocusOut:
+        codes:
+          - ao:cc:lgszoomDefocusOut
+  Misc LGS Named Positions:
+    LGS ND Filter:
+      codes:
+        - ao:cc:lgsNDfiltAssembly.VALA
+    LGS Strap IRIS:
+      codes:
+        - ao:cc:lgsirisAssembly.VALA
+    LGS UStage:
+      codes:
+        - ao:cc:lgsustAssembly.VALA
+  Cassegrain (debug):
+    Various Flags:
+      codes:
+        - ao:cc:wfsposTarget.VALB
+        - ao:cc:wfsposTarget.SEVR
+        - ao:cc:wfsposAssembly.MODE
+        - ao:cc:wfsposcurrentRma.SEVR
+  Temperatures:
+    wfs Temp:
+      codes:
+        - ao:wfcs:getStatus4.VALL
+    controller Temp:
+      codes:
+        - ao:wfcs:getStatus4.VALM
+    LGS Lens 1:
+      codes:
+        - ao:temp0
+    Deformable Mirror:
+      codes:
+        - ao:temp1
+    Heat Exchanger Air Inlet:
+      codes:
+        - ao:temp2
+    Heat Exchanger Air Outlet:
+      codes:
+        - ao:temp3
+    Coolant Inlet:
+      codes:
+        - ao:temp4
+    Deformable Mirror Driver:
+      codes:
+        - ao:temp5
+    WFS Gimbal 1 Temp:
+      codes:
+        - ao:temp6
+    WFS ADC Temp:
+      codes:
+        - ao:temp7
+    NGS Controller Temp:
+      codes:
+        - ao:temp8
+    WFS Gimbal 2 Temp:
+      codes:
+        - ao:temp9
+    NGS WFS Coolant Temp:
+      codes:
+        - ao:temp10
+    LGS Lens 2 Temp:
+      codes:
+        - ao:temp11
+    SFO CCD Temp:
+      codes:
+        - sfo:ccdTemp
+    SFO heatsink Temp:
+      codes:
+        - sfo:heatSinkTemp
+    SFO Cooler setpoint:
+      codes:
+        - sfo:ReadCameraTemp.VALA
+  Voltages:
+    DM bias voltage 1:
+      codes:
+        - ao:dmVolt.VALA
+    DM bias voltage 2:
+      codes:
+        - ao:dmVolt.VALB
+  Prepare Control Matrix:
+    x:
+      codes:
+        - ao:prepareCm.A
+    y:
+      codes:
+        - ao:prepareCm.B
+    r0:
+      codes:
+        - ao:prepareCm.C
+    mag:
+      codes:
+        - ao:prepareCm.D
+    windspeed:
+      codes:
+        - ao:prepareCm.E
+    id:
+      codes:
+        - ao:prepareCm.VALA
+  Correction Loop:
+    correction state:
+      codes:
+        - ao:correctM.VALA
+    correction matrix ID:
+      codes:
+        - ao:correctM.VALH
+    optimizing state:
+      codes:
+        - ao:wfcs:getStatus2.VALM
+    correction use default gain state:
+      codes:
+        - ao:correctM.F
+    tiptilt mirror tip position:
+      codes:
+        - ao:wfcs:getStatus2.VALH
+    tiptilt mirror tilt position:
+      codes:
+        - ao:wfcs:getStatus2.VALI
+    focus on DM:
+      codes:
+        - ao:wfcs:getStatus2.VALJ
+    avg Quadcell ADU:
+      codes:
+        - ao:wfcs:getStatus4.VALA
+    first Zernikes:
+      codes:
+        - ao:zernQlook.VALA
+  Gains:
+    tip:
+      codes:
+        - ao:wfcs:getStatus4.VALF
+    tilt:
+      codes:
+        - ao:wfcs:getStatus4.VALG
+    focus:
+      codes:
+        - ao:wfcs:getStatus4.VALH
+    astig0:
+      codes:
+        - ao:wfcs:getStatus4.VALI
+    astig45:
+      codes:
+        - ao:wfcs:getStatus4.VALJ
+    xcoma:
+      codes:
+        - ao:wfcs:getStatus4.VALK
+    Modal Gains mean:
+      codes:
+        - ao:wfcs:getStatus4.VALD
+    Modal gains std dev:
+      codes:
+        - ao:wfcs:getStatus4.VALE
+    modal gains tip:
+      codes:
+        - ao:wfcs:getStatus4.VALF
+    modal gains tilt:
+      codes:
+        - ao:wfcs:getStatus4.VALG
+    modal gains focus:
+      codes:
+        - ao:wfcs:getStatus4.VALH
+    modal gains astig0:
+      codes:
+        - ao:wfcs:getStatus4.VALI
+    modal gains astig45:
+      codes:
+        - ao:wfcs:getStatus4.VALJ
+    modal gains comma0:
+      codes:
+        - ao:wfcs:getStatus4.VALK
+  Offload:
+    astig0:
+      codes:
+        - ao:aoZernikes.VALF
+    astig45:
+      codes:
+        - ao:aoZernikes.VALG
+    xcoma:
+      codes:
+        - ao:aoZernikes.VALH
+    ycoma:
+      codes:
+        - ao:aoZernikes.VALI
+    trefoil1:
+      codes:
+        - ao:aoZernikes.VALK
+    trefoil2:
+      codes:
+        - ao:aoZernikes.VALL
+    spherical:
+      codes:
+        - ao:aoZernikes.VALT
+  Status:
+    WFS error number:
+      codes:
+        - ao:wfcs:getStatus2.VALS
+    WFS exptime:
+      codes:
+        - ao:wfcs:getStatus.VALK
+    outer scale estimate:
+      codes:
+        - ao:wfcs:getStatus.VALI
+    seeing estimate:
+      codes:
+        - ao:wfcs:getStatus.VALD
+    centroid gain estimate:
+      codes:
+        - ao:wfcs:getStatus4.VALQ
+    AO loop settled.:
+      codes:
+        - ao:wfcs:settled
+    useLwfs State:
+      codes:
+        - ao:useLwfs.VALA
+    Na layer thickness:
+      codes:
+        - ao:getStatus5.VALI
+    CC Combined Error Message:
+      codes:
+        - ao:cc:errMsg.VALA
+    WFCS Combined Error Message:
+      codes:
+        - ao:wfcs:errMsg.VALA

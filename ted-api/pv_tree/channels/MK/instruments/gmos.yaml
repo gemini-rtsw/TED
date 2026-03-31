@@ -1,0 +1,490 @@
+gmos:
+  Temperature:
+    Detector:
+      codes:
+        - gm:sad:dc:detTemp
+    Flexure Temperature (C):
+      codes:
+        - gm:dc:ls336:IN1
+    CCDb Temperature (C):
+      codes:
+        - gm:dc:ls336:IN2
+    CCDg Temperature (C):
+      codes:
+        - gm:dc:ls336:IN3
+    CCDr Temperature (C):
+      codes:
+        - gm:dc:ls336:IN4
+    Setpoint Temperature (C):
+      codes:
+        - gm:dc:ls336:OUT1:SP_RBV
+    Lakeshore P gain:
+      codes:
+        - gm:dc:ls336:P1_RBV
+    Lakeshore I gain:
+      codes:
+        - gm:dc:ls336:I1_RBV
+    Lakeshore D gain:
+      codes:
+        - gm:dc:ls336:D1_RBV
+    Lakeshore Heater Power (%):
+      codes:
+        - gm:dc:ls336:HTR1
+    Lakeshore Ramp:
+      codes:
+        - gm:dc:ls336:OnRamp1_RBV
+    WFS CCD controller case (temp1):
+      codes:
+        - gm:cc:temp1
+    Collimator Case (temp2):
+      codes:
+        - gm:cc:temp2
+    Electronics Enclosure 2 (temp3):
+      codes:
+        - gm:cc:temp3
+    Filter Assembly (temp4):
+      codes:
+        - gm:cc:temp4
+    Collimator Beam Air (temp5):
+      codes:
+        - gm:cc:temp5
+    SCI CCD controller case (temp6):
+      codes:
+        - gm:cc:temp6
+    Electronics Enclosure 1 (temp7):
+      codes:
+        - gm:cc:temp7
+    Camera Barrel Midpoint (temp8):
+      codes:
+        - gm:cc:temp8
+  DC setup:
+    All:
+      codes:
+        - gm:dc:dcSetup
+        - gm:dc:dcSetup.A
+        - gm:dc:dcSetup.DIR
+        - gm:dc:dcSetup.F
+        - gm:dc:dcSetup.G
+        - gm:dc:dcSetup.VALA
+        - gm:dc:dcSetup.VALF
+        - gm:dc:dcSetup.VALG
+        - gm:dc:dcSetup.VALS
+  Masks:
+    Status:
+      codes:
+        - gm:cc:mskNotAligned
+        - gm:cc:mskNotInSlot
+        - gm:cc:mskNotCassette
+        - gm:cc:optsensorEnable
+        - gm:cc:mskIfuNotIn
+        - gm:cc:mskNotInFp
+        - gm:cc:mskMaskNotIn
+    Positions:
+      codes:
+        - gm:cc:mskGrpDevice.MPOS
+        - gm:cc:mskExtDevice.VAL
+        - gm:cc:mskExtDevice.MPOS
+        - gm:cc:mskCasDevice.VAL
+        - gm:cc:mskCasDevice.MPOS
+        - gm:cc:mskCasDevice.RRBV
+    Power:
+      codes:
+        - gm:cc:mskExtDevice.PWR|gm:cc:mskExtPower
+        - gm:cc:mskCasDevice.PWR|gm:cc:mskCasPower
+        - gm:cc:mskGrpDevice.PWR|gm:cc:mskGrpPower
+        - gm:cc:mskRelDevice.PWR|gm:cc:mskRelPower
+    Grippers:
+      codes:
+        - gm:cc:mskGrpNotGripped
+        - gm:cc:mskGrpNotReleased
+        - gm:cc:mskRelNotReleased
+        - gm:cc:mskRelNotLocked
+    LVDT:
+      codes:
+        - gm:cc:mskLvdt
+  Gmos Oiwfs:
+    Probe Sine Base:
+      codes:
+        - gm:wfs:probeSinBas
+    Probe Cosine Base:
+      codes:
+        - gm:wfs:probeCosBas
+    Probe Sine Pickoff:
+      codes:
+        - gm:wfs:probeSinPko
+    Probe Cosine Pickoff:
+      codes:
+        - gm:wfs:probeCosPko
+    Probe Absolute Angles:
+      VALA:
+        codes:
+          - gm:wfs:probeAbsAngles.VALA
+      VALB:
+        codes:
+          - gm:wfs:probeAbsAngles.VALB
+      VALC:
+        codes:
+          - gm:wfs:probeAbsAngles.VALC
+      VALD:
+        codes:
+          - gm:wfs:probeAbsAngles.VALD
+    Probe Positions:
+      Absolute X:
+        codes:
+          - gm:wfs:probeAbsX
+      Absolute Y:
+        codes:
+          - gm:wfs:probeAbsY
+      Current X:
+        codes:
+          - gm:wfs:probeCurX
+      Current Y:
+        codes:
+          - gm:wfs:probeCurY
+    Probe Coordinates:
+      X:
+        codes:
+          - gm:wfs:probeX
+      Y:
+        codes:
+          - gm:wfs:probeY
+      Base Device MPOS:
+        codes:
+          - gm:wfs:probeBasDevice.MPOS
+      Pickoff Device MPOS:
+        codes:
+          - gm:wfs:probePkoDevice.MPOS
+    Probe Demand and Error:
+      Base Demand:
+        codes:
+          - gm:wfs:probeBasDevice
+      Pickoff Demand:
+        codes:
+          - gm:wfs:probePkoDevice
+      Base Encoder Error:
+        codes:
+          - gm:wfs:probeBasCalcEncErr
+      Pickoff Encoder Error:
+        codes:
+          - gm:wfs:probePkoCalcEncErr
+    Status Flags:
+      In Position:
+        codes:
+          - gm:wfs:inPosition
+      Follow Mode:
+        codes:
+          - gm:wfs:followA.H
+    Brakes and Power:
+      Base Brake:
+        codes:
+          - gm:wfs:probeBasDevice.BRK
+      Base Power:
+        codes:
+          - gm:wfs:probeBasDevice.PWR
+          - gm:wfs:probeBasPower
+      Pickoff Brake:
+        codes:
+          - gm:wfs:probePkoDevice.BRK
+      Pickoff Power:
+        codes:
+          - gm:wfs:probePkoDevice.PWR
+          - gm:wfs:probePkoPower
+      Base RRBV:
+        codes:
+          - gm:wfs:probeBasDevice.RRBV
+      Base RENC:
+        codes:
+          - gm:wfs:probeBasDevice.RENC
+      Pickoff RRBV:
+        codes:
+          - gm:wfs:probePkoDevice.RRBV
+      Pickoff RENC:
+        codes:
+          - gm:wfs:probePkoDevice.RENC
+    Telescope Coordinates:
+      X_T:
+        codes:
+          - gm:wfs:followA.A
+      Y_T:
+        codes:
+          - gm:wfs:followA.B
+    Mask Coordinates:
+      X_M:
+        codes:
+          - gm:wfs:followA.VALE
+      Y_M:
+        codes:
+          - gm:wfs:followA.VALF
+    Probe All:
+      codes:
+        - gm:wfs:probeAbsAngles.VALA
+        - gm:wfs:probeAbsAngles.VALB
+        - gm:wfs:probeAbsAngles.VALC
+        - gm:wfs:probeAbsAngles.VALD
+        - gm:wfs:probeAbsX
+        - gm:wfs:probeAbsY
+        - gm:wfs:probeCosBas
+        - gm:wfs:probeCosPko
+        - gm:wfs:probeSinPko
+  Gratings:
+    Grating Names:
+      codes:
+        - gm:sad:grName
+    Grating IDs:
+      codes:
+        - gm:sad:cc:grID
+    Wavelengths:
+      codes:
+        - gm:sad:grWavelen
+        - gm:sad:grEffWavelen
+    Order:
+      codes:
+        - gm:sad:grOrder
+    Tilt:
+      codes:
+        - gm:sad:cc:grTilt
+    Park:
+      codes:
+        - gm:sad:cc:grPark
+    Devices:
+      A:
+        codes:
+          - gm:cc:grADevice
+          - gm:cc:grADevice.HPVL
+          - gm:cc:grADevice.MPOS
+      B:
+        codes:
+          - gm:cc:grBDevice
+          - gm:cc:grBDevice.HPVL
+          - gm:cc:grBDevice.MPOS
+      C:
+        codes:
+          - gm:cc:grCDevice
+          - gm:cc:grCDevice.HPVL
+          - gm:cc:grCDevice.MPOS
+      D:
+        codes:
+          - gm:cc:grDDevice
+          - gm:cc:grDDevice.HPVL
+          - gm:cc:grDDevice.MPOS
+    Turret Positions:
+      A:
+        codes:
+          - gm:cc:grTurretPosA
+      B:
+        codes:
+          - gm:cc:grTurretPosB
+      C:
+        codes:
+          - gm:cc:grTurretPosC
+      D:
+        codes:
+          - gm:cc:grTurretPosD
+    Selection:
+      B:
+        codes:
+          - gm:grSelect.B
+      C:
+        codes:
+          - gm:grSelect.C
+      D:
+        codes:
+          - gm:grSelect.D
+      Mode:
+        codes:
+          - gm:gratingModeMenu
+  Zero Point Corrections:
+    GRA:
+      codes:
+        - gm:cc:grConfigZpcGRA
+        - gm:gratingSelect.ZRST
+    GRB:
+      codes:
+        - gm:cc:grConfigZpcGRB
+        - gm:gratingSelect.ONST
+    GRC:
+      codes:
+        - gm:cc:grConfigZpcGRC
+        - gm:gratingSelect.TWST
+    GRD:
+      codes:
+        - gm:cc:grConfigZpcGRD
+        - gm:gratingSelect.THST
+  DTA Positions:
+    X:
+      VAL_MPOS:
+        codes:
+          - gm:cc:dta1Device.MPOS
+          - gm:cc:dta1Device
+      RRBV:
+        codes:
+          - gm:cc:dta1Device.RRBV
+      MIP:
+        codes:
+          - gm:cc:dta1Device.MIP
+      Target:
+        codes:
+          - gm:cc:dtaAssembly.A
+    Y:
+      VAL_MPOS:
+        codes:
+          - gm:cc:dta2Device.MPOS
+          - gm:cc:dta2Device
+      RRBV:
+        codes:
+          - gm:cc:dta2Device.RRBV
+      MIP:
+        codes:
+          - gm:cc:dta2Device.MIP
+      Target:
+        codes:
+          - gm:cc:dtaAssembly.B
+    Z:
+      VAL_MPOS:
+        codes:
+          - gm:cc:dta3Device.MPOS
+          - gm:cc:dta3Device
+      RRBV:
+        codes:
+          - gm:cc:dta3Device.RRBV
+      MIP:
+        codes:
+          - gm:cc:dta3Device.MIP
+      Target:
+        codes:
+          - gm:cc:dtaAssembly.C
+  Other:
+    Shutter Position:
+      codes:
+        - gm:sad:dc:shutPos
+    Time Left:
+      codes:
+        - gm:sad:dc:timeleft
+    Filter Wheel 1 Input:
+      codes:
+        - gm:fltPos.A
+    Filter Wheel 2 Input:
+      codes:
+        - gm:fltPos.B
+    Filter Names:
+      codes:
+        - gm:sad:filtName1
+        - gm:sad:filtName2
+    DC Health:
+      codes:
+        - gm:sad:dc:health
+    Mask Position:
+      codes:
+        - gm:mskPos.A
+    Grating/Wavelength:
+      codes:
+        - gm:grSelect.B
+        - gm:grSelect.C
+    Focus Offset:
+      codes:
+        - gm:dtaTrack.D
+    Target/Current position filter 1:
+      codes:
+        - gm:cc:flt1Device
+    Target/Current position filter 2:
+      codes:
+        - gm:cc:flt2Device
+  Index:
+    codes:
+      - gm:wfs:probeBasDevice.HPVL
+      - gm:wfs:probePkoDevice.HPVL
+      - gm:cc:dta1Device.HPVL
+      - gm:cc:dta2Device.HPVL
+      - gm:cc:dta3Device.HPVL
+      - gm:cc:mskExtDevice.HPVL
+      - gm:cc:mskCasDevice.HPVL
+      - gm:cc:mskGrpDevice.HPVL
+      - gm:cc:mskRelDevice.HPVL
+      - gm:cc:grADevice.HPVL
+      - gm:cc:grBDevice.HPVL
+      - gm:cc:grCDevice.HPVL
+      - gm:cc:grDDevice.HPVL
+      - gm:cc:grtDevice.HPVL
+      - gm:cc:flt1Device.HPVL
+      - gm:cc:flt2Device.HPVL
+      - gm:wfs:probeAssembly.INDX
+      - gm:cc:mskAssembly.INDX
+      - gm:cc:dtaAssembly.INDX
+      - gm:cc:grAssembly.INDX
+      - gm:cc:fltAssembly.INDX
+  Errors:
+    Apply Records:
+      codes:
+        - gm:apply.DIR
+        - gm:apply.MARK
+        - gm:applyC.OMSS
+        - gm:applyC
+        - gm:dc:apply.DIR
+        - gm:dc:apply.MARK
+        - gm:dc:applyC.OMSS
+        - gm:dc:applyC
+        - gm:cc:apply.DIR
+        - gm:cc:apply.MARK
+        - gm:cc:applyC.OMSS
+        - gm:cc:applyC
+    Probe Errors:
+      codes:
+        - gm:wfs:probeBasDevice.MESS
+        - gm:wfs:probePkoDevice.MESS
+  Lab CCD Temperatures:
+    codes:
+      - gm:dc:tc:temperature.VALC
+      - gm:dc:tc:temperature.VALG
+      - gm:dc:tc:temperature.VALE
+      - gm:dc:tc:temperature.VALI
+  Interlocks:
+    GIS:
+      codes:
+        - gm:cc:gisDemand
+        - gm:cc:gisError
+        - gm:cc:gisEvent
+        - gm:cc:gisEventError
+    Pressure:
+      codes:
+        - gm:cc:upstreamOk
+        - gm:cc:downstreamOk
+    Control:
+      codes:
+        - gm:cc:masterDisabled
+        - gm:cc:softIlock
+        - gm:cc:ilock
+  Doors:
+    codes:
+      - gm:cc:door1
+      - gm:cc:door2
+      - gm:cc:door3
+      - gm:cc:door4
+      - gm:cc:door5
+      - gm:cc:door6
+      - gm:cc:door7
+      - gm:cc:door8
+      - gm:cc:doorIlckDefeat
+  Motor and Power:
+    Mask Power:
+      codes:
+        - gm:cc:mskRelPower
+        - gm:cc:mskGrpPower
+        - gm:cc:mskCasPower
+        - gm:cc:mskExtPower
+    Probe Power:
+      codes:
+        - gm:wfs:probeBasPower
+        - gm:wfs:probePkoPower
+    DTA Power:
+      X:
+        codes:
+          - gm:cc:dta1Power
+          - gm:cc:dta1Device.PWR
+      Y:
+        codes:
+          - gm:cc:dta2Device.PWR
+          - gm:cc:dta2Power
+      Z:
+        codes:
+          - gm:cc:dta3Device.PWR
+          - gm:cc:dta3Power
