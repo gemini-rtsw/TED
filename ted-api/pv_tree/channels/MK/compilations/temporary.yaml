@@ -1,0 +1,631 @@
+temporary:
+  Image Jump:
+    Mount:
+      Elevation:
+        codes:
+          - mc:elCurrentPos
+      Azimuth:
+        codes:
+          - mc:azCurrentPos
+    PCS:
+      X-Definer error:
+        codes:
+          - m1:MCB001:M1:PosnErr
+      Lat+X error:
+        codes:
+          - m1:MCB036:M1:PosnErr
+      Lat-X error:
+        codes:
+          - m1:MCB035:M2:PosnErr
+    SCS:
+      X position:
+        codes:
+          - m2:xPos
+      Y position:
+        codes:
+          - m2:yPos
+      Tip:
+        codes:
+          - m2:real.VALC
+      Tilt:
+        codes:
+          - m2:real.VALD
+      Focus:
+        codes:
+          - m2:real.VALE
+    CRCS:
+      CR angle:
+        codes:
+          - cr:crCurrentPos
+    A&G Science Fold:
+      RT:
+        codes:
+          - ag:sfPosA.VALA
+      Tilt:
+        codes:
+          - ag:sfPosA.VALB
+      Linear stage:
+        codes:
+          - ag:sfPosA.VALC
+    A&G PWFS2:
+      RT:
+        codes:
+          - ag:p2:probePosA.VALG
+      PA:
+        codes:
+          - ag:p2:probePosA.VALH
+      X:
+        codes:
+          - ag:p2:probePosA.VALA
+      Y:
+        codes:
+          - ag:p2:probePosA.VALB
+      Focus:
+        codes:
+          - ag:p2:probePosA.VALC
+      Filter wheel angle:
+        codes:
+          - ag:p2:filterPosA.VALA
+      Field stop angle:
+        codes:
+          - ag:p2:fldstopPosA.VALA
+    TCS:
+      Guide CA:
+        codes:
+          - tcs:ak:guide:ca
+      Guide CE:
+        codes:
+          - tcs:ak:guide:ce
+      Drives:
+        codes:
+          - tcs:drives:p2x
+          - tcs:drives:p2y
+          - tcs:drives:p2z
+          - tcs:drives:pwfs2Xdemand
+          - tcs:drives:pwfs2Ydemand
+          - tcs:drives:pwfs2Zdemand
+  FR4346:
+    Both:
+      codes:
+        - tcs:pwfs2Follow.A
+        - ag:p2:followS
+  roberto/ana maria:
+    MCS:
+      Elevation:
+        codes:
+          - mc:elCurrentPos
+      Azimuth:
+        codes:
+          - mc:azCurrentPos
+      Elevation demand:
+        codes:
+          - mc:elDemandPos
+      Azimuth demand:
+        codes:
+          - mc:azDemandPos
+    CRCS:
+      Current:
+        codes:
+          - cr:crCurrentPos
+      Demand:
+        codes:
+          - cr:crDemandPos
+    TCS:
+      Offset PoA1 A:
+        codes:
+          - tcs:offsetPoA1.A
+      Offset PoA1 B:
+        codes:
+          - tcs:offsetPoA1.B
+      NOD:
+        codes:
+          - tcs:nod.A
+    WFS:
+      TTF:
+        codes:
+          - oiwfs:dc:ttf.VALA
+          - oiwfs:dc:ttf.VALB
+          - oiwfs:dc:ttf.VALC
+      AOZ:
+        codes:
+          - oiwfs:dc:aoZ.VALD
+          - oiwfs:dc:aoZ.VALE
+    SCS:
+      Display 1:
+        codes:
+          - m2:displayScs2.VALF
+          - m2:displayScs2.VALG
+          - m2:displayScs.VALC
+      Real:
+        codes:
+          - m2:real.VALC
+          - m2:real.VALD
+          - m2:real.VALE
+      Display 2:
+        codes:
+          - m2:displayScs.VALA
+          - m2:displayScs.VALB
+          - m2:displayScs2.VALB
+      Byte0:
+        codes:
+          - m2:byte0:b7
+      Beam:
+        codes:
+          - m2:beam
+    Other:
+      PWFS2:
+        codes:
+          - pwfs2:dc:ttf.VALA
+          - pwfs2:dc:ttf.VALB
+          - pwfs2:dc:ttf.VALC
+          - pwfs2:dc:aoZ.VALD
+          - pwfs2:dc:aoZ.VALE
+      PWFS1:
+        codes:
+          - pwfs1:dc:ttf.VALA
+          - pwfs1:dc:ttf.VALB
+          - pwfs1:dc:ttf.VALC
+          - pwfs1:dc:aoZ.VALD
+          - pwfs1:dc:aoZ.VALE
+  Detector Lab:
+    LS1 Temperatures:
+      IN1:
+        codes:
+          - Detlab:LS1:IN1
+      IN2:
+        codes:
+          - Detlab:LS1:IN2
+      IN3:
+        codes:
+          - Detlab:LS1:IN3
+      IN4:
+        codes:
+          - Detlab:LS1:IN4
+    LS2 Temperatures:
+      IN1:
+        codes:
+          - Detlab:LS2:IN1
+      IN2:
+        codes:
+          - Detlab:LS2:IN2
+      IN3:
+        codes:
+          - Detlab:LS2:IN3
+      IN4:
+        codes:
+          - Detlab:LS2:IN4
+    Miscellaneous LS1:
+      OUT1 SP:
+        codes:
+          - Detlab:LS1:OUT1:SP_RBV
+      OUT2 SP:
+        codes:
+          - Detlab:LS1:OUT2:SP_RBV
+      OUT3 SP:
+        codes:
+          - Detlab:LS1:OUT3:SP_RBV
+      OUT4 SP:
+        codes:
+          - Detlab:LS1:OUT4:SP_RBV
+      HTR1:
+        codes:
+          - Detlab:LS1:HTR1
+      HTR2:
+        codes:
+          - Detlab:LS1:HTR2
+      AOUT3:
+        codes:
+          - Detlab:LS1:AOUT3
+      AOUT4:
+        codes:
+          - Detlab:LS1:AOUT4
+      Range HTR1:
+        codes:
+          - Detlab:LS1:HTR1:Range_RBV
+      Range HTR2:
+        codes:
+          - Detlab:LS1:HTR2:Range_RBV
+      Range AOUT3:
+        codes:
+          - Detlab:LS1:AOUT3:Range_RBV
+      Range AOUT4:
+        codes:
+          - Detlab:LS1:AOUT4:Range_RBV
+    Miscellaneous LS2:
+      OUT1 SP:
+        codes:
+          - Detlab:LS2:OUT1:SP_RBV
+      OUT2 SP:
+        codes:
+          - Detlab:LS2:OUT2:SP_RBV
+      OUT3 SP:
+        codes:
+          - Detlab:LS2:OUT3:SP_RBV
+      OUT4 SP:
+        codes:
+          - Detlab:LS2:OUT4:SP_RBV
+    Pressures:
+      MKS1 P1:
+        codes:
+          - Detlab:MKS1:P1
+    GMOS Hamamatsu Controller 1:
+      CA Client Connections:
+        codes:
+          - gm:dc:iocstats:CA_CLNT_CNT
+      CA Connections:
+        codes:
+          - gm:dc:iocstats:CA_CONN_CNT
+      Uptime:
+        codes:
+          - gm:dc:iocstats:UPTIME
+      CPU Load:
+        codes:
+          - gm:dc:iocstats:IOC_CPU_LOAD
+      Free Heap:
+        codes:
+          - gm:dc:iocstats:MEM_FREE
+      Largest Free Block:
+        codes:
+          - gm:dc:iocstats:MEM_BLK_FREE
+      Flexure Temp:
+        codes:
+          - gm:dc:ls336:IN1
+      CCDb Temp:
+        codes:
+          - gm:dc:ls336:IN2
+      CCDg Temp:
+        codes:
+          - gm:dc:ls336:IN3
+      CCDr Temp:
+        codes:
+          - gm:dc:ls336:IN4
+      Setpoint:
+        codes:
+          - gm:dc:ls336:OUT1:SP_RBV
+      P gain:
+        codes:
+          - gm:dc:ls336:P1_RBV
+      I gain:
+        codes:
+          - gm:dc:ls336:I1_RBV
+      D gain:
+        codes:
+          - gm:dc:ls336:D1_RBV
+      Heater Power:
+        codes:
+          - gm:dc:ls336:HTR1
+      Ramp:
+        codes:
+          - gm:dc:ls336:OnRamp1_RBV
+  TCS - seqInit communication:
+    Init stages:
+      codes:
+        - tcs:debug:initGS.VALA
+        - tcs:debug:initGS.VALB
+        - tcs:debug:initGS.VALC
+        - tcs:debug:initGS.VALD
+        - tcs:debug:initGS.VALE
+        - tcs:debug:initGS.VALF
+        - tcs:debug:initGS.VALG
+        - tcs:debug:initGS.VALH
+        - tcs:debug:initGS.VALI
+        - tcs:debug:initGS.VALK
+        - tcs:debug:initGS.VALL
+        - tcs:debug:initGS.VALM
+        - tcs:debug:initGS.VALN
+        - tcs:debug:initGS.VALO
+        - tcs:debug:initGS.VALP
+        - tcs:debug:initGS.VALQ
+        - tcs:debug:initGS.VALR
+        - tcs:debug:initGS.VALS
+        - tcs:debug:initGS.VALT
+        - tcs:debug:initGS.VALU
+    Mon stages:
+      codes:
+        - tcs:debug:monGS.VALA
+        - tcs:debug:monGS.VALB
+        - tcs:debug:monGS.VALC
+        - tcs:debug:monGS.VALD
+        - tcs:debug:monGS.VALE
+        - tcs:debug:monGS.VALF
+        - tcs:debug:monGS.VALG
+        - tcs:debug:monGS.VALH
+        - tcs:debug:monGS.VALI
+        - tcs:debug:monGS.VALK
+        - tcs:debug:monGS.VALL
+    Through rates:
+      codes:
+        - tcs:debug:monGS.VALN
+        - tcs:debug:monGS.VALR
+    Through incremental:
+      codes:
+        - tcs:debug:monGS.VALO
+        - tcs:debug:monGS.VALS
+    Entry rates:
+      codes:
+        - tcs:debug:monGS.VALP
+        - tcs:debug:monGS.VALT
+    Entry incremental:
+      codes:
+        - tcs:debug:monGS.VALQ
+        - tcs:debug:monGS.VALU
+    Control value:
+      codes:
+        - tcs:debug:monGS.VALM
+    Watchdogs:
+      codes:
+        - tcs:clearWatchdog1s
+        - tcs:clearWatchdog2s
+        - tcs:clearWatchdog5s
+        - tcs:clearWatchdog10s
+    Init incr stages:
+      codes:
+        - tcs:debug:initGS.A
+        - tcs:debug:initGS.B
+        - tcs:debug:initGS.C
+        - tcs:debug:initGS.D
+        - tcs:debug:initGS.E
+        - tcs:debug:initGS.F
+        - tcs:debug:initGS.G
+        - tcs:debug:initGS.H
+        - tcs:debug:initGS.I
+        - tcs:debug:initGS.K
+        - tcs:debug:initGS.L
+        - tcs:debug:initGS.M
+        - tcs:debug:initGS.N
+        - tcs:debug:initGS.O
+        - tcs:debug:initGS.P
+        - tcs:debug:initGS.Q
+        - tcs:debug:initGS.R
+        - tcs:debug:initGS.S
+        - tcs:debug:initGS.T
+        - tcs:debug:initGS.U
+    Mon incr stages:
+      codes:
+        - tcs:debug:monGS.A
+        - tcs:debug:monGS.B
+        - tcs:debug:monGS.C
+        - tcs:debug:monGS.D
+        - tcs:debug:monGS.E
+        - tcs:debug:monGS.F
+        - tcs:debug:monGS.G
+        - tcs:debug:monGS.H
+        - tcs:debug:monGS.I
+        - tcs:debug:monGS.K
+        - tcs:debug:monGS.L
+    AG vs Total:
+      codes:
+        - tcs:debug:initGS.VALL
+        - tcs:debug:initGS.VALM
+        - tcs:debug:monGS.VALP
+        - tcs:debug:monGS.VALT
+        - tcs:debug:monGS.VALE
+  IR Detector:
+    Lakeshore325:
+      codes:
+        - tgnirs:ls325:IN1
+        - tgnirs:ls325:IN2
+        - tgnirs:ls325:HTR1
+        - tgnirs:ls325:HTR2
+  Cloud Camera Enclosure:
+    Hilo:
+      Humidity:
+        codes:
+          - cc:Hilo.humid
+      Temperature:
+        codes:
+          - cc:Hilo.temp
+    North:
+      Humidity:
+        codes:
+          - cc:North.humid
+      Temperature:
+        codes:
+          - cc:North.temp
+    Prototype:
+      Humidity:
+        codes:
+          - cc:Prototype.humid
+      Temperature:
+        codes:
+          - cc:Prototype.temp
+    South:
+      Humidity:
+        codes:
+          - cc:South.humid
+      Temperature:
+        codes:
+          - cc:South.temp
+    Unknown:
+      Humidity:
+        codes:
+          - cc:Unknown.humid
+      Temperature:
+        codes:
+          - cc:Unknown.temp
+    Up:
+      Humidity:
+        codes:
+          - cc:Up.humid
+      Temperature:
+        codes:
+          - cc:Up.temp
+    West:
+      Humidity:
+        codes:
+          - cc:West.humid
+      Temperature:
+        codes:
+          - cc:West.temp
+  Sam's Test:
+    Real C:
+      codes:
+        - m2:real.VALC
+  Time Audit:
+    MC diff:
+      codes:
+        - ta:mc:diff
+    TCS diff:
+      codes:
+        - ta:tcs:diff
+    AG diff:
+      codes:
+        - ta:ag:diff
+    CR diff:
+      codes:
+        - ta:cr:diff
+    M2 diff:
+      codes:
+        - ta:m2:diff
+  GLHX:
+    GLHX:
+      Utility Flow:
+        codes:
+          - glhx:utilFlow
+      Process Flow:
+        codes:
+          - glhx:procFlow
+      Head1 Outlet Flow:
+        codes:
+          - glhx:Head1Flow
+      EC1 Outlet Flow:
+        codes:
+          - glhx:EC1Flow
+      Head2 Outlet Flow:
+        codes:
+          - glhx:Head2Flow
+      EC2 Outlet Flow:
+        codes:
+          - glhx:EC2Flow
+      Head3 Outlet Flow:
+        codes:
+          - glhx:Head3Flow
+      EC3 Outlet Flow:
+        codes:
+          - glhx:EC3Flow
+      Utility Inlet Pressure:
+        codes:
+          - glhx:utilInPressure
+      Utility Outlet Pressure:
+        codes:
+          - glhx:utilOutPressure
+      Process Inlet Pressure:
+        codes:
+          - glhx:procInPressure
+      Process Outlet Pressure:
+        codes:
+          - glhx:procOutPressure
+      Head1 Supply Pressure:
+        codes:
+          - glhx:Head1InPressure
+      EC1 Supply Pressure:
+        codes:
+          - glhx:EC1InPressure
+      Head2 Supply Pressure:
+        codes:
+          - glhx:Head2InPressure
+      EC2 Supply Pressure:
+        codes:
+          - glhx:EC2InPressure
+      Head3 Supply Pressure:
+        codes:
+          - glhx:Head3InPressure
+      EC3 Supply Pressure:
+        codes:
+          - glhx:EC3InPressure
+      Utility Temp IN:
+        codes:
+          - glhx:utilTempIn
+      Utility Temp OUT:
+        codes:
+          - glhx:utilTempOut
+      Process Temp IN:
+        codes:
+          - glhx:procTempIn
+      Process Temp OUT:
+        codes:
+          - glhx:procTempOut
+      Tank Input Temp:
+        codes:
+          - glhx:tankInputTemp
+      Tank Temp:
+        codes:
+          - glhx:tankTemp
+      Head1 Temp OUT:
+        codes:
+          - glhx:Head1TempOut
+      EC1 Temp OUT:
+        codes:
+          - glhx:EC1TempOut
+      Head2 Temp OUT:
+        codes:
+          - glhx:Head2TempOut
+      EC2 Temp OUT:
+        codes:
+          - glhx:EC2TempOut
+      Head3 Temp OUT:
+        codes:
+          - glhx:Head3TempOut
+      EC3 Temp OUT:
+        codes:
+          - glhx:EC3TempOut
+      Process Load:
+        codes:
+          - glhx:procLoad
+      Utility Load:
+        codes:
+          - glhx:utilLoad
+      VFD Active Speed SP:
+        codes:
+          - glhx:VFDspeed
+      Pump VFD Frequency Output:
+        codes:
+          - glhx:pumpOutFreq
+      Pump Speed SP:
+        codes:
+          - glhx:pumpSpeed
+      Pump PID:
+        codes:
+          - glhx:pumpSpeedPID
+      Tank Heater Current:
+        codes:
+          - glhx:tankHeaterCurrent
+      Tank Heater Power:
+        codes:
+          - glhx:tankHeaterDissipatedPower
+      Tank Heater PID In:
+        codes:
+          - glhx:tankHeaterPIDIn
+      Tank Heater PID Out:
+        codes:
+          - glhx:tankHeaterPIDOut
+      TCV PID:
+        codes:
+          - glhx:tcvPID
+      TCV Position:
+        codes:
+          - glhx:tcvPos
+      RIO errors:
+        codes:
+          - glhx:RIOerrors
+      VFD Ethernet Error:
+        codes:
+          - glhx:VFDethernetComm
+      VFD Speed PID:
+        codes:
+          - glhx:VFDspdPID
+      VFD Speed Mode:
+        codes:
+          - glhx:VFDspeedMode
+      VFD Status:
+        codes:
+          - glhx:VFDstat
+      Mokon 2SOL:
+        codes:
+          - glhx:mokon2SOL
+      Mokon 3SOL:
+        codes:
+          - glhx:mokon3SOL
+      Mokon 4SOL:
+        codes:
+          - glhx:mokon4SOL
