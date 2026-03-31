@@ -34,7 +34,7 @@ def retry_cmd(command, retries=3, delay=3):
 
 
 # --- Environment Handling ---
-def load_env(path="/gemsoft/opt/TED/TED/admin/CP/dev/.env"):
+def load_env(path="/gemsoft/opt/TED/TED/admin/CP/.env"):
     envDict = {}
     try:
         with open(path, "r") as file:
@@ -126,7 +126,7 @@ def checkPipelineCompletion(pipelineNames):
         for name in pipelineNames:
             if name in finished:
                 continue
-            cmd = f"docker exec ls-read curl -sS 'http://localhost:9600/_node/stats/pipelines/{name}'"
+            cmd = f"docker exec ls-read curl -sS 'http://localhost:9660/_node/stats/pipelines/{name}'"
             try:
                 result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 if result.returncode != 0:

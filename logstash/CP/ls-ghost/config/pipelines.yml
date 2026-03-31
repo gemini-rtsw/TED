@@ -135,3 +135,9 @@
   path.config: /usr/share/logstash/pipeline/nrc_spectrograph.cfg
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: cpo-ghost-gmp_server-tail
+  pipeline.workers: 1
+  path.config: /usr/share/logstash/pipeline/gmp-server.cfg
+  queue.type: persisted
+  queue.max_bytes: 100mb
