@@ -70,11 +70,9 @@ services:
       - ${LOGS_PATH}:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
-    
 
   ls-guiders:
     <<: *logstash-common
-    container_name: ls-guiders
     cpus: 1.0
     mem_limit: 1g
     volumes:
@@ -84,7 +82,20 @@ services:
       - ${LOGS_PATH}/serialcon:/gemsoft/var/log/serialcon
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
-      
+  ls-guiders-read:
+    <<: *logstash-common
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/log/serialcon
+      - /etc/localtime:/etc/localtime
+      - ../../logstash/utils:/usr/share/logstash/utils
+
+
+
+
   elasticsearch-1:
     image: ted-elasticsearch:9.1.4
     hostname: elasticsearch-1
