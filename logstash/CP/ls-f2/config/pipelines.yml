@@ -15,21 +15,3 @@
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
-
-- pipeline.id: cp-f2wfs-tail
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/f2-wfs.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
-- pipeline.id: cp-f2opc-tail
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/f2-opc.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
-- pipeline.id: cp-f2sparc-tail
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/f2-sparc.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb

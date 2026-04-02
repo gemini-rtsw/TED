@@ -1,35 +1,17 @@
-# - pipeline.id: cp-gmos-cc-${LS_READMODE}
-#   path.config: "/usr/share/logstash/pipeline/gmos-cc/{gmos-cc-${LS_READMODE},gmos-cc-common}.cfg"
-#   pipeline.workers: 1
-#   queue.type: persisted
-#   queue.max_bytes: 100mb
+- pipeline.id: cp-gmos-cc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gmos-cc/{gmos-cc-${LS_READMODE},gmos-cc-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
 
-# - pipeline.id: cp-gmos-dc-${LS_READMODE}
-#   path.config: "/usr/share/logstash/pipeline/gmos-dc/{gmos-dc-${LS_READMODE},gmos-dc-common}.cfg"
-#   pipeline.workers: 1
-#   queue.type: persisted
-#   queue.max_bytes: 100mb
+- pipeline.id: cp-gmos-dc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gmos-dc/{gmos-dc-${LS_READMODE},gmos-dc-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
 
 - pipeline.id: cp-gmos-wfs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/gmos-wfs/{gmos-wfs-${LS_READMODE},gmos-wfs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
-
-# - pipeline.id: cp-gmoscc-tail
-#   pipeline.workers: 1
-#   path.config: "/usr/share/logstash/pipeline/gmos-cc.cfg"
-#   queue.type: persisted
-#   queue.max_bytes: 100mb
-
-# - pipeline.id: cp-gmosdc-tail
-#   pipeline.workers: 1
-#   path.config: "/usr/share/logstash/pipeline/gmos-dc.cfg"
-#   queue.type: persisted
-#   queue.max_bytes: 100mb
-
-# - pipeline.id: cp-gmoswfs-tail
-#   pipeline.workers: 1
-#   path.config: "/usr/share/logstash/pipeline/gmos-wfs.cfg"
-#   queue.type: persisted
-#   queue.max_bytes: 100mb
