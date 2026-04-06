@@ -35,16 +35,6 @@ services:
       - ${LOGS_PATH}:/gemsoft/var/log
       - ${DATA_PATH}/ls-gmos/db:/db
       - /etc/localtime:/etc/localtime
-  ls-gmos-read:
-    <<: *logstash-common
-    cpus: 1.0
-    mem_limit: 1g
-    volumes:
-      - "../../logstash/${SITE}/ls-gmos/config/:/usr/share/logstash/config"
-      - "../../logstash/${SITE}/ls-gmos/pipeline:/usr/share/logstash/pipeline"
-      - ../../logstash/utils:/usr/share/logstash/utils
-      - ${LOGS_PATH}:/gemsoft/var/log
-      - /etc/localtime:/etc/localtime
 
   ls-f2:
     <<: *logstash-common
@@ -57,17 +47,6 @@ services:
       - ../../logstash/utils:/usr/share/logstash/utils
       - ${LOGS_PATH}:/gemsoft/var/log
       - ${DATA_PATH}/ls-f2/db:/db
-      - /etc/localtime:/etc/localtime
-  ls-f2-read:
-    <<: *logstash-common
-    restart: unless-stopped
-    cpus: 1.0
-    mem_limit: 1g
-    volumes:
-      - "../../logstash/${SITE}/ls-f2/config/:/usr/share/logstash/config"
-      - "../../logstash/${SITE}/ls-f2/pipeline:/usr/share/logstash/pipeline"
-      - ../../logstash/utils:/usr/share/logstash/utils
-      - ${LOGS_PATH}:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
 
   # ls-ghost:
