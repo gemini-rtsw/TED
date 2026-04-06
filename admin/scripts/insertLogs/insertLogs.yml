@@ -26,11 +26,18 @@ services:
         max-size: 100m
         max-file: 1
     container_name: ls-read
-    cpus: 1.0
-    mem_limit: 1g
+    cpus: 2.0
+    mem_limit: 2g
     volumes:
-      - ../../../logstash/${SITE}/${LS_GROUP}/config:/usr/share/logstash/config
+      - ./config/jvm.options:/usr/share/logstash/config/jvm.options
+      - ./config/log4j2.propieties:/usr/share/logstash/config/log4j2.propieties
+      - ./config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./config/startup.options:/usr/share/logstash/config/startup.options
+
+      - ../../../logstash/${SITE}/${LS_GROUP}/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
       - ../../../logstash/${SITE}/${LS_GROUP}/pipeline:/usr/share/logstash/pipeline
+      
+      - ../../../logstash/utils:/usr/share/logstash/utils
+
       - ${LOGS_PATH}:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
-      - ../../../logstash/utils:/usr/share/logstash/utils
