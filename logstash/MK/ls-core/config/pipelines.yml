@@ -1,71 +1,71 @@
-#- pipeline.id: mk-gws-tail
-#  pipeline.workers: 1
-#  path.config: "/usr/share/logstash/pipeline/gws.cfg"
-#  queue.type: persisted
-#  queue.max_bytes: 100mb
-
-#- pipeline.id: mk-prcs-tail
-#  pipeline.workers: 1
-#  path.config: "/usr/share/logstash/pipeline/prcs.cfg"
-#  queue.type: persisted
-# queue.max_bytes: 100mb
-
-- pipeline.id: mk-pcs-tail
+- pipeline.id: cp-ag-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/ag/{ag-${LS_READMODE},ag-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-scs-tail
+- pipeline.id: cp-crcs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/crcs/{crcs-${LS_READMODE},crcs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/scs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-crcs-tail
+- pipeline.id: cp-ecs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/ecs/{ecs-${LS_READMODE},ecs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/crcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-gis-tail
+- pipeline.id: cp-gcal-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gcal/{gcal-${LS_READMODE},gcal-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gis.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-ecs-tail
+- pipeline.id: cp-gis-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gis/{gis-${LS_READMODE},gis-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/ecs.cfg"
+  queue.type: persisted
+  queue.max_bytes: 100mb
+  
+- pipeline.id: cp-gws-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gws/{gws-${LS_READMODE},gws-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+  
+- pipeline.id: cp-mcs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/mcs/{mcs-${LS_READMODE},mcs-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+  
+- pipeline.id: cp-pcs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/pcs/{pcs-${LS_READMODE},pcs-common}.cfg"
+  pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-ag-tail
+- pipeline.id: cp-prcs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/prcs/{prcs-${LS_READMODE},prcs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/ag.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
-
-- pipeline.id: mk-gcal-tail
+  
+- pipeline.id: cp-scs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/scs/{scs-${LS_READMODE},scs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gcal.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
-
-- pipeline.id: mk-tcs-tail
+  
+- pipeline.id: cp-tcc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tcc/{tcc-${LS_READMODE},tcc-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/tcs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
-
-- pipeline.id: mk-mcs-tail
+ 
+- pipeline.id: cp-tcs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tcs/{tcs-${LS_READMODE},tcs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/mcs.cfg"
-  queue.type: persisted
-  queue.max_bytes: 100mb
-
-- pipeline.id: mk-tcc-tail
-  pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/tcc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
