@@ -49,19 +49,19 @@ services:
       - ${DATA_PATH}/ls-f2/db:/db
       - /etc/localtime:/etc/localtime
 
-  # ls-ghost:
-  #   <<: *logstash-common
-  #   container_name: ls-ghost
-  #   restart: unless-stopped
-  #   cpus: 2.0
-  #   mem_limit: 2g
-  #   volumes:
-  #     - "../../logstash/${SITE}/ls-ghost/config/:/usr/share/logstash/config"
-  #     - "../../logstash/${SITE}/ls-ghost/pipeline:/usr/share/logstash/pipeline"
-  #     - ../../logstash/utils:/usr/share/logstash/utils
-  #     - ${LOGS_PATH}/ghost:/gemsoft/var/log/ghost
-  #     - ${DATA_PATH}/ls-ghost/db:/db
-  #     - /etc/localtime:/etc/localtime
+  ls-ghost:
+    <<: *logstash-common
+    container_name: ls-ghost
+    restart: unless-stopped
+    cpus: 2.0
+    mem_limit: 2g
+    volumes:
+      - "../../logstash/${SITE}/ls-ghost/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-ghost/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}/ghost:/gemsoft/var/log/ghost
+      - ${DATA_PATH}/ls-ghost/db:/db
+      - /etc/localtime:/etc/localtime
 
   elasticsearch-2:
     image: ted-elasticsearch:9.1.4
