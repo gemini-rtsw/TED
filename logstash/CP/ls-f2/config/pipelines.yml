@@ -1,17 +1,17 @@
-- pipeline.id: cp-f2wfs-tail
+- pipeline.id: cp-f2-opc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/f2-opc/{f2-opc-${LS_READMODE},f2-opc-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/f2-wfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-f2opc-tail
+- pipeline.id: cp-f2-wfs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/f2-wfs/{f2-wfs-${LS_READMODE},f2-wfs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/f2-opc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-f2sparc-tail
+- pipeline.id: cp-f2-sparc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/f2-sparc/{f2-sparc-${LS_READMODE},f2-sparc-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/f2-sparc.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb

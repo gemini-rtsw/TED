@@ -13,6 +13,10 @@ x-logstash-common: &logstash-common
   environment:
     HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
     TIMEZONE: "${LS_TIMEZONE}"
+    LS_READMODE: "${LS_READMODE}"
+    DAY: "${DAY:-}"
+    MONTH: "${MONTH:-}"
+    YEAR: "${YEAR:-}"
   logging:
     driver: json-file
     options:
@@ -22,7 +26,6 @@ x-logstash-common: &logstash-common
 services:
   ls-gmos:
     <<: *logstash-common
-    container_name: ls-gmos
     cpus: 1.0
     mem_limit: 1g
     volumes:
@@ -33,19 +36,18 @@ services:
       - ${DATA_PATH}/ls-gmos/db:/db
       - /etc/localtime:/etc/localtime
 
-  # ls-f2:
-  #   <<: *logstash-common
-  #   container_name: ls-f2
-  #   restart: unless-stopped
-  #   cpus: 1.0
-  #   mem_limit: 1g
-  #   volumes:
-  #     - "../../logstash/${SITE}/ls-f2/config/:/usr/share/logstash/config"
-  #     - "../../logstash/${SITE}/ls-f2/pipeline:/usr/share/logstash/pipeline"
-  #     - ../../logstash/utils:/usr/share/logstash/utils
-  #     - ${LOGS_PATH}:/gemsoft/var/log
-  #     - ${DATA_PATH}/ls-f2/db:/db
-  #     - /etc/localtime:/etc/localtime
+  ls-f2:
+    <<: *logstash-common
+    restart: unless-stopped
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../logstash/${SITE}/ls-f2/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-f2/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${DATA_PATH}/ls-f2/db:/db
+      - /etc/localtime:/etc/localtime
 
   ls-ghost:
     <<: *logstash-common

@@ -1,0 +1,43 @@
+services:
+  ls-insert:
+    image: ted-logstash:9.1.4
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
+      TIMEZONE: "${LS_TIMEZONE}"
+      LS_READMODE: "${LS_READMODE}"
+      DAY: "${DAY:-}"
+      MONTH: "${MONTH:-}"
+      YEAR: "${YEAR:-}"
+      api.http.port: 9666
+      node.name: ls-read
+    build:
+      context: "../../logstash"
+      dockerfile: Dockerfile
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
+    container_name: ls-read
+    cpus: 2.0
+    mem_limit: 2g
+    volumes:
+      - ./config/jvm.options:/usr/share/logstash/config/jvm.options
+      - ./config/log4j2.propieties:/usr/share/logstash/config/log4j2.propieties
+      - ./config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./config/startup.options:/usr/share/logstash/config/startup.options
+
+      - ../../../logstash/${SITE}/${LS_GROUP}/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ../../../logstash/${SITE}/${LS_GROUP}/pipeline:/usr/share/logstash/pipeline
+      
+      - ../../../logstash/utils:/usr/share/logstash/utils
+
+      - ${LOGS_PATH}:/gemsoft/var/log
+      - /etc/localtime:/etc/localtime

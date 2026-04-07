@@ -1,23 +1,35 @@
-- pipeline.id: cp-seqexecng-tail
+- pipeline.id: cp-dhs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/dhs/{dhs-${LS_READMODE},dhs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/seqexec-ng.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-ot-tail
+- pipeline.id: cp-seqexec-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/seqexec/{seqexec-${LS_READMODE},seqexec-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/ot.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-qpt-tail
+- pipeline.id: cp-ot-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/ot/{ot-${LS_READMODE},ot-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/qpt.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-dhs-tail
+# - pipeline.id: cp-qpt-${LS_READMODE}
+#   path.config: "/usr/share/logstash/pipeline/qpt/{qpt-${LS_READMODE},qpt-common}.cfg"
+#   pipeline.workers: 1
+#   queue.type: persisted
+#   queue.max_bytes: 100mb
+
+# - pipeline.id: cp-drama-${LS_READMODE}
+#   path.config: "/usr/share/logstash/pipeline/drama/{drama-${LS_READMODE},drama-common}.cfg"
+#   pipeline.workers: 1
+#   queue.type: persisted
+#   queue.max_bytes: 100mb
+
+- pipeline.id: cp-vii-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/vii/{vii-${LS_READMODE},vii-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/dhs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb

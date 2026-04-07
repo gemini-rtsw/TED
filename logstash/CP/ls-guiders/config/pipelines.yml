@@ -1,17 +1,17 @@
-- pipeline.id: cp-pwfs1-tail
+- pipeline.id: cp-hrwfs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/hrwfs/{hrwfs-${LS_READMODE},hrwfs-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pwfs1.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-pwfs2-tail
+- pipeline.id: cp-pwfs1-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/pwfs1/{pwfs1-${LS_READMODE},pwfs1-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/pwfs2.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-hrwfs-tail
+- pipeline.id: cp-pwfs2-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/pwfs2/{pwfs2-${LS_READMODE},pwfs2-common}.cfg"
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/hrwfs.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb

@@ -4,6 +4,13 @@ x-logstash-common: &logstash-common
   image: ted-logstash:9.1.4
   restart: unless-stopped
   network_mode: host
+  environment:
+    HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
+    TIMEZONE: "${LS_TIMEZONE}"
+    LS_READMODE: "${LS_READMODE}"
+    DAY: "${DAY:-}"
+    MONTH: "${MONTH:-}"
+    YEAR: "${YEAR:-}"
   build:
     context: "."
     dockerfile: Dockerfile
@@ -12,9 +19,6 @@ x-logstash-common: &logstash-common
       - UID=${U_ID}
       - GROUP=${GROUP}
       - GID=${G_ID}
-  environment:
-    HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
-    TIMEZONE: "${LS_TIMEZONE}"
   logging:
     driver: json-file
     options:
@@ -24,7 +28,6 @@ x-logstash-common: &logstash-common
 services:
   ls-core:
     <<: *logstash-common
-    container_name: ls-core
     cpus: 1.0
     mem_limit: 1g
     volumes:
@@ -34,18 +37,7 @@ services:
       - ${LOGS_PATH}:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
-  ls-guiders:
-    <<: *logstash-common
-    container_name: ls-guiders
-    cpus: 1.0
-    mem_limit: 1g
-    volumes:
-      - "../../logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
-      - "../../logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
-      - ${DATA_PATH}/ls-guiders/db:/db
-      - ${LOGS_PATH}/serialcon:/gemsoft/var/log/serialcon
-      - /etc/localtime:/etc/localtime
-      - ../../logstash/utils:/usr/share/logstash/utils
+
   ls-opstools:
     <<: *logstash-common
     container_name: ls-opstools
@@ -58,7 +50,19 @@ services:
       - ${LOGS_PATH}:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
-      
+
+  ls-guiders:
+    <<: *logstash-common
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
+      - ${DATA_PATH}/ls-guiders/db:/db
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/log/serialcon
+      - /etc/localtime:/etc/localtime
+      - ../../logstash/utils:/usr/share/logstash/utils
+
   elasticsearch-1:
     image: ted-elasticsearch:9.1.4
     hostname: elasticsearch-1

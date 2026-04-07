@@ -1,0 +1,86 @@
+x-logstash-common: &logstash-common
+  image: ted-logstash:9.1.4
+  restart: unless-stopped
+  network_mode: host
+  build:
+    context: "."
+    dockerfile: Dockerfile
+    args:
+      - USER=${USER}
+      - UID=${U_ID}
+      - GROUP=${GROUP}
+      - GID=${G_ID}
+  environment:
+    HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
+    TIMEZONE: "${LS_TIMEZONE}"
+    LS_READMODE: "${LS_READMODE}"
+    DAY: "${DAY:-}"
+    MONTH: "${MONTH:-}"
+    YEAR: "${YEAR:-}"
+  logging:
+    driver: json-file
+    options:
+      max-size: 100m
+      max-file: 1
+
+services:
+  ls-gmos:
+    <<: *logstash-common
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../logstash/${SITE}/ls-gmos/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-gmos/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${DATA_PATH}/ls-gmos/db:/db
+      - /etc/localtime:/etc/localtime
+
+  ls-altair:
+    <<: *logstash-common
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../logstash/${SITE}/ls-altair/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-altair/pipeline:/usr/share/logstash/pipeline"
+      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${DATA_PATH}/ls-altair/db:/db
+      - /etc/localtime:/etc/localtime
+
+
+  elasticsearch-2:
+    image: ted-elasticsearch:9.1.4
+    hostname: elasticsearch-2
+    container_name: elasticsearch-2
+    restart: unless-stopped
+    cpus: 2.0
+    mem_limit: 3g
+    build:
+      context: ../../../elasticsearch
+      args:
+        - USER=${USER}
+        - UID=${U_ID}
+        - GROUP=${GROUP}
+        - GID=${G_ID}
+    network_mode: "host"
+    environment:
+      cluster.name: "elastic"
+      node.name: "elasticsearch-2"
+      network.host: "${HOST3_IP}"
+      transport.host: "${HOST3_IP}"
+      http.port: "${ES2_HTTP_PORT}"
+      transport.port: "${ES2_TR_PORT}"
+      node.roles: master,data,ingest,remote_cluster_client
+      discovery.seed_hosts: ${HOST2_IP}:${ES1_TR_PORT},${HOST3_IP}:${ES2_TR_PORT}
+      cluster.initial_master_nodes: elasticsearch-1
+      xpack.security.enabled: false
+      xpack.security.enrollment.enabled: false
+      xpack.security.http.ssl.enabled: false
+      xpack.security.transport.ssl.enabled: false
+    volumes:
+      - ${DATA_PATH}/elasticsearch-2:/usr/share/elasticsearch/data
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: 1
