@@ -2081,7 +2081,7 @@ PCS:
     AO - number moving:
       codes:
         - m1:aoMoving
-    Time of #moving > limit:
+    "Time of #moving > limit":
       codes:
         - m1:aoSafeCheck.F
     Events/Interlocks:

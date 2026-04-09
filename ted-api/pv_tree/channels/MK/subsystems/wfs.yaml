@@ -376,16 +376,16 @@ wfs:
           - pwfs2:dc:aoZero.VALG
       ast45:
         codes:
-          - pwfs2:dc:aoZero.VALH
+          - pwfs2:dc:aoZero.VALHe
       All:
         codes:
-          - pwfs2:dc:aoZero.VALG
+          - pwfs2:dc:aoZero.VALGe
           - pwfs2:dc:aoZero.VALH
     P2 guiding on two spots detector:
       codes:
         - pwfs2:dc:fgDiag1PW.VALB
   P1:
-    P1 astigmatism (in Y) vs Composite Angle (in X): allows to see residual error in models:
+    "P1 astigmatism (in Y) vs Composite Angle (in X): allows to see residual error in models":
       Astig0:
         codes:
           - pwfs1:dc:aoZ.VALD

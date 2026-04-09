@@ -261,7 +261,7 @@ GIS:
     Last Fault:
       codes:
         - gis:mon:other:m1vfdfault
-    % Overload:
+    "% Overload":
       codes:
         - gis:mon:other:m1vfdoverload
     Status Word:
