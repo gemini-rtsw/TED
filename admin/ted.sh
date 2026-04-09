@@ -1,10 +1,11 @@
 #!/bin/bash
 
 init() {
+  echo $COMPOSE_PATH
   source $COMPOSE_PATH/.env
   echo $SCRIPTS_PATH
   source $SCRIPTS_PATH/$site/create_folders.sh
-  configure_elasticsearch
+  # configure_elasticsearch
 }
 configure_elasticsearch(){
   read hostname lvx < <(get_hostname "2")
@@ -79,7 +80,7 @@ if [ "$env" == "dev" ]; then host_suffix="dev"; else host_suffix="" ;fi
 
 THIS_PATH="$(realpath "$0")"
 ADMIN_PATH=$(dirname "$THIS_PATH")
-COMPOSE_PATH="$ADMIN_PATH/$site/$env"
+COMPOSE_PATH="$ADMIN_PATH/$site"
 SCRIPTS_PATH="${ADMIN_PATH}/scripts"
 
 while true; do
