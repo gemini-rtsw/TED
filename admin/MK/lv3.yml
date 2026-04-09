@@ -3,7 +3,7 @@ x-logstash-common: &logstash-common
   restart: unless-stopped
   network_mode: host
   build:
-    context: "."
+    context: "../../logstash"
     dockerfile: Dockerfile
     args:
       - USER=${USER}
@@ -13,7 +13,7 @@ x-logstash-common: &logstash-common
   environment:
     HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
     TIMEZONE: "${LS_TIMEZONE}"
-    LS_READMODE: "${LS_READMODE}"
+    LS_READMODE: "${LS_READMODE:-tail}"
     DAY: "${DAY:-}"
     MONTH: "${MONTH:-}"
     YEAR: "${YEAR:-}"
@@ -56,7 +56,7 @@ services:
     cpus: 2.0
     mem_limit: 3g
     build:
-      context: ../../../elasticsearch
+      context: ../../elasticsearch
       args:
         - USER=${USER}
         - UID=${U_ID}

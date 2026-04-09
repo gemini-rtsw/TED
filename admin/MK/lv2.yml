@@ -7,12 +7,12 @@ x-logstash-common: &logstash-common
   environment:
     HOST_1: "${HOST2_IP}:${ES1_HTTP_PORT}"
     TIMEZONE: "${LS_TIMEZONE}"
-    LS_READMODE: "${LS_READMODE}"
+    LS_READMODE: "${LS_READMODE:-tail}"
     DAY: "${DAY:-}"
     MONTH: "${MONTH:-}"
     YEAR: "${YEAR:-}"
   build:
-    context: "."
+    context: "../../logstash"
     dockerfile: Dockerfile
     args:
       - USER=${USER}
@@ -40,7 +40,6 @@ services:
 
   ls-opstools:
     <<: *logstash-common
-    container_name: ls-opstools
     cpus: 1.0
     mem_limit: 1g
     volumes:
