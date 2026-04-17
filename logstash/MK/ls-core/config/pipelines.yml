@@ -1,70 +1,70 @@
-- pipeline.id: cp-ag-${LS_READMODE}
+- pipeline.id: mk-ag-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/ag/{ag-${LS_READMODE},ag-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-crcs-${LS_READMODE}
+- pipeline.id: mk-crcs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/crcs/{crcs-${LS_READMODE},crcs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-ecs-${LS_READMODE}
+- pipeline.id: mk-ecs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/ecs/{ecs-${LS_READMODE},ecs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-gcal-${LS_READMODE}
+- pipeline.id: mk-gcal-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/gcal/{gcal-${LS_READMODE},gcal-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-gis-${LS_READMODE}
+- pipeline.id: mk-gis-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/gis/{gis-${LS_READMODE},gis-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
   
-- pipeline.id: cp-gws-${LS_READMODE}
-  path.config: "/usr/share/logstash/pipeline/gws/{gws-${LS_READMODE},gws-common}.cfg"
-  pipeline.workers: 1
-  queue.type: persisted
-  queue.max_bytes: 100mb
+# - pipeline.id: mk-gws-${LS_READMODE}
+#   path.config: "/usr/share/logstash/pipeline/gws/{gws-${LS_READMODE},gws-common}.cfg"
+#   pipeline.workers: 1
+#   queue.type: persisted
+#   queue.max_bytes: 100mb
   
-- pipeline.id: cp-mcs-${LS_READMODE}
+- pipeline.id: mk-mcs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/mcs/{mcs-${LS_READMODE},mcs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
   
-- pipeline.id: cp-pcs-${LS_READMODE}
+- pipeline.id: mk-pcs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/pcs/{pcs-${LS_READMODE},pcs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-prcs-${LS_READMODE}
+- pipeline.id: mk-prcs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/prcs/{prcs-${LS_READMODE},prcs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
   
-- pipeline.id: cp-scs-${LS_READMODE}
+- pipeline.id: mk-scs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/scs/{scs-${LS_READMODE},scs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
   
-- pipeline.id: cp-tcc-${LS_READMODE}
+- pipeline.id: mk-tcc-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/tcc/{tcc-${LS_READMODE},tcc-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
  
-- pipeline.id: cp-tcs-${LS_READMODE}
+- pipeline.id: mk-tcs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/tcs/{tcs-${LS_READMODE},tcs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted

@@ -1,16 +1,16 @@
-- pipeline.id: cp-gmos-cc-${LS_READMODE}
+- pipeline.id: mk-gmos-cc-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/gmos-cc/{gmos-cc-${LS_READMODE},gmos-cc-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-gmos-dc-${LS_READMODE}
+- pipeline.id: mk-gmos-dc-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/gmos-dc/{gmos-dc-${LS_READMODE},gmos-dc-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: cp-gmos-wfs-${LS_READMODE}
+- pipeline.id: mk-gmos-wfs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/gmos-wfs/{gmos-wfs-${LS_READMODE},gmos-wfs-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
