@@ -39,5 +39,5 @@ services:
       
       - ../../../logstash/utils:/usr/share/logstash/utils
 
-      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${LOGS_PATH}:/gemsoft/var
       - /etc/localtime:/etc/localtime

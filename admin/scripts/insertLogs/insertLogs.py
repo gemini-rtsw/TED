@@ -49,7 +49,8 @@ def retry_cmd(env_vars,command, retries=3, delay=3):
     logging.error(f"Command failed after {retries} retries: {' '.join(command)}")
 
 # --- Environment Handling ---
-def load_env(path="../../CP/.env"):
+def load_env(site):
+    path=f"../../{site}/.env"
     envDict = {}
     try:
         with open(path, "r") as file:
@@ -60,8 +61,8 @@ def load_env(path="../../CP/.env"):
         logging.error(f"Error loading environment file: {exc}")
     return envDict
 
-def load_systems():
-    base_dir = Path("../../../logstash/CP")
+def load_systems(site):
+    base_dir = Path(f"../../../logstash/{site}")
     dict_pipelines = {}
     for cfg in base_dir.glob("*/pipeline/*/*read.cfg"):
         top = cfg.parents[2].name
@@ -77,14 +78,15 @@ def print_tree(data):
             print(f"  └─ {name}")
 
 
-def checkPipelineCompletion(pipelineNames):
+def checkPipelineCompletion(site, pipelineNames):
     finished = set()
 
     while len(finished) < len(pipelineNames):
         for name in pipelineNames:
             if name in finished:
                 continue
-            pipeline_id = f"cp-{name}-read"
+            pipeline_id = f"{site.lower()}-{name}-read"
+            print("pi", pipeline_id)
             try:
                 result = subprocess.run(
                     [
@@ -150,15 +152,15 @@ def checkPipelineCompletion(pipelineNames):
         time.sleep(10)
 
 
-def handle_docker(env, systems_dict, group, date_from, date_to):
+def handle_docker(env,site, systems_dict, group, date_from, date_to):
     for dates_by_month in get_dates_by_month(date_from, date_to):
         print(f"INSERTING LOGS FOR {dates_by_month[0]} | {dates_by_month[-1]} | {dates_by_month[2]}")
         print(systems_dict[group])
         docker_up(group, dates_by_month, env)
         container_name = f"{group}-read"
         # watch_pipeline_termination(container_name, group)
-        checkPipelineCompletion(systems_dict[group])
-        docker_down()
+        checkPipelineCompletion(site,systems_dict[group])
+        # docker_down()
 
 def docker_down():
     retry_cmd(None, ['/bin/docker', 'rm', '-f', 'ls-read'])
@@ -178,15 +180,20 @@ def docker_up(group, date, env):
 
 def main():
     setup_logger()
-    systems_dict = load_systems()
-    env = load_env()
     # print(systems_dict)
     # print_tree(systems_dict)
     defaultEndDate = (datetime.now() - timedelta(days=1)).strftime("%Y/%m/%d")
 
     parser = argparse.ArgumentParser(
-        description="Insert logs script"
+        description="Insert logs script",
+        usage="insertLogs.py <site> {list,group} "
     )
+
+    parser.add_argument(
+        "site",
+        help="My new argument at the beginning"
+    )       
+
 
     subparsers = parser.add_subparsers(dest="command")
     #------------------------------------------------------------------------------
@@ -213,7 +220,10 @@ def main():
     )
     
     args = parser.parse_args()
-
+    site = args.site
+    systems_dict = load_systems(site)
+    env = load_env(site)
+    
     if args.command == "list":
         print("\nAvailable groups and subsystems:\n")
         print_tree(systems_dict)
@@ -227,7 +237,7 @@ def main():
         print("To:", args.date_to)
         print("")
         print("============================================================")
-        handle_docker(env, systems_dict, args.group, args.date_from, args.date_to)
+        handle_docker(env, site, systems_dict, args.group, args.date_from, args.date_to)
         print("COMPLETED. Exiting...")
         return 0
 
