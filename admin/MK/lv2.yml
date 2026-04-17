@@ -28,13 +28,13 @@ x-logstash-common: &logstash-common
 services:
   ls-core:
     <<: *logstash-common
-    cpus: 1.0
-    mem_limit: 1g
+    cpus: 2.0
+    mem_limit: 2g
     volumes:
       - ../../logstash/${SITE}/ls-core/config:/usr/share/logstash/config
       - ../../logstash/${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline
       - ${DATA_PATH}/ls-core/db:/db
-      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
 
