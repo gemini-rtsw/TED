@@ -1,0 +1,177 @@
+[
+  {
+    "pv": "gc:Ar_LampState.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:CuAr_LampState.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:diffuseDevice.MPOS",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:diffuseDevice.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:filtDevice.MPOS",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:filtDevice.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:IR_LampState.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:QH_LampState.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:shutterDevice.MPOS",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:shutterDevice.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:shutterStateIn",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:ThAr_LampState.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:Xe_LampState.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:lampsOutput",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:lampSwitchDisable",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:lampSwitchEnable",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:lampSel.F",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:Ar_LampState",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:CA_CLNT_CNT",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:CA_CONN_CNT",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:FD_FREE",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:LOAD",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:MEM_FREE",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:SUSP_TASK_CNT",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:SYS_MBUF_FREE",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:SYS_CLUST_AVAIL_0",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:SYS_CLUST_AVAIL_1",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:GTIM_ERR_CNT",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:APP_DIR1",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:APP_DIR2",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:UPTIME",
+    "samplingperiod": "1200",
+    "samplingmethod": "SCAN"
+  },
+  {
+    "pv": "gc:iocStats:IFI_ERR_CNT",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:iocStats:IFO_ERR_CNT",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:filtC.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  },
+  {
+    "pv": "gc:applyC.VAL",
+    "samplingperiod": "1",
+    "samplingmethod": "MONITOR"
+  }
+]
