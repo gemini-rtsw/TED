@@ -41,6 +41,7 @@ services:
     hostname: "${APPLIANCE_NAME}"
     mem_limit: 4G
     cpus: 2.0
+    restart: unless-stopped
     build:
       context: ../../archappl
       dockerfile: Dockerfile
@@ -61,6 +62,7 @@ services:
     stdin_open: true
     tty: true
     environment:
+      JAVA_OPTS: "-XX:+UseG1GC -Xms2G -Xmx3G"
       MYSQL_CONNECTION_STRING: "--user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} --host=${MYSQL_HOST}"
       ARCHAPPL_MYIDENTITY: ${APPLIANCE_NAME}
       EPICS_CA_AUTO_ADDR_LIST: ${CA_AUTO_ADDR_LIST}
