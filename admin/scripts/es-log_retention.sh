@@ -1,5 +1,5 @@
 #!/bin/sh
-# Keep logs for 1 year: roll over monthly, delete indices 365 days after rollover.
+# Keep logs for 6 months: roll over monthly, delete indices 180 days after rollover.
 curl -X PUT "${HOST2_IP}:${ES1_HTTP_PORT}/_ilm/policy/ted-logs?pretty" -H 'Content-Type: application/json' -d'
 {
   "policy": {
@@ -10,7 +10,7 @@ curl -X PUT "${HOST2_IP}:${ES1_HTTP_PORT}/_ilm/policy/ted-logs?pretty" -H 'Conte
         }
       },
       "delete": {
-        "min_age": "365d",
+        "min_age": "180d",
         "actions": { "delete": {} }
       }
     }
