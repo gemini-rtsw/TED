@@ -21,6 +21,7 @@ directories=(
     "${DATA_PATH}ls-gmos/db/sincedb"
     "${DATA_PATH}ls-altair/db/sincedb"
     "${DATA_PATH}ls-gnirs/db/sincedb"
+    "${DATA_PATH}ls-instruments/db/sincedb"
     "${DATA_PATH}archappl/db"
     "${DATA_PATH}archappl/logs"
     "${DATA_PATH}archappl/lts"

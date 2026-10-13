@@ -69,3 +69,58 @@
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
+
+- pipeline.id: mk-tcs-iers-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tcs-iers/{tcs-iers-${LS_READMODE},tcs-iers-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-anemometer-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/anemometer/{anemometer-${LS_READMODE},anemometer-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-dust-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/dust/{dust-${LS_READMODE},dust-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-mkoltcs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/mkoltcs/{mkoltcs-${LS_READMODE},mkoltcs-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-toptica-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/toptica/{toptica-${LS_READMODE},toptica-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-bfo-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/bfo/{bfo-${LS_READMODE},bfo-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-fps-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/fps/{fps-${LS_READMODE},fps-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-lhx-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/lhx/{lhx-${LS_READMODE},lhx-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-ltcss-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/ltcss/{ltcss-${LS_READMODE},ltcss-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+

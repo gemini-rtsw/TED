@@ -1,0 +1,65 @@
+- pipeline.id: mk-niri-cc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/niri-cc/{niri-cc-${LS_READMODE},niri-cc-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-niri-dc-ctrl-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/niri-dc-ctrl/{niri-dc-ctrl-${LS_READMODE},niri-dc-ctrl-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-niri-dc-data-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/niri-dc-data/{niri-dc-data-${LS_READMODE},niri-dc-data-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-niri-test-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/niri-test/{niri-test-${LS_READMODE},niri-test-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-nifs-cc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/nifs-cc/{nifs-cc-${LS_READMODE},nifs-cc-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-nifs-dc-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/nifs-dc/{nifs-dc-${LS_READMODE},nifs-dc-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-bto-epics-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/bto-epics/{bto-epics-${LS_READMODE},bto-epics-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-bto-fsa-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/bto-fsa/{bto-fsa-${LS_READMODE},bto-fsa-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-bto-ds-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/bto-ds/{bto-ds-${LS_READMODE},bto-ds-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-bto-cisco-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/bto-cisco/{bto-cisco-${LS_READMODE},bto-cisco-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-bto-other-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/bto-other/{bto-other-${LS_READMODE},bto-other-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb

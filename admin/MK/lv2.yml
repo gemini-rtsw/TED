@@ -42,7 +42,7 @@ services:
   ls-opstools:
     <<: *logstash-common
     cpus: 1.0
-    mem_limit: 1g
+    mem_limit: 2g
     volumes:
       - "../../logstash/${SITE}/ls-opstools/config:/usr/share/logstash/config"
       - "../../logstash/${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"

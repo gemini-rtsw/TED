@@ -16,8 +16,32 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-altair-wfcs-${LS_READMODE}
-  path.config: "/usr/share/logstash/pipeline/altair-wfcs/{altair-wfcs-${LS_READMODE},altair-wfcs-common}.cfg"
+- pipeline.id: mk-altair-sfo2-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/altair-sfo2/{altair-sfo2-${LS_READMODE},altair-sfo2-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altair-main1x-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/altair-main1x/{altair-main1x-${LS_READMODE},altair-main1x-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altair-opt2y-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/altair-opt2y/{altair-opt2y-${LS_READMODE},altair-opt2y-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altair-recon1y-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/altair-recon1y/{altair-recon1y-${LS_READMODE},altair-recon1y-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-altair-statdisp2x-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/altair-statdisp2x/{altair-statdisp2x-${LS_READMODE},altair-statdisp2x-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb

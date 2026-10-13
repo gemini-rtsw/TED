@@ -43,6 +43,7 @@ services:
     volumes:
       - "../../logstash/${SITE}/ls-altair/config/:/usr/share/logstash/config"
       - "../../logstash/${SITE}/ls-altair/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
       - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
       - ${DATA_PATH}/ls-altair/db:/db
       - /etc/localtime:/etc/localtime
@@ -57,6 +58,18 @@ services:
       - ../../logstash/utils:/usr/share/logstash/utils
       - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
       - ${DATA_PATH}/ls-gnirs/db:/db
+      - /etc/localtime:/etc/localtime
+
+  ls-instruments:
+    <<: *logstash-common
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../logstash/${SITE}/ls-instruments/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-instruments/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
+      - ${DATA_PATH}/ls-instruments/db:/db
       - /etc/localtime:/etc/localtime
 
   elasticsearch-2:

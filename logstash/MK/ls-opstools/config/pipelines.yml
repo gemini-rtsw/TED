@@ -1,5 +1,149 @@
-- pipeline.id: mk-seqexec-read
+- pipeline.id: mk-seqexec-ng-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/seqexec-ng/{seqexec-ng-${LS_READMODE},seqexec-ng-common}.cfg"
   pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-console-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/console/{console-${LS_READMODE},console-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-seqexec-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/seqexec/{seqexec-${LS_READMODE},seqexec-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-dhs-mkodhs1-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/dhs-mkodhs1/{dhs-mkodhs1-${LS_READMODE},dhs-mkodhs1-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-dhs-mkodhs2-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/dhs-mkodhs2/{dhs-mkodhs2-${LS_READMODE},dhs-mkodhs2-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-dhs-mkodhsx-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/dhs-mkodhsx/{dhs-mkodhsx-${LS_READMODE},dhs-mkodhsx-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-drama-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/drama/{drama-${LS_READMODE},drama-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-tbad-xr-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tbad-xr/{tbad-xr-${LS_READMODE},tbad-xr-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-tbad-getfe-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tbad-getfe/{tbad-getfe-${LS_READMODE},tbad-getfe-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-tbad-daemon-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tbad-daemon/{tbad-daemon-${LS_READMODE},tbad-daemon-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-tbad-keeplogging-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tbad-keeplogging/{tbad-keeplogging-${LS_READMODE},tbad-keeplogging-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-tbad-fe-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/tbad-fe/{tbad-fe-${LS_READMODE},tbad-fe-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-ltts-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/ltts/{ltts-${LS_READMODE},ltts-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-navigate-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/navigate/{navigate-${LS_READMODE},navigate-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-observe-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/observe/{observe-${LS_READMODE},observe-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-vii-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/vii/{vii-${LS_READMODE},vii-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-ths-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/ths/{ths-${LS_READMODE},ths-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-maskdb-access-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/maskdb-access/{maskdb-access-${LS_READMODE},maskdb-access-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-maskdb-error-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/maskdb-error/{maskdb-error-${LS_READMODE},maskdb-error-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gacq-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gacq/{gacq-${LS_READMODE},gacq-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-ot-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/ot/{ot-${LS_READMODE},ot-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-qpt-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/qpt/{qpt-${LS_READMODE},qpt-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gateway-altair-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gateway-altair/{gateway-altair-${LS_READMODE},gateway-altair-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-gateway-gnirs-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gateway-gnirs/{gateway-gnirs-${LS_READMODE},gateway-gnirs-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
+
+- pipeline.id: mk-axis2-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/axis2/{axis2-${LS_READMODE},axis2-common}.cfg"
+  pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
