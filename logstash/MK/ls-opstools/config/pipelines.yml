@@ -10,8 +10,8 @@
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-seqexec-${LS_READMODE}
-  path.config: "/usr/share/logstash/pipeline/seqexec/{seqexec-${LS_READMODE},seqexec-common}.cfg"
+- pipeline.id: mk-seqexec-legacy-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/seqexec-legacy/{seqexec-legacy-${LS_READMODE},seqexec-legacy-common}.cfg"
   pipeline.workers: 1
   queue.type: persisted
   queue.max_bytes: 100mb
