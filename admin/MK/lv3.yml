@@ -32,7 +32,7 @@ services:
       - "../../logstash/${SITE}/ls-gmos/config/:/usr/share/logstash/config"
       - "../../logstash/${SITE}/ls-gmos/pipeline:/usr/share/logstash/pipeline"
       - ../../logstash/utils:/usr/share/logstash/utils
-      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
       - ${DATA_PATH}/ls-gmos/db:/db
       - /etc/localtime:/etc/localtime
 
@@ -43,10 +43,21 @@ services:
     volumes:
       - "../../logstash/${SITE}/ls-altair/config/:/usr/share/logstash/config"
       - "../../logstash/${SITE}/ls-altair/pipeline:/usr/share/logstash/pipeline"
-      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
       - ${DATA_PATH}/ls-altair/db:/db
       - /etc/localtime:/etc/localtime
 
+  ls-gnirs:
+    <<: *logstash-common
+    cpus: 1.0
+    mem_limit: 1g
+    volumes:
+      - "../../logstash/${SITE}/ls-gnirs/config/:/usr/share/logstash/config"
+      - "../../logstash/${SITE}/ls-gnirs/pipeline:/usr/share/logstash/pipeline"
+      - ../../logstash/utils:/usr/share/logstash/utils
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
+      - ${DATA_PATH}/ls-gnirs/db:/db
+      - /etc/localtime:/etc/localtime
 
   elasticsearch-2:
     image: ted-elasticsearch:9.1.4

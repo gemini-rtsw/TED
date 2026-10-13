@@ -1,17 +1,17 @@
-- pipeline.id: mk-gnirscc-tail
+- pipeline.id: mk-gnirscc-${LS_READMODE}
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gnirs-cc.cfg"
+  path.config: "/usr/share/logstash/pipeline/gnirs-cc/{gnirs-cc-${LS_READMODE},gnirs-cc-common}.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-gnirsdc-tail
+- pipeline.id: mk-gnirsdc-${LS_READMODE}
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gnirs-dc.cfg"
+  path.config: "/usr/share/logstash/pipeline/gnirs-dc/{gnirs-dc-${LS_READMODE},gnirs-dc-common}.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
 
-- pipeline.id: mk-gnirswfs-tail
+- pipeline.id: mk-gnirswfs-${LS_READMODE}
   pipeline.workers: 1
-  path.config: "/usr/share/logstash/pipeline/gnirs-wfs.cfg"
+  path.config: "/usr/share/logstash/pipeline/gnirs-wfs/{gnirs-wfs-${LS_READMODE},gnirs-wfs-common}.cfg"
   queue.type: persisted
   queue.max_bytes: 100mb
