@@ -6,6 +6,7 @@ gnirs:
         - gnirsgate.pvtotal
         - gnirsgate.active
         - gnirsgate.connected
+        - gnirsgate.connecting
         - gnirsgate.inactive
         - gnirsgate.unconnected
         - gnirsgate.disconnected
@@ -49,6 +50,9 @@ gnirs:
       codes:
         - nirs:dc:applyC
   Gnirs Dewar Pressure:
+    TC1:
+      codes:
+        - nirs:sad:cc:pressureTC1
     IG:
       codes:
         - nirs:sad:cc:pressureIG
@@ -58,47 +62,47 @@ gnirs:
   Gnirs Lakeshore Bench Temperature Control:
     Heater Output:
       codes:
-        - tc:btc:heater
+        - nirs:tc:btc:heater
     P:
       codes:
-        - tc:btc:pidgs.VALA
+        - nirs:tc:btc:pidgs.VALA
     I:
       codes:
-        - tc:btc:pidgs.VALB
+        - nirs:tc:btc:pidgs.VALB
     D:
       codes:
-        - tc:btc:pidgs.VALC
+        - nirs:tc:btc:pidgs.VALC
     Sensor A:
       codes:
-        - tc:btc:sensorA
+        - nirs:tc:btc:sensorA
     Sensor B:
       codes:
-        - tc:btc:sensorB
+        - nirs:tc:btc:sensorB
     Setpoint:
       codes:
-        - tc:btc:setp2
+        - nirs:tc:btc:setp2
   Gnirs Lakeshore Bench Temperature Warmup Control:
     Heater Output:
       codes:
-        - tc:btwc:heater
+        - nirs:tc:btwc:heater
     P:
       codes:
-        - tc:btwc:pidgs.VALA
+        - nirs:tc:btwc:pidgs.VALA
     I:
       codes:
-        - tc:btwc:pidgs.VALB
+        - nirs:tc:btwc:pidgs.VALB
     D:
       codes:
-        - tc:btwc:pidgs.VALC
+        - nirs:tc:btwc:pidgs.VALC
     Sensor A:
       codes:
-        - tc:btwc:sensorA
+        - nirs:tc:btwc:sensorA
     Sensor B:
       codes:
-        - tc:btwc:sensorB
+        - nirs:tc:btwc:sensorB
     Setpoint:
       codes:
-        - tc:btwc:setp2
+        - nirs:tc:btwc:setp2
   Gnirs Hardware Temperatures:
     Cryo:
       codes:
@@ -137,7 +141,7 @@ gnirs:
         - nirs:sad:cc:activeShieldFwd
         - nirs:sad:cc:activeShieldMid
         - nirs:sad:cc:activeShieldAft
-        - nirs:sad:cc:PassiveShield
+        - nirs:sad:cc:passiveShield
     Mechanisms:
       codes:
         - nirs:sad:cc:deckerMM
@@ -260,6 +264,10 @@ gnirs:
         - nirs:sad:cc:cameraPosition
         - nirs:sad:cc:cameraEng
         - nirs:cc:cameraC
+        - nirs:sad:cc:cameraDatumed
+        - nirs:sad:cc:cameraHome
+        - nirs:sad:cc:cameraFault
+        - nirs:sad:cc:cameraOT
     Focus:
       codes:
         - nirs:sad:cc:focusPosition
