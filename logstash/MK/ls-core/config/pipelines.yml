@@ -28,11 +28,11 @@
   queue.type: persisted
   queue.max_bytes: 100mb
   
-# - pipeline.id: mk-gws-${LS_READMODE}
-#   path.config: "/usr/share/logstash/pipeline/gws/{gws-${LS_READMODE},gws-common}.cfg"
-#   pipeline.workers: 1
-#   queue.type: persisted
-#   queue.max_bytes: 100mb
+- pipeline.id: mk-gws-${LS_READMODE}
+  path.config: "/usr/share/logstash/pipeline/gws/{gws-${LS_READMODE},gws-common}.cfg"
+  pipeline.workers: 1
+  queue.type: persisted
+  queue.max_bytes: 100mb
   
 - pipeline.id: mk-mcs-${LS_READMODE}
   path.config: "/usr/share/logstash/pipeline/mcs/{mcs-${LS_READMODE},mcs-common}.cfg"

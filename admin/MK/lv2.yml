@@ -35,6 +35,7 @@ services:
       - ../../logstash/${SITE}/ls-core/pipeline:/usr/share/logstash/pipeline
       - ${DATA_PATH}/ls-core/db:/db
       - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
+      - ${LOGS_PATH}/log:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
 
