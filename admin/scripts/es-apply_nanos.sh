@@ -8,7 +8,7 @@ curl -X PUT "${HOST2_IP}:${ES1_HTTP_PORT}/_index_template/logs_nano?pretty" -H '
     "settings": {
       "index": {
         "lifecycle": {
-          "name": "logs"
+          "name": "ted-logs"
         },
         "codec": "best_compression",
         "routing": {
