@@ -46,7 +46,7 @@ services:
       - "../../logstash/${SITE}/ls-opstools/config:/usr/share/logstash/config"
       - "../../logstash/${SITE}/ls-opstools/pipeline:/usr/share/logstash/pipeline"
       - ${DATA_PATH}/ls-opstools/db:/db
-      - ${LOGS_PATH}:/gemsoft/var/log
+      - ${LOGS_PATH}/log:/gemsoft/var/log
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
 
@@ -58,7 +58,7 @@ services:
       - "../../logstash/${SITE}/ls-guiders/config:/usr/share/logstash/config"
       - "../../logstash/${SITE}/ls-guiders/pipeline:/usr/share/logstash/pipeline"
       - ${DATA_PATH}/ls-guiders/db:/db
-      - ${LOGS_PATH}/serialcon:/gemsoft/var/log/serialcon
+      - ${LOGS_PATH}/serialcon:/gemsoft/var/serialcon
       - /etc/localtime:/etc/localtime
       - ../../logstash/utils:/usr/share/logstash/utils
 

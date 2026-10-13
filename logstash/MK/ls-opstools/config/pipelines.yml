@@ -1,4 +1,4 @@
-- pipeline.id: mk-seqexecng-read
+- pipeline.id: mk-seqexec-read
   pipeline.workers: 1
   path.config: "/usr/share/logstash/pipeline/seqexec/{seqexec-${LS_READMODE},seqexec-common}.cfg"
   queue.type: persisted

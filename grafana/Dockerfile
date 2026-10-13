@@ -1,5 +1,5 @@
 #FROM grafana/grafana:12.0.0
-FROM grafana/grafana:12.4.0-20151846001
+FROM grafana/grafana:12.0.0
 
 ARG UID
 ARG USER

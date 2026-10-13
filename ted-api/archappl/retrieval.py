@@ -61,7 +61,7 @@ async def fetch_channels(request):
             enum_strs = None
 
             if pv_type == "DBR_SCALAR_ENUM":
-                enum_strs = info["extraFields"]["enum_strs"]
+                enum_strs = info.get("extraFields", {}).get("enum_strs")
 
             effective_pp_mode = pp_mode
             effective_pp_bin = pp_bin
