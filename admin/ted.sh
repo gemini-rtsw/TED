@@ -15,6 +15,9 @@ configure_elasticsearch(){
     sleep 2
   done
   echo "Elasticsearch API is ready, executing scripts..."
+  echo "Applying log retention policy"
+  source $SCRIPTS_PATH/es-log_retention.sh
+  echo
   echo "Applying nanoseconds timestamps"
   source $SCRIPTS_PATH/es-apply_nanos.sh
   echo "Changing retrieval limits"
