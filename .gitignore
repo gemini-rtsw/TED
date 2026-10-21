@@ -5,3 +5,4 @@ ls02/utils/InsertByDataRange.log
 geaservice/app/__pycache__/
 geaservice/config/__pycache__/
 .env
+gr01/grafana-data/grafana.db
