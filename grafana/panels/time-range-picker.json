@@ -1,0 +1,1638 @@
+{
+  "type": "volkovlabs-form-panel",
+  "title": "",
+  "transparent": true,
+  "options": {
+    "layout": {
+      "variant": "split",
+      "orientation": "horizontal",
+      "padding": 4,
+      "sectionVariant": "default",
+      "sections": [
+        {
+          "id": "date",
+          "name": "",
+          "expanded": true
+        },
+        {
+          "id": "h",
+          "name": "",
+          "expanded": true
+        },
+        {
+          "id": "m",
+          "name": "",
+          "expanded": true
+        },
+        {
+          "id": "s",
+          "name": "",
+          "expanded": true
+        }
+      ]
+    },
+    "sync": true,
+    "initial": {
+      "method": "-",
+      "code": "\nconst tpl = context.grafana.templateService;\nconst from = new Date(Number(tpl.replace('${__from}')));\nconst to = new Date(Number(tpl.replace('${__to}')));\nconst parts = (d) => ({\n  date: new Date(d.getFullYear(), d.getMonth(), d.getDate()).toISOString(),\n  h: d.getHours(), m: d.getMinutes(), s: d.getSeconds(),\n});\nconst f = parts(from), t = parts(to);\ncontext.panel.patchFormValue({\n  startDate: f.date, startH: f.h, startM: f.m, startS: f.s,\n  endDate: t.date, endH: t.h, endM: t.m, endS: t.s,\n});\ncontext.panel.enableSubmit();\n",
+      "highlight": false
+    },
+    "updateEnabled": "manual",
+    "update": {
+      "method": "-",
+      "code": "\nconst v = context.panel.formValue;\nconst ms = (side) => {\n  const d = new Date(v[side + 'Date']);\n  return new Date(d.getFullYear(), d.getMonth(), d.getDate(),\n                  Number(v[side + 'H']), Number(v[side + 'M']), Number(v[side + 'S'])).getTime();\n};\nconst from = ms('start'), to = ms('end');\nif (!(to > from)) {\n  context.grafana.notifyError(['Time range', 'End must be after start.']);\n  return;\n}\ncontext.grafana.locationService.partial({ from: String(from), to: String(to) }, true);\n",
+      "confirm": false
+    },
+    "buttonGroup": {
+      "orientation": "right",
+      "size": "md"
+    },
+    "submit": {
+      "variant": "primary",
+      "icon": "clock-nine",
+      "text": "Apply time range"
+    },
+    "reset": {
+      "variant": "hidden"
+    },
+    "saveDefault": {
+      "variant": "hidden"
+    },
+    "elements": [
+      {
+        "uid": "startDate",
+        "id": "startDate",
+        "title": "Start",
+        "type": "date",
+        "width": 14,
+        "labelWidth": 6,
+        "tooltip": "",
+        "section": "date",
+        "hidden": false,
+        "unit": "",
+        "value": ""
+      },
+      {
+        "uid": "startH",
+        "id": "startH",
+        "title": "",
+        "type": "select",
+        "width": 8,
+        "labelWidth": null,
+        "tooltip": "",
+        "section": "h",
+        "hidden": false,
+        "unit": "",
+        "value": 0,
+        "options": [
+          {
+            "value": 0,
+            "label": "00",
+            "id": "00"
+          },
+          {
+            "value": 1,
+            "label": "01",
+            "id": "01"
+          },
+          {
+            "value": 2,
+            "label": "02",
+            "id": "02"
+          },
+          {
+            "value": 3,
+            "label": "03",
+            "id": "03"
+          },
+          {
+            "value": 4,
+            "label": "04",
+            "id": "04"
+          },
+          {
+            "value": 5,
+            "label": "05",
+            "id": "05"
+          },
+          {
+            "value": 6,
+            "label": "06",
+            "id": "06"
+          },
+          {
+            "value": 7,
+            "label": "07",
+            "id": "07"
+          },
+          {
+            "value": 8,
+            "label": "08",
+            "id": "08"
+          },
+          {
+            "value": 9,
+            "label": "09",
+            "id": "09"
+          },
+          {
+            "value": 10,
+            "label": "10",
+            "id": "10"
+          },
+          {
+            "value": 11,
+            "label": "11",
+            "id": "11"
+          },
+          {
+            "value": 12,
+            "label": "12",
+            "id": "12"
+          },
+          {
+            "value": 13,
+            "label": "13",
+            "id": "13"
+          },
+          {
+            "value": 14,
+            "label": "14",
+            "id": "14"
+          },
+          {
+            "value": 15,
+            "label": "15",
+            "id": "15"
+          },
+          {
+            "value": 16,
+            "label": "16",
+            "id": "16"
+          },
+          {
+            "value": 17,
+            "label": "17",
+            "id": "17"
+          },
+          {
+            "value": 18,
+            "label": "18",
+            "id": "18"
+          },
+          {
+            "value": 19,
+            "label": "19",
+            "id": "19"
+          },
+          {
+            "value": 20,
+            "label": "20",
+            "id": "20"
+          },
+          {
+            "value": 21,
+            "label": "21",
+            "id": "21"
+          },
+          {
+            "value": 22,
+            "label": "22",
+            "id": "22"
+          },
+          {
+            "value": 23,
+            "label": "23",
+            "id": "23"
+          }
+        ],
+        "optionsSource": "Custom",
+        "allowCustomValue": false
+      },
+      {
+        "uid": "startM",
+        "id": "startM",
+        "title": ":",
+        "type": "select",
+        "width": 8,
+        "labelWidth": 2,
+        "tooltip": "",
+        "section": "m",
+        "hidden": false,
+        "unit": "",
+        "value": 0,
+        "options": [
+          {
+            "value": 0,
+            "label": "00",
+            "id": "00"
+          },
+          {
+            "value": 1,
+            "label": "01",
+            "id": "01"
+          },
+          {
+            "value": 2,
+            "label": "02",
+            "id": "02"
+          },
+          {
+            "value": 3,
+            "label": "03",
+            "id": "03"
+          },
+          {
+            "value": 4,
+            "label": "04",
+            "id": "04"
+          },
+          {
+            "value": 5,
+            "label": "05",
+            "id": "05"
+          },
+          {
+            "value": 6,
+            "label": "06",
+            "id": "06"
+          },
+          {
+            "value": 7,
+            "label": "07",
+            "id": "07"
+          },
+          {
+            "value": 8,
+            "label": "08",
+            "id": "08"
+          },
+          {
+            "value": 9,
+            "label": "09",
+            "id": "09"
+          },
+          {
+            "value": 10,
+            "label": "10",
+            "id": "10"
+          },
+          {
+            "value": 11,
+            "label": "11",
+            "id": "11"
+          },
+          {
+            "value": 12,
+            "label": "12",
+            "id": "12"
+          },
+          {
+            "value": 13,
+            "label": "13",
+            "id": "13"
+          },
+          {
+            "value": 14,
+            "label": "14",
+            "id": "14"
+          },
+          {
+            "value": 15,
+            "label": "15",
+            "id": "15"
+          },
+          {
+            "value": 16,
+            "label": "16",
+            "id": "16"
+          },
+          {
+            "value": 17,
+            "label": "17",
+            "id": "17"
+          },
+          {
+            "value": 18,
+            "label": "18",
+            "id": "18"
+          },
+          {
+            "value": 19,
+            "label": "19",
+            "id": "19"
+          },
+          {
+            "value": 20,
+            "label": "20",
+            "id": "20"
+          },
+          {
+            "value": 21,
+            "label": "21",
+            "id": "21"
+          },
+          {
+            "value": 22,
+            "label": "22",
+            "id": "22"
+          },
+          {
+            "value": 23,
+            "label": "23",
+            "id": "23"
+          },
+          {
+            "value": 24,
+            "label": "24",
+            "id": "24"
+          },
+          {
+            "value": 25,
+            "label": "25",
+            "id": "25"
+          },
+          {
+            "value": 26,
+            "label": "26",
+            "id": "26"
+          },
+          {
+            "value": 27,
+            "label": "27",
+            "id": "27"
+          },
+          {
+            "value": 28,
+            "label": "28",
+            "id": "28"
+          },
+          {
+            "value": 29,
+            "label": "29",
+            "id": "29"
+          },
+          {
+            "value": 30,
+            "label": "30",
+            "id": "30"
+          },
+          {
+            "value": 31,
+            "label": "31",
+            "id": "31"
+          },
+          {
+            "value": 32,
+            "label": "32",
+            "id": "32"
+          },
+          {
+            "value": 33,
+            "label": "33",
+            "id": "33"
+          },
+          {
+            "value": 34,
+            "label": "34",
+            "id": "34"
+          },
+          {
+            "value": 35,
+            "label": "35",
+            "id": "35"
+          },
+          {
+            "value": 36,
+            "label": "36",
+            "id": "36"
+          },
+          {
+            "value": 37,
+            "label": "37",
+            "id": "37"
+          },
+          {
+            "value": 38,
+            "label": "38",
+            "id": "38"
+          },
+          {
+            "value": 39,
+            "label": "39",
+            "id": "39"
+          },
+          {
+            "value": 40,
+            "label": "40",
+            "id": "40"
+          },
+          {
+            "value": 41,
+            "label": "41",
+            "id": "41"
+          },
+          {
+            "value": 42,
+            "label": "42",
+            "id": "42"
+          },
+          {
+            "value": 43,
+            "label": "43",
+            "id": "43"
+          },
+          {
+            "value": 44,
+            "label": "44",
+            "id": "44"
+          },
+          {
+            "value": 45,
+            "label": "45",
+            "id": "45"
+          },
+          {
+            "value": 46,
+            "label": "46",
+            "id": "46"
+          },
+          {
+            "value": 47,
+            "label": "47",
+            "id": "47"
+          },
+          {
+            "value": 48,
+            "label": "48",
+            "id": "48"
+          },
+          {
+            "value": 49,
+            "label": "49",
+            "id": "49"
+          },
+          {
+            "value": 50,
+            "label": "50",
+            "id": "50"
+          },
+          {
+            "value": 51,
+            "label": "51",
+            "id": "51"
+          },
+          {
+            "value": 52,
+            "label": "52",
+            "id": "52"
+          },
+          {
+            "value": 53,
+            "label": "53",
+            "id": "53"
+          },
+          {
+            "value": 54,
+            "label": "54",
+            "id": "54"
+          },
+          {
+            "value": 55,
+            "label": "55",
+            "id": "55"
+          },
+          {
+            "value": 56,
+            "label": "56",
+            "id": "56"
+          },
+          {
+            "value": 57,
+            "label": "57",
+            "id": "57"
+          },
+          {
+            "value": 58,
+            "label": "58",
+            "id": "58"
+          },
+          {
+            "value": 59,
+            "label": "59",
+            "id": "59"
+          }
+        ],
+        "optionsSource": "Custom",
+        "allowCustomValue": false
+      },
+      {
+        "uid": "startS",
+        "id": "startS",
+        "title": ":",
+        "type": "select",
+        "width": 8,
+        "labelWidth": 2,
+        "tooltip": "",
+        "section": "s",
+        "hidden": false,
+        "unit": "",
+        "value": 0,
+        "options": [
+          {
+            "value": 0,
+            "label": "00",
+            "id": "00"
+          },
+          {
+            "value": 1,
+            "label": "01",
+            "id": "01"
+          },
+          {
+            "value": 2,
+            "label": "02",
+            "id": "02"
+          },
+          {
+            "value": 3,
+            "label": "03",
+            "id": "03"
+          },
+          {
+            "value": 4,
+            "label": "04",
+            "id": "04"
+          },
+          {
+            "value": 5,
+            "label": "05",
+            "id": "05"
+          },
+          {
+            "value": 6,
+            "label": "06",
+            "id": "06"
+          },
+          {
+            "value": 7,
+            "label": "07",
+            "id": "07"
+          },
+          {
+            "value": 8,
+            "label": "08",
+            "id": "08"
+          },
+          {
+            "value": 9,
+            "label": "09",
+            "id": "09"
+          },
+          {
+            "value": 10,
+            "label": "10",
+            "id": "10"
+          },
+          {
+            "value": 11,
+            "label": "11",
+            "id": "11"
+          },
+          {
+            "value": 12,
+            "label": "12",
+            "id": "12"
+          },
+          {
+            "value": 13,
+            "label": "13",
+            "id": "13"
+          },
+          {
+            "value": 14,
+            "label": "14",
+            "id": "14"
+          },
+          {
+            "value": 15,
+            "label": "15",
+            "id": "15"
+          },
+          {
+            "value": 16,
+            "label": "16",
+            "id": "16"
+          },
+          {
+            "value": 17,
+            "label": "17",
+            "id": "17"
+          },
+          {
+            "value": 18,
+            "label": "18",
+            "id": "18"
+          },
+          {
+            "value": 19,
+            "label": "19",
+            "id": "19"
+          },
+          {
+            "value": 20,
+            "label": "20",
+            "id": "20"
+          },
+          {
+            "value": 21,
+            "label": "21",
+            "id": "21"
+          },
+          {
+            "value": 22,
+            "label": "22",
+            "id": "22"
+          },
+          {
+            "value": 23,
+            "label": "23",
+            "id": "23"
+          },
+          {
+            "value": 24,
+            "label": "24",
+            "id": "24"
+          },
+          {
+            "value": 25,
+            "label": "25",
+            "id": "25"
+          },
+          {
+            "value": 26,
+            "label": "26",
+            "id": "26"
+          },
+          {
+            "value": 27,
+            "label": "27",
+            "id": "27"
+          },
+          {
+            "value": 28,
+            "label": "28",
+            "id": "28"
+          },
+          {
+            "value": 29,
+            "label": "29",
+            "id": "29"
+          },
+          {
+            "value": 30,
+            "label": "30",
+            "id": "30"
+          },
+          {
+            "value": 31,
+            "label": "31",
+            "id": "31"
+          },
+          {
+            "value": 32,
+            "label": "32",
+            "id": "32"
+          },
+          {
+            "value": 33,
+            "label": "33",
+            "id": "33"
+          },
+          {
+            "value": 34,
+            "label": "34",
+            "id": "34"
+          },
+          {
+            "value": 35,
+            "label": "35",
+            "id": "35"
+          },
+          {
+            "value": 36,
+            "label": "36",
+            "id": "36"
+          },
+          {
+            "value": 37,
+            "label": "37",
+            "id": "37"
+          },
+          {
+            "value": 38,
+            "label": "38",
+            "id": "38"
+          },
+          {
+            "value": 39,
+            "label": "39",
+            "id": "39"
+          },
+          {
+            "value": 40,
+            "label": "40",
+            "id": "40"
+          },
+          {
+            "value": 41,
+            "label": "41",
+            "id": "41"
+          },
+          {
+            "value": 42,
+            "label": "42",
+            "id": "42"
+          },
+          {
+            "value": 43,
+            "label": "43",
+            "id": "43"
+          },
+          {
+            "value": 44,
+            "label": "44",
+            "id": "44"
+          },
+          {
+            "value": 45,
+            "label": "45",
+            "id": "45"
+          },
+          {
+            "value": 46,
+            "label": "46",
+            "id": "46"
+          },
+          {
+            "value": 47,
+            "label": "47",
+            "id": "47"
+          },
+          {
+            "value": 48,
+            "label": "48",
+            "id": "48"
+          },
+          {
+            "value": 49,
+            "label": "49",
+            "id": "49"
+          },
+          {
+            "value": 50,
+            "label": "50",
+            "id": "50"
+          },
+          {
+            "value": 51,
+            "label": "51",
+            "id": "51"
+          },
+          {
+            "value": 52,
+            "label": "52",
+            "id": "52"
+          },
+          {
+            "value": 53,
+            "label": "53",
+            "id": "53"
+          },
+          {
+            "value": 54,
+            "label": "54",
+            "id": "54"
+          },
+          {
+            "value": 55,
+            "label": "55",
+            "id": "55"
+          },
+          {
+            "value": 56,
+            "label": "56",
+            "id": "56"
+          },
+          {
+            "value": 57,
+            "label": "57",
+            "id": "57"
+          },
+          {
+            "value": 58,
+            "label": "58",
+            "id": "58"
+          },
+          {
+            "value": 59,
+            "label": "59",
+            "id": "59"
+          }
+        ],
+        "optionsSource": "Custom",
+        "allowCustomValue": false
+      },
+      {
+        "uid": "endDate",
+        "id": "endDate",
+        "title": "End",
+        "type": "date",
+        "width": 14,
+        "labelWidth": 6,
+        "tooltip": "",
+        "section": "date",
+        "hidden": false,
+        "unit": "",
+        "value": ""
+      },
+      {
+        "uid": "endH",
+        "id": "endH",
+        "title": "",
+        "type": "select",
+        "width": 8,
+        "labelWidth": null,
+        "tooltip": "",
+        "section": "h",
+        "hidden": false,
+        "unit": "",
+        "value": 0,
+        "options": [
+          {
+            "value": 0,
+            "label": "00",
+            "id": "00"
+          },
+          {
+            "value": 1,
+            "label": "01",
+            "id": "01"
+          },
+          {
+            "value": 2,
+            "label": "02",
+            "id": "02"
+          },
+          {
+            "value": 3,
+            "label": "03",
+            "id": "03"
+          },
+          {
+            "value": 4,
+            "label": "04",
+            "id": "04"
+          },
+          {
+            "value": 5,
+            "label": "05",
+            "id": "05"
+          },
+          {
+            "value": 6,
+            "label": "06",
+            "id": "06"
+          },
+          {
+            "value": 7,
+            "label": "07",
+            "id": "07"
+          },
+          {
+            "value": 8,
+            "label": "08",
+            "id": "08"
+          },
+          {
+            "value": 9,
+            "label": "09",
+            "id": "09"
+          },
+          {
+            "value": 10,
+            "label": "10",
+            "id": "10"
+          },
+          {
+            "value": 11,
+            "label": "11",
+            "id": "11"
+          },
+          {
+            "value": 12,
+            "label": "12",
+            "id": "12"
+          },
+          {
+            "value": 13,
+            "label": "13",
+            "id": "13"
+          },
+          {
+            "value": 14,
+            "label": "14",
+            "id": "14"
+          },
+          {
+            "value": 15,
+            "label": "15",
+            "id": "15"
+          },
+          {
+            "value": 16,
+            "label": "16",
+            "id": "16"
+          },
+          {
+            "value": 17,
+            "label": "17",
+            "id": "17"
+          },
+          {
+            "value": 18,
+            "label": "18",
+            "id": "18"
+          },
+          {
+            "value": 19,
+            "label": "19",
+            "id": "19"
+          },
+          {
+            "value": 20,
+            "label": "20",
+            "id": "20"
+          },
+          {
+            "value": 21,
+            "label": "21",
+            "id": "21"
+          },
+          {
+            "value": 22,
+            "label": "22",
+            "id": "22"
+          },
+          {
+            "value": 23,
+            "label": "23",
+            "id": "23"
+          }
+        ],
+        "optionsSource": "Custom",
+        "allowCustomValue": false
+      },
+      {
+        "uid": "endM",
+        "id": "endM",
+        "title": ":",
+        "type": "select",
+        "width": 8,
+        "labelWidth": 2,
+        "tooltip": "",
+        "section": "m",
+        "hidden": false,
+        "unit": "",
+        "value": 0,
+        "options": [
+          {
+            "value": 0,
+            "label": "00",
+            "id": "00"
+          },
+          {
+            "value": 1,
+            "label": "01",
+            "id": "01"
+          },
+          {
+            "value": 2,
+            "label": "02",
+            "id": "02"
+          },
+          {
+            "value": 3,
+            "label": "03",
+            "id": "03"
+          },
+          {
+            "value": 4,
+            "label": "04",
+            "id": "04"
+          },
+          {
+            "value": 5,
+            "label": "05",
+            "id": "05"
+          },
+          {
+            "value": 6,
+            "label": "06",
+            "id": "06"
+          },
+          {
+            "value": 7,
+            "label": "07",
+            "id": "07"
+          },
+          {
+            "value": 8,
+            "label": "08",
+            "id": "08"
+          },
+          {
+            "value": 9,
+            "label": "09",
+            "id": "09"
+          },
+          {
+            "value": 10,
+            "label": "10",
+            "id": "10"
+          },
+          {
+            "value": 11,
+            "label": "11",
+            "id": "11"
+          },
+          {
+            "value": 12,
+            "label": "12",
+            "id": "12"
+          },
+          {
+            "value": 13,
+            "label": "13",
+            "id": "13"
+          },
+          {
+            "value": 14,
+            "label": "14",
+            "id": "14"
+          },
+          {
+            "value": 15,
+            "label": "15",
+            "id": "15"
+          },
+          {
+            "value": 16,
+            "label": "16",
+            "id": "16"
+          },
+          {
+            "value": 17,
+            "label": "17",
+            "id": "17"
+          },
+          {
+            "value": 18,
+            "label": "18",
+            "id": "18"
+          },
+          {
+            "value": 19,
+            "label": "19",
+            "id": "19"
+          },
+          {
+            "value": 20,
+            "label": "20",
+            "id": "20"
+          },
+          {
+            "value": 21,
+            "label": "21",
+            "id": "21"
+          },
+          {
+            "value": 22,
+            "label": "22",
+            "id": "22"
+          },
+          {
+            "value": 23,
+            "label": "23",
+            "id": "23"
+          },
+          {
+            "value": 24,
+            "label": "24",
+            "id": "24"
+          },
+          {
+            "value": 25,
+            "label": "25",
+            "id": "25"
+          },
+          {
+            "value": 26,
+            "label": "26",
+            "id": "26"
+          },
+          {
+            "value": 27,
+            "label": "27",
+            "id": "27"
+          },
+          {
+            "value": 28,
+            "label": "28",
+            "id": "28"
+          },
+          {
+            "value": 29,
+            "label": "29",
+            "id": "29"
+          },
+          {
+            "value": 30,
+            "label": "30",
+            "id": "30"
+          },
+          {
+            "value": 31,
+            "label": "31",
+            "id": "31"
+          },
+          {
+            "value": 32,
+            "label": "32",
+            "id": "32"
+          },
+          {
+            "value": 33,
+            "label": "33",
+            "id": "33"
+          },
+          {
+            "value": 34,
+            "label": "34",
+            "id": "34"
+          },
+          {
+            "value": 35,
+            "label": "35",
+            "id": "35"
+          },
+          {
+            "value": 36,
+            "label": "36",
+            "id": "36"
+          },
+          {
+            "value": 37,
+            "label": "37",
+            "id": "37"
+          },
+          {
+            "value": 38,
+            "label": "38",
+            "id": "38"
+          },
+          {
+            "value": 39,
+            "label": "39",
+            "id": "39"
+          },
+          {
+            "value": 40,
+            "label": "40",
+            "id": "40"
+          },
+          {
+            "value": 41,
+            "label": "41",
+            "id": "41"
+          },
+          {
+            "value": 42,
+            "label": "42",
+            "id": "42"
+          },
+          {
+            "value": 43,
+            "label": "43",
+            "id": "43"
+          },
+          {
+            "value": 44,
+            "label": "44",
+            "id": "44"
+          },
+          {
+            "value": 45,
+            "label": "45",
+            "id": "45"
+          },
+          {
+            "value": 46,
+            "label": "46",
+            "id": "46"
+          },
+          {
+            "value": 47,
+            "label": "47",
+            "id": "47"
+          },
+          {
+            "value": 48,
+            "label": "48",
+            "id": "48"
+          },
+          {
+            "value": 49,
+            "label": "49",
+            "id": "49"
+          },
+          {
+            "value": 50,
+            "label": "50",
+            "id": "50"
+          },
+          {
+            "value": 51,
+            "label": "51",
+            "id": "51"
+          },
+          {
+            "value": 52,
+            "label": "52",
+            "id": "52"
+          },
+          {
+            "value": 53,
+            "label": "53",
+            "id": "53"
+          },
+          {
+            "value": 54,
+            "label": "54",
+            "id": "54"
+          },
+          {
+            "value": 55,
+            "label": "55",
+            "id": "55"
+          },
+          {
+            "value": 56,
+            "label": "56",
+            "id": "56"
+          },
+          {
+            "value": 57,
+            "label": "57",
+            "id": "57"
+          },
+          {
+            "value": 58,
+            "label": "58",
+            "id": "58"
+          },
+          {
+            "value": 59,
+            "label": "59",
+            "id": "59"
+          }
+        ],
+        "optionsSource": "Custom",
+        "allowCustomValue": false
+      },
+      {
+        "uid": "endS",
+        "id": "endS",
+        "title": ":",
+        "type": "select",
+        "width": 8,
+        "labelWidth": 2,
+        "tooltip": "",
+        "section": "s",
+        "hidden": false,
+        "unit": "",
+        "value": 0,
+        "options": [
+          {
+            "value": 0,
+            "label": "00",
+            "id": "00"
+          },
+          {
+            "value": 1,
+            "label": "01",
+            "id": "01"
+          },
+          {
+            "value": 2,
+            "label": "02",
+            "id": "02"
+          },
+          {
+            "value": 3,
+            "label": "03",
+            "id": "03"
+          },
+          {
+            "value": 4,
+            "label": "04",
+            "id": "04"
+          },
+          {
+            "value": 5,
+            "label": "05",
+            "id": "05"
+          },
+          {
+            "value": 6,
+            "label": "06",
+            "id": "06"
+          },
+          {
+            "value": 7,
+            "label": "07",
+            "id": "07"
+          },
+          {
+            "value": 8,
+            "label": "08",
+            "id": "08"
+          },
+          {
+            "value": 9,
+            "label": "09",
+            "id": "09"
+          },
+          {
+            "value": 10,
+            "label": "10",
+            "id": "10"
+          },
+          {
+            "value": 11,
+            "label": "11",
+            "id": "11"
+          },
+          {
+            "value": 12,
+            "label": "12",
+            "id": "12"
+          },
+          {
+            "value": 13,
+            "label": "13",
+            "id": "13"
+          },
+          {
+            "value": 14,
+            "label": "14",
+            "id": "14"
+          },
+          {
+            "value": 15,
+            "label": "15",
+            "id": "15"
+          },
+          {
+            "value": 16,
+            "label": "16",
+            "id": "16"
+          },
+          {
+            "value": 17,
+            "label": "17",
+            "id": "17"
+          },
+          {
+            "value": 18,
+            "label": "18",
+            "id": "18"
+          },
+          {
+            "value": 19,
+            "label": "19",
+            "id": "19"
+          },
+          {
+            "value": 20,
+            "label": "20",
+            "id": "20"
+          },
+          {
+            "value": 21,
+            "label": "21",
+            "id": "21"
+          },
+          {
+            "value": 22,
+            "label": "22",
+            "id": "22"
+          },
+          {
+            "value": 23,
+            "label": "23",
+            "id": "23"
+          },
+          {
+            "value": 24,
+            "label": "24",
+            "id": "24"
+          },
+          {
+            "value": 25,
+            "label": "25",
+            "id": "25"
+          },
+          {
+            "value": 26,
+            "label": "26",
+            "id": "26"
+          },
+          {
+            "value": 27,
+            "label": "27",
+            "id": "27"
+          },
+          {
+            "value": 28,
+            "label": "28",
+            "id": "28"
+          },
+          {
+            "value": 29,
+            "label": "29",
+            "id": "29"
+          },
+          {
+            "value": 30,
+            "label": "30",
+            "id": "30"
+          },
+          {
+            "value": 31,
+            "label": "31",
+            "id": "31"
+          },
+          {
+            "value": 32,
+            "label": "32",
+            "id": "32"
+          },
+          {
+            "value": 33,
+            "label": "33",
+            "id": "33"
+          },
+          {
+            "value": 34,
+            "label": "34",
+            "id": "34"
+          },
+          {
+            "value": 35,
+            "label": "35",
+            "id": "35"
+          },
+          {
+            "value": 36,
+            "label": "36",
+            "id": "36"
+          },
+          {
+            "value": 37,
+            "label": "37",
+            "id": "37"
+          },
+          {
+            "value": 38,
+            "label": "38",
+            "id": "38"
+          },
+          {
+            "value": 39,
+            "label": "39",
+            "id": "39"
+          },
+          {
+            "value": 40,
+            "label": "40",
+            "id": "40"
+          },
+          {
+            "value": 41,
+            "label": "41",
+            "id": "41"
+          },
+          {
+            "value": 42,
+            "label": "42",
+            "id": "42"
+          },
+          {
+            "value": 43,
+            "label": "43",
+            "id": "43"
+          },
+          {
+            "value": 44,
+            "label": "44",
+            "id": "44"
+          },
+          {
+            "value": 45,
+            "label": "45",
+            "id": "45"
+          },
+          {
+            "value": 46,
+            "label": "46",
+            "id": "46"
+          },
+          {
+            "value": 47,
+            "label": "47",
+            "id": "47"
+          },
+          {
+            "value": 48,
+            "label": "48",
+            "id": "48"
+          },
+          {
+            "value": 49,
+            "label": "49",
+            "id": "49"
+          },
+          {
+            "value": 50,
+            "label": "50",
+            "id": "50"
+          },
+          {
+            "value": 51,
+            "label": "51",
+            "id": "51"
+          },
+          {
+            "value": 52,
+            "label": "52",
+            "id": "52"
+          },
+          {
+            "value": 53,
+            "label": "53",
+            "id": "53"
+          },
+          {
+            "value": 54,
+            "label": "54",
+            "id": "54"
+          },
+          {
+            "value": 55,
+            "label": "55",
+            "id": "55"
+          },
+          {
+            "value": 56,
+            "label": "56",
+            "id": "56"
+          },
+          {
+            "value": 57,
+            "label": "57",
+            "id": "57"
+          },
+          {
+            "value": 58,
+            "label": "58",
+            "id": "58"
+          },
+          {
+            "value": 59,
+            "label": "59",
+            "id": "59"
+          }
+        ],
+        "optionsSource": "Custom",
+        "allowCustomValue": false
+      }
+    ]
+  },
+  "gridPos": {
+    "h": 5,
+    "w": 19,
+    "x": 5,
+    "y": 0
+  }
+}
